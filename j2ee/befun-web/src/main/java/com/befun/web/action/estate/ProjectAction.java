@@ -86,6 +86,7 @@ public class ProjectAction extends CRUDAction<Project, ProjectView> {
                 this.aggRs.add(tmpAV);
             }
             SuburbView tmpSV = this.suburbConverter.convertToView(tmpS);
+            tmpSV.setProjectCounts(count);
             tmpAV.getSuburbs().add(tmpSV);
             tmpAV.setProjectCounts(tmpAV.getProjectCounts() + count);
         }

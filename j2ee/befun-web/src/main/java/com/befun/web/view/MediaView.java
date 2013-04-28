@@ -22,6 +22,10 @@ public class MediaView extends BaseView<Media> {
 
     private ContentType contentType;
 
+    public MediaView() {
+        super();
+    }
+
     public MediaView(Media model) {
         super(model);
     }
@@ -31,72 +35,58 @@ public class MediaView extends BaseView<Media> {
         return this.model;
     }
 
-    
     public String getName() {
         return name;
     }
 
-    
     public void setName(String name) {
         this.name = name;
     }
 
-    
     public String getSmallUrl() {
         return smallUrl;
     }
 
-    
     public void setSmallUrl(String smallUrl) {
         this.smallUrl = smallUrl;
     }
 
-    
     public String getMediumUrl() {
         return mediumUrl;
     }
 
-    
     public void setMediumUrl(String mediumUrl) {
         this.mediumUrl = mediumUrl;
     }
 
-    
     public String getLargeUrl() {
         return largeUrl;
     }
 
-    
     public void setLargeUrl(String largeUrl) {
         this.largeUrl = largeUrl;
     }
 
-    
     public String getAlt() {
         return alt;
     }
 
-    
     public void setAlt(String alt) {
         this.alt = alt;
     }
 
-    
     public MediaType getMediaType() {
         return mediaType;
     }
 
-    
     public void setMediaType(MediaType mediaType) {
         this.mediaType = mediaType;
     }
 
-    
     public ContentType getContentType() {
         return contentType;
     }
 
-    
     public void setContentType(ContentType contentType) {
         this.contentType = contentType;
     }
@@ -106,6 +96,5 @@ public class MediaView extends BaseView<Media> {
         return "MediaView [name=" + name + ", smallUrl=" + smallUrl + ", mediumUrl=" + mediumUrl + ", largeUrl=" + largeUrl + ", alt=" + alt + ", mediaType="
                + mediaType + ", contentType=" + contentType + ", toString()=" + super.toString() + "]";
     }
-
 
 }

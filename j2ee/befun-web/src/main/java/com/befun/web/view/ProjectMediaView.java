@@ -13,6 +13,10 @@ public class ProjectMediaView extends BaseView<ProjectMedia> {
 
     private Media media;
 
+    public ProjectMediaView() {
+        super();
+    }
+    
     public ProjectMediaView(ProjectMedia model) {
         super(model);
     }

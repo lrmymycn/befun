@@ -30,20 +30,20 @@
 					<jmesa:htmlColumn property="contentType" />
 					<jmesa:htmlColumn property="enabled" />
 					<jmesa:htmlColumn sortable="false" title="Operation">
-						<s:url var="e" action="admin/data/editSuburb.action" namespace="/">
+						<s:url var="e" action="admin/data/editMedia.action" namespace="/">
 							<s:param name="id">${bean.id}</s:param>
 						</s:url>
 						<input type="button" value="Edit" onclick="showDialog('${e}')" />
-						<s:url var="r" action="admin/data/removeSuburb.action" namespace="/">
+						<s:url var="r" action="admin/data/removeMedia.action" namespace="/">
 							<s:param name="id">${bean.id}</s:param>
 						</s:url>
 						<input type="button" value="Remove" onclick="showDialog('${r}')" />
 						
-						<s:url var="r" action="admin/data/enableSuburb.action" namespace="/">
+						<s:url var="r" action="admin/data/enableMedia.action" namespace="/">
 							<s:param name="id">${bean.id}</s:param>
 						</s:url>
 						<input type="button" value="Enable" onclick="showDialog('${r}')" />
-						<s:url var="r" action="admin/data/disableSuburb.action" namespace="/">
+						<s:url var="r" action="admin/data/disableMedia.action" namespace="/">
 							<s:param name="id">${bean.id}</s:param>
 						</s:url>
 						<input type="button" value="Disable" onclick="showDialog('${r}')" />

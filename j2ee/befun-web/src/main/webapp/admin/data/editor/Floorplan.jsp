@@ -29,6 +29,7 @@
 		<s:textfield name="view.internalSize" label="internalSize"></s:textfield>
 		<s:textfield name="view.externalSize" label="externalSize"></s:textfield>
 		<s:textfield name="view.totalSize" label="totalSize"></s:textfield>
+		<s:textfield name="view.landSize" label="landSize"></s:textfield>
 		<s:checkbox name="view.split" label="split" labelposition="left"></s:checkbox>
 		<s:checkbox name="view.studio" label="studio" labelposition="left"></s:checkbox>
 		<s:textarea name="view.description" label="Description" labelposition="left" cols="40"></s:textarea>

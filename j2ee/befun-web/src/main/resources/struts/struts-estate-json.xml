@@ -7,7 +7,8 @@
 		<action name="demandSuburbByKey" class="SuburbAction" method="demandByKey">
 			<result name="success" type="myJson">
 				<param name="includeProperties">
-					keyRs\.[^.]*\.label,
+					keyRs\[\d+\]\.id,
+					keyRs\[\d+\]\.label,
 				</param>
 			</result>
 		</action>

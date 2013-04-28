@@ -25,6 +25,12 @@ public class AreaView extends BaseView<Area> {
 
     private List<AreaPolyline> polylines;
 
+    private Integer zoomLevel = 12;
+
+    public AreaView() {
+        super();
+    }
+
     public AreaView(Area model) {
         super(model);
     }
@@ -86,6 +92,14 @@ public class AreaView extends BaseView<Area> {
 
     public void setPolylines(List<AreaPolyline> polylines) {
         this.polylines = polylines;
+    }
+
+    public Integer getZoomLevel() {
+        return zoomLevel;
+    }
+
+    public void setZoomLvl(Integer zoomLevel) {
+        this.zoomLevel = zoomLevel;
     }
 
 }

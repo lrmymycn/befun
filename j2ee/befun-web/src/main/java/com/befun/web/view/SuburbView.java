@@ -40,6 +40,12 @@ public class SuburbView extends BaseView<Suburb> {
 
     private List<SuburbPolyline> polylines;
 
+    private Integer zoomLevel = 15;
+
+    public SuburbView() {
+        super();
+    }
+
     public SuburbView(Suburb model) {
         super(model);
     }
@@ -173,6 +179,14 @@ public class SuburbView extends BaseView<Suburb> {
 
     public void setPolylines(List<SuburbPolyline> polylines) {
         this.polylines = polylines;
+    }
+
+    public Integer getZoomLevel() {
+        return zoomLevel;
+    }
+
+    public void setZoomLvl(Integer zoomLevel) {
+        this.zoomLevel = zoomLevel;
     }
 
 }

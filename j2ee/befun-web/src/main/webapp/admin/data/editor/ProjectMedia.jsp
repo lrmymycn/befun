@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Edit ProjectMedia ID:${view.id},LN:${view.lotNumber}</title>
+<title>Edit ProjectMedia ID:${view.id},LN:${view.projectName},${view.media.smallUrl }</title>
 </head>
 <body>
 	<s:form action="saveProjectMedia.action" method="post">

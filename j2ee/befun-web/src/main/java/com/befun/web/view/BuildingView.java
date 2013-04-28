@@ -27,6 +27,10 @@ public class BuildingView extends BaseView<Building> {
 
     private boolean soldOut;
 
+    public BuildingView() {
+        super();
+    }
+    
     public BuildingView(Building model) {
         super(model);
     }

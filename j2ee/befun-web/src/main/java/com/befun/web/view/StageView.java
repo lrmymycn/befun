@@ -21,6 +21,10 @@ public class StageView extends BaseView<Stage> {
 
     private boolean soldOut;
 
+    public StageView() {
+        super();
+    }
+    
     public StageView(Stage model) {
         super(model);
     }

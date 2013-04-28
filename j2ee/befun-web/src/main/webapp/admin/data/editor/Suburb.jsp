@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Edit Apartment ID:${view.id},LN:${view.name}</title>
+<title>Edit Suburb ID:${view.id},LN:${view.name}</title>
 </head>
 <body>
-	<s:form action="saveApartment.action" method="post">
+	<s:form action="saveSuburb.action" method="post">
 		<s:hidden name="view.id"></s:hidden>
 		<s:label name="view.id" label="ID"></s:label>
 		<s:label name="view.bid" label="BID"></s:label>
@@ -25,7 +25,15 @@
 		<s:checkbox name="view.chineseCommunity" label="chineseCommunity" labelposition="left"></s:checkbox>
 		<s:textarea name="view.description" label="Description" labelposition="left" cols="40"></s:textarea>
 		<s:textarea name="view.polylines" label="Polylines" labelposition="left" cols="40"></s:textarea>
-		<s:submit></s:submit><s:reset></s:reset>
+		<s:if test="editable">
+			<s:submit></s:submit>
+			<s:reset></s:reset>
+		</s:if>
+		<tr>
+			<td colspan="2"><div align="right">
+					<input type="button" value="Close" onclick="closeCurrentWindow();" />
+				</div></td>
+		</tr>
 	</s:form>
 </body>
 </html>

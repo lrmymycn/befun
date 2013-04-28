@@ -92,6 +92,10 @@ public class ProjectView extends BaseView<Project> {
 
     private List<Media> medias;
 
+    public ProjectView() {
+        super();
+    }
+    
     public ProjectView(Project model) {
         super(model);
     }

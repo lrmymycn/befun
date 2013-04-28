@@ -62,6 +62,10 @@ public class FloorplanView extends BaseView<Floorplan> {
 
     private boolean soldOut;
 
+    public FloorplanView() {
+        super();
+    }
+    
     public FloorplanView(Floorplan model) {
         super(model);
     }

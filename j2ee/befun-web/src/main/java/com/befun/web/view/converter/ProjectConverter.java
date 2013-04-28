@@ -4,6 +4,7 @@ import org.springframework.beans.BeanUtils;
 
 import com.befun.domain.estate.Media;
 import com.befun.domain.estate.Project;
+import com.befun.domain.estate.Suburb;
 import com.befun.web.view.ProjectView;
 
 public class ProjectConverter extends AbstractViewConverter<Project, ProjectView> {
@@ -48,6 +49,11 @@ public class ProjectConverter extends AbstractViewConverter<Project, ProjectView
             Media m = new Media();
             m.setId(view.getLogoId());
             model.setLogo(m);
+        }
+        if (view.getSuburbId() != null) {
+            Suburb s = new Suburb();
+            s.setId(view.getSuburbId());
+            model.setSuburb(s);
         }
     }
 

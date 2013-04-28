@@ -1,8 +1,7 @@
 package com.befun.web.action.estate;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -28,7 +27,7 @@ public class SuburbAction extends CRUDAction<Suburb, SuburbView> {
 
     private SuburbQueryCondition qc = new SuburbQueryCondition();
 
-    private Map<Long, SuburbView> keyRs = new HashMap<Long, SuburbView>();
+    private List<SuburbView> keyRs = new ArrayList<SuburbView>();
 
     @Resource
     @Qualifier("SuburbService")
@@ -39,7 +38,7 @@ public class SuburbAction extends CRUDAction<Suburb, SuburbView> {
         SuburbView tmpV = null;
         for (Suburb s : queryRs) {
             tmpV = this.getConverter().convertToView(s);
-            keyRs.put(s.getId(), tmpV);
+            keyRs.add(tmpV);
         }
         return SUCCESS;
     }
@@ -52,7 +51,7 @@ public class SuburbAction extends CRUDAction<Suburb, SuburbView> {
         this.qc = qc;
     }
 
-    public Map<Long, SuburbView> getKeyRs() {
+    public List<SuburbView> getKeyRs() {
         return keyRs;
     }
 
