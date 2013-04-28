@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+  <!DOCTYPE struts PUBLIC  
+      "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"  
+      "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="my-json" extends="json-default">
+		<result-types>
+			<result-type name="myJson" class="org.apache.struts2.json.JSONResult">
+				<param name="excludeNullProperties">true</param>
+				<param name="statusCode">200</param>
+				<param name="errorCode">404</param>
+				<param name="callbackParameter">callback</param>
+				<param name="excludeNullProperties">false</param>
+				<param name="ignoreHierarchy">false</param>
+			</result-type>
+			<result-type name="myJsonInternalError" class="org.apache.struts2.json.JSONResult">
+				<param name="excludeNullProperties">true</param>
+				<param name="statusCode">500</param>
+				<param name="errorCode">404</param>
+				<param name="excludeNullProperties">false</param>
+				<param name="ignoreHierarchy">false</param>  
+			</result-type>
+		</result-types>
+		<action name="indexJson" class="com.befun.web.action.IndexAction">
+			<!-- 定义逻辑视图和物理资源之间的映射 -->
+			<result name="success" type="myJson">
+				<param name="excludeProperties">
+					username1
+				</param>
+			</result>
+		</action>
+	</package>
+</struts>  

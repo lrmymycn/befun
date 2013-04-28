@@ -1,0 +1,15 @@
+IP 180.235.131.163
+root / xAh)Ky5S
+
+3次输错密码，IP会被屏蔽
+
+装了GNOME, VNC, 5901是我自己的账号，你可以加一个
+目前没做安全上的配置
+
+FTP装了vsftpd
+
+befun/poi!@#s0
+befunftp/qwe)(*k1
+
+MySQL
+root/Mis@!)%i10

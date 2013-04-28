@@ -1,0 +1,40 @@
+ssl
+
+estate的ssl库，
+
+--- 服务端证书 befun-estate.ks
+keytool -genkey -alias befun.estate.web -keyalg RSA -keysize 1024 -keystore befun-estate.ks -validity 20000 -dname "CN=JadeYang, OU=befun, O=estate, L=Sydney, ST=NSW, C=AU"
+keystore pwd:E$t@te_+|098
+
+1. befun-estate
+alias:befun.estate
+alg:RSA
+validity:365
+名姓：JadeYang
+组织单位:befun
+组织:estate
+城市:Sydney
+州：NSW
+国家：AU
+key pwd:E$t@te_+|098
+
+--- 服务端信任证书 befun-estate-trust.ks
+keytool -genkey -alias befun.estate.web -keyalg RSA -keysize 1024 -keystore befun-estate-trust.ks -validity 20000 -dname "CN=JadeYang, OU=befun, O=estate, L=Sydney, ST=NSW, C=AU"
+keystore pwd:E$t@teTrust_+|098
+
+
+
+keytool -genkey -alias jade -keyalg RSA -keysize 1024 -keystore befun-estate-client.p12 -validity 20000 -dname "CN=JadeYang, OU=befun.com, O=estate, L=BeiJing, ST=BeiJing, C=CN" -storetype PKCS12
+--- 客户端证书 befun-estate-client.p12
+keystore pwd:E$t@teClient_+|098
+1. jade
+alias:jade
+alg:RSA
+validity:365
+名姓：JadeYang
+组织单位:befun
+组织:estate
+城市:BeiJing
+州：BeiJing
+国家：CN
+key pwd:E$t@tejade_+|098

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+  <!DOCTYPE struts PUBLIC  
+      "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"  
+      "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="estate" extends="struts-default" namespace="/estate">
+		<action name="demandApartment" class="ApartmentAction" method="demand">
+			<result name="success">/admin/data/apartment/list.jsp</result>
+		</action>
+		<action name="demandApartmentById" class="ApartmentAction" method="demandById">
+			<result name="success">/admin/data/apartment/edit.jsp</result>
+		</action>
+	</package>
+</struts>

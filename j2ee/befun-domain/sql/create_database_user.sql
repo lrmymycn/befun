@@ -1,0 +1,3 @@
+CREATE DATABASE estate DEFAULT CHARACTER SET = utf8;
+CREATE USER 'estate'@'localhost' IDENTIFIED BY 'Ywll_677';
+GRANT ALL PRIVILEGES ON estate.* TO 'estate'@'localhost' WITH GRANT OPTION;

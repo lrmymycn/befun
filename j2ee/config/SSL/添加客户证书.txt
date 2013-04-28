@@ -1,0 +1,27 @@
+1. 生成服务端证书
+keytool -genkey -alias befun.estate.web -keyalg RSA -keysize 1024 -keystore befun-estate.ks -validity 20000 -dname "CN=JadeYang, OU=befun, O=estate, L=Sydney, ST=NSW, C=AU"
+这个有一个即可，标记服务端身份
+
+2. 生成服务端信任证书库
+这是个证书库，保存受信任的客户端证书
+keytool -genkey -alias befun.estate.web -keyalg RSA -keysize 1024 -keystore befun-estate-trust.ks -validity 20000 -dname "CN=JadeYang, OU=befun, O=estate, L=Sydney, ST=NSW, C=AU"
+keytool -delete -alias befun.estate.web -keystore befun-estate-trust.ks -storepass .... 将仅有的一个删掉，形成空库
+
+3. 生成客户端证书
+keytool -genkey -alias orion -keyalg RSA -keysize 1024 -keystore befun-orion.p12 -validity 20000 -dname "CN=Orion, OU=befun.com, O=estate, L=Sydney, ST=NSW, C=AU" -storetype PKCS12
+将证书导出库
+keytool -export -alias orion -file orion.cer -keystore befun-orion.p12 -storetype PKCS12 -storepass ....
+将证书导入受信任库
+keytool -import -v -alias orion -file orion.cer -keystore befun-estate-trust.ks -storepass ....
+
+4. 将证书发给相关人员（sale），让其将该证书导入的受信任列表
+
+
+
+----常用命令
+查看库中证书
+keytool -list -v -keystore befun-estate-trust.ks
+keytool -list -v -keystore befun-estate-client.p12 -storetype PKCS12
+
+修改库中证书key密码
+keytool -keypasswd -alias befun.estate.web -keystore befun-estate.ks -keypass "老密码" -new "新密码"
