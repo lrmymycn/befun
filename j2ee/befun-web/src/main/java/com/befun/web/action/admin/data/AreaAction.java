@@ -28,6 +28,33 @@ public class AreaAction<T extends Area, V extends AreaView> extends JmesaAction<
     @Qualifier("AreaService")
     private AreaService service;
 
+    public String demandById() {
+        try {
+            Area obj = this.service.getDetail(this.getId());
+            this.view = this.getConverter().convertToView(obj);
+        } catch (Exception ex) {
+            String errMsg = "Query failure!";
+            this.log.warn(errMsg, ex);
+            this.addActionError(errMsg + "\nCause:" + ex.getMessage());
+            return ERROR;
+        }
+        return SUCCESS;
+    }
+
+    public String createOrUpdate() {
+        try {
+            Area model = this.getConverter().convertToModel(this.view);
+            this.service.saveOrUpdateWithPolylines(model, this.getUpdateIgnoredProperties());
+            this.addActionMessage("Update successfully!");
+        } catch (Exception ex) {
+            String errMsg = "Update failure! Object:" + this.view;
+            this.log.error(errMsg, ex);
+            this.addActionError(errMsg + "\nCause:" + ex.getMessage());
+            return ERROR;
+        }
+        return SUCCESS;
+    }
+    
     public void setQc(AreaQueryCondition qc) {
         this.qc = qc;
     }

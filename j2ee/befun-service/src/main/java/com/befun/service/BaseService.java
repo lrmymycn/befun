@@ -38,7 +38,7 @@ public abstract class BaseService<M extends BaseModel<PK>, PK extends Serializab
     @Override
     public void saveOrUpdate(M model) {
         Assert.notNull(model, "model should be not null!");
-        if (model.getId() == null) {
+        if (model.getId() != null) {
             this.update(model);
         } else {
             this.save(model);

@@ -25,7 +25,7 @@ public class ModelModification implements Serializable {
         ModelModification modelModification = new ModelModification();
         modelModification.setCreationDate(new Date());
         modelModification.setLastModifiedDate(new Date());
-        modelModification.setEnabled(false);
+        modelModification.setEnabled(true);
         modelModification.setRemoved(false);
         return modelModification;
     }

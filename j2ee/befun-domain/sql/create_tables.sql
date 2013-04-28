@@ -129,7 +129,7 @@ CREATE TABLE IF NOT EXISTS `area` (
   `id` bigint(20) NOT NULL,
   `bid` varchar(255) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
-  `description` text NOT NULL,
+  `description` text DEFAULT NULL,
   `longitude` double DEFAULT NULL,
   `latitude` double DEFAULT NULL,
   `removed` tinyint(1) DEFAULT 0,

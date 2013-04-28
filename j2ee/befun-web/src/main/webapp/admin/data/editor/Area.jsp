@@ -16,7 +16,7 @@
 		<s:textfield name="view.longitude" label="Longitude"></s:textfield>
 		<s:textfield name="view.latitude" label="Latitude"></s:textfield>
 		<s:textarea name="view.description" label="Description" labelposition="left" cols="40"></s:textarea>
-		<s:textarea name="view.polylines" label="Polylines" labelposition="left" cols="40"></s:textarea>
+		<s:textarea name="view.polylinesString" label="Polylines" labelposition="left" cols="40"></s:textarea>
 		<s:submit></s:submit>
 		<s:reset></s:reset>
 		<tr>

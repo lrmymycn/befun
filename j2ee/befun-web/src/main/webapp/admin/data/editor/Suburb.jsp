@@ -24,7 +24,7 @@
 		<s:checkbox name="view.train" label="train" labelposition="left"></s:checkbox>
 		<s:checkbox name="view.chineseCommunity" label="chineseCommunity" labelposition="left"></s:checkbox>
 		<s:textarea name="view.description" label="Description" labelposition="left" cols="40"></s:textarea>
-		<s:textarea name="view.polylines" label="Polylines" labelposition="left" cols="40"></s:textarea>
+		<s:textarea name="view.polylinesString" label="Polylines" labelposition="left" cols="40"></s:textarea>
 		<s:if test="editable">
 			<s:submit></s:submit>
 			<s:reset></s:reset>

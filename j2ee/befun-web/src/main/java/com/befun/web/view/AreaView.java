@@ -112,7 +112,7 @@ public class AreaView extends BaseView<Area> {
                 sb.append(p.getLatitude()).append(",").append(p.getLongitude());
             }
         }
-        return null;
+        return sb.toString();
     }
 
     public void setPolylinesString(String str) {

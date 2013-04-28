@@ -10,6 +10,7 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.befun.domain.estate.Area;
 import com.befun.domain.estate.Suburb;
 import com.befun.service.IBaseService;
 import com.befun.service.estate.SuburbService;
@@ -43,6 +44,33 @@ public class SuburbAction<T extends Suburb, V extends SuburbView> extends JmesaA
         return SUCCESS;
     }
 
+    public String demandById() {
+        try {
+            Suburb obj = this.service.getDetail(this.getId());
+            this.view = this.getConverter().convertToView(obj);
+        } catch (Exception ex) {
+            String errMsg = "Query failure!";
+            this.log.warn(errMsg, ex);
+            this.addActionError(errMsg + "\nCause:" + ex.getMessage());
+            return ERROR;
+        }
+        return SUCCESS;
+    }
+
+    public String createOrUpdate() {
+        try {
+            Suburb model = this.getConverter().convertToModel(this.view);
+            this.service.saveOrUpdateWithPolylines(model, this.getUpdateIgnoredProperties());
+            this.addActionMessage("Update successfully!");
+        } catch (Exception ex) {
+            String errMsg = "Update failure! Object:" + this.view;
+            this.log.error(errMsg, ex);
+            this.addActionError(errMsg + "\nCause:" + ex.getMessage());
+            return ERROR;
+        }
+        return SUCCESS;
+    }
+    
     public SuburbQueryCondition getQc() {
         return qc;
     }

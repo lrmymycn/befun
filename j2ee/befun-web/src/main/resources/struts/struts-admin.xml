@@ -5,16 +5,16 @@
 <struts>
 	<package name="admin" extends="struts-default" namespace="/admin">
 		<action name="secCacheStatistic" class="SecondCacheStatisticAction" method="statistic">
-			<result name="success"></result>
-			<result name="error"></result>
+			<result name="success">/admin/data/result.jsp</result>
+			<result name="success">/admin/data/result.jsp</result>
 		</action>
 		<action name="impPage" class="ImportAccessAction" method="importIndex">
 			<result name="success">/admin/importAccess.jsp</result>
 			<result name="error"></result>
 		</action>
 		<action name="impAccess" class="ImportAccessAction" method="importAccess">
-			<result name="success"></result>
-			<result name="error"></result>
+			<result name="success">/admin/data/result.jsp</result>
+			<result name="success">/admin/data/result.jsp</result>
 		</action>
 	</package>
 	<package name="admin-user" extends="struts-default" namespace="/admin/user">

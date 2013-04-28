@@ -32,6 +32,7 @@ public class ImportAccessAction extends FileUploadAction {
         ImportDataSource ds = this.getAccessDataSource();
         try {
             this.importService.importData(ds);
+            this.addActionMessage("Import successfully!");
         } catch (Exception ex) {
             this.addActionError(ex.getMessage());
             return ERROR;
