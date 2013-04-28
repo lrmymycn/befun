@@ -22,7 +22,6 @@
 			</result-type>
 		</result-types>
 		<action name="indexJson" class="com.befun.web.action.IndexAction">
-			<!-- 定义逻辑视图和物理资源之间的映射 -->
 			<result name="success" type="myJson">
 				<param name="excludeProperties">
 					username1

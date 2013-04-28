@@ -117,7 +117,7 @@
 				</param>
 			</result>
 		</action>
-		<action name="demandApartment" class="apartmentAction" method="demand">
+		<action name="demandApartment" class="ApartmentAction" method="demand">
 			<result name="success" type="myJson">
 				<param name="includeProperties">
 					pgb\..*,
@@ -127,7 +127,7 @@
 				</param>
 			</result>
 		</action>
-		<action name="demandApartmentById" class="apartmentAction" method="demandById">
+		<action name="demandApartmentById" class="ApartmentAction" method="demandById">
 			<result name="success" type="myJson">
 				<param name="includeProperties">
 					view\..*,
@@ -137,5 +137,33 @@
 				</param>
 			</result>
 		</action>
+        <action name="addToCompareList" class="CompareAction" method="addToCompareList">
+            <result name="success" type="myJson">
+                <param name="includeProperties">
+                    actionMessages*,
+                    errorMessages*,
+                </param>
+            </result>
+        </action>
+        <action name="removeFromCompareList" class="CompareAction" method="removeFromCompareList">
+            <result name="success" type="myJson">
+                <param name="includeProperties">
+                    actionMessages*,
+                    errorMessages*,
+                </param>
+            </result>
+        </action>
+        <action name="compare" class="CompareAction" method="compareFloorplan">
+            <result name="success" type="myJson">
+                <param name="includeProperties">
+                    actionMessages*,
+                    errorMessages*,
+                    rs\[\d+\]\.[^.]*,
+                </param>
+                <param name="excludeProperties">
+					rs\[\d+\]\.building.*,
+                </param>
+            </result>
+        </action>
 	</package>
 </struts>  

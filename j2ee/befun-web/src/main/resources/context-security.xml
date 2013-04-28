@@ -1,65 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns="http://www.springframework.org/schema/security" xmlns:beans="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
        ">
-	<http pattern="/css/**" security="none" />
-	<http pattern="/js/**" security="none" />
-	<http pattern="/img/**" security="none" />
-	<http pattern="/error/**" security="none" />
-	<http pattern="/jmesa/**" security="none" />
-	<http pattern="/jquery-ui/**" security="none" />
-	<http use-expressions="true" auto-config="true">
-		<intercept-url pattern="/" access="permitAll" requires-channel="http" />
-		<intercept-url pattern="/index.jsp**" access="permitAll" requires-channel="http" />
-		<intercept-url pattern="/index.action**" access="permitAll" requires-channel="http" />
-		<intercept-url pattern="/login.jsp**" access="isAnonymous()" requires-channel="http" />
-		<intercept-url pattern="/j_spring_security_check" access="isAnonymous()" requires-channel="http" />
-		<intercept-url pattern="/j_spring_security_logout" access="isAuthenticated()" requires-channel="http" />
-		<intercept-url pattern="/estate/json/demandProjectAggregated.action**" access="permitAll"
-			requires-channel="http" />
-		<intercept-url pattern="/estate/json/*.action**" access="hasAnyRole('SUPER','DATA_ADMIN','SALE','CUSTOMER')"
-			requires-channel="http" />
-		<intercept-url pattern="/admin/user/createClientPage.action**" access="hasAnyRole('SUPER','DATA_ADMIN','SALE')"
-			requires-channel="http" />
-		<intercept-url pattern="/admin/user/createClient.action**" access="hasAnyRole('SUPER','DATA_ADMIN','SALE')"
-			requires-channel="http" />
-		<intercept-url pattern="/admin/user/changePasswordPage.action**" access="hasAnyRole('SUPER','DATA_ADMIN','SALE')"
-			requires-channel="http" />
-		<intercept-url pattern="/admin/user/changePassword.action**" access="hasAnyRole('SUPER','DATA_ADMIN','SALE')"
-			requires-channel="http" />
-		<intercept-url pattern="/admin/secCacheStatistic.action**" access="hasAnyRole('SUPER')"
-			requires-channel="http" />
-		<intercept-url pattern="/admin/impPage.action**" access="hasAnyRole('SUPER','DATA_ADMIN')"
-			requires-channel="http" />
-		<intercept-url pattern="/admin/impAccess.action**" access="hasAnyRole('SUPER','DATA_ADMIN')"
-			requires-channel="http" />
-		<intercept-url pattern="/admin/data/*.action*" access="hasAnyRole('SUPER','DATA_ADMIN')"
-			requires-channel="http" />
-		<intercept-url pattern="/admin/user/*.action**" access="hasAnyRole('SUPER','DATA_ADMIN')"
-			requires-channel="http" />
+    <http pattern="/css/**" security="none" />
+    <http pattern="/js/**" security="none" />
+    <http pattern="/img/**" security="none" />
+    <http pattern="/error/**" security="none" />
+    <http pattern="/jmesa/**" security="none" />
+    <http pattern="/jquery-ui/**" security="none" />
+    <http use-expressions="true" auto-config="true">
+        <intercept-url pattern="/" access="permitAll" requires-channel="http" />
+        <intercept-url pattern="/index.jsp**" access="permitAll" requires-channel="http" />
+        <intercept-url pattern="/index.action**" access="permitAll" requires-channel="http" />
+        <intercept-url pattern="/login.jsp**" access="isAnonymous()" requires-channel="http" />
+        <intercept-url pattern="/j_spring_security_check" access="isAnonymous()"
+            requires-channel="http" />
+        <intercept-url pattern="/j_spring_security_logout" access="isAuthenticated()"
+            requires-channel="http" />
+        <intercept-url pattern="/estate/json/demandProjectAggregated.action**" access="permitAll"
+            requires-channel="http" />
+        <intercept-url pattern="/estate/json/*.action**" access="hasAnyRole('SUPER','DATA_ADMIN','SALE','CUSTOMER')"
+            requires-channel="http" />
+        <intercept-url pattern="/admin/user/createClientPage.action**" access="hasAnyRole('SUPER','DATA_ADMIN','SALE')"
+            requires-channel="http" />
+        <intercept-url pattern="/admin/user/createClient.action**" access="hasAnyRole('SUPER','DATA_ADMIN','SALE')"
+            requires-channel="http" />
+        <intercept-url pattern="/admin/user/changePasswordPage.action**" access="hasAnyRole('SUPER','DATA_ADMIN','SALE')"
+            requires-channel="http" />
+        <intercept-url pattern="/admin/user/changePassword.action**" access="hasAnyRole('SUPER','DATA_ADMIN','SALE')"
+            requires-channel="http" />
+        <intercept-url pattern="/admin/secCacheStatistic.action**" access="hasAnyRole('SUPER')"
+            requires-channel="http" />
+        <intercept-url pattern="/admin/impPage.action**" access="hasAnyRole('SUPER','DATA_ADMIN')"
+            requires-channel="http" />
+        <intercept-url pattern="/admin/impAccess.action**" access="hasAnyRole('SUPER','DATA_ADMIN')"
+            requires-channel="http" />
+        <intercept-url pattern="/admin/data/*.action*" access="hasAnyRole('SUPER','DATA_ADMIN')"
+            requires-channel="http" />
+        <intercept-url pattern="/admin/user/*.action**" access="hasAnyRole('SUPER','DATA_ADMIN')"
+            requires-channel="http" />
 
-		<intercept-url pattern="/*" access="denyAll" requires-channel="any" />
-		<form-login login-page="/login.jsp" authentication-failure-url="/login.jsp" />
-		<logout logout-success-url="/" />
-		<session-management invalid-session-url="/login.jsp" session-fixation-protection="newSession">
-			<concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />
-		</session-management>
-		<!-- 如果为非标准端口，可在此指定 -->
-		<!-- <port-mappings> <prot-mapping http="" https=""/> </port-mappings> -->
-	</http>
-	<global-method-security secured-annotations="enabled">
-		<!-- 批量授权 -->
-		<!-- <protect-pointcut expression="execution(* com.befun.service.**(..))" access="ROLE_USER"/> -->
-	</global-method-security>
+        <intercept-url pattern="/*" access="denyAll" requires-channel="any" />
+        <form-login login-page="/login.jsp" authentication-failure-url="/login.jsp" />
+        <logout logout-success-url="/" />
+        <session-management invalid-session-url="/login.jsp" session-fixation-protection="newSession">
+            <concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />
+        </session-management>
+        <!-- 如果为非标准端口，可在此指定 -->
+        <!-- <port-mappings> <prot-mapping http="" https=""/> </port-mappings> -->
+    </http>
+    <global-method-security secured-annotations="enabled">
+        <!-- 批量授权 -->
+        <!-- <protect-pointcut expression="execution(* com.befun.service.**(..))" access="ROLE_USER"/> -->
+    </global-method-security>
 
-	<authentication-manager>
-		<authentication-provider ref="BefunAuthenticationProvider" />
-	</authentication-manager>
+    <authentication-manager>
+        <authentication-provider ref="BefunAuthenticationProvider" />
+    </authentication-manager>
 </beans:beans>

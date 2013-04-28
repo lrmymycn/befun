@@ -5,7 +5,6 @@
 <struts>
 	<package name="admin" extends="struts-default" namespace="/admin">
 		<action name="secCacheStatistic" class="SecondCacheStatisticAction" method="statistic">
-			<!-- 定义逻辑视图和物理资源之间的映射 -->
 			<result name="success"></result>
 			<result name="error"></result>
 		</action>
