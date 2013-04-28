@@ -18,7 +18,7 @@ import com.befun.web.view.converter.ViewConverter;
 
 @Controller("AdminApartmentAction")
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class ApartmentAction extends JmesaAction<Apartment, ApartmentView> {
+public class ApartmentAction<T extends Apartment, V extends ApartmentView> extends JmesaAction<Apartment, ApartmentView> {
 
     private static final long serialVersionUID = 1423434908904040130L;
 
@@ -110,12 +110,10 @@ public class ApartmentAction extends JmesaAction<Apartment, ApartmentView> {
         return qc;
     }
 
-    @Override
     public ApartmentView getView() {
         return this.view;
     }
 
-    @Override
     public void setView(ApartmentView view) {
         this.view = view;
     }

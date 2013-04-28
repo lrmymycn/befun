@@ -156,7 +156,7 @@ public class ProjectAction extends CRUDAction<Project, ProjectView> {
             fpQC.setBQC(bQC);
         }
         bQC.setProjectId(this.id);
-        List<Floorplan> floorplans = this.floorplanService.query(apQC);
+        List<Floorplan> floorplans = this.floorplanService.query(fpQC);
         for (Floorplan f : floorplans) {
             FloorplanView v = new FloorplanView(f);
             ViewCopier.copyFloorplanToView(f, v);
@@ -182,12 +182,10 @@ public class ProjectAction extends CRUDAction<Project, ProjectView> {
         return aggRs;
     }
 
-    @Override
     public ProjectView getView() {
         return this.view;
     }
     
-    @Override
     public void setView(ProjectView view) {
         this.view = view;
     }

@@ -5,12 +5,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<title>Suburbs</title>
+<title>Medias</title>
 </head>
 <body>
-	<form name="suburbForm" action="" method="post">
-		<input type="hidden" name="tableName" value="suburb_table" />
-		<jmesa:struts2TableModel items="${pgb.models}" id="suburb_table" var="bean" stateAttr="restore"
+	<form name="mediaForm" action="" method="post">
+		<input type="hidden" name="tableName" value="media_table" />
+		<jmesa:struts2TableModel items="${pgb.models}" id="media_table" var="bean" stateAttr="restore"
 			totalCount="${pgb.totalCount}">
 			<jmesa:htmlTable width="600" caption="Suburbs">
 				<jmesa:htmlRow uniqueProperty="id">

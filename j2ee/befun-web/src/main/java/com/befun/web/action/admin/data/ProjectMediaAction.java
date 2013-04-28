@@ -18,7 +18,7 @@ import com.befun.web.view.converter.ViewConverter;
 
 @Controller("AdminProjectMediaAction")
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class ProjectMediaAction extends JmesaAction<ProjectMedia, ProjectMediaView> {
+public class ProjectMediaAction<T extends ProjectMedia, V extends ProjectMediaView> extends JmesaAction<ProjectMedia, ProjectMediaView> {
 
     private static final long serialVersionUID = -6022462134369571083L;
 
@@ -37,12 +37,10 @@ public class ProjectMediaAction extends JmesaAction<ProjectMedia, ProjectMediaVi
         return qc;
     }
 
-    @Override
     public ProjectMediaView getView() {
         return this.view;
     }
 
-    @Override
     public void setView(ProjectMediaView view) {
         this.view = view;
     }

@@ -16,7 +16,7 @@
 		<s:textfield name="view.publicPictureId" label="publicPictureId"></s:textfield>
 		<s:textfield name="view.salePictureId" label="salePictureId"></s:textfield>
 		<s:textfield name="view.description" label="description"></s:textfield>
-		<s:textfield name="view.type" label="type"></s:textfield>
+		<s:select name="view.type" list="floorplanTypes" />
 		<s:textfield name="view.minPrice" label="minPrice"></s:textfield>
 		<s:textfield name="view.maxPrice" label="maxPrice"></s:textfield>
 		<s:textfield name="view.orientation" label="orientation"></s:textfield>

@@ -37,12 +37,10 @@ public class StageAction extends CRUDAction<Stage, StageView> {
         return qc;
     }
 
-    @Override
     public StageView getView() {
         return this.view;
     }
 
-    @Override
     public void setView(StageView view) {
         this.view = view;
     }

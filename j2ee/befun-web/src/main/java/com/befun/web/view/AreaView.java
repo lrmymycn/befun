@@ -102,4 +102,45 @@ public class AreaView extends BaseView<Area> {
         this.zoomLevel = zoomLevel;
     }
 
+    public String getPolylinesString() {
+        StringBuilder sb = new StringBuilder();
+        if (this.polylines != null) {
+            for (AreaPolyline p : polylines) {
+                if (sb.length() > 0) {
+                    sb.append(";");
+                }
+                sb.append(p.getLatitude()).append(",").append(p.getLongitude());
+            }
+        }
+        return null;
+    }
+
+    public void setPolylinesString(String str) {
+        String[] coordinates = str.split(";");
+        List<AreaPolyline> pls = new ArrayList<AreaPolyline>();
+        AreaPolyline pl = null;
+        int i = 0;
+        for (String c : coordinates) {
+            String[] ll = c.split(",");
+            if (ll.length != 2) {
+                throw new IllegalArgumentException("Invalid argument!");
+            }
+            String latStr = ll[0];
+            String longStr = ll[1];
+            Double latitude = toDouble(latStr);
+            Double longitude = toDouble(longStr);
+            pl = new AreaPolyline();
+            pl.setLatitude(latitude);
+            pl.setLongitude(longitude);
+            pl.setSeqNum(i);
+            pls.add(pl);
+            i++;
+        }
+        this.polylines = pls;
+    }
+
+    private Double toDouble(String s) {
+        String ds = s.trim();
+        return Double.parseDouble(ds);
+    }
 }

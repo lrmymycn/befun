@@ -55,12 +55,10 @@ public class SuburbAction extends CRUDAction<Suburb, SuburbView> {
         return keyRs;
     }
 
-    @Override
     public SuburbView getView() {
         return this.view;
     }
 
-    @Override
     public void setView(SuburbView view) {
         this.view = view;
     }

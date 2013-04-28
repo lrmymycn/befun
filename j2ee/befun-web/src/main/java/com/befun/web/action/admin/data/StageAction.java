@@ -18,7 +18,7 @@ import com.befun.web.view.converter.ViewConverter;
 
 @Controller("AdminStageAction")
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class StageAction extends JmesaAction<Stage, StageView> {
+public class StageAction<T extends Stage, V extends StageView> extends JmesaAction<Stage, StageView> {
 
     private static final long serialVersionUID = -5402712598405256802L;
 
@@ -37,12 +37,10 @@ public class StageAction extends JmesaAction<Stage, StageView> {
         return qc;
     }
 
-    @Override
     public StageView getView() {
         return this.view;
     }
 
-    @Override
     public void setView(StageView view) {
         this.view = view;
     }

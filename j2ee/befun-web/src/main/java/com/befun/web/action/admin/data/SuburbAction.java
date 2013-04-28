@@ -21,7 +21,7 @@ import com.befun.web.view.converter.ViewConverter;
 
 @Controller("AdminSuburbAction")
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class SuburbAction extends JmesaAction<Suburb, SuburbView> {
+public class SuburbAction<T extends Suburb, V extends SuburbView> extends JmesaAction<Suburb, SuburbView> {
 
     private static final long serialVersionUID = -6022462134369571083L;
 
@@ -55,12 +55,10 @@ public class SuburbAction extends JmesaAction<Suburb, SuburbView> {
         return keyRs;
     }
 
-    @Override
     public SuburbView getView() {
         return this.view;
     }
 
-    @Override
     public void setView(SuburbView view) {
         this.view = view;
     }

@@ -18,7 +18,7 @@ import com.befun.web.view.converter.ViewConverter;
 
 @Controller("AdminAreaAction")
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class AreaAction extends JmesaAction<Area, AreaView> {
+public class AreaAction<T extends Area, V extends AreaView> extends JmesaAction<Area, AreaView> {
 
     private static final long serialVersionUID = -6022462134369571083L;
 
@@ -37,12 +37,10 @@ public class AreaAction extends JmesaAction<Area, AreaView> {
         return qc;
     }
 
-    @Override
     public AreaView getView() {
         return this.view;
     }
 
-    @Override
     public void setView(AreaView view) {
         this.view = view;
     }

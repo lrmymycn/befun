@@ -55,7 +55,7 @@ public class FloorplanView extends BaseView<Floorplan> {
     private Double externalSize;
 
     private Double totalSize;
-    
+
     private Double landSize;
 
     private Integer sold;
@@ -65,7 +65,7 @@ public class FloorplanView extends BaseView<Floorplan> {
     public FloorplanView() {
         super();
     }
-    
+
     public FloorplanView(Floorplan model) {
         super(model);
     }
@@ -73,6 +73,10 @@ public class FloorplanView extends BaseView<Floorplan> {
     @Override
     public Floorplan getModel() {
         return this.model;
+    }
+
+    public void setApartments(List<ApartmentView> apartments) {
+        this.apartments = apartments;
     }
 
     public List<ApartmentView> getApartments() {

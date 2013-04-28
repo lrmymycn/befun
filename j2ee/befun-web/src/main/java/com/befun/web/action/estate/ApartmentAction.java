@@ -37,12 +37,10 @@ public class ApartmentAction extends CRUDAction<Apartment, ApartmentView> {
         return qc;
     }
 
-    @Override
     public ApartmentView getView() {
         return this.view;
     }
 
-    @Override
     public void setView(ApartmentView view) {
         this.view = view;
     }

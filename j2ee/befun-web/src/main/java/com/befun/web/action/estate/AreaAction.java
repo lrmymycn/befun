@@ -37,12 +37,10 @@ public class AreaAction extends CRUDAction<Area, AreaView> {
         return qc;
     }
 
-    @Override
     public AreaView getView() {
         return this.view;
     }
 
-    @Override
     public void setView(AreaView view) {
         this.view = view;
     }

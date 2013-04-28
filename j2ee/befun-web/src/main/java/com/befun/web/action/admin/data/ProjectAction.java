@@ -18,7 +18,7 @@ import com.befun.web.view.converter.ViewConverter;
 
 @Controller("AdminProjectAction")
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class ProjectAction extends JmesaAction<Project, ProjectView> {
+public class ProjectAction<T extends Project, V extends ProjectView> extends JmesaAction<Project, ProjectView> {
 
     private static final long serialVersionUID = 7103590937940363546L;
 
@@ -37,12 +37,10 @@ public class ProjectAction extends JmesaAction<Project, ProjectView> {
         return qc;
     }
 
-    @Override
     public ProjectView getView() {
         return this.view;
     }
 
-    @Override
     public void setView(ProjectView view) {
         this.view = view;
     }

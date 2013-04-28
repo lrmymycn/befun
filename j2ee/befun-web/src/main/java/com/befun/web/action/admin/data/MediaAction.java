@@ -23,7 +23,7 @@ import com.befun.web.view.converter.ViewConverter;
 
 @Controller("AdminMediaAction")
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class MediaAction extends JmesaAction<Media, MediaView> {
+public class MediaAction<T extends Media, V extends MediaView> extends JmesaAction<Media, MediaView> {
 
     private static final long serialVersionUID = 1423434908904040130L;
 
@@ -34,17 +34,22 @@ public class MediaAction extends JmesaAction<Media, MediaView> {
     private static List<MediaType> mediaTypes = new ArrayList<MediaType>();
 
     private static List<ContentType> contentTypes = new ArrayList<ContentType>();
+    
     {
-        mediaTypes.add(MediaType.PICTURE);
-        mediaTypes.add(MediaType.FILE);
-        mediaTypes.add(MediaType.VIDEO);
-        contentTypes.add(ContentType.FLOORPLAN);
-        contentTypes.add(ContentType.FLOORPLATE);
-        contentTypes.add(ContentType.ENVIRONMENT);
-        contentTypes.add(ContentType.PHOTOGRAPH);
-        contentTypes.add(ContentType.RENDER_EXTERNAL);
-        contentTypes.add(ContentType.RENDER_INTERNAL);
-        contentTypes.add(ContentType.OTHER);
+        if (mediaTypes.size() < 1) {
+            mediaTypes.add(MediaType.PICTURE);
+            mediaTypes.add(MediaType.FILE);
+            mediaTypes.add(MediaType.VIDEO);
+        }
+        if (contentTypes.size() < 1) {
+            contentTypes.add(ContentType.FLOORPLAN);
+            contentTypes.add(ContentType.FLOORPLATE);
+            contentTypes.add(ContentType.ENVIRONMENT);
+            contentTypes.add(ContentType.PHOTOGRAPH);
+            contentTypes.add(ContentType.RENDER_EXTERNAL);
+            contentTypes.add(ContentType.RENDER_INTERNAL);
+            contentTypes.add(ContentType.OTHER);
+        }
     }
 
     @Resource
@@ -90,12 +95,10 @@ public class MediaAction extends JmesaAction<Media, MediaView> {
         return qc;
     }
 
-    @Override
     public MediaView getView() {
         return this.view;
     }
 
-    @Override
     public void setView(MediaView view) {
         this.view = view;
     }
