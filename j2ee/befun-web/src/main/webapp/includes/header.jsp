@@ -7,7 +7,7 @@
 	</div>
 	<div class="menu">
 		<ul>
-			<li><a href="/index.php/authorize/logout" id="signin">Logout</a></li>
+			<li><a href="<c:url value='/j_spring_security_logout' />">Logout</a></li>
 			<li><a href="#">Join us</a></li>
 			<li class="more"><a href="javascript:;">More<i class="arrow-down-grap"></i></a>
 				<ul>

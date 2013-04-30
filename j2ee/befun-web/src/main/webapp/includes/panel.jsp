@@ -149,12 +149,6 @@
 				</table>
 				<div class="feature">
 					<ul class="list clearfix">
-						<li>
-							<span class="checkbox">
-    							<input type="checkbox" value="Y" name="study"/>
-    						</span>
-    						<label>Study</label>
-    					</li>
     					<li>
     						<span class="checkbox">
 								<input type="checkbox" value="Y" name="splitlevel"/>
@@ -173,8 +167,19 @@
 							</span>
 							<label>Courtyard</label>
     					</li>
-    					<li style="width:150px;">
-    						
+    					<li>
+							<span class="checkbox">
+    							<input type="checkbox" value="Y" name="study"/>
+    						</span>
+    						<label>Study</label>
+    					</li>   					
+    					<li style="width:115px;">
+							<span class="checkbox">
+								<input type="checkbox" value="Y" name="penthouse"/>
+							</span>
+							<label>Penthouse</label>
+    					</li>
+    					<li style="width:140px;">
 							<span class="checkbox">
 								<input type="checkbox" value="Y" name="wintergarden"/>
 							</span>

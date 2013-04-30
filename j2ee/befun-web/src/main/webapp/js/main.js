@@ -521,10 +521,16 @@ Search = {
                 });
 		    },
 		    minLength: 1,
+		    delay:500,
 			select: function( event, ui ) {
 				Debug.trace(ui.item.id);
 				Search.conditions.suburbId = ui.item.id;
-			}
+			},
+			change: function (ev, ui) {
+                if (!ui.item){
+                    $(this).val("");
+                }
+            }
 		});
 		
 		$('#btn-search, #btn-search2').click(function(){
@@ -560,11 +566,11 @@ Search = {
 		conditions.carspace = Tools.getCheckboxListValue('carspace');	
 		
 		conditions.distanceToCity = $('#filter select[name="distancetocity"]').val();
-		conditions.trainStation = $('#filter input[name="train"]').is(":checked") ? 1 : null;
-		conditions.schools = $('#filter input[name="schools"]').is(":checked") ? 1 : null;
-		conditions.universities = $('#filter input[name="universities"]').is(":checked") ? 1 : null;
-		conditions.chineseCommunity = $('#filter input[name="chinese"]').is(":checked") ? 1 : null;
-		conditions.shoppingCenter = $('#filter input[name="shpppingcenter"]').is(":checked") ? 1 : null;
+		conditions.trainStation = $('#filter input[name="train"]').is(":checked") ? true : null;
+		conditions.schools = $('#filter input[name="schools"]').is(":checked") ? true : null;
+		conditions.universities = $('#filter input[name="universities"]').is(":checked") ? true : null;
+		conditions.chineseCommunity = $('#filter input[name="chinese"]').is(":checked") ? true : null;
+		conditions.shoppingCenter = $('#filter input[name="shpppingcenter"]').is(":checked") ? true : null;
 		conditions.status = $('#filter select[name="status"]').val();
 		
 		Search.conditions = conditions;
@@ -652,13 +658,13 @@ Search = {
 						bathroom_count: conditions.bathrooms,
 						car_parking_count: conditions.carspace,
 						house_type: conditions.propertyType,
-						'qc.apQC.minPrice': conditions.minPrice,
-						'qc.apQC.maxPrice': conditions.maxPrice,
-						chinese_community: conditions.chineseCommunity,
-						train: conditions.trainStation,
-						schools: conditions.schools,
-						universities: conditions.universities,
-						shopping_center:conditions.shoppingCenter,
+						//'qc.apQC.minPrice': conditions.minPrice,
+						//'qc.apQC.maxPrice': conditions.maxPrice,
+						//'qc.suburbQC.chineseCommunity': conditions.chineseCommunity,
+						//'qc.suburbQC.train': conditions.trainStation,
+						//'qc.suburbQC.schools': conditions.schools,
+						//'qc.suburbQC.universities': conditions.universities,
+						//'qc.suburbQC.shoppingCenter':conditions.shoppingCenter,
 						ready_house: conditions.status
 					},
 				dataType: "json",
@@ -999,7 +1005,7 @@ PanelPopup = {
 				dataType: "json",
 				success: function(json){
 					var project = json.view;
-					if(project != null){
+					if(project != null && project != undefined){
 						$('#project-name').text(project.name);
 						$('#subtab-description .detail').html(project.description);
 						$('#subtab-features .detail').html(project.features);
@@ -1011,14 +1017,14 @@ PanelPopup = {
 						
 						var photos = project.medias;
 						$('#overview-main').empty();
-						$('#overview-main').append('<img src="' + photos[0].medium_url + '" width="510" height="343" alt=""/>');
+						$('#overview-main').append('<img src="' + photos[0].mediumUrl + '" width="510" height="343" alt=""/>');
 						$('#overview-list .items').empty();
 						for(var i = 0; i < photos.length; i++){
 							var cls = '';
 							if(i == 0){
 								cls = 'active';
 							}
-							var $item = $('<a href="' + photos[i].medium_url + '" class="' + cls + '"><img src="' + photos[i].small_url + '" width="84" height="56" /></a>');
+							var $item = $('<a href="' + photos[i].mediumUrl + '" class="' + cls + '"><img src="' + photos[i].smallUrl + '" width="84" height="56" /></a>');
 							var index = Math.floor(i / 5);
 								
 							var $div = $('#overview-list').find('div[data-id='+ index + ']');
@@ -1111,17 +1117,17 @@ FloorplanPopup = {
 		Main.loadingShow();
 		$.ajax({
 				type: 'POST',
-				url: Main.root + "index.php/Query_Floorplan/detail",
+				url: Main.root + "estate/json/demandFloorplanById.action",
 				data: {
-						floorplan_ids: Main.currentFloorplanId,
+						id: Main.currentFloorplanId,
 						house_type: Search.propertyType,
 						price_range: Search.priceRange
 					},
 				dataType: "json",
 				success: function(json){
-					if(json.length > 0){
-						var floorplan = json[0];
-						var img = '<img src="' + floorplan.medium_sale_floorplan + '" alt=""/>';
+					var floorplan = json.view;
+					if(floorplan != null && floorplan != undefined){
+						var img = '<img src="' + floorplan.salePicture.mediumUrl + '" alt=""/>';
 						$('#lightbox .floorplan .image').html(img);
 						$('#units .items').empty();
 						$('#apartments').empty();
@@ -1135,7 +1141,7 @@ FloorplanPopup = {
 									active = 'active';
 								}
 								
-								var $item = $('<a href="#' + apartment.id + '" class="item ' + active + '">' + apartment.unit_number + '</a>');
+								var $item = $('<a href="#' + apartment.id + '" class="item ' + active + '">' + apartment.unitNumber + '</a>');
 								var index = Math.floor(i / 7);
 								
 								var $div = $('#units').find('div:data[id='+ index + ']');
@@ -1219,22 +1225,22 @@ FloorplanPopup = {
 									cls = 'shown';
 								}
 								div = div.replace('{id}', apartment.id).replace('{cls}', cls)
-									.replace('{unit}', apartment.unit_number)
-									.replace('{split}', Tools.getTrueOrFalseIcon(floorplan.is_split))
-									.replace('{level}', apartment.floor)
-									.replace('{lot}', apartment.lot_number)
-									.replace('{stage}', apartment.stage_name)
-									.replace('{building}', apartment.building_num)
-									.replace('{color}', apartment.colorscheme)
+									.replace('{unit}', apartment.unitNumber)
+									.replace('{split}', Tools.getTrueOrFalseIcon(floorplan.isSplit))
+									.replace('{level}', apartment.floorLevel)
+									.replace('{lot}', apartment.lotNumber)
+									.replace('{stage}', apartment.stageName)
+									.replace('{building}', apartment.buildingNumber)
+									.replace('{color}', apartment.colorScheme)
 									.replace('{aspect}', Tools.getAspect(floorplan.orientation))
-									.replace('{bedrooms}', floorplan.bedroom_count)
-									.replace('{bathrooms}', floorplan.bathroom_count)
-									.replace('{study}', floorplan.studyroom_count)
-									.replace('{openbaclony}', floorplan.open_baclony_count)
-									.replace('{enclosedbaclony}', floorplan.enclosed_baclony_count)
-									.replace('{internalsize}', floorplan.internal_size + ' m<sup>2</sup>')
-									.replace('{externalsize}', floorplan.external_size + ' m<sup>2</sup>')
-									.replace('{totalsize}', floorplan.total_size + ' m<sup>2</sup>')
+									.replace('{bedrooms}', floorplan.bedRoomCount)
+									.replace('{bathrooms}', floorplan.bathroomCount)
+									.replace('{study}', floorplan.studyroomCount)
+									.replace('{openbaclony}', floorplan.openBaclonyCount)
+									.replace('{enclosedbaclony}', floorplan.enclosedBaclonyCount)
+									.replace('{internalsize}', floorplan.internalSize + ' m<sup>2</sup>')
+									.replace('{externalsize}', floorplan.externalSize + ' m<sup>2</sup>')
+									.replace('{totalsize}', floorplan.totalSize + ' m<sup>2</sup>')
 									.replace('{price}', Tools.numberWithCommas(apartment.price));
 								$('#apartments').append($(div));
 							}
@@ -1274,9 +1280,9 @@ FloorPlanFilter = {
 			
 			$.ajax({
 				type: 'POST',
-				url: Main.root + "index.php/Query_Project/detail",
+				url: Main.root + "estate/json/demandProjectDetail.action",
 				data: {
-						project_ids: Main.currentProjectId,
+						id: Main.currentProjectId,
 						bedroom_count: FloorPlanFilter.bedrooms,
 						bathroom_count: FloorPlanFilter.bathrooms,
 						car_parking_count: FloorPlanFilter.carspace,
@@ -1301,7 +1307,7 @@ FloorPlanFilter = {
 		$('#floorplan-list2 .items').empty().css('left', 0);
 		var floorplans = this.currentFloorPlans;
 		for(var i = 0; i < floorplans.length; i++){
-			var $item = $('<a href="javascript:;" class="item" data-id="' + floorplans[i].id + '"><img src="' + floorplans	[i].small_sale_floorplan + '" alt="" /></a>');				
+			var $item = $('<a href="javascript:;" class="item" data-id="' + floorplans[i].id + '"><img src="' + floorplans[i].salePicture.smallUrl + '" alt="" /></a>');				
 			var $items = $item.clone();
 			
 			var index = Math.floor(i / 4);	
@@ -1599,35 +1605,35 @@ Tools = {
 	},
 	getAspect: function(oritation){
 		switch(oritation){
-			case '1':
+			case 1:
 				return "E";
-			case '2':
+			case 2:
 				return "S";
-			case '3':
+			case 3:
 				return "SE";
-			case '4':
+			case 4:
 				return "W";
-			case '5':
+			case 5:
 				return 'EW';
-			case '6':
+			case 6:
 				return "WE";
-			case '7':
+			case 7:
 				return 'ESW';
-			case '8':
+			case 8:
 				return "N";
-			case '9':
+			case 9:
 				return "NE";
-			case '10':
+			case 10:
 				return 'SN';
-			case '11':
+			case 11:
 				return 'ESN';
-			case '12':
+			case 12:
 				return "NW";
-			case '13':
+			case 13:
 				return 'EWN';
-			case '14':
+			case 14:
 				return 'SWN';
-			case '15':
+			case 15:
 				return 'ESWN';
 		}
 	},
