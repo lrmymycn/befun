@@ -42,6 +42,12 @@ public interface IBaseDao<M extends Serializable, PK extends Serializable> {
 
     PaginationBean<M> queryAll(long pageNumber, int pageSize);
 
+    <T> List<T> queryFree(IQueryCondition queryCondition);
+
+    <T> PaginationBean<T> queryFree(IQueryCondition queryCondition, long pageNumber, int pageSize);
+
+    <T> PaginationBean<T> queryFreeAll(long pageNumber, int pageSize);
+
     boolean exists(PK id);
 
     void flush();

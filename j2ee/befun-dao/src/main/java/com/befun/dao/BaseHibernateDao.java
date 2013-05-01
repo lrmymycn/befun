@@ -444,4 +444,38 @@ public class BaseHibernateDao<M extends Serializable, PK extends Serializable> i
         queryCondition.build(criteria);
         return (List<Object[]>)criteria.list();
     }
+
+    @Override
+    public <T> List<T> queryFree(IQueryCondition queryCondition) {
+        List<T> models = list(queryCondition);
+        return models;
+    }
+
+    @Override
+    public <T> PaginationBean<T> queryFree(IQueryCondition queryCondition, long pageNumber, int pageSize) {
+        if (queryCondition == null) {
+            return this.queryFreeAll(pageNumber, pageSize);
+        }
+        PaginationBean<T> paginationBean = new PaginationBean<T>();
+        long totalCount = this.count(queryCondition);
+        paginationBean.setTotalCount(totalCount);
+        paginationBean.setPageSize(pageSize);
+        paginationBean.setPageNumber(pageNumber);
+        List<T> models = list(queryCondition, pageNumber, pageSize);
+        paginationBean.setModels(models);
+        return paginationBean;
+    }
+
+    @Override
+    public <T> PaginationBean<T> queryFreeAll(long pageNumber, int pageSize) {
+        PaginationBean<T> paginationBean = new PaginationBean<T>();
+        long totalCount = countAll();
+        paginationBean.setTotalCount(totalCount);
+        paginationBean.setPageSize(pageSize);
+        paginationBean.setPageNumber(pageNumber);
+        Criteria criteria = getSession().createCriteria(this.entityClass);
+        List<T> models = list(criteria, pageNumber, pageSize);
+        paginationBean.setModels(models);
+        return paginationBean;
+    }
 }

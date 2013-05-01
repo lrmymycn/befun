@@ -67,11 +67,11 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	
-  	<tx:annotation-driven transaction-manager="txManager" proxy-target-class="false"/>
+  	<tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
   	
-	<bean id="BefunPasswordEncoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder">
-		 <constructor-arg index="0">
-           <value>befun.estate</value>
-       </constructor-arg>
-	</bean>
+    <bean id="BefunPasswordEncoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder">
+        <constructor-arg index="0">
+            <value>befun.estate</value>
+        </constructor-arg>
+    </bean>
 </beans>

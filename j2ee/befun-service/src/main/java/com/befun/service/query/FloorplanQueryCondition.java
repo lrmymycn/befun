@@ -32,17 +32,35 @@ public class FloorplanQueryCondition extends EstateQueryCondition {
     // <=
     private Double maxTotalSize;
 
+    private String bedRoomCountStr;
+
     private Short minBedRoomCount;
 
     private Short maxBedRoomCount;
+
+    private String bathRoomCountStr;
 
     private Short minBathRoomCount;
 
     private Short maxBathRoomCount;
 
+    private String courtyardCountStr;
+
+    private String enclosedBaclonyCountStr;
+
+    private String studyroomCountStr;
+
     private Boolean split;
 
     private Boolean studio;
+
+    private Boolean orientationEast;
+
+    private Boolean orientationSouth;
+
+    private Boolean orientationWest;
+
+    private Boolean orientationNorth;
 
     public FloorplanQueryCondition() {
         super();
@@ -84,28 +102,67 @@ public class FloorplanQueryCondition extends EstateQueryCondition {
             tmp = Restrictions.le(QCUtils.generatePropertyName(this.getSelfAlias(), "totalSize"), this.maxTotalSize);
             rs.add(tmp);
         }
-        if (this.minBedRoomCount != null) {
-            tmp = Restrictions.gt(QCUtils.generatePropertyName(this.getSelfAlias(), "bedRoomCount"), this.minBedRoomCount);
-            rs.add(tmp);
+        Criterion bedRoomCounts = QCUtils.parseCounts(QCUtils.generatePropertyName(this.getSelfAlias(), "bedRoomCount"), this.bedRoomCountStr);
+        if (bedRoomCounts != null) {
+            rs.add(bedRoomCounts);
         }
-        if (this.maxBedRoomCount != null) {
-            tmp = Restrictions.le(QCUtils.generatePropertyName(this.getSelfAlias(), "bedRoomCount"), this.maxBedRoomCount);
-            rs.add(tmp);
+        Criterion bathRoomCounts = QCUtils.parseCounts(QCUtils.generatePropertyName(this.getSelfAlias(), "bathroomCount"), this.bathRoomCountStr);
+        if (bedRoomCounts != null) {
+            rs.add(bathRoomCounts);
         }
-        if (this.minBathRoomCount != null) {
-            tmp = Restrictions.gt(QCUtils.generatePropertyName(this.getSelfAlias(), "bathroomCount"), this.minBathRoomCount);
-            rs.add(tmp);
+        /*
+         * if (this.minBedRoomCount != null) {
+         * tmp = Restrictions.gt(QCUtils.generatePropertyName(this.getSelfAlias(), "bedRoomCount"), this.minBedRoomCount);
+         * rs.add(tmp);
+         * }
+         * if (this.maxBedRoomCount != null) {
+         * tmp = Restrictions.le(QCUtils.generatePropertyName(this.getSelfAlias(), "bedRoomCount"), this.maxBedRoomCount);
+         * rs.add(tmp);
+         * }
+         * if (this.minBathRoomCount != null) {
+         * tmp = Restrictions.gt(QCUtils.generatePropertyName(this.getSelfAlias(), "bathroomCount"), this.minBathRoomCount);
+         * rs.add(tmp);
+         * }
+         * if (this.maxBathRoomCount != null) {
+         * tmp = Restrictions.le(QCUtils.generatePropertyName(this.getSelfAlias(), "bathroomCount"), this.maxBathRoomCount);
+         * rs.add(tmp);
+         * }
+         */
+        Criterion courtyardCounts = QCUtils.parseCounts(QCUtils.generatePropertyName(this.getSelfAlias(), "courtyardCount"), this.courtyardCountStr);
+        if (courtyardCounts != null) {
+            rs.add(courtyardCounts);
         }
-        if (this.maxBathRoomCount != null) {
-            tmp = Restrictions.le(QCUtils.generatePropertyName(this.getSelfAlias(), "bathroomCount"), this.maxBathRoomCount);
-            rs.add(tmp);
+        Criterion enclosedBaclonyCounts = QCUtils.parseCounts(QCUtils.generatePropertyName(this.getSelfAlias(), "enclosedBaclonyCount"),
+                                                              this.enclosedBaclonyCountStr);
+        if (enclosedBaclonyCounts != null) {
+            rs.add(enclosedBaclonyCounts);
+        }
+        Criterion studyroomCounts = QCUtils.parseCounts(QCUtils.generatePropertyName(this.getSelfAlias(), "studyroomCount"), this.studyroomCountStr);
+        if (studyroomCounts != null) {
+            rs.add(studyroomCounts);
         }
         if (this.split != null) {
-            tmp = Restrictions.le(QCUtils.generatePropertyName(this.getSelfAlias(), "split"), this.split);
+            tmp = Restrictions.eq(QCUtils.generatePropertyName(this.getSelfAlias(), "split"), this.split);
             rs.add(tmp);
         }
         if (this.studio != null) {
-            tmp = Restrictions.le(QCUtils.generatePropertyName(this.getSelfAlias(), "studio"), this.studio);
+            tmp = Restrictions.eq(QCUtils.generatePropertyName(this.getSelfAlias(), "studio"), this.studio);
+            rs.add(tmp);
+        }
+        if (this.orientationEast != null) {
+            tmp = Restrictions.eq(QCUtils.generatePropertyName(this.getSelfAlias(), "orientationEast"), this.orientationEast);
+            rs.add(tmp);
+        }
+        if (this.orientationSouth != null) {
+            tmp = Restrictions.eq(QCUtils.generatePropertyName(this.getSelfAlias(), "orientationSouth"), this.orientationSouth);
+            rs.add(tmp);
+        }
+        if (this.orientationWest != null) {
+            tmp = Restrictions.eq(QCUtils.generatePropertyName(this.getSelfAlias(), "orientationWest"), this.orientationWest);
+            rs.add(tmp);
+        }
+        if (this.orientationNorth != null) {
+            tmp = Restrictions.eq(QCUtils.generatePropertyName(this.getSelfAlias(), "orientationNorth"), this.orientationNorth);
             rs.add(tmp);
         }
         return rs;
@@ -131,7 +188,7 @@ public class FloorplanQueryCondition extends EstateQueryCondition {
             this.bQC.setAlias(criteria);
         }
     }
-    
+
     public String getBuildingAlias() {
         return buildingAlias;
     }
@@ -242,6 +299,78 @@ public class FloorplanQueryCondition extends EstateQueryCondition {
 
     public void setStudio(Boolean studio) {
         this.studio = studio;
+    }
+
+    public String getBedRoomCountStr() {
+        return bedRoomCountStr;
+    }
+
+    public void setBedRoomCountStr(String bedRoomCountStr) {
+        this.bedRoomCountStr = bedRoomCountStr;
+    }
+
+    public String getBathRoomCountStr() {
+        return bathRoomCountStr;
+    }
+
+    public void setBathRoomCountStr(String bathRoomCountStr) {
+        this.bathRoomCountStr = bathRoomCountStr;
+    }
+
+    public String getCourtyardCountStr() {
+        return courtyardCountStr;
+    }
+
+    public void setCourtyardCountStr(String courtyardCountStr) {
+        this.courtyardCountStr = courtyardCountStr;
+    }
+
+    public String getEnclosedBaclonyCountStr() {
+        return enclosedBaclonyCountStr;
+    }
+
+    public void setEnclosedBaclonyCountStr(String enclosedBaclonyCountStr) {
+        this.enclosedBaclonyCountStr = enclosedBaclonyCountStr;
+    }
+
+    public String getStudyroomCountStr() {
+        return studyroomCountStr;
+    }
+
+    public void setStudyroomCountStr(String studyroomCountStr) {
+        this.studyroomCountStr = studyroomCountStr;
+    }
+
+    public Boolean getOrientationEast() {
+        return orientationEast;
+    }
+
+    public void setOrientationEast(Boolean orientationEast) {
+        this.orientationEast = orientationEast;
+    }
+
+    public Boolean getOrientationSouth() {
+        return orientationSouth;
+    }
+
+    public void setOrientationSouth(Boolean orientationSouth) {
+        this.orientationSouth = orientationSouth;
+    }
+
+    public Boolean getOrientationWest() {
+        return orientationWest;
+    }
+
+    public void setOrientationWest(Boolean orientationWest) {
+        this.orientationWest = orientationWest;
+    }
+
+    public Boolean getOrientationNorth() {
+        return orientationNorth;
+    }
+
+    public void setOrientationNorth(Boolean orientationNorth) {
+        this.orientationNorth = orientationNorth;
     }
 
 }

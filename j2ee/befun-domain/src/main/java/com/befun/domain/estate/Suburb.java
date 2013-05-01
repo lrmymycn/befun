@@ -3,6 +3,7 @@ package com.befun.domain.estate;
 import java.util.List;
 
 import javax.persistence.Cacheable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -79,7 +80,7 @@ public class Suburb implements BaseEstateModel<Long> {
     @Column(name = "CHINESE_COMMUNITY")
     private Boolean chineseCommunity;
 
-    @OneToMany(mappedBy = "suburb", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "suburb", fetch = FetchType.LAZY, cascade = { CascadeType.REMOVE })
     @OrderBy("seqNum ASC")
     private List<SuburbPolyline> polylines;
 

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Cacheable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -25,7 +26,7 @@ import com.befun.domain.BaseEstateModel;
 @Table(name = "AREA")
 @TableGenerator(name = "areaGenerator", table = "ID_GENERATOR", pkColumnName = "gen_name", valueColumnName = "gen_value", pkColumnValue = "area", allocationSize = 1)
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region="geography")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "geography")
 public class Area implements BaseEstateModel<Long> {
 
     private static final long serialVersionUID = -1911564613374735429L;
@@ -50,11 +51,11 @@ public class Area implements BaseEstateModel<Long> {
     @Column(name = "LATITUDE")
     private Double latitude;
 
-    @OneToMany(mappedBy = "area", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "area", fetch = FetchType.LAZY, cascade = { CascadeType.REMOVE })
     @OrderBy("seqNum ASC")
     private List<AreaPolyline> polylines;
 
-    @OneToMany(mappedBy = "area", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "area", fetch = FetchType.LAZY, cascade = { CascadeType.REMOVE })
     private Set<Suburb> suburbs;
 
     @Embedded

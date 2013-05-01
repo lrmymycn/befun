@@ -26,7 +26,7 @@ import com.befun.domain.BaseEstateModel;
 @Table(name = "BUILDING")
 @TableGenerator(name = "buildingGenerator", table = "ID_GENERATOR", pkColumnName = "gen_name", valueColumnName = "gen_value", pkColumnValue = "building", allocationSize = 1)
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region="project")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "project")
 public class Building implements BaseEstateModel<Long> {
 
     private static final long serialVersionUID = 252518840372470088L;
@@ -55,8 +55,17 @@ public class Building implements BaseEstateModel<Long> {
     @Column(name = "FLOOR_COUNT")
     private Short floorCount;
 
-    @Column(name = "ORIENTATION")
-    private Short orientation;
+    @Column(name = "ORIENTATION_EAST")
+    private Boolean orientationEast;
+
+    @Column(name = "ORIENTATION_SOUTH")
+    private Boolean orientationSouth;
+
+    @Column(name = "ORIENTATION_WEST")
+    private Boolean orientationWest;
+
+    @Column(name = "ORIENTATION_NORTH")
+    private Boolean orientationNorth;
 
     @Column(name = "READY_HOUSE")
     private boolean readyHouse;
@@ -129,14 +138,6 @@ public class Building implements BaseEstateModel<Long> {
         this.floorCount = floorCount;
     }
 
-    public Short getOrientation() {
-        return orientation;
-    }
-
-    public void setOrientation(Short orientation) {
-        this.orientation = orientation;
-    }
-
     public boolean isReadyHouse() {
         return readyHouse;
     }
@@ -177,6 +178,38 @@ public class Building implements BaseEstateModel<Long> {
         this.modelModification = modelModification;
     }
 
+    public Boolean getOrientationEast() {
+        return orientationEast;
+    }
+
+    public void setOrientationEast(Boolean orientationEast) {
+        this.orientationEast = orientationEast;
+    }
+
+    public Boolean getOrientationSouth() {
+        return orientationSouth;
+    }
+
+    public void setOrientationSouth(Boolean orientationSouth) {
+        this.orientationSouth = orientationSouth;
+    }
+
+    public Boolean getOrientationWest() {
+        return orientationWest;
+    }
+
+    public void setOrientationWest(Boolean orientationWest) {
+        this.orientationWest = orientationWest;
+    }
+
+    public Boolean getOrientationNorth() {
+        return orientationNorth;
+    }
+
+    public void setOrientationNorth(Boolean orientationNorth) {
+        this.orientationNorth = orientationNorth;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -186,13 +219,14 @@ public class Building implements BaseEstateModel<Long> {
         result = prime * result + ((description == null) ? 0 : description.hashCode());
         result = prime * result + ((finishDate == null) ? 0 : finishDate.hashCode());
         result = prime * result + ((floorCount == null) ? 0 : floorCount.hashCode());
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((modelModification == null) ? 0 : modelModification.hashCode());
-        result = prime * result + ((orientation == null) ? 0 : orientation.hashCode());
+        result = prime * result + ((orientationEast == null) ? 0 : orientationEast.hashCode());
+        result = prime * result + ((orientationNorth == null) ? 0 : orientationNorth.hashCode());
+        result = prime * result + ((orientationSouth == null) ? 0 : orientationSouth.hashCode());
+        result = prime * result + ((orientationWest == null) ? 0 : orientationWest.hashCode());
         result = prime * result + (readyHouse ? 1231 : 1237);
         result = prime * result + ((sold == null) ? 0 : sold.hashCode());
         result = prime * result + (soldOut ? 1231 : 1237);
-        result = prime * result + ((stage == null) ? 0 : stage.hashCode());
         return result;
     }
 
@@ -217,31 +251,35 @@ public class Building implements BaseEstateModel<Long> {
         if (floorCount == null) {
             if (other.floorCount != null) return false;
         } else if (!floorCount.equals(other.floorCount)) return false;
-        if (id == null) {
-            if (other.id != null) return false;
-        } else if (!id.equals(other.id)) return false;
         if (modelModification == null) {
             if (other.modelModification != null) return false;
         } else if (!modelModification.equals(other.modelModification)) return false;
-        if (orientation == null) {
-            if (other.orientation != null) return false;
-        } else if (!orientation.equals(other.orientation)) return false;
+        if (orientationEast == null) {
+            if (other.orientationEast != null) return false;
+        } else if (!orientationEast.equals(other.orientationEast)) return false;
+        if (orientationNorth == null) {
+            if (other.orientationNorth != null) return false;
+        } else if (!orientationNorth.equals(other.orientationNorth)) return false;
+        if (orientationSouth == null) {
+            if (other.orientationSouth != null) return false;
+        } else if (!orientationSouth.equals(other.orientationSouth)) return false;
+        if (orientationWest == null) {
+            if (other.orientationWest != null) return false;
+        } else if (!orientationWest.equals(other.orientationWest)) return false;
         if (readyHouse != other.readyHouse) return false;
         if (sold == null) {
             if (other.sold != null) return false;
         } else if (!sold.equals(other.sold)) return false;
         if (soldOut != other.soldOut) return false;
-        if (stage == null) {
-            if (other.stage != null) return false;
-        } else if (!stage.equals(other.stage)) return false;
         return true;
     }
 
     @Override
     public String toString() {
-        return "Building [id=" + id + ", bid=" + bid + ", stage=" + stage + ", buildingNumber=" + buildingNumber + ", description=" + description
-               + ", finishDate=" + finishDate + ", floorCount=" + floorCount + ", orientation=" + orientation + ", readyHouse=" + readyHouse + ", sold=" + sold
-               + ", soldOut=" + soldOut + ", modelModification=" + modelModification + "]";
+        return "Building [id=" + id + ", bid=" + bid + ", buildingNumber=" + buildingNumber + ", description=" + description + ", finishDate=" + finishDate
+               + ", floorCount=" + floorCount + ", orientationEast=" + orientationEast + ", orientationSouth=" + orientationSouth + ", orientationWest="
+               + orientationWest + ", orientationNorth=" + orientationNorth + ", readyHouse=" + readyHouse + ", sold=" + sold + ", soldOut=" + soldOut
+               + ", modelModification=" + modelModification + "]";
     }
 
 }

@@ -25,10 +25,12 @@
 							<s:param name="id">${bean.id}</s:param>
 						</s:url>
 						<input type="button" value="Edit" onclick="showDialog('${e}')" />
+						<!-- 
 						<s:url var="r" action="admin/data/removeArea.action" namespace="/">
 							<s:param name="id">${bean.id}</s:param>
 						</s:url>
 						<input type="button" value="Remove" onclick="showDialog('${r}')" />
+						-->
 						
 						<s:url var="r" action="admin/data/enableArea.action" namespace="/">
 							<s:param name="id">${bean.id}</s:param>

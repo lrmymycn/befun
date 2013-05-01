@@ -19,7 +19,13 @@ public class BuildingView extends BaseView<Building> {
 
     private Short floorCount;
 
-    private Short orientation;
+    private Boolean orientationEast;
+
+    private Boolean orientationSouth;
+
+    private Boolean orientationWest;
+
+    private Boolean orientationNorth;
 
     private boolean readyHouse;
 
@@ -30,7 +36,7 @@ public class BuildingView extends BaseView<Building> {
     public BuildingView() {
         super();
     }
-    
+
     public BuildingView(Building model) {
         super(model);
     }
@@ -82,12 +88,36 @@ public class BuildingView extends BaseView<Building> {
         this.floorCount = floorCount;
     }
 
-    public Short getOrientation() {
-        return orientation;
+    public Boolean getOrientationEast() {
+        return orientationEast;
     }
 
-    public void setOrientation(Short orientation) {
-        this.orientation = orientation;
+    public void setOrientationEast(Boolean orientationEast) {
+        this.orientationEast = orientationEast;
+    }
+
+    public Boolean getOrientationSouth() {
+        return orientationSouth;
+    }
+
+    public void setOrientationSouth(Boolean orientationSouth) {
+        this.orientationSouth = orientationSouth;
+    }
+
+    public Boolean getOrientationWest() {
+        return orientationWest;
+    }
+
+    public void setOrientationWest(Boolean orientationWest) {
+        this.orientationWest = orientationWest;
+    }
+
+    public Boolean getOrientationNorth() {
+        return orientationNorth;
+    }
+
+    public void setOrientationNorth(Boolean orientationNorth) {
+        this.orientationNorth = orientationNorth;
     }
 
     public boolean isReadyHouse() {

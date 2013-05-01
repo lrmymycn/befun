@@ -30,9 +30,13 @@ public class ApartmentQueryCondition extends EstateQueryCondition {
 
     private Boolean pentHouse;
 
+    private String carParkingCountStr;
+
     private Short minCarParkingCount;
 
     private Short maxCarParkingCount;
+
+    private String storageRoomCountStr;
 
     private Short minStorageRoomCount;
 
@@ -70,32 +74,45 @@ public class ApartmentQueryCondition extends EstateQueryCondition {
             tmp = Restrictions.eq(QCUtils.generatePropertyName(this.getSelfAlias(), "pentHouse"), this.pentHouse);
             rs.add(tmp);
         }
-        if (this.minCarParkingCount != null) {
-            tmp = Restrictions.gt(QCUtils.generatePropertyName(this.getSelfAlias(), "carParkingCount"), this.minCarParkingCount);
+        Criterion carParkingCounts = QCUtils.parseCounts(QCUtils.generatePropertyName(this.getSelfAlias(), "carParkingCount"), this.carParkingCountStr);
+        if (carParkingCounts != null) {
+            rs.add(carParkingCounts);
+        }
+        Criterion storageRoomCounts = QCUtils.parseCounts(QCUtils.generatePropertyName(this.getSelfAlias(), "storageRoomCount"), this.storageRoomCountStr);
+        if (storageRoomCounts != null) {
+            rs.add(storageRoomCounts);
+        }
+        /*
+         * if (this.minCarParkingCount != null) {
+         * tmp = Restrictions.gt(QCUtils.generatePropertyName(this.getSelfAlias(), "carParkingCount"), this.minCarParkingCount);
+         * rs.add(tmp);
+         * }
+         * if (this.maxCarParkingCount != null) {
+         * tmp = Restrictions.le(QCUtils.generatePropertyName(this.getSelfAlias(), "carParkingCount"), this.maxCarParkingCount);
+         * rs.add(tmp);
+         * }
+         * if (this.minStorageRoomCount != null) {
+         * tmp = Restrictions.gt(QCUtils.generatePropertyName(this.getSelfAlias(), "storageRoomCount"), this.minStorageRoomCount);
+         * rs.add(tmp);
+         * }
+         * if (this.maxStorageRoomCount != null) {
+         * tmp = Restrictions.le(QCUtils.generatePropertyName(this.getSelfAlias(), "storageRoomCount"), this.maxStorageRoomCount);
+         * rs.add(tmp);
+         * }
+         */
+        Integer realMinPrice = QCUtils.getRealPrice(this.minPrice);
+        if (realMinPrice != null) {
+            tmp = Restrictions.gt(QCUtils.generatePropertyName(this.getSelfAlias(), "price"), realMinPrice);
             rs.add(tmp);
         }
-        if (this.maxCarParkingCount != null) {
-            tmp = Restrictions.le(QCUtils.generatePropertyName(this.getSelfAlias(), "carParkingCount"), this.maxCarParkingCount);
-            rs.add(tmp);
-        }
-        if (this.minStorageRoomCount != null) {
-            tmp = Restrictions.gt(QCUtils.generatePropertyName(this.getSelfAlias(), "storageRoomCount"), this.minStorageRoomCount);
-            rs.add(tmp);
-        }
-        if (this.maxStorageRoomCount != null) {
-            tmp = Restrictions.le(QCUtils.generatePropertyName(this.getSelfAlias(), "storageRoomCount"), this.maxStorageRoomCount);
-            rs.add(tmp);
-        }
-        if (this.minPrice != null) {
-            tmp = Restrictions.gt(QCUtils.generatePropertyName(this.getSelfAlias(), "price"), this.minPrice);
-            rs.add(tmp);
-        }
-        if (this.maxPrice != null) {
-            tmp = Restrictions.le(QCUtils.generatePropertyName(this.getSelfAlias(), "price"), this.maxPrice);
+        Integer realMaxPrice = QCUtils.getRealPrice(this.maxPrice);
+        if (realMaxPrice != null) {
+            tmp = Restrictions.le(QCUtils.generatePropertyName(this.getSelfAlias(), "price"), realMaxPrice);
             rs.add(tmp);
         }
         return rs;
     }
+
 
     @Override
     public void setAlias(Criteria criteria) {
@@ -225,6 +242,22 @@ public class ApartmentQueryCondition extends EstateQueryCondition {
 
     public void setMaxStorageRoomCount(Short maxStorageRoomCount) {
         this.maxStorageRoomCount = maxStorageRoomCount;
+    }
+
+    public String getCarParkingCountStr() {
+        return carParkingCountStr;
+    }
+
+    public void setCarParkingCountStr(String carParkingCountStr) {
+        this.carParkingCountStr = carParkingCountStr;
+    }
+
+    public String getStorageRoomCountStr() {
+        return storageRoomCountStr;
+    }
+
+    public void setStorageRoomCountStr(String storageRoomCountStr) {
+        this.storageRoomCountStr = storageRoomCountStr;
     }
 
 }

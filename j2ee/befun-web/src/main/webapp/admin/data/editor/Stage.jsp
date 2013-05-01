@@ -10,6 +10,7 @@
 <body>
 	<s:form action="saveStage.action" method="post">
 		<s:hidden name="view.id"></s:hidden>
+		<s:hidden name="view.bid"></s:hidden>
 		<s:label name="view.id" label="ID"></s:label>
 		<s:label name="view.bid" label="BID"></s:label>
 		<s:textfield name="view.projectId" label="projectId"></s:textfield>

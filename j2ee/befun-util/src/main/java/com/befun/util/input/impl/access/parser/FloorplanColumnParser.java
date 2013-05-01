@@ -36,7 +36,11 @@ public class FloorplanColumnParser implements ColumnParser<Floorplan> {
         rs.setInternalSize(AccessUtil.getDouble(col, "internal_size"));
         rs.setLandSize(AccessUtil.getDouble(col, "land_size"));
         rs.setOpenBaclonyCount(AccessUtil.getShort(col, "open_baclony_count"));
-        rs.setOrientation(AccessUtil.getShort(col, "orientation"));
+        Short orientation = AccessUtil.getShort(col, "orientation");
+        rs.setOrientationEast(ParseUtils.getEast(orientation));
+        rs.setOrientationSouth(ParseUtils.getSouth(orientation));
+        rs.setOrientationWest(ParseUtils.getWest(orientation));
+        rs.setOrientationNorth(ParseUtils.getNorth(orientation));
 
         String publicPictureId = AccessUtil.getString(col, "picture_id");
         if (StringUtils.isNotBlank(publicPictureId)) {

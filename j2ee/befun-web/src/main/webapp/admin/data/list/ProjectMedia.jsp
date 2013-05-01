@@ -30,10 +30,13 @@
 							<s:param name="id">${bean.id}</s:param>
 						</s:url>
 						<input type="button" value="Edit" onclick="showDialog('${e}')" />
+						
+						<!-- 
 						<s:url var="r" action="admin/data/removeProjectMedia.action" namespace="/">
 							<s:param name="id">${bean.id}</s:param>
 						</s:url>
 						<input type="button" value="Remove" onclick="showDialog('${r}')" />
+						-->
 						
 						<s:url var="r" action="admin/data/enableProjectMedia.action" namespace="/">
 							<s:param name="id">${bean.id}</s:param>

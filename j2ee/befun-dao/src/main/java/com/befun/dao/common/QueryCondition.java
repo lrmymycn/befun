@@ -25,6 +25,8 @@ public class QueryCondition implements IQueryCondition, Cloneable {
     private List<Criterion> criterions = new ArrayList<Criterion>();
 
     private List<FetchConfig> fetchConfigs = new ArrayList<FetchConfig>();
+    
+    private ProjectionList projections = null;
 
     private boolean hql = false;
 
@@ -144,6 +146,13 @@ public class QueryCondition implements IQueryCondition, Cloneable {
         criteria.setProjection(projections);
     }
 
+    protected void buildProjection(Criteria criteria) {
+        if (this.projections == null) {
+            return;
+        }
+        criteria.setProjection(projections);
+    }
+    
     protected void setAlias(Criteria criteria) {
     }
 
@@ -157,6 +166,7 @@ public class QueryCondition implements IQueryCondition, Cloneable {
         this.buildOrder(criteria);
         this.buildCriterions(criteria);
         this.buildGroup(criteria);
+        this.buildProjection(criteria);
     }
 
     public boolean isEmpty() {
@@ -180,6 +190,10 @@ public class QueryCondition implements IQueryCondition, Cloneable {
 
     public List<String> getGroupProperties() {
         return this.groupProperties;
+    }
+
+    public void setProjections(ProjectionList projections) {
+        this.projections = projections;
     }
 
     @Override

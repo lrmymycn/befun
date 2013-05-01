@@ -40,9 +40,9 @@ public class TestAreaService extends SpringTestBase {
 
         a.setPolylines(polylines);
 
-        target.saveOrUpdateWithPolylines(a);
+        target.saveOrUpdateWithPolylines(a, null);
     }
-    
+
     @Test
     public void testSaveOrUpdateAndPolylines1() {
         Area a = new Area();
@@ -58,9 +58,8 @@ public class TestAreaService extends SpringTestBase {
         p1.setSeqNum(0);
         polylines.add(p1);
 
-
         a.setPolylines(polylines);
 
-        target.saveOrUpdateWithPolylines(a);
+        target.saveOrUpdateWithPolylines(a, null);
     }
 }

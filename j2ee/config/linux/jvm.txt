@@ -1,0 +1,5 @@
+-server -XX:+UseParNewGC -XX:SurvivorRatio=8 -XX:+DisableExplicitGC 
+-XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=50
+-XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=/temp
+-Xloggc:/befun/tomcat/logs/gc_log.log -verbose:gc -XX:+PrintGCDetails  -XX:+PrintGCTimeStamps -XX:+PrintTenuringDistribution 
+-Xmx2048m -Xms2048m -XX:PermSize=128m -XX:MaxPermSize=128m -XX:NewSize=512m -XX:MaxNewSize=512m

@@ -22,6 +22,7 @@ import com.befun.domain.estate.Project;
 import com.befun.domain.estate.ProjectMedia;
 import com.befun.domain.estate.Suburb;
 import com.befun.service.IBaseService;
+import com.befun.service.estate.ApartmentService;
 import com.befun.service.estate.FloorplanService;
 import com.befun.service.estate.ProjectMediaService;
 import com.befun.service.estate.ProjectService;
@@ -69,6 +70,10 @@ public class ProjectAction extends CRUDAction<Project, ProjectView> {
     @Resource
     @Qualifier("FloorplanService")
     private FloorplanService floorplanService;
+    
+    @Resource
+    @Qualifier("ApartmentService")
+    private ApartmentService apartmentService;
 
     public String demandAggregated() {
         // query aggregated information
@@ -156,7 +161,7 @@ public class ProjectAction extends CRUDAction<Project, ProjectView> {
             fpQC.setBQC(bQC);
         }
         bQC.setProjectId(this.id);
-        List<Floorplan> floorplans = this.floorplanService.query(fpQC);
+        List<Floorplan> floorplans = this.apartmentService.queryFloorplans(apQC);
         for (Floorplan f : floorplans) {
             FloorplanView v = new FloorplanView(f);
             ViewCopier.copyFloorplanToView(f, v);

@@ -19,7 +19,11 @@ public class BuildingColumnParser implements ColumnParser<Building> {
         rs.setDescription(AccessUtil.getString(col, "description"));
         rs.setFinishDate(AccessUtil.getDate(col, "finish_date"));
         rs.setFloorCount(AccessUtil.getShort(col, "floor_count"));
-        rs.setOrientation(AccessUtil.getShort(col, "orientation"));
+        Short orientation = AccessUtil.getShort(col, "orientation");
+        rs.setOrientationEast(ParseUtils.getEast(orientation));
+        rs.setOrientationSouth(ParseUtils.getSouth(orientation));
+        rs.setOrientationWest(ParseUtils.getWest(orientation));
+        rs.setOrientationNorth(ParseUtils.getNorth(orientation));
         rs.setReadyHouse(AccessUtil.getBool(col, "ready_house"));
         rs.setSold(0);
         rs.setSoldOut(false);

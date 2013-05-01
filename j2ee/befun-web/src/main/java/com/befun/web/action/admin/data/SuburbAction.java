@@ -10,7 +10,6 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.befun.domain.estate.Area;
 import com.befun.domain.estate.Suburb;
 import com.befun.service.IBaseService;
 import com.befun.service.estate.SuburbService;

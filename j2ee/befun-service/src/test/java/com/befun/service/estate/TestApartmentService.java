@@ -50,4 +50,9 @@ public class TestApartmentService extends SpringTestBase {
         List<Apartment> rs = target.query(qc);
         assertTrue(0 < rs.size());
     }
+    
+    @Test
+    public void testQueryFloorplan1(){
+        
+    }
 }

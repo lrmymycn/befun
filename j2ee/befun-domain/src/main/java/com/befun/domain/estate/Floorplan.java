@@ -80,8 +80,17 @@ public class Floorplan implements BaseEstateModel<Long> {
     @Column(name = "COURTYARD_COUNT")
     private Short courtyardCount;
 
-    @Column(name = "ORIENTATION")
-    private Short orientation;
+    @Column(name = "ORIENTATION_EAST")
+    private Boolean orientationEast;
+
+    @Column(name = "ORIENTATION_SOUTH")
+    private Boolean orientationSouth;
+
+    @Column(name = "ORIENTATION_WEST")
+    private Boolean orientationWest;
+
+    @Column(name = "ORIENTATION_NORTH")
+    private Boolean orientationNorth;
 
     @Column(name = "MIN_PRICE")
     private Integer minPrice;
@@ -230,14 +239,6 @@ public class Floorplan implements BaseEstateModel<Long> {
         this.courtyardCount = courtyardCount;
     }
 
-    public Short getOrientation() {
-        return orientation;
-    }
-
-    public void setOrientation(Short orientation) {
-        this.orientation = orientation;
-    }
-
     public Integer getMinPrice() {
         return minPrice;
     }
@@ -310,6 +311,38 @@ public class Floorplan implements BaseEstateModel<Long> {
         this.modelModification = modelModification;
     }
 
+    public Boolean getOrientationEast() {
+        return orientationEast;
+    }
+
+    public void setOrientationEast(Boolean orientationEast) {
+        this.orientationEast = orientationEast;
+    }
+
+    public Boolean getOrientationSouth() {
+        return orientationSouth;
+    }
+
+    public void setOrientationSouth(Boolean orientationSouth) {
+        this.orientationSouth = orientationSouth;
+    }
+
+    public Boolean getOrientationWest() {
+        return orientationWest;
+    }
+
+    public void setOrientationWest(Boolean orientationWest) {
+        this.orientationWest = orientationWest;
+    }
+
+    public Boolean getOrientationNorth() {
+        return orientationNorth;
+    }
+
+    public void setOrientationNorth(Boolean orientationNorth) {
+        this.orientationNorth = orientationNorth;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -317,20 +350,20 @@ public class Floorplan implements BaseEstateModel<Long> {
         result = prime * result + ((bathroomCount == null) ? 0 : bathroomCount.hashCode());
         result = prime * result + ((bedRoomCount == null) ? 0 : bedRoomCount.hashCode());
         result = prime * result + ((bid == null) ? 0 : bid.hashCode());
-        result = prime * result + ((building == null) ? 0 : building.hashCode());
         result = prime * result + ((courtyardCount == null) ? 0 : courtyardCount.hashCode());
         result = prime * result + ((description == null) ? 0 : description.hashCode());
         result = prime * result + ((enclosedBaclonyCount == null) ? 0 : enclosedBaclonyCount.hashCode());
         result = prime * result + ((externalSize == null) ? 0 : externalSize.hashCode());
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((internalSize == null) ? 0 : internalSize.hashCode());
+        result = prime * result + ((landSize == null) ? 0 : landSize.hashCode());
         result = prime * result + ((maxPrice == null) ? 0 : maxPrice.hashCode());
         result = prime * result + ((minPrice == null) ? 0 : minPrice.hashCode());
         result = prime * result + ((modelModification == null) ? 0 : modelModification.hashCode());
         result = prime * result + ((openBaclonyCount == null) ? 0 : openBaclonyCount.hashCode());
-        result = prime * result + ((orientation == null) ? 0 : orientation.hashCode());
-        result = prime * result + ((publicPicture == null) ? 0 : publicPicture.hashCode());
-        result = prime * result + ((salePicture == null) ? 0 : salePicture.hashCode());
+        result = prime * result + ((orientationEast == null) ? 0 : orientationEast.hashCode());
+        result = prime * result + ((orientationNorth == null) ? 0 : orientationNorth.hashCode());
+        result = prime * result + ((orientationSouth == null) ? 0 : orientationSouth.hashCode());
+        result = prime * result + ((orientationWest == null) ? 0 : orientationWest.hashCode());
         result = prime * result + ((sold == null) ? 0 : sold.hashCode());
         result = prime * result + (soldOut ? 1231 : 1237);
         result = prime * result + (split ? 1231 : 1237);
@@ -356,9 +389,6 @@ public class Floorplan implements BaseEstateModel<Long> {
         if (bid == null) {
             if (other.bid != null) return false;
         } else if (!bid.equals(other.bid)) return false;
-        if (building == null) {
-            if (other.building != null) return false;
-        } else if (!building.equals(other.building)) return false;
         if (courtyardCount == null) {
             if (other.courtyardCount != null) return false;
         } else if (!courtyardCount.equals(other.courtyardCount)) return false;
@@ -371,12 +401,12 @@ public class Floorplan implements BaseEstateModel<Long> {
         if (externalSize == null) {
             if (other.externalSize != null) return false;
         } else if (!externalSize.equals(other.externalSize)) return false;
-        if (id == null) {
-            if (other.id != null) return false;
-        } else if (!id.equals(other.id)) return false;
         if (internalSize == null) {
             if (other.internalSize != null) return false;
         } else if (!internalSize.equals(other.internalSize)) return false;
+        if (landSize == null) {
+            if (other.landSize != null) return false;
+        } else if (!landSize.equals(other.landSize)) return false;
         if (maxPrice == null) {
             if (other.maxPrice != null) return false;
         } else if (!maxPrice.equals(other.maxPrice)) return false;
@@ -389,15 +419,18 @@ public class Floorplan implements BaseEstateModel<Long> {
         if (openBaclonyCount == null) {
             if (other.openBaclonyCount != null) return false;
         } else if (!openBaclonyCount.equals(other.openBaclonyCount)) return false;
-        if (orientation == null) {
-            if (other.orientation != null) return false;
-        } else if (!orientation.equals(other.orientation)) return false;
-        if (publicPicture == null) {
-            if (other.publicPicture != null) return false;
-        } else if (!publicPicture.equals(other.publicPicture)) return false;
-        if (salePicture == null) {
-            if (other.salePicture != null) return false;
-        } else if (!salePicture.equals(other.salePicture)) return false;
+        if (orientationEast == null) {
+            if (other.orientationEast != null) return false;
+        } else if (!orientationEast.equals(other.orientationEast)) return false;
+        if (orientationNorth == null) {
+            if (other.orientationNorth != null) return false;
+        } else if (!orientationNorth.equals(other.orientationNorth)) return false;
+        if (orientationSouth == null) {
+            if (other.orientationSouth != null) return false;
+        } else if (!orientationSouth.equals(other.orientationSouth)) return false;
+        if (orientationWest == null) {
+            if (other.orientationWest != null) return false;
+        } else if (!orientationWest.equals(other.orientationWest)) return false;
         if (sold == null) {
             if (other.sold != null) return false;
         } else if (!sold.equals(other.sold)) return false;
@@ -416,12 +449,12 @@ public class Floorplan implements BaseEstateModel<Long> {
 
     @Override
     public String toString() {
-        return "Floorplan [id=" + id + ", bid=" + bid + ", building=" + building + ", publicPicture=" + publicPicture + ", salePicture=" + salePicture
-               + ", description=" + description + ", type=" + type + ", split=" + split + ", studio=" + studio + ", bedRoomCount=" + bedRoomCount
-               + ", bathroomCount=" + bathroomCount + ", studyroomCount=" + studyroomCount + ", openBaclonyCount=" + openBaclonyCount
-               + ", enclosedBaclonyCount=" + enclosedBaclonyCount + ", courtyard_count=" + courtyardCount + ", orientation=" + orientation + ", minPrice="
-               + minPrice + ", maxPrice=" + maxPrice + ", internalSize=" + internalSize + ", externalSize=" + externalSize + ", totalSize=" + totalSize
-               + ", sold=" + sold + ", soldOut=" + soldOut + ", modelModification=" + modelModification + "]";
+        return "Floorplan [id=" + id + ", bid=" + bid + ", description=" + description + ", type=" + type + ", split=" + split + ", studio=" + studio
+               + ", bedRoomCount=" + bedRoomCount + ", bathroomCount=" + bathroomCount + ", studyroomCount=" + studyroomCount + ", openBaclonyCount="
+               + openBaclonyCount + ", enclosedBaclonyCount=" + enclosedBaclonyCount + ", courtyardCount=" + courtyardCount + ", orientationEast="
+               + orientationEast + ", orientationSouth=" + orientationSouth + ", orientationWest=" + orientationWest + ", orientationNorth=" + orientationNorth
+               + ", minPrice=" + minPrice + ", maxPrice=" + maxPrice + ", internalSize=" + internalSize + ", externalSize=" + externalSize + ", totalSize="
+               + totalSize + ", landSize=" + landSize + ", sold=" + sold + ", soldOut=" + soldOut + ", modelModification=" + modelModification + "]";
     }
 
 }
