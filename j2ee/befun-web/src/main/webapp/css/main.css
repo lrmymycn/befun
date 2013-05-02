@@ -705,7 +705,7 @@ header .menu .more ul li a:hover{
 	overflow-y:auto;
 	overflow-x:hidden;
 	padding-left:10px;
-	width:188px;
+	min-width:188px;
 }
 
 #projectlist .item{

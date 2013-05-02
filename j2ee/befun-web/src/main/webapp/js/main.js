@@ -566,11 +566,11 @@ Search = {
 		conditions.carspace = Tools.getCheckboxListValue('carspace');	
 		
 		conditions.distanceToCity = $('#filter select[name="distancetocity"]').val();
-		conditions.trainStation = $('#filter input[name="train"]').is(":checked") ? true : null;
-		conditions.schools = $('#filter input[name="schools"]').is(":checked") ? true : null;
-		conditions.universities = $('#filter input[name="universities"]').is(":checked") ? true : null;
-		conditions.chineseCommunity = $('#filter input[name="chinese"]').is(":checked") ? true : null;
-		conditions.shoppingCenter = $('#filter input[name="shpppingcenter"]').is(":checked") ? true : null;
+		conditions.trainStation = $('#filter input[name="train"]').is(":checked") ? true : 'null';
+		conditions.schools = $('#filter input[name="schools"]').is(":checked") ? true : 'null';
+		conditions.universities = $('#filter input[name="universities"]').is(":checked") ? true : 'null';
+		conditions.chineseCommunity = $('#filter input[name="chinese"]').is(":checked") ? true : 'null';
+		conditions.shoppingCenter = $('#filter input[name="shpppingcenter"]').is(":checked") ? true : 'null';
 		conditions.status = $('#filter select[name="status"]').val();
 		
 		Search.conditions = conditions;
@@ -646,37 +646,29 @@ Search = {
 			this.setConditions();
 			var conditions = Search.conditions;
 			
+			var status = 'null';
+			if(conditions.status == '0'){
+				status = false;
+			}else if(conditions.status == '1'){
+				status = true;
+			}
+			
 			var data = {
 				'qc.suburbId': conditions.suburbId, 
 				'qc.distanceToCity': conditions.distanceToCity,
-				bedroom_count: conditions.bedrooms,
-				bathroom_count: conditions.bathrooms,
-				car_parking_count: conditions.carspace,
+				'qc.apQC.fpQC.bedRoomCountStr': conditions.bedrooms,
+				'qc.apQC.fpQC.bathRoomCountStr': conditions.bathrooms,
+				'qc.apQC.carParkingCountStr': conditions.carspace,
 				house_type: conditions.propertyType,
-				//'qc.apQC.minPrice': conditions.minPrice,
-				//'qc.apQC.maxPrice': conditions.maxPrice,
-				ready_house: conditions.status
+				'qc.apQC.minPrice': conditions.minPrice,
+				'qc.apQC.maxPrice': conditions.maxPrice,
+				'qc.apQC.fpQC.bQC.readyHouse': status,
+				'qc.suburbQC.chineseCommunity': conditions.chineseCommunity,
+				'qc.suburbQC.train' : conditions.trainStation,
+				'qc.suburbQC.schools' : conditions.schools,
+				'qc.suburbQC.universities' : conditions.universities,
+				'qc.suburbQC.shoppingCenter' : conditions.shoppingCenter
 			};
-			
-			if(conditions.chineseCommunity){
-				data['qc.suburbQC.chineseCommunity'] = true;
-			}
-			
-			if(conditions.trainStation){		
-				data['qc.suburbQC.train'] = true;
-			}
-			
-			if(conditions.schools){
-				data['qc.suburbQC.schools'] = true;
-			}
-			
-			if(conditions.universities){
-				data['qc.suburbQC.universities'] = true;
-			}
-			
-			if(conditions.shoppingCenter){
-				data['qc.suburbQC.shoppingCenter'] = true;
-			}
 						
 			Main.updateReminder();
 			Main.hideFilter();
@@ -1013,11 +1005,11 @@ PanelPopup = {
 				url: Main.root + "estate/json/demandProjectDetail.action",
 				data: {
 						id: Main.currentProjectId,
-						bedroom_count: conditions.bedrooms,
-						bathroom_count: conditions.bathrooms,
-						car_parking_count: conditions.carspace,
-						min_price: conditions.minPrice,
-						max_price: conditions.maxPrice
+						'qc.apQC.fpQC.bedRoomCountStr': conditions.bedrooms,
+						'qc.apQC.fpQC.bathRoomCountStr': conditions.bathrooms,
+						'qc.apQC.carParkingCountStr': conditions.carspace,
+						'qc.apQC.minPrice': conditions.minPrice,
+						'qc.apQC.maxPrice': conditions.maxPrice
 					},
 				dataType: "json",
 				success: function(json){
@@ -1291,7 +1283,11 @@ FloorPlanFilter = {
 		storageRoom:null,
 		courtyard:null,
 		enclosedBalcony:null,
-		penthouse:null
+		penthouse:null,
+		east:null,
+		south:null,
+		west:null,
+		north:null
 	},
 	init: function(){
 		$('#btn-search3').click(function(){
@@ -1305,20 +1301,37 @@ FloorPlanFilter = {
 			conditions.bathrooms = Tools.getCheckboxListValue('floorplan-bathrooms');
 			conditions.carspace = Tools.getCheckboxListValue('floorplan-carspace');
 			conditions.aspect = $('#floorplan-filter select[name="aspect"]').val();
-			conditions.study = $('#floorplan-filter input[name="study"]').is(":checked") ? true : null;
-			conditions.splitLevel = $('#floorplan-filter input[name="splitlevel"]').is(":checked") ? true : null;
-			conditions.storageRoom = $('#floorplan-filter input[name="storage"]').is(":checked") ? true : null;
-			conditions.courtyard = $('#floorplan-filter input[name="courtyard"]').is(":checked") ? true : null;
-			conditions.enclosedBalcony = $('#floorplan-filter input[name="splitlevel"]').is(":checked") ? true : null;
-			conditions.penthouse = $('#floorplan-filter input[name="penthouse"]').is(":checked") ? true : null;
+			conditions.study = $('#floorplan-filter input[name="study"]').is(":checked") ? '0+' : null;
+			conditions.splitLevel = $('#floorplan-filter input[name="splitlevel"]').is(":checked") ? true : 'null';
+			conditions.storageRoom = $('#floorplan-filter input[name="storage"]').is(":checked") ? '0+' : null;
+			conditions.courtyard = $('#floorplan-filter input[name="courtyard"]').is(":checked") ? '0+' : null;
+			conditions.enclosedBalcony = $('#floorplan-filter input[name="splitlevel"]').is(":checked") ? '0+' : null;
+			conditions.penthouse = $('#floorplan-filter input[name="penthouse"]').is(":checked") ? true : 'null';
+			
+			var aspect = $('#floorplan-filter select[name="aspect"]').val();
+			conditions.east = aspect == 'E' ? true : 'null';
+			conditions.south = aspect == 'S' ? true : 'null';
+			conditions.west = aspect == 'W' ? true : 'null';
+			conditions.north = aspect == 'N' ? true : 'null';
 			
 			var data = {
-				id: Main.currentProjectId
+				id: Main.currentProjectId,
+				'qc.apQC.fpQC.bedRoomCountStr': conditions.bedrooms,
+				'qc.apQC.fpQC.bathRoomCountStr': conditions.bathrooms,
+				'qc.apQC.carParkingCountStr': conditions.carspace,
+				'qc.apQC.minPrice': conditions.minPrice,
+				'qc.apQC.maxPrice': conditions.maxPrice,
+				'qc.apQC.fpQC.split': conditions.splitLevel,
+				'qc.apQC.fpQC.studyroomCountStr': conditions.study,
+				'qc.apQC.fpQC.enclosedBaclonyCountStr': conditions.enclosedBalcony,
+				'qc.apQC.fpQC.courtyardCountStr': conditions.courtyard,
+				'qc.apQC.storageRoomCountStr': conditions.storageRoom,
+				'qc.apQC.pentHouse': conditions.penthouse,
+				'qc.apQC.fpQC.orientationEast': conditions.east,
+				'qc.apQC.fpQC.orientationSouth': conditions.south,
+    			'qc.apQC.fpQC.orientationWest': conditions.west,
+    			'qc.apQC.fpQC.orientationNorth': conditions.north
 			};
-			
-			if(conditions.splitLevel){
-				data['qc.split'] = true; 
-			}
 			
 			$.ajax({
 				type: 'POST',
