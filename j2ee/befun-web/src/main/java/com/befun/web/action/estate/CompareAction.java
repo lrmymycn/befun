@@ -1,5 +1,7 @@
 package com.befun.web.action.estate;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -53,23 +55,21 @@ public class CompareAction extends BaseAction {
                 String value = ck.getValue();
                 Object o;
                 try {
+                    System.out.println(value);
+                    value = URLDecoder.decode(value, "UTF-8");
                     o = JSONUtil.deserialize(value);
                     List<?> os = (List<?>) (o);
                     for (Object jo : os) {
                         HashMap<?, ?> ho = (HashMap<?, ?>) jo;
-                        String idStr = (String) ho.get("id");
-                        if (!StringUtils.isBlank(idStr)) {
-                            try {
-                                Long id = Long.parseLong(idStr);
-                                compareIds.add(id);
-                            } catch (NumberFormatException ne) {
-                                this.log.debug("Compare list error!", ne);
-                            }
-
+                        Long id = (Long) ho.get("id");
+                        if (id != null) {
+                            compareIds.add(id);
                         }
                     }
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    this.log.debug(e);
+                } catch (UnsupportedEncodingException e) {
+                    this.log.debug(e);
                 }
             }
         }

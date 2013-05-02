@@ -3,6 +3,7 @@ package com.befun.dao;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -117,8 +118,14 @@ public class BaseHibernateDao<M extends Serializable, PK extends Serializable> i
 
     @Override
     public List<M> get(PK... ids) {
-        // TODO Auto-generated method stub
-        return null;
+        if(ids == null){
+            return new ArrayList<M>();
+        }
+        List<M> rs = new ArrayList<M>();
+        for(PK id:ids){
+            rs.add(this.get(id));
+        }
+        return rs;
     }
 
     @Override
