@@ -41,12 +41,12 @@
     			<div class="field">
     				<div class="pricerange">
         				<select name="minprice" class="selectbox">
-		        			<option value="" selected="true">Any Price</option>
-		        			<option value="450000">$450,000</option>
-		        			<option value="550000">$550,000</option>
-		        			<option value="650000">$650,000</option>
-		        			<option value="750000">$750,000</option>
-		        			<option value="850000">$850,000</option>
+		        			<option value="0" selected="true">Any Price</option>
+		        			<option value="1">$450,000</option>
+		        			<option value="2">$550,000</option>
+		        			<option value="3">$650,000</option>
+		        			<option value="4">$750,000</option>
+		        			<option value="5">$850,000</option>
 		        		</select>
 	        		</div>
 	        		<div class="pricerangeto">
@@ -54,13 +54,13 @@
 	        		</div>
 	        		<div class="pricerange">
 		        		<select name="maxprice" class="selectbox">
-		        			<option value="">Any Price</option>
-		        			<option value="450000">$450,000</option>
-		        			<option value="550000">$550,000</option>
-		        			<option value="650000">$650,000</option>
-		        			<option value="750000">$750,000</option>
-		        			<option value="850000">$850,000</option>
-		        			<option value="850000">$850,000+</option>
+		        			<option value="0">Any Price</option>
+		        			<option value="1">$450,000</option>
+		        			<option value="2">$550,000</option>
+		        			<option value="3">$650,000</option>
+		        			<option value="4">$750,000</option>
+		        			<option value="5">$850,000</option>
+		        			<option value="6">$850,000+</option>
 		        		</select>
 	        		</div>
     			</div>

@@ -637,7 +637,7 @@ Search = {
 	execute: function(){
 		Debug.trace('search execute');
 		Map.justZoomed = false;
-		//dummy code
+
 		if(this.cache == null){
 			
 			this.clusters = new Array();
@@ -646,27 +646,44 @@ Search = {
 			this.setConditions();
 			var conditions = Search.conditions;
 			
+			var data = {
+				'qc.suburbId': conditions.suburbId, 
+				'qc.distanceToCity': conditions.distanceToCity,
+				bedroom_count: conditions.bedrooms,
+				bathroom_count: conditions.bathrooms,
+				car_parking_count: conditions.carspace,
+				house_type: conditions.propertyType,
+				//'qc.apQC.minPrice': conditions.minPrice,
+				//'qc.apQC.maxPrice': conditions.maxPrice,
+				ready_house: conditions.status
+			};
+			
+			if(conditions.chineseCommunity){
+				data['qc.suburbQC.chineseCommunity'] = true;
+			}
+			
+			if(conditions.trainStation){		
+				data['qc.suburbQC.train'] = true;
+			}
+			
+			if(conditions.schools){
+				data['qc.suburbQC.schools'] = true;
+			}
+			
+			if(conditions.universities){
+				data['qc.suburbQC.universities'] = true;
+			}
+			
+			if(conditions.shoppingCenter){
+				data['qc.suburbQC.shoppingCenter'] = true;
+			}
+						
 			Main.updateReminder();
 			Main.hideFilter();
 			$.ajax({
 				type: 'POST',
 				url: Main.root + "estate/json/demandProjectAggregated.action",
-				data: {
-						'qc.suburbId': conditions.suburbId, 
-						'qc.distanceToCity': conditions.distanceToCity,
-						bedroom_count: conditions.bedrooms,
-						bathroom_count: conditions.bathrooms,
-						car_parking_count: conditions.carspace,
-						house_type: conditions.propertyType,
-						//'qc.apQC.minPrice': conditions.minPrice,
-						//'qc.apQC.maxPrice': conditions.maxPrice,
-						//'qc.suburbQC.chineseCommunity': conditions.chineseCommunity,
-						//'qc.suburbQC.train': conditions.trainStation,
-						//'qc.suburbQC.schools': conditions.schools,
-						//'qc.suburbQC.universities': conditions.universities,
-						//'qc.suburbQC.shoppingCenter':conditions.shoppingCenter,
-						ready_house: conditions.status
-					},
+				data: data,
 				dataType: "json",
 				success: function(json){
 					Search.cache = json;
@@ -1262,37 +1279,55 @@ FloorplanPopup = {
 
 FloorPlanFilter = {
 	currentFloorPlans:[],
-	minPrice:null,
-	maxPrice:null,
-	bedrooms:null,
-	bathrooms:null,
-	carspace:null,
-	aspect:null,
+	conditions: {
+		minPrice:null,
+		maxPrice:null,
+		bedrooms:null,
+		bathrooms:null,
+		carspace:null,
+		aspect:null,
+		study:null,
+		splitLevel:null,
+		storageRoom:null,
+		courtyard:null,
+		enclosedBalcony:null,
+		penthouse:null
+	},
 	init: function(){
 		$('#btn-search3').click(function(){
 			FloorPlanFilter.curentFloorPlans = [];
-			FloorPlanFilter.minPrice = $('#floorplan-filter select[name="minprice"]').val();
-			FloorPlanFilter.maxPrice = $('#floorplan-filter select[name="maxprice"]').val();
-			FloorPlanFilter.bedrooms = Tools.getCheckboxListValue('floorplan-bedrooms');
-			FloorPlanFilter.bathrooms = Tools.getCheckboxListValue('floorplan-bathrooms');
-			FloorPlanFilter.carspace = Tools.getCheckboxListValue('floorplan-carspace');
-			FloorPlanFilter.aspect = $('#floorplan-filter select[name="aspect"]').val();
+			
+			var conditions = FloorPlanFilter.conditions;
+			
+			conditions.minPrice = $('#floorplan-filter select[name="minprice"]').val();
+			conditions.maxPrice = $('#floorplan-filter select[name="maxprice"]').val();
+			conditions.bedrooms = Tools.getCheckboxListValue('floorplan-bedrooms');
+			conditions.bathrooms = Tools.getCheckboxListValue('floorplan-bathrooms');
+			conditions.carspace = Tools.getCheckboxListValue('floorplan-carspace');
+			conditions.aspect = $('#floorplan-filter select[name="aspect"]').val();
+			conditions.study = $('#floorplan-filter input[name="study"]').is(":checked") ? true : null;
+			conditions.splitLevel = $('#floorplan-filter input[name="splitlevel"]').is(":checked") ? true : null;
+			conditions.storageRoom = $('#floorplan-filter input[name="storage"]').is(":checked") ? true : null;
+			conditions.courtyard = $('#floorplan-filter input[name="courtyard"]').is(":checked") ? true : null;
+			conditions.enclosedBalcony = $('#floorplan-filter input[name="splitlevel"]').is(":checked") ? true : null;
+			conditions.penthouse = $('#floorplan-filter input[name="penthouse"]').is(":checked") ? true : null;
+			
+			var data = {
+				id: Main.currentProjectId
+			};
+			
+			if(conditions.splitLevel){
+				data['qc.split'] = true; 
+			}
 			
 			$.ajax({
 				type: 'POST',
 				url: Main.root + "estate/json/demandProjectDetail.action",
-				data: {
-						id: Main.currentProjectId,
-						bedroom_count: FloorPlanFilter.bedrooms,
-						bathroom_count: FloorPlanFilter.bathrooms,
-						car_parking_count: FloorPlanFilter.carspace,
-						min_price: FloorPlanFilter.minPrice,
-						max_price: FloorPlanFilter.maxPrice
-					},
+				data: data,
 				dataType: "json",
 				success: function(json){
-					if(json.length > 0){
-						var project = json[0];
+					var project = json.view;
+					if(project != null && project != undefined){
 						FloorPlanFilter.currentFloorPlans = project.floorplans;
 						FloorPlanFilter.updateList();
 					}else{
