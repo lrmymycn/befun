@@ -137,22 +137,6 @@
 				</param>
 			</result>
 		</action>
-        <action name="addToCompareList" class="CompareAction" method="addToCompareList">
-            <result name="success" type="myJson">
-                <param name="includeProperties">
-                    actionMessages*,
-                    errorMessages*,
-                </param>
-            </result>
-        </action>
-        <action name="removeFromCompareList" class="CompareAction" method="removeFromCompareList">
-            <result name="success" type="myJson">
-                <param name="includeProperties">
-                    actionMessages*,
-                    errorMessages*,
-                </param>
-            </result>
-        </action>
         <action name="compare" class="CompareAction" method="compareFloorplan">
             <result name="success" type="myJson">
                 <param name="includeProperties">

@@ -1,10 +1,15 @@
 package com.befun.web.action.estate;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 
+import org.apache.commons.lang.StringUtils;
+import org.apache.struts2.json.JSONException;
+import org.apache.struts2.json.JSONUtil;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -18,9 +23,11 @@ import com.befun.web.action.BaseAction;
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class CompareAction extends BaseAction {
 
+    private static final String COOKIE_FLOORPLANS_COMPARELIST = "floorplans";
+
     private static final long serialVersionUID = 5353027870557787231L;
 
-    private Long id;
+    private String compareIdsStr;
 
     private List<Floorplan> rs;
 
@@ -28,43 +35,57 @@ public class CompareAction extends BaseAction {
     @Qualifier("FloorplanService")
     private FloorplanService service;
 
-    public String addToCompareList() {
-        List<Long> compareIds = this.getCompareList();
-        compareIds.add(this.id);
-        return SUCCESS;
-    }
-
-    public String removeFromCompareList() {
-        List<Long> compareIds = this.getCompareList();
-        compareIds.remove(this.id);
-        return SUCCESS;
-    }
-
     public String compareFloorplan() {
         List<Long> compareIds = this.getCompareList();
-        rs = this.service.get(compareIds.toArray(new Long[] {}));
+        if (compareIds.size() > 0) {
+            rs = this.service.get(compareIds.toArray(new Long[] {}));
+        } else {
+            this.addActionMessage("No floorplan selected!");
+        }
         return SUCCESS;
     }
 
     public List<Long> getCompareList() {
-        List<Long> compareIds = (List<Long>) this.getRequest().getSession().getAttribute("compareList");
-        if (compareIds == null) {
-            compareIds = new ArrayList<Long>();
-            this.getRequest().getSession().setAttribute("compareList", compareIds);
+        List<Long> compareIds = new ArrayList<Long>();
+        Cookie[] cookies = this.getRequest().getCookies();
+        for (Cookie ck : cookies) {
+            if (COOKIE_FLOORPLANS_COMPARELIST.equals(ck.getName())) {
+                String value = ck.getValue();
+                Object o;
+                try {
+                    o = JSONUtil.deserialize(value);
+                    List<?> os = (List<?>) (o);
+                    for (Object jo : os) {
+                        HashMap<?, ?> ho = (HashMap<?, ?>) jo;
+                        String idStr = (String) ho.get("id");
+                        if (!StringUtils.isBlank(idStr)) {
+                            try {
+                                Long id = Long.parseLong(idStr);
+                                compareIds.add(id);
+                            } catch (NumberFormatException ne) {
+                                this.log.debug("Compare list error!", ne);
+                            }
+
+                        }
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         return compareIds;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public List<Floorplan> getRs() {
         return rs;
+    }
+
+    public String getCompareIdsStr() {
+        return compareIdsStr;
+    }
+
+    public void setCompareIdsStr(String compareIdsStr) {
+        this.compareIdsStr = compareIdsStr;
     }
 
 }
