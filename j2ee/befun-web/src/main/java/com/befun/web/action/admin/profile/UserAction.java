@@ -32,15 +32,21 @@ public class UserAction extends BaseAction {
 
     private String repeatPassword;
 
-    public String createUser() {
+    public String createProfilePage() {
+
         return SUCCESS;
     }
 
-    public String updateUser() {
+    public String createProfile() {
+
         return SUCCESS;
     }
 
-    public String changePassword() {
+    public String updateProfilePage() {
+        return SUCCESS;
+    }
+
+    public String demandUserById() {
         return SUCCESS;
     }
 

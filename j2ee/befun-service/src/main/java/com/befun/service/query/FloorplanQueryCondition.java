@@ -107,27 +107,9 @@ public class FloorplanQueryCondition extends EstateQueryCondition {
             rs.add(bedRoomCounts);
         }
         Criterion bathRoomCounts = QCUtils.parseCounts(QCUtils.generatePropertyName(this.getSelfAlias(), "bathroomCount"), this.bathRoomCountStr);
-        if (bedRoomCounts != null) {
+        if (bathRoomCounts != null) {
             rs.add(bathRoomCounts);
         }
-        /*
-         * if (this.minBedRoomCount != null) {
-         * tmp = Restrictions.gt(QCUtils.generatePropertyName(this.getSelfAlias(), "bedRoomCount"), this.minBedRoomCount);
-         * rs.add(tmp);
-         * }
-         * if (this.maxBedRoomCount != null) {
-         * tmp = Restrictions.le(QCUtils.generatePropertyName(this.getSelfAlias(), "bedRoomCount"), this.maxBedRoomCount);
-         * rs.add(tmp);
-         * }
-         * if (this.minBathRoomCount != null) {
-         * tmp = Restrictions.gt(QCUtils.generatePropertyName(this.getSelfAlias(), "bathroomCount"), this.minBathRoomCount);
-         * rs.add(tmp);
-         * }
-         * if (this.maxBathRoomCount != null) {
-         * tmp = Restrictions.le(QCUtils.generatePropertyName(this.getSelfAlias(), "bathroomCount"), this.maxBathRoomCount);
-         * rs.add(tmp);
-         * }
-         */
         Criterion courtyardCounts = QCUtils.parseCounts(QCUtils.generatePropertyName(this.getSelfAlias(), "courtyardCount"), this.courtyardCountStr);
         if (courtyardCounts != null) {
             rs.add(courtyardCounts);
