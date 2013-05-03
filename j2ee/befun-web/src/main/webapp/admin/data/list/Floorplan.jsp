@@ -59,14 +59,18 @@
 						<input type="button" value="Remove" onclick="showDialog('${r}')" />
 						-->
 						
+						<c:if test="${!bean.enabled }">
 						<s:url var="r" action="admin/data/enableFloorplan.action" namespace="/">
 							<s:param name="id">${bean.id}</s:param>
 						</s:url>
 						<input type="button" value="Enable" onclick="showDialog('${r}')" />
+						</c:if>
+						<c:if test="${bean.enabled }">
 						<s:url var="r" action="admin/data/disableFloorplan.action" namespace="/">
 							<s:param name="id">${bean.id}</s:param>
 						</s:url>
 						<input type="button" value="Disable" onclick="showDialog('${r}')" />
+						</c:if>
 					</jmesa:htmlColumn>
 				</jmesa:htmlRow>
 			</jmesa:htmlTable>
