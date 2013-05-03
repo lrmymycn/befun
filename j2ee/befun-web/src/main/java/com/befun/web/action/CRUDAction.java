@@ -193,11 +193,12 @@ public abstract class CRUDAction<M extends BaseModel<Long>, V extends BaseView<M
 
     public abstract QueryCondition getQc();
 
-//    public abstract V getView();
+    // public abstract V getView();
 
-//    public abstract void setView(V view);
+    // public abstract void setView(V view);
 
     public abstract ViewConverter<M, V> getConverter();
 
     public abstract IBaseService<M, Long> getService();
+
 }

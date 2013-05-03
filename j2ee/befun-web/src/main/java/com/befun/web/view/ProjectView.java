@@ -17,6 +17,8 @@ public class ProjectView extends BaseView<Project> {
 
     private Long suburbId;
 
+    private String suburbName;
+
     private Long pictureId;
 
     private Long logoId;
@@ -95,7 +97,7 @@ public class ProjectView extends BaseView<Project> {
     public ProjectView() {
         super();
     }
-    
+
     public ProjectView(Project model) {
         super(model);
     }
@@ -416,6 +418,14 @@ public class ProjectView extends BaseView<Project> {
 
     public void setMedias(List<Media> medias) {
         this.medias = medias;
+    }
+
+    public String getSuburbName() {
+        return suburbName;
+    }
+
+    public void setSuburbName(String suburbName) {
+        this.suburbName = suburbName;
     }
 
 }

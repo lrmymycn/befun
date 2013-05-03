@@ -14,6 +14,8 @@ public class SuburbView extends BaseView<Suburb> {
 
     private Long areaId;
 
+    private String areaName;
+
     //
     private String name;
 
@@ -69,6 +71,14 @@ public class SuburbView extends BaseView<Suburb> {
     }
 
     //
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
+    }
 
     public Long getAreaId() {
         return areaId;

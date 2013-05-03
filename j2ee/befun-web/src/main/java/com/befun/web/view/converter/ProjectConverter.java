@@ -34,6 +34,7 @@ public class ProjectConverter extends AbstractViewConverter<Project, ProjectView
         }
         view.setAreaId(model.getSuburb().getArea().getId());
         view.setSuburbId(model.getSuburb().getId());
+        view.setSuburbName(model.getSuburb().getName());
         copyModelModification(model.getModelModification(), view);
     }
 

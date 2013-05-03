@@ -27,6 +27,7 @@ public class SuburbConverter extends AbstractViewConverter<Suburb, SuburbView> {
         BeanUtils.copyProperties(model, view, ignoredProperties);
         if (model.getArea() != null) {
             view.setAreaId(model.getArea().getId());
+            view.setAreaName(model.getArea().getName());
         }
         copyModelModification(model.getModelModification(), view);
 

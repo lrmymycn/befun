@@ -13,6 +13,7 @@
 		$("#menuFloorplan").menu();
 		$("#menuApartment").menu();
 		$("#menuMedia").menu();
+		initPage();
 	});
 </script>
 <style>
@@ -28,7 +29,7 @@
 </style>
 </head>
 <body>
-	<div style="width: 1000px; height: 30px;">
+	<div class="ui-widget" style="width: 1000px; height: 30px;">
 		<div class="menu-div">
 			<ul id="menuArea">
 				<li><a href="<c:url value='/admin/data/demandArea.action'/>"> Area </a>

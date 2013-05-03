@@ -10,12 +10,17 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.befun.domain.estate.Area;
 import com.befun.domain.estate.Suburb;
 import com.befun.service.IBaseService;
+import com.befun.service.estate.AreaService;
 import com.befun.service.estate.SuburbService;
+import com.befun.service.query.AreaQueryCondition;
 import com.befun.service.query.SuburbQueryCondition;
 import com.befun.web.action.JmesaAction;
+import com.befun.web.view.AreaView;
 import com.befun.web.view.SuburbView;
+import com.befun.web.view.converter.AreaConverter;
 import com.befun.web.view.converter.ConverterFactory;
 import com.befun.web.view.converter.ViewConverter;
 
@@ -29,10 +34,18 @@ public class SuburbAction<T extends Suburb, V extends SuburbView> extends JmesaA
 
     private List<SuburbView> keyRs = new ArrayList<SuburbView>();
 
+    private List<AreaView> qcAreas = new ArrayList<AreaView>();
+
+    private AreaConverter areaConverter = ConverterFactory.getConverter(Area.class);
+
     @Resource
     @Qualifier("SuburbService")
     private SuburbService service;
 
+    @Resource
+    @Qualifier("AreaService")
+    private AreaService areaService;
+    
     public String demandByKey() {
         List<Suburb> queryRs = service.queryByInputKey(this.qc.getKey());
         SuburbView tmpV = null;
@@ -69,7 +82,18 @@ public class SuburbAction<T extends Suburb, V extends SuburbView> extends JmesaA
         }
         return SUCCESS;
     }
-    
+
+    protected void prepareQueryList() {
+        AreaQueryCondition queryCondition = new AreaQueryCondition();
+        queryCondition.setEnabled(null);
+        List<Area> areas = this.areaService.query(queryCondition);
+        AreaView av = null;
+        for (Area a : areas) {
+            av = areaConverter.convertToView(a);
+            qcAreas.add(av);
+        }
+    }
+
     public SuburbQueryCondition getQc() {
         return qc;
     }
@@ -88,6 +112,10 @@ public class SuburbAction<T extends Suburb, V extends SuburbView> extends JmesaA
 
     public void setView(SuburbView view) {
         this.view = view;
+    }
+
+    public List<AreaView> getQcAreas() {
+        return qcAreas;
     }
 
     @Override

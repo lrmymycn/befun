@@ -19,6 +19,16 @@ public abstract class JmesaAction<M extends BaseModel<Long>, V extends BaseView<
         this.ps = this.getPageSize(getTableName());
     }
 
+    @Override
+    public String demand(){
+        try {
+            prepareQueryList();
+        } catch (Exception ex) {
+            this.log.warn("Preapare query parameters failure!", ex);
+        }
+        return super.demand();
+    }
+    
     protected long getPageNum(String tableName) {
         long rs = 1;
         String str = JmesaUtils.getJmesaParam(this.getRequest(), Action.PAGE, tableName);
@@ -42,6 +52,9 @@ public abstract class JmesaAction<M extends BaseModel<Long>, V extends BaseView<
             this.tableName = this.getRequest().getParameter("tableName");
         }
         return tableName;
+    }
+    
+    protected void prepareQueryList(){
     }
 
 }

@@ -6,8 +6,33 @@
 <html>
 <head>
 <title>Suburbs</title>
+<script>
+	function initPage(){
+		$( "#areaCombobox" ).combobox();
+		/*
+		$( "#areaToggle" ).click(function() {
+			$( "#areaCombobox" ).toggle();
+		});*/
+	}
+</script>
 </head>
 <body>
+	<div class="ui-widget" style="width: 1000px; height: 60px;">
+		<form action="" method="post">
+			<table width="1000">
+			<tr><td width="%100">
+			<label>Area: </label>
+			<select id="areaCombobox" name="qc.areaId">
+				<option value="" <c:if test="${empty qc.areaId}">selected="selected"</c:if>>Select Area</option>
+				<c:forEach items="${qcAreas }" var="a">
+					<option value="${a.id }" <c:if test="${qc.areaId eq a.id}">selected="selected"</c:if>>${a.name }</option>
+				</c:forEach>
+			</select>
+			</td><td></td></tr>
+			<tr><td align="right" colspan="2"><input type="submit" value="Query" /></td></tr>
+			</table>
+		</form>
+	</div>
 	<form name="suburbForm" action="" method="post">
 		<input type="hidden" name="tableName" value="suburb_table" />
 		<jmesa:struts2TableModel items="${pgb.models}" id="suburb_table" var="bean" stateAttr="restore"
@@ -20,7 +45,7 @@
 						<s:url var="u" action="admin/data/viewArea.action" namespace="/">
 							<s:param name="id">${bean.areaId}</s:param>
 						</s:url>
-						<input type="button" value="${bean.areaId }" onclick="showDialog('${u}')" />
+						<input type="button" value="${bean.areaName }" onclick="showDialog('${u}')" />
 					</jmesa:htmlColumn>
 					<jmesa:htmlColumn property="name" />
 					<jmesa:htmlColumn property="postCode" />
