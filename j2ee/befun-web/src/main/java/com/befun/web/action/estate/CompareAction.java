@@ -9,7 +9,6 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 
-import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.json.JSONException;
 import org.apache.struts2.json.JSONUtil;
 import org.springframework.beans.factory.annotation.Qualifier;

@@ -2,6 +2,7 @@ package com.befun.dao;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 
 import com.befun.dao.common.IQueryCondition;
 import com.befun.domain.PaginationBean;
@@ -27,6 +28,10 @@ public interface IBaseDao<M extends Serializable, PK extends Serializable> {
     M get(PK id);
 
     List<M> get(PK... ids);
+
+    List<?> query(String hql, Map<String, Object> paramMap);
+
+    int execute(String hql, Map<String, Object> paramMap);
 
     Long count(IQueryCondition queryCondition);
 

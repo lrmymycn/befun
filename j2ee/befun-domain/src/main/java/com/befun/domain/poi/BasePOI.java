@@ -20,10 +20,7 @@ public class BasePOI implements BaseEstateModel<Long> {
 
     @Embedded
     private ModelModification modelModification;
-    
-    
-    
-    
+
     @Override
     public Long getId() {
         return null;

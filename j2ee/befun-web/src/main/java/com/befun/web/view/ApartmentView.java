@@ -6,6 +6,14 @@ public class ApartmentView extends BaseView<Apartment> {
 
     private static final long serialVersionUID = -1484346576753677173L;
 
+    private String projectName;
+
+    private String stageName;
+
+    private String buildingNum;
+
+    private String floorplanName;
+
     private Long floorplanId;
 
     //
@@ -34,7 +42,7 @@ public class ApartmentView extends BaseView<Apartment> {
     public ApartmentView() {
         super();
     }
-    
+
     public ApartmentView(Apartment model) {
         super(model);
     }
@@ -142,11 +150,44 @@ public class ApartmentView extends BaseView<Apartment> {
         this.soldOut = soldOut;
     }
 
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
+    public String getStageName() {
+        return stageName;
+    }
+
+    public void setStageName(String stageName) {
+        this.stageName = stageName;
+    }
+
+    public String getBuildingNum() {
+        return buildingNum;
+    }
+
+    public void setBuildingNum(String buildingNum) {
+        this.buildingNum = buildingNum;
+    }
+
+    public String getFloorplanName() {
+        return floorplanName;
+    }
+
+    public void setFloorplanName(String floorplanName) {
+        this.floorplanName = floorplanName;
+    }
+
     @Override
     public String toString() {
-        return "ApartmentView [floorplanId=" + floorplanId + ", description=" + description + ", unitNumber=" + unitNumber + ", lotNumber=" + lotNumber
-               + ", floorLevel=" + floorLevel + ", pentHouse=" + pentHouse + ", price=" + price + ", unitEntitlement=" + unitEntitlement + ", colorScheme="
-               + colorScheme + ", carParkingCount=" + carParkingCount + ", storageRoomCount=" + storageRoomCount + ", soldOut=" + soldOut + ", toString()="
+        return "ApartmentView [projectName=" + projectName + ", stateName=" + stageName + ", buildingNum=" + buildingNum + ", floorplanName=" + floorplanName
+               + ", floorplanId=" + floorplanId + ", description=" + description + ", unitNumber=" + unitNumber + ", lotNumber=" + lotNumber + ", floorLevel="
+               + floorLevel + ", pentHouse=" + pentHouse + ", price=" + price + ", unitEntitlement=" + unitEntitlement + ", colorScheme=" + colorScheme
+               + ", carParkingCount=" + carParkingCount + ", storageRoomCount=" + storageRoomCount + ", soldOut=" + soldOut + ", toString()="
                + super.toString() + "]";
     }
 

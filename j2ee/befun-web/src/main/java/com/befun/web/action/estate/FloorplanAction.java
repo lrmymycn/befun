@@ -31,7 +31,9 @@ public class FloorplanAction extends CRUDAction<Floorplan, FloorplanView> {
     private static final long serialVersionUID = 1423434908904040130L;
 
     private FloorplanQueryCondition qc;
-    
+
+    private ApartmentQueryCondition apQC;
+
     private static ApartmentConverter apConverter = ConverterFactory.getConverter(Apartment.class);
 
     @Resource
@@ -44,13 +46,15 @@ public class FloorplanAction extends CRUDAction<Floorplan, FloorplanView> {
 
     public String demandById() {
         try {
-            Floorplan obj = this.getService().get(this.getId());
+            Floorplan obj = this.service.getWithAveragePrice(this.getId());
             this.view = this.getConverter().convertToView(obj);
-            ApartmentQueryCondition queryCondition = new ApartmentQueryCondition();
-            queryCondition.setFloorplanId(this.getId());
-            List<Apartment> apartmentObjs = this.apartmentService.query(queryCondition);
+            if(this.apQC == null){
+                this.apQC = new ApartmentQueryCondition();
+            }
+            this.apQC.setFloorplanId(this.getId());
+            List<Apartment> apartmentObjs = this.apartmentService.query(this.apQC);
             List<ApartmentView> apartments = new ArrayList<ApartmentView>();
-            for(Apartment a : apartmentObjs){
+            for (Apartment a : apartmentObjs) {
                 ApartmentView av = apConverter.convertToView(a);
                 apartments.add(av);
             }
@@ -71,6 +75,14 @@ public class FloorplanAction extends CRUDAction<Floorplan, FloorplanView> {
     @Override
     public FloorplanQueryCondition getQc() {
         return qc;
+    }
+
+    public ApartmentQueryCondition getApQC() {
+        return apQC;
+    }
+
+    public void setApQC(ApartmentQueryCondition apQC) {
+        this.apQC = apQC;
     }
 
     public FloorplanView getView() {

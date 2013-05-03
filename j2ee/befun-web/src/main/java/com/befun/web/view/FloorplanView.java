@@ -13,6 +13,12 @@ public class FloorplanView extends BaseView<Floorplan> {
 
     private List<ApartmentView> apartments = new ArrayList<ApartmentView>();
 
+    private String projectName;
+
+    private String stageName;
+
+    private String buildingNum;
+
     private Long buildingId;
 
     private Long publicPictureId;
@@ -56,6 +62,8 @@ public class FloorplanView extends BaseView<Floorplan> {
 
     private Integer maxPrice;
 
+    private Double avgPricePerSQM;
+
     private Double internalSize;
 
     private Double externalSize;
@@ -89,6 +97,29 @@ public class FloorplanView extends BaseView<Floorplan> {
         return apartments;
     }
 
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
+    }
+
+    public String getStageName() {
+        return stageName;
+    }
+
+    public void setStageName(String stageName) {
+        this.stageName = stageName;
+    }
+
+    public String getBuildingNum() {
+        return buildingNum;
+    }
+
+    public void setBuildingNum(String buildingNum) {
+        this.buildingNum = buildingNum;
+    }
     //
 
     public Media getPublicPicture() {
@@ -295,6 +326,14 @@ public class FloorplanView extends BaseView<Floorplan> {
         return sold;
     }
 
+    public Double getAvgPricePerSQM() {
+        return avgPricePerSQM;
+    }
+
+    public void setAvgPricePerSQM(Double avgPricePerSQM) {
+        this.avgPricePerSQM = avgPricePerSQM;
+    }
+
     public void setSold(Integer sold) {
         this.sold = sold;
     }
@@ -305,6 +344,19 @@ public class FloorplanView extends BaseView<Floorplan> {
 
     public void setSoldOut(boolean soldOut) {
         this.soldOut = soldOut;
+    }
+
+    @Override
+    public String toString() {
+        return "FloorplanView [projectName=" + projectName + ", stateName=" + stageName + ", buildingNum=" + buildingNum + ", buildingId=" + buildingId
+               + ", publicPictureId=" + publicPictureId + ", salePictureId=" + salePictureId + ", publicPicture=" + publicPicture + ", salePicture="
+               + salePicture + ", description=" + description + ", type=" + type + ", split=" + split + ", studio=" + studio + ", bedRoomCount=" + bedRoomCount
+               + ", bathroomCount=" + bathroomCount + ", studyroomCount=" + studyroomCount + ", openBaclonyCount=" + openBaclonyCount
+               + ", enclosedBaclonyCount=" + enclosedBaclonyCount + ", courtyardCount=" + courtyardCount + ", orientationEast=" + orientationEast
+               + ", orientationSouth=" + orientationSouth + ", orientationWest=" + orientationWest + ", orientationNorth=" + orientationNorth + ", minPrice="
+               + minPrice + ", maxPrice=" + maxPrice + ", avgPricePerSQM=" + avgPricePerSQM + ", internalSize=" + internalSize + ", externalSize="
+               + externalSize + ", totalSize=" + totalSize + ", landSize=" + landSize + ", sold=" + sold + ", soldOut=" + soldOut + ", toString()="
+               + super.toString() + "]";
     }
 
 }

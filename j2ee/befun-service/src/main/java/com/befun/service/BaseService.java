@@ -3,6 +3,8 @@ package com.befun.service;
 import java.io.Serializable;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -15,6 +17,8 @@ import com.befun.domain.PaginationBean;
 @Transactional(rollbackFor = Exception.class)
 public abstract class BaseService<M extends BaseModel<PK>, PK extends Serializable> implements IBaseService<M, PK> {
 
+    protected Log log = LogFactory.getLog(this.getClass());
+    
     protected IBaseDao<M, PK> dao;
 
     public abstract void setDao(IBaseDao<M, PK> dao);

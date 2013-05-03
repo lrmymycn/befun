@@ -118,14 +118,28 @@ public class BaseHibernateDao<M extends Serializable, PK extends Serializable> i
 
     @Override
     public List<M> get(PK... ids) {
-        if(ids == null){
+        if (ids == null) {
             return new ArrayList<M>();
         }
         List<M> rs = new ArrayList<M>();
-        for(PK id:ids){
+        for (PK id : ids) {
             rs.add(this.get(id));
         }
         return rs;
+    }
+
+    @Override
+    public List<?> query(String hql, Map<String, Object> paramMap) {
+        Query query = this.getSession().createQuery(hql);
+        this.setParameters(query, paramMap);
+        return query.list();
+    }
+
+    @Override
+    public int execute(String hql, Map<String, Object> paramMap) {
+        Query query = this.getSession().createQuery(hql);
+        this.setParameters(query, paramMap);
+        return query.executeUpdate();
     }
 
     @Override
@@ -449,7 +463,7 @@ public class BaseHibernateDao<M extends Serializable, PK extends Serializable> i
         }
         Criteria criteria = this.getSession().createCriteria(this.entityClass, queryCondition.getSelfAlias());
         queryCondition.build(criteria);
-        return (List<Object[]>)criteria.list();
+        return (List<Object[]>) criteria.list();
     }
 
     @Override

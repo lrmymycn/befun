@@ -53,6 +53,6 @@ public class TestApartmentService extends SpringTestBase {
     
     @Test
     public void testQueryFloorplan1(){
-        
+    
     }
 }

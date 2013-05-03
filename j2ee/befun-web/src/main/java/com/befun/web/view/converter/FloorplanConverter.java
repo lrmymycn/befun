@@ -27,6 +27,9 @@ public class FloorplanConverter extends AbstractViewConverter<Floorplan, Floorpl
     public void convertToView(Floorplan model, FloorplanView view, String[] ignoredProperties) {
         BeanUtils.copyProperties(model, view, ignoredProperties);
         view.setBuildingId(model.getBuilding().getId());
+        view.setBuildingNum(model.getBuilding().getBuildingNumber());
+        view.setStageName(model.getBuilding().getStage().getName());
+        view.setProjectName(model.getBuilding().getStage().getProject().getName());
         if (model.getPublicPicture() != null) {
             view.setPublicPictureId(model.getPublicPicture().getId());
         }

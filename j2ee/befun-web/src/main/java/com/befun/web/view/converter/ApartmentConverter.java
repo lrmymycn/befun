@@ -26,6 +26,10 @@ public class ApartmentConverter extends AbstractViewConverter<Apartment, Apartme
     public void convertToView(Apartment model, ApartmentView view, String[] ignoredProperties) {
         BeanUtils.copyProperties(model, view, ignoredProperties);
         view.setFloorplanId(model.getFloorplan().getId());
+        view.setFloorplanName(model.getFloorplan().getDescription());
+        view.setBuildingNum(model.getFloorplan().getBuilding().getBuildingNumber());
+        view.setStageName(model.getFloorplan().getBuilding().getStage().getName());
+        view.setProjectName(model.getFloorplan().getBuilding().getStage().getProject().getName());
         copyModelModification(model.getModelModification(), view);
     }
 
