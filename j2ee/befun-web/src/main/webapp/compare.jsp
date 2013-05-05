@@ -44,6 +44,7 @@
          			<div data-row="12">Open balcony</div>
          			<div data-row="13">Enclosed balcony</div>
          			<div data-row="14">Countryard</div>
+         			<div data-row="15">Existing</div>
          			<div class="amenity">Amenity</div>
          		</div>
          		<div data-bind="foreach: projects">
@@ -65,6 +66,7 @@
 	         			<div data-row="12"><i class="cross"></i></div>
 	         			<div data-row="13"><i class="tick"></i></div>
 	         			<div data-row="14"><i class="cross"></i></div>
+	         			<div data-row="15"><i class="tick"></i></div>
 	         			<div class="amenity clearfix">
 	         				<ul>
 	         					<li><i class="question"></i> Reception</li>

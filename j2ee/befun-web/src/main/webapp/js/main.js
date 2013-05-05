@@ -1230,6 +1230,13 @@ FloorplanPopup = {
 													'<td><i class="money"></i></td>' +
 													'<td>{price}</td>' +
 												'</tr>' +
+												'<tr>' +
+													'<td></td>' +
+													'<td>CAR</td>' +
+													'<td>{carspace}</td>' +
+													'<td>AVG</td>' +
+													'<td>{averageprice}</td>' +
+												'</tr>' +
 												/*
 												'<tr class="last">' +
 													'<td></td>' + 
@@ -1260,6 +1267,8 @@ FloorplanPopup = {
 									.replace('{internalsize}', floorplan.internalSize + ' m<sup>2</sup>')
 									.replace('{externalsize}', floorplan.externalSize + ' m<sup>2</sup>')
 									.replace('{totalsize}', floorplan.totalSize + ' m<sup>2</sup>')
+									.replace('{carspace}', apartment.carParkingCount)
+									.replace('{averageprice}', floorplan.avgPricePerSQM.toFixed(2))
 									.replace('{price}', Tools.numberWithCommas(apartment.price));
 								$('#apartments').append($(div));
 							}
@@ -1366,7 +1375,7 @@ FloorPlanFilter = {
 		var floorplans = this.currentFloorPlans;
 		for(var i = 0; i < floorplans.length; i++){
 			var $item = $('<a href="javascript:;" class="item" data-id="' + floorplans[i].id + '"><img src="' + floorplans[i].salePicture.smallUrl + '" alt="" /></a>');				
-			var $items = $item.clone();
+			var $item2 = $item.clone();
 			
 			var index = Math.floor(i / 4);	
 			var $div = $('#floorplan-list').find('div[data-id='+ index + ']');
@@ -1382,7 +1391,7 @@ FloorPlanFilter = {
 				$div2 = $('<div data-id="' + index2 + '"></div>');
 				$('#floorplan-list2 .items').append($div2);
 			}
-			$div2.append($items);
+			$div2.append($item2);
 		}
 	}
 }
