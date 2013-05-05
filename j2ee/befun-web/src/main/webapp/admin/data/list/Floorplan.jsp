@@ -6,9 +6,83 @@
 <html>
 <head>
 <title>Floorplans</title>
+<script>
+	function initPage(){
+		$( "#areaCombobox" ).combobox();
+		$( "#suburbCombobox" ).combobox();
+		$( "#projectCombobox" ).combobox();
+		$( "#stageCombobox" ).combobox();
+		$( "#buildingCombobox" ).combobox();
+		$( "#floorplanTypeCombobox" ).combobox();
+	}
+</script>
 </head>
 <body>
-	<form name="floorplanForm" action="" method="post">
+	<form action="" method="post">
+		<table width="1000">
+			<tr><td width="50">
+			<label>Area: </label></td>
+			<td width="200">
+			<select id="areaCombobox" name="qc.bdQC.proQC.suburbQC.areaId" onChange="getSuburbByArea($('#areaCombobox'), $('#suburbCombobox'));">
+				<option value="" <c:if test="${empty qc.bdQC.proQC.suburbQC.areaId}">selected="selected"</c:if>>Select Area</option>
+				<c:forEach items="${qcAreas }" var="a">
+					<option value="${a.id }" <c:if test="${qc.bdQC.proQC.suburbQC.areaId eq a.id}">selected="selected"</c:if>>${a.name }</option>
+				</c:forEach>
+			</select></td>
+			<td width="50">
+			<label>Suburb: </label></td>
+			<td width="200">
+			<select id="suburbCombobox" name="qc.bdQC.proQC.suburbId" onChange="getProjectBySuburb($('#suburbCombobox'), $('#projectCombobox'));">
+				<option value="" <c:if test="${empty qc.bdQC.proQC.suburbId}">selected="selected"</c:if>>Select Suburb</option>
+				<c:forEach items="${qcSuburbs }" var="s">
+					<option value="${s.id }" <c:if test="${qc.bdQC.proQC.suburbId eq s.id}">selected="selected"</c:if>>${s.name }</option>
+				</c:forEach>
+			</select></td>
+			<td width="50">
+			<label>Project: </label></td>
+			<td width="200">
+			<select id="projectCombobox" name="qc.bdQC.projectId" onChange="getStageByProject($('#projectCombobox'), $('#stageCombobox'));">
+				<option value="" <c:if test="${empty qc.bdQC.projectId}">selected="selected"</c:if>>Select Project</option>
+				<c:forEach items="${qcProjects }" var="s">
+					<option value="${s.id }" <c:if test="${qc.bdQC.projectId eq s.id}">selected="selected"</c:if>>${s.name }</option>
+				</c:forEach>
+			</select></td>
+			<td width="50">
+			<label>Stage: </label></td>
+			<td width="200">
+			<select id="stageCombobox" name="qc.bdQC.stageId" onChange="getBuildingByStage($('#stageCombobox'), $('#buildingCombobox'));">
+				<option value="" <c:if test="${empty qc.bdQC.stageId}">selected="selected"</c:if>>Select Stage</option>
+				<c:forEach items="${qcStages }" var="s">
+					<option value="${s.id }" <c:if test="${qc.bdQC.stageId eq s.id}">selected="selected"</c:if>>${s.name }</option>
+				</c:forEach>
+			</select></td></tr>
+			<tr>
+			<td width="50">
+			<label>Building: </label></td>
+			<td width="200">
+			<select id="buildingCombobox" name="qc.buildingId">
+				<option value="" <c:if test="${empty qc.buildingId}">selected="selected"</c:if>>Select Building</option>
+				<c:forEach items="${qcBuildings }" var="s">
+					<option value="${s.id }" <c:if test="${qc.buildingId eq s.id}">selected="selected"</c:if>>${s.buildingNumber }</option>
+				</c:forEach>
+			</select></td>
+			<td width="50">
+			<label>Type: </label></td>
+			<td width="200">
+			<select id="floorplanTypeCombobox" name="qc.floorplanType">
+				<option value="" <c:if test="${empty qc.floorplanType}">selected="selected"</c:if>>Select Type</option>
+				<c:forEach items="${floorplanTypes }" var="s">
+					<option value="${s }" <c:if test="${qc.floorplanType eq s}">selected="selected"</c:if>>${s }</option>
+				</c:forEach>
+			</select>
+			</td>
+			<td width="50">
+			<label>Split: </label></td>
+			<td width="200">
+			<input name="qc.split" type="checkbox" value="true" <c:if test="${qc.split }"> checked="checked"</c:if>/>
+			</td>
+			<td align="right" colspan="10"><input type="submit" value="Query" /></td></tr>
+		</table>
 		<input type="hidden" name="tableName" value="floorplan_table" />
 		<jmesa:struts2TableModel items="${pgb.models}" id="floorplan_table" var="bean" stateAttr="restore"
 			totalCount="${pgb.totalCount}">
@@ -20,7 +94,7 @@
 						<s:url var="u" action="admin/data/viewBuilding.action" namespace="/">
 							<s:param name="id">${bean.buildingId}</s:param>
 						</s:url>
-						<input type="button" value="${bean.buildingId }" onclick="showDialog('${u}')" />
+						<input type="button" value="${bean.buildingNum }" onclick="showDialog('${u}')" />
 					</jmesa:htmlColumn>
 					<jmesa:htmlColumn sortable="false" property="publicPictureId" title="Public Picture">
 						<s:url var="u" action="admin/data/editMedia.action" namespace="/">

@@ -6,10 +6,82 @@
 <html>
 <head>
 <title>Apartments</title>
-<script src="<c:url value="/js/befun-window.js"/>"></script>
+<script>
+	function initPage(){
+		$( "#areaCombobox" ).combobox();
+		$( "#suburbCombobox" ).combobox();
+		$( "#projectCombobox" ).combobox();
+		$( "#stageCombobox" ).combobox();
+		$( "#buildingCombobox" ).combobox();
+		$( "#floorplanCombobox" ).combobox();
+	}
+</script>
 </head>
 <body>
-	<form name="apartmentForm" action="" method="post">
+	<form action="" method="post">
+		<table width="1000">
+			<tr><td width="50">
+			<label>Area: </label></td>
+			<td width="200">
+			<select id="areaCombobox" name="qc.fpQC.bdQC.proQC.suburbQC.areaId" onChange="getSuburbByArea($('#areaCombobox'), $('#suburbCombobox'));">
+				<option value="" <c:if test="${empty qc.fpQC.bdQC.proQC.suburbQC.areaId}">selected="selected"</c:if>>Select Area</option>
+				<c:forEach items="${qcAreas }" var="a">
+					<option value="${a.id }" <c:if test="${qc.fpQC.bdQC.proQC.suburbQC.areaId eq a.id}">selected="selected"</c:if>>${a.name }</option>
+				</c:forEach>
+			</select></td>
+			<td width="50">
+			<label>Suburb: </label></td>
+			<td width="200">
+			<select id="suburbCombobox" name="qc.fpQC.bdQC.proQC.suburbId" onChange="getProjectBySuburb($('#suburbCombobox'), $('#projectCombobox'));">
+				<option value="" <c:if test="${empty qc.fpQC.bdQC.proQC.suburbId}">selected="selected"</c:if>>Select Suburb</option>
+				<c:forEach items="${qcSuburbs }" var="s">
+					<option value="${s.id }" <c:if test="${qc.fpQC.bdQC.proQC.suburbId eq s.id}">selected="selected"</c:if>>${s.name }</option>
+				</c:forEach>
+			</select></td>
+			<td width="50">
+			<label>Project: </label></td>
+			<td width="200">
+			<select id="projectCombobox" name="qc.fpQC.bdQC.projectId" onChange="getStageByProject($('#projectCombobox'), $('#stageCombobox'));">
+				<option value="" <c:if test="${empty qc.fpQC.bdQC.projectId}">selected="selected"</c:if>>Select Project</option>
+				<c:forEach items="${qcProjects }" var="s">
+					<option value="${s.id }" <c:if test="${qc.fpQC.bdQC.projectId eq s.id}">selected="selected"</c:if>>${s.name }</option>
+				</c:forEach>
+			</select></td>
+			<td width="50">
+			<label>Stage: </label></td>
+			<td width="200">
+			<select id="stageCombobox" name="qc.fpQC.bdQC.stageId" onChange="getBuildingByStage($('#stageCombobox'), $('#buildingCombobox'));">
+				<option value="" <c:if test="${empty qc.fpQC.bdQC.stageId}">selected="selected"</c:if>>Select Stage</option>
+				<c:forEach items="${qcStages }" var="s">
+					<option value="${s.id }" <c:if test="${qc.fpQC.bdQC.stageId eq s.id}">selected="selected"</c:if>>${s.name }</option>
+				</c:forEach>
+			</select></td></tr>
+			<tr>
+			<td width="50">
+			<label>Building: </label></td>
+			<td width="200">
+			<select id="buildingCombobox" name="qc.fpQC.buildingId" onChange="getFloorplanByBuilding($('#buildingCombobox'), $('#floorplanCombobox'));">
+				<option value="" <c:if test="${empty qc.fpQC.buildingId}">selected="selected"</c:if>>Select Building</option>
+				<c:forEach items="${qcBuildings }" var="s">
+					<option value="${s.id }" <c:if test="${qc.fpQC.buildingId eq s.id}">selected="selected"</c:if>>${s.buildingNumber }</option>
+				</c:forEach>
+			</select></td>
+			<td width="50">
+			<label>Floorplan: </label></td>
+			<td width="200">
+			<select id="floorplanCombobox" name="qc.floorplanId">
+				<option value="" <c:if test="${empty qc.floorplanId}">selected="selected"</c:if>>Select Floorplan</option>
+				<c:forEach items="${qcFloorplans }" var="s">
+					<option value="${s.id }" <c:if test="${qc.floorplanId eq s.id}">selected="selected"</c:if>>${s.bedRoomCount }-${s.bathroomCount }-${s.totalSize }</option>
+				</c:forEach>
+			</select></td>
+			<td width="50">
+			<label>PentHouse: </label></td>
+			<td width="200">
+			<input name="qc.pentHouse" type="checkbox" value="true" <c:if test="${qc.pentHouse }"> checked="checked"</c:if>/>
+			</td>
+			<td align="right" colspan="10"><input type="submit" value="Query" /></td></tr>
+		</table>
 		<input type="hidden" name="tableName" value="apartment_table" />
 		<jmesa:struts2TableModel items="${pgb.models}" id="apartment_table" var="bean" stateAttr="restore"
 			totalCount="${pgb.totalCount}">

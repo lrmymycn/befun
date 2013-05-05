@@ -155,10 +155,10 @@ public class ProjectAction extends CRUDAction<Project, ProjectView> {
             fpQC = new FloorplanQueryCondition();
             apQC.setFpQC(fpQC);
         }
-        BuildingQueryCondition bQC = fpQC.getBQC();
+        BuildingQueryCondition bQC = fpQC.getBdQC();
         if (bQC == null) {
             bQC = new BuildingQueryCondition();
-            fpQC.setBQC(bQC);
+            fpQC.setBdQC(bQC);
         }
         bQC.setProjectId(this.id);
         List<Floorplan> floorplans = this.apartmentService.queryFloorplans(apQC);

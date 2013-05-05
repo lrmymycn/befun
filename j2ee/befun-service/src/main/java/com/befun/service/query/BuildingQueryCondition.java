@@ -19,7 +19,7 @@ public class BuildingQueryCondition extends EstateQueryCondition {
 
     private Long projectId;
 
-    private ProjectQueryCondition pQC;
+    private ProjectQueryCondition proQC = new ProjectQueryCondition();
 
     private Long stageId;
 
@@ -52,13 +52,13 @@ public class BuildingQueryCondition extends EstateQueryCondition {
             if (this.projectId != null) {
                 tmp = Restrictions.eq(QCUtils.generatePropertyName(getStageAlias(), "project.id"), this.projectId);
                 rs.add(tmp);
-            } else if (this.pQC != null && !this.pQC.isEmpty()) {
-                rs.addAll(pQC.getCriterions());
+            } else if (this.proQC != null && !this.proQC.isEmpty()) {
+                rs.addAll(proQC.getCriterions());
             }
         }
 
         if (this.readyHouse != null) {
-            tmp = Restrictions.le(QCUtils.generatePropertyName(getSelfAlias(), "readyHouse"), this.readyHouse);
+            tmp = Restrictions.eq(QCUtils.generatePropertyName(getSelfAlias(), "readyHouse"), this.readyHouse);
             rs.add(tmp);
         }
         if (this.buildingNumber != null) {
@@ -73,10 +73,11 @@ public class BuildingQueryCondition extends EstateQueryCondition {
     public void setAlias(Criteria criteria) {
         if (this.stageId == null && this.projectId != null) {
             criteria.createAlias(QCUtils.generatePropertyName(getSelfAlias(), "stage"), getStageAlias());
-        } else if (this.pQC != null && !this.pQC.isEmpty()) {
-            this.pQC.setSelfAlias(this.getProjectAlias());
+        } else if (this.proQC != null && !this.proQC.isEmpty()) {
+            criteria.createAlias(QCUtils.generatePropertyName(getSelfAlias(), "stage"), getStageAlias());
+            this.proQC.setSelfAlias(this.getProjectAlias());
             criteria.createAlias(QCUtils.generatePropertyName(getStageAlias(), "project"), getProjectAlias());
-            this.pQC.setAlias(criteria);
+            this.proQC.setAlias(criteria);
         }
     }
 
@@ -84,10 +85,10 @@ public class BuildingQueryCondition extends EstateQueryCondition {
     public void setAlias(DetachedCriteria criteria) {
         if (this.stageId == null && this.projectId != null) {
             // criteria.createAlias(QCUtils.generatePropertyName(getSelfAlias(), "stage"), getStageAlias());
-        } else if (this.pQC != null && !this.pQC.isEmpty()) {
-            this.pQC.setSelfAlias(this.getProjectAlias());
+        } else if (this.proQC != null && !this.proQC.isEmpty()) {
+            this.proQC.setSelfAlias(this.getProjectAlias());
             criteria.createAlias(QCUtils.generatePropertyName(getStageAlias(), "project"), getProjectAlias());
-            this.pQC.setAlias(criteria);
+            this.proQC.setAlias(criteria);
         }
     }
 
@@ -115,12 +116,12 @@ public class BuildingQueryCondition extends EstateQueryCondition {
         this.projectId = projectId;
     }
 
-    public ProjectQueryCondition getpQC() {
-        return pQC;
+    public ProjectQueryCondition getProQC() {
+        return proQC;
     }
 
-    public void setpQC(ProjectQueryCondition pQC) {
-        this.pQC = pQC;
+    public void setProQC(ProjectQueryCondition proQC) {
+        this.proQC = proQC;
     }
 
     public Long getStageId() {

@@ -14,12 +14,11 @@
 </script>
 </head>
 <body>
-	<div class="ui-widget" style="width: 1000px; height: 60px;">
 		<form action="" method="post">
 			<table width="1000">
 			<tr><td width="250">
 			<label>Area: </label>
-			<select id="areaCombobox" name="qc.suburbQC.areaId">
+			<select id="areaCombobox" name="qc.suburbQC.areaId" onChange="getSuburbByArea($('#areaCombobox'), $('#suburbCombobox'));">
 				<option value="" <c:if test="${empty qc.suburbQC.areaId}">selected="selected"</c:if>>Select Area</option>
 				<c:forEach items="${qcAreas }" var="a">
 					<option value="${a.id }" <c:if test="${qc.suburbQC.areaId eq a.id}">selected="selected"</c:if>>${a.name }</option>
@@ -35,9 +34,6 @@
 			</select></td><td></td></tr>
 			<tr><td align="right" colspan="4"><input type="submit" value="Query" /></td></tr>
 			</table>
-		</form>
-	</div>
-	<form name="projectForm" action="" method="post">
 		<input type="hidden" name="tableName" value="project_table" />
 		<jmesa:struts2TableModel items="${pgb.models}" id="project_table" var="bean" stateAttr="restore"
 			totalCount="${pgb.totalCount}">

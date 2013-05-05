@@ -30,9 +30,9 @@ public class FloorplanAction extends CRUDAction<Floorplan, FloorplanView> {
 
     private static final long serialVersionUID = 1423434908904040130L;
 
-    private FloorplanQueryCondition qc;
+    private FloorplanQueryCondition qc = new FloorplanQueryCondition();
 
-    private ApartmentQueryCondition apQC;
+    private ApartmentQueryCondition apQC = new ApartmentQueryCondition();
 
     private static ApartmentConverter apConverter = ConverterFactory.getConverter(Apartment.class);
 

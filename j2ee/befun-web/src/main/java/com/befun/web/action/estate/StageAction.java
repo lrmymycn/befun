@@ -22,7 +22,7 @@ public class StageAction extends CRUDAction<Stage, StageView> {
 
     private static final long serialVersionUID = -5402712598405256802L;
 
-    private StageQueryCondition qc;
+    private StageQueryCondition qc = new StageQueryCondition();
 
     @Resource
     @Qualifier("StageService")

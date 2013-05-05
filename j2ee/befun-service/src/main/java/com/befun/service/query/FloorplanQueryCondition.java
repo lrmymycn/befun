@@ -22,7 +22,7 @@ public class FloorplanQueryCondition extends EstateQueryCondition {
 
     private Long buildingId;
 
-    private BuildingQueryCondition bQC;
+    private BuildingQueryCondition bdQC = new BuildingQueryCondition();
 
     private FloorplanType floorplanType;
 
@@ -86,8 +86,8 @@ public class FloorplanQueryCondition extends EstateQueryCondition {
         if (this.buildingId != null) {
             tmp = Restrictions.eq(QCUtils.generatePropertyName(this.getSelfAlias(), "building.id"), this.buildingId);
             rs.add(tmp);
-        } else if (this.bQC != null && !this.bQC.isEmpty()) {
-            rs.addAll(this.bQC.getCriterions());
+        } else if (this.bdQC != null && !this.bdQC.isEmpty()) {
+            rs.addAll(this.bdQC.getCriterions());
         }
 
         if (this.floorplanType != null) {
@@ -152,22 +152,22 @@ public class FloorplanQueryCondition extends EstateQueryCondition {
 
     @Override
     public void setAlias(Criteria criteria) {
-        if (this.buildingId == null && (this.bQC != null && !this.bQC.isEmpty())) {
-            bQC.setSelfAlias(this.getBuildingAlias());
-            bQC.setStageAlias(this.getStageAlias());
-            bQC.setProjectAlias(this.getProjectAlias());
+        if (this.buildingId == null && (this.bdQC != null && !this.bdQC.isEmpty())) {
+            bdQC.setSelfAlias(this.getBuildingAlias());
+            bdQC.setStageAlias(this.getStageAlias());
+            bdQC.setProjectAlias(this.getProjectAlias());
             criteria.createAlias(QCUtils.generatePropertyName(getSelfAlias(), "building"), this.getBuildingAlias());
-            this.bQC.setAlias(criteria);
+            this.bdQC.setAlias(criteria);
         }
     }
 
     @Override
     public void setAlias(DetachedCriteria criteria) {
-        if (this.buildingId == null && (this.bQC != null && !this.bQC.isEmpty())) {
-            bQC.setSelfAlias(this.getBuildingAlias());
-            bQC.setStageAlias(this.getStageAlias());
-            bQC.setProjectAlias(this.getProjectAlias());
-            this.bQC.setAlias(criteria);
+        if (this.buildingId == null && (this.bdQC != null && !this.bdQC.isEmpty())) {
+            bdQC.setSelfAlias(this.getBuildingAlias());
+            bdQC.setStageAlias(this.getStageAlias());
+            bdQC.setProjectAlias(this.getProjectAlias());
+            this.bdQC.setAlias(criteria);
         }
     }
 
@@ -203,12 +203,12 @@ public class FloorplanQueryCondition extends EstateQueryCondition {
         this.buildingId = buildingId;
     }
 
-    public BuildingQueryCondition getBQC() {
-        return bQC;
+    public BuildingQueryCondition getBdQC() {
+        return bdQC;
     }
 
-    public void setBQC(BuildingQueryCondition bQC) {
-        this.bQC = bQC;
+    public void setBdQC(BuildingQueryCondition bdQC) {
+        this.bdQC = bdQC;
     }
 
     public FloorplanType getFloorplanType() {

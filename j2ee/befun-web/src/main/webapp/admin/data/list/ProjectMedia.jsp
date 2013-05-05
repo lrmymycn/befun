@@ -6,24 +6,62 @@
 <html>
 <head>
 <title>ProjectMedias</title>
+<script>
+	function initPage(){
+		$( "#areaCombobox" ).combobox();
+		$( "#suburbCombobox" ).combobox();
+		$( "#projectCombobox" ).combobox();
+	}
+</script>
 </head>
 <body>
-	<form name="projectMediaForm" action="" method="post">
+		<form action="" method="post">
+			<table width="1000">
+			<tr><td width="250">
+			<label>Area: </label>
+			<select id="areaCombobox" name="qcAreaId" onChange="getSuburbByArea($('#areaCombobox'), $('#suburbCombobox'));">
+				<option value="" <c:if test="${empty qcAreaId}">selected="selected"</c:if>>Select Area</option>
+				<c:forEach items="${qcAreas }" var="a">
+					<option value="${a.id }" <c:if test="${qcAreaId eq a.id}">selected="selected"</c:if>>${a.name }</option>
+				</c:forEach>
+			</select></td>
+			<td width="250">
+			<label>Suburb: </label>
+			<select id="suburbCombobox" name="qcSuburbId" onChange="getProjectBySuburb($('#suburbCombobox'), $('#projectCombobox'));">
+				<option value="" <c:if test="${empty qcSuburbId}">selected="selected"</c:if>>Select Suburb</option>
+				<c:forEach items="${qcSuburbs }" var="s">
+					<option value="${s.id }" <c:if test="${qcSuburbId eq s.id}">selected="selected"</c:if>>${s.name }</option>
+				</c:forEach>
+			</select></td>
+			<td>
+			<label>Project: </label>
+			<select id="projectCombobox" name="qc.projectId">
+				<option value="" <c:if test="${empty qc.projectId}">selected="selected"</c:if>>Select Project</option>
+				<c:forEach items="${qcProjects }" var="s">
+					<option value="${s.id }" <c:if test="${qc.projectId eq s.id}">selected="selected"</c:if>>${s.name }</option>
+				</c:forEach>
+			</select></td><td></td></tr>
+			<tr><td align="right" colspan="4"><input type="submit" value="Query" /></td></tr>
+			</table>
 		<input type="hidden" name="tableName" value="projectMedia_table" />
 		<jmesa:struts2TableModel items="${pgb.models}" id="projectMedia_table" var="bean" stateAttr="restore"
 			totalCount="${pgb.totalCount}">
 			<jmesa:htmlTable width="600" caption="ProjectMedias">
 				<jmesa:htmlRow uniqueProperty="id">
 					<jmesa:htmlColumn property="id" />
-					<jmesa:htmlColumn property="projectId" title="Project">
+					<jmesa:htmlColumn property="projectId"/>
+					<jmesa:htmlColumn property="projectName" title="Project">
 						<s:url var="u" action="admin/data/viewProject.action" namespace="/">
 							<s:param name="id">${bean.projectId}</s:param>
 						</s:url>
-						<input type="button" value="${bean.projectId }" onclick="showDialog('${u}')" />
+						<input type="button" value="${bean.projectName }" onclick="showDialog('${u}')" />
 					</jmesa:htmlColumn>
 					<jmesa:htmlColumn sortable="false" property="media.id" />
 					<jmesa:htmlColumn sortable="false" property="media.smallUrl">
-						<a href="${bean.media.smallUrl }">Small Url</a>
+						<a href="${bean.media.smallUrl }" target="_blank">Small Url</a>
+					</jmesa:htmlColumn>
+					<jmesa:htmlColumn sortable="false" property="media.largeUrl">
+						<a href="${bean.media.largeUrl }" target="_blank">Large Url</a>
 					</jmesa:htmlColumn>
 					<jmesa:htmlColumn sortable="false" title="Operation">
 						<s:url var="e" action="admin/data/editProjectMedia.action" namespace="/">

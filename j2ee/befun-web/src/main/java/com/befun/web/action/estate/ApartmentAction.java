@@ -22,7 +22,7 @@ public class ApartmentAction extends CRUDAction<Apartment, ApartmentView> {
 
     private static final long serialVersionUID = 1423434908904040130L;
 
-    private ApartmentQueryCondition qc;
+    private ApartmentQueryCondition qc = new ApartmentQueryCondition();
 
     @Resource
     @Qualifier("ApartmentService")

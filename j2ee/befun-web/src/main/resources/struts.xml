@@ -5,6 +5,7 @@
 <struts>
     <include file="struts/struts-json.xml" />
     <include file="struts/struts-admin.xml" />
+    <include file="struts/struts-admin-json.xml" />
     <include file="struts/struts-estate.xml" />
     <include file="struts/struts-estate-json.xml" />
     <constant name="struts.multipart.parser" value="jakarta" />

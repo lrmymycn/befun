@@ -43,7 +43,7 @@
             <result name="error"></result>
         </action>
     </package>
-    <package name="estate-client-admin" extends="struts-default" namespace="/admin/client">
+    <package name="admin-client" extends="struts-default" namespace="/admin/client">
         <action name="createClientPage" class="ClientManageAction" method="createClientPage">
             <result name="success">/admin/user/createClient.jsp</result>
             <result name="error"></result>
@@ -53,8 +53,9 @@
             <result name="error"></result>
         </action>
     </package>
-    <package name="estate-data" extends="struts-default" namespace="/admin/data">
+    <package name="admin-data" extends="struts-default" namespace="/admin/data">
         <action name="demand*" class="Admin{1}Action" method="demand">
+            <result name="input">/admin/data/list/{1}.jsp</result>
             <result name="success">/admin/data/list/{1}.jsp</result>
             <result name="error">/admin/data/result.jsp</result>
         </action>
@@ -92,22 +93,6 @@
         </action>
         <action name="disable*" class="Admin{1}Action" method="disable">
             <result name="success">/admin/data/result.jsp</result>
-            <result name="error">/admin/data/result.jsp</result>
-        </action>
-    </package>
-
-    <package name="estate-data-json" extends="struts-default" namespace="/admin/data/json">
-        <action name="demand*" class="Admin{1}Action" method="demand">
-            <result name="success">/admin/data/list/{1}.jsp</result>
-            <result name="error">/admin/data/result.jsp</result>
-        </action>
-        <action name="getById*" class="Admin{1}Action" method="demandById">
-            <result name="success">/admin/data/editor/{1}.jsp</result>
-            <result name="error">/admin/data/result.jsp</result>
-        </action>
-        <action name="view*" class="Admin{1}Action" method="demandById">
-            <param name="editable">false</param>
-            <result name="success">/admin/data/editor/{1}.jsp</result>
             <result name="error">/admin/data/result.jsp</result>
         </action>
     </package>

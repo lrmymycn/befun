@@ -27,7 +27,7 @@ public class ProjectQueryCondition extends EstateQueryCondition {
 
     private Long suburbId;
 
-    private SuburbQueryCondition suburbQC;
+    private SuburbQueryCondition suburbQC = new SuburbQueryCondition();
 
     private Double distanceToCity;
 

@@ -16,18 +16,18 @@ import com.befun.domain.estate.Media;
 import com.befun.domain.estate.MediaType;
 import com.befun.service.estate.MediaService;
 import com.befun.service.query.MediaQueryCondition;
-import com.befun.web.action.JmesaAction;
+import com.befun.web.action.admin.AdminAction;
 import com.befun.web.view.MediaView;
 import com.befun.web.view.converter.ConverterFactory;
 import com.befun.web.view.converter.ViewConverter;
 
 @Controller("AdminMediaAction")
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class MediaAction<T extends Media, V extends MediaView> extends JmesaAction<Media, MediaView> {
+public class MediaAction<T extends Media, V extends MediaView> extends AdminAction<Media, MediaView> {
 
     private static final long serialVersionUID = 1423434908904040130L;
 
-    private MediaQueryCondition qc;
+    private MediaQueryCondition qc = new MediaQueryCondition();
 
     private File file;
 

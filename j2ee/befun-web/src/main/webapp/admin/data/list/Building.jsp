@@ -6,9 +6,66 @@
 <html>
 <head>
 <title>Buildings</title>
+<script>
+	function initPage(){
+		$( "#areaCombobox" ).combobox();
+		$( "#suburbCombobox" ).combobox();
+		$( "#projectCombobox" ).combobox();
+		$( "#stageCombobox" ).combobox();
+	}
+</script>
 </head>
 <body>
-	<form name="buildingForm" action="" method="post">
+		<form action="" method="post">
+			<table width="1000">
+			<tr><td width="50">
+			<label>Area: </label></td>
+			<td width="200">
+			<select id="areaCombobox" name="qc.proQC.suburbQC.areaId" onChange="getSuburbByArea($('#areaCombobox'), $('#suburbCombobox'));">
+				<option value="" <c:if test="${empty qc.proQC.suburbQC.areaId}">selected="selected"</c:if>>Select Area</option>
+				<c:forEach items="${qcAreas }" var="a">
+					<option value="${a.id }" <c:if test="${qc.proQC.suburbQC.areaId eq a.id}">selected="selected"</c:if>>${a.name }</option>
+				</c:forEach>
+			</select></td>
+			<td width="50">
+			<label>Suburb: </label></td>
+			<td width="200">
+			<select id="suburbCombobox" name="qc.proQC.suburbId" onChange="getProjectBySuburb($('#suburbCombobox'), $('#projectCombobox'));">
+				<option value="" <c:if test="${empty qc.proQC.suburbId}">selected="selected"</c:if>>Select Suburb</option>
+				<c:forEach items="${qcSuburbs }" var="s">
+					<option value="${s.id }" <c:if test="${qc.proQC.suburbId eq s.id}">selected="selected"</c:if>>${s.name }</option>
+				</c:forEach>
+			</select></td>
+			<td width="50">
+			<label>Project: </label></td>
+			<td width="200">
+			<select id="projectCombobox" name="qc.projectId" onChange="getStageByProject($('#projectCombobox'), $('#stageCombobox'));">
+				<option value="" <c:if test="${empty qc.projectId}">selected="selected"</c:if>>Select Project</option>
+				<c:forEach items="${qcProjects }" var="s">
+					<option value="${s.id }" <c:if test="${qc.projectId eq s.id}">selected="selected"</c:if>>${s.name }</option>
+				</c:forEach>
+			</select></td>
+			<td width="50">
+			<label>Stage: </label></td>
+			<td width="200">
+			<select id="stageCombobox" name="qc.stageId">
+				<option value="" <c:if test="${empty qc.stageId}">selected="selected"</c:if>>Select Stage</option>
+				<c:forEach items="${qcStages }" var="s">
+					<option value="${s.id }" <c:if test="${qc.stageId eq s.id}">selected="selected"</c:if>>${s.name }</option>
+				</c:forEach>
+			</select></td></tr>
+			<tr><td width="50">
+			<label>Ready: </label></td>
+			<td width="200">
+			<input name="qc.readyHouse" type="checkbox" value="true" <c:if test="${qc.readyHouse }"> checked="checked"</c:if>/>
+			</td>
+			<td width="50">
+			<label>Number: </label></td>
+			<td width="200">
+			<input name="qc.buildingNumber" type="text" value="${qc.buildingNumber }" />
+			</td>
+			<td align="right" colspan="10"><input type="submit" value="Query" /></td></tr>
+			</table>
 		<input type="hidden" name="tableName" value="building_table" />
 		<jmesa:struts2TableModel items="${pgb.models}" id="building_table" var="bean" stateAttr="restore"
 			totalCount="${pgb.totalCount}">

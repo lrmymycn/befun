@@ -17,7 +17,6 @@
 </script>
 </head>
 <body>
-	<div class="ui-widget" style="width: 1000px; height: 60px;">
 		<form action="" method="post">
 			<table width="1000">
 			<tr><td width="%100">
@@ -31,9 +30,6 @@
 			</td><td></td></tr>
 			<tr><td align="right" colspan="2"><input type="submit" value="Query" /></td></tr>
 			</table>
-		</form>
-	</div>
-	<form name="suburbForm" action="" method="post">
 		<input type="hidden" name="tableName" value="suburb_table" />
 		<jmesa:struts2TableModel items="${pgb.models}" id="suburb_table" var="bean" stateAttr="restore"
 			totalCount="${pgb.totalCount}">

@@ -29,7 +29,7 @@ public class StageQueryCondition extends EstateQueryCondition {
         rs.addAll(super.getCriterions());
         Criterion tmp = null;
         if (this.projectId != null) {
-            tmp = Restrictions.eq(QCUtils.generatePropertyName(this.getSelfAlias(), "project.Id"), this.projectId);
+            tmp = Restrictions.eq(QCUtils.generatePropertyName(this.getSelfAlias(), "project.id"), this.projectId);
             rs.add(tmp);
         }
         if (this.key != null) {

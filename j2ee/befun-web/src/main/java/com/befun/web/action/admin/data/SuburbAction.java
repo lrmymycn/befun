@@ -3,9 +3,6 @@ package com.befun.web.action.admin.data;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Resource;
-
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -13,20 +10,17 @@ import org.springframework.stereotype.Controller;
 import com.befun.domain.estate.Area;
 import com.befun.domain.estate.Suburb;
 import com.befun.service.IBaseService;
-import com.befun.service.estate.AreaService;
-import com.befun.service.estate.SuburbService;
 import com.befun.service.query.AreaQueryCondition;
 import com.befun.service.query.SuburbQueryCondition;
-import com.befun.web.action.JmesaAction;
+import com.befun.web.action.admin.AdminAction;
 import com.befun.web.view.AreaView;
 import com.befun.web.view.SuburbView;
-import com.befun.web.view.converter.AreaConverter;
 import com.befun.web.view.converter.ConverterFactory;
 import com.befun.web.view.converter.ViewConverter;
 
 @Controller("AdminSuburbAction")
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class SuburbAction<T extends Suburb, V extends SuburbView> extends JmesaAction<Suburb, SuburbView> {
+public class SuburbAction<T extends Suburb, V extends SuburbView> extends AdminAction<Suburb, SuburbView> {
 
     private static final long serialVersionUID = -6022462134369571083L;
 
@@ -35,19 +29,9 @@ public class SuburbAction<T extends Suburb, V extends SuburbView> extends JmesaA
     private List<SuburbView> keyRs = new ArrayList<SuburbView>();
 
     private List<AreaView> qcAreas = new ArrayList<AreaView>();
-
-    private AreaConverter areaConverter = ConverterFactory.getConverter(Area.class);
-
-    @Resource
-    @Qualifier("SuburbService")
-    private SuburbService service;
-
-    @Resource
-    @Qualifier("AreaService")
-    private AreaService areaService;
     
     public String demandByKey() {
-        List<Suburb> queryRs = service.queryByInputKey(this.qc.getKey());
+        List<Suburb> queryRs = this.suburbService.queryByInputKey(this.qc.getKey());
         SuburbView tmpV = null;
         for (Suburb s : queryRs) {
             tmpV = this.getConverter().convertToView(s);
@@ -58,7 +42,7 @@ public class SuburbAction<T extends Suburb, V extends SuburbView> extends JmesaA
 
     public String demandById() {
         try {
-            Suburb obj = this.service.getDetail(this.getId());
+            Suburb obj = this.suburbService.getDetail(this.getId());
             this.view = this.getConverter().convertToView(obj);
         } catch (Exception ex) {
             String errMsg = "Query failure!";
@@ -72,7 +56,7 @@ public class SuburbAction<T extends Suburb, V extends SuburbView> extends JmesaA
     public String createOrUpdate() {
         try {
             Suburb model = this.getConverter().convertToModel(this.view);
-            this.service.saveOrUpdateWithPolylines(model, this.getUpdateIgnoredProperties());
+            this.suburbService.saveOrUpdateWithPolylines(model, this.getUpdateIgnoredProperties());
             this.addActionMessage("Update successfully!");
         } catch (Exception ex) {
             String errMsg = "Update failure! Object:" + this.view;
@@ -85,7 +69,7 @@ public class SuburbAction<T extends Suburb, V extends SuburbView> extends JmesaA
 
     protected void prepareQueryList() {
         AreaQueryCondition queryCondition = new AreaQueryCondition();
-        queryCondition.setEnabled(null);
+//        queryCondition.setEnabled(null);
         List<Area> areas = this.areaService.query(queryCondition);
         AreaView av = null;
         for (Area a : areas) {
@@ -125,7 +109,7 @@ public class SuburbAction<T extends Suburb, V extends SuburbView> extends JmesaA
 
     @Override
     public IBaseService<Suburb, Long> getService() {
-        return this.service;
+        return this.suburbService;
     }
 
 }

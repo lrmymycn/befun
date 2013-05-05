@@ -22,7 +22,7 @@ public class ApartmentQueryCondition extends EstateQueryCondition {
 
     private Long floorplanId;
 
-    private FloorplanQueryCondition fpQC;
+    private FloorplanQueryCondition fpQC = new FloorplanQueryCondition();
 
     private Integer minPrice;
 

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+  <!DOCTYPE struts PUBLIC  
+      "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"  
+      "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <package name="admin-data-json" extends="my-json" namespace="/admin/data/json">
+        <action name="demandAllSuburb" class="AdminSuburbAction" method="demandAll">
+            <result name="success" type="myJson">
+                <param name="includeProperties">
+                    views\[\d+\]\.id,
+                    views\[\d+\]\.name,
+                </param>
+            </result>
+        </action>
+        <action name="demandAllProject" class="AdminProjectAction" method="demandAll">
+            <result name="success" type="myJson">
+                <param name="includeProperties">
+                    views\[\d+\]\.id,
+                    views\[\d+\]\.name,
+                </param>
+            </result>
+        </action>
+        <action name="demandAllStage" class="AdminStageAction" method="demandAll">
+            <result name="success" type="myJson">
+                <param name="includeProperties">
+                    views\[\d+\]\.id,
+                    views\[\d+\]\.name,
+                </param>
+            </result>
+        </action>
+        <action name="demandAllBuilding" class="AdminBuildingAction" method="demandAll">
+            <result name="success" type="myJson">
+                <param name="includeProperties">
+                    views\[\d+\]\.id,
+                    views\[\d+\]\.buildingNumber,
+                </param>
+            </result>
+        </action>
+        <action name="demandAllFloorplan" class="AdminFloorplanAction" method="demandAll">
+            <result name="success" type="myJson">
+                <param name="includeProperties">
+                    views\[\d+\]\.id,
+                    views\[\d+\]\.bedRoomCount,
+                    views\[\d+\]\.bathroomCount,
+                    views\[\d+\]\.totalSize,
+                    views\[\d+\]\.description,
+                </param>
+            </result>
+        </action>
+        <action name="demandAllApartment" class="AdminApartmentAction" method="demandAll">
+            <result name="success" type="myJson">
+                <param name="includeProperties">
+                    views\[\d+\]\.id,
+                    views\[\d+\]\.unitNumber,
+                    views\[\d+\]\.lotNumber,
+                </param>
+            </result>
+        </action>
+        <action name="demandAllMedia" class="AdminMediaAction" method="demandAll">
+            <result name="success" type="myJson">
+                <param name="includeProperties">
+                    views\[\d+\]\.*,
+                </param>
+                <param name="excludeProperties">
+                    views\[\d+\]\.model.*,
+                </param>
+            </result>
+        </action>
+        <action name="demandAll*" class="Admin{1}Action" method="demandAll">
+            <result name="success" type="myJson">
+				<param name="includeProperties">
+					views\[\d+\]\..*,
+				</param>
+				<param name="excludeProperties">
+					views\[\d+\]\.model.*,
+                    views\[\d+\]\.polylines.*,
+				</param>
+			</result>
+        </action>
+        <action name="demand*" class="Admin{1}Action" method="demand">
+            <result name="success" type="myJson">
+				<param name="includeProperties">
+					pgb\..*,
+				</param>
+				<param name="excludeProperties">
+					pgb\.models.*model.*,
+                    pgb\.models\[\d+\]\.polylines.*,
+				</param>
+            </result>
+        </action>
+        <action name="view*" class="Admin{1}Action" method="demandById">
+            <param name="editable">false</param>
+            <result name="success" type="myJson">
+				<param name="includeProperties">
+					pgb\..*,
+				</param>
+				<param name="excludeProperties">
+					pgb\.models.*model.*,
+				</param>
+            </result>
+        </action>
+        <action name="edit*" class="Admin{1}Action" method="demandById">
+            <param name="editable">true</param>
+            <result name="success" type="myJson">
+				<param name="includeProperties">
+					pgb\..*,
+				</param>
+				<param name="excludeProperties">
+					pgb\.models.*model.*,
+				</param>
+            </result>
+        </action>
+        <action name="save*" class="Admin{1}Action" method="createOrUpdate">
+            <result name="input">/admin/data/editor/{1}.jsp</result>
+            <result name="success" type="myJson">
+				<param name="includeProperties">
+					pgb\..*,
+				</param>
+				<param name="excludeProperties">
+					pgb\.models.*model.*,
+				</param>
+            </result>
+        </action>
+        <action name="remove*" class="Admin{1}Action" method="remove">
+            <result name="success" type="myJson">
+				<param name="includeProperties">
+					pgb\..*,
+				</param>
+				<param name="excludeProperties">
+					pgb\.models.*model.*,
+				</param>
+            </result>
+        </action>
+        <action name="enable*" class="Admin{1}Action" method="enable">
+            <result name="success" type="myJson">
+				<param name="includeProperties">
+					pgb\..*,
+				</param>
+				<param name="excludeProperties">
+					pgb\.models.*model.*,
+				</param>
+            </result>
+        </action>
+        <action name="disable*" class="Admin{1}Action" method="disable">
+            <result name="success" type="myJson">
+				<param name="includeProperties">
+					pgb\..*,
+				</param>
+				<param name="excludeProperties">
+					pgb\.models.*model.*,
+				</param>
+            </result>
+        </action>
+    </package>
+</struts>  

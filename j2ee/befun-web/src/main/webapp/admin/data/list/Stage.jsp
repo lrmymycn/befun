@@ -6,9 +6,43 @@
 <html>
 <head>
 <title>Stages</title>
+<script>
+	function initPage(){
+		$( "#areaCombobox" ).combobox();
+		$( "#suburbCombobox" ).combobox();
+		$( "#projectCombobox" ).combobox();
+	}
+</script>
 </head>
 <body>
-	<form name="stageForm" action="" method="post">
+		<form action="" method="post">
+			<table width="1000">
+			<tr><td width="250">
+			<label>Area: </label>
+			<select id="areaCombobox" name="qcAreaId" onChange="getSuburbByArea($('#areaCombobox'), $('#suburbCombobox'));">
+				<option value="" <c:if test="${empty qcAreaId}">selected="selected"</c:if>>Select Area</option>
+				<c:forEach items="${qcAreas }" var="a">
+					<option value="${a.id }" <c:if test="${qcAreaId eq a.id}">selected="selected"</c:if>>${a.name }</option>
+				</c:forEach>
+			</select></td>
+			<td width="250">
+			<label>Suburb: </label>
+			<select id="suburbCombobox" name="qcSuburbId" onChange="getProjectBySuburb($('#suburbCombobox'), $('#projectCombobox'));">
+				<option value="" <c:if test="${empty qcSuburbId}">selected="selected"</c:if>>Select Suburb</option>
+				<c:forEach items="${qcSuburbs }" var="s">
+					<option value="${s.id }" <c:if test="${qcSuburbId eq s.id}">selected="selected"</c:if>>${s.name }</option>
+				</c:forEach>
+			</select></td>
+			<td>
+			<label>Project: </label>
+			<select id="projectCombobox" name="qc.projectId">
+				<option value="" <c:if test="${empty qc.projectId}">selected="selected"</c:if>>Select Project</option>
+				<c:forEach items="${qcProjects }" var="s">
+					<option value="${s.id }" <c:if test="${qc.projectId eq s.id}">selected="selected"</c:if>>${s.name }</option>
+				</c:forEach>
+			</select></td><td></td></tr>
+			<tr><td align="right" colspan="4"><input type="submit" value="Query" /></td></tr>
+			</table>
 		<input type="hidden" name="tableName" value="stage_table" />
 		<jmesa:struts2TableModel items="${pgb.models}" id="stage_table" var="bean" stateAttr="restore"
 			totalCount="${pgb.totalCount}">

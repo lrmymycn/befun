@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import com.befun.domain.estate.Building;
 import com.befun.service.IBaseService;
 import com.befun.service.estate.BuildingService;
-import com.befun.service.query.EstateQueryCondition;
+import com.befun.service.query.BuildingQueryCondition;
 import com.befun.web.action.CRUDAction;
 import com.befun.web.view.BuildingView;
 import com.befun.web.view.converter.ConverterFactory;
@@ -22,18 +22,18 @@ public class BuildingAction extends CRUDAction<Building, BuildingView> {
 
     private static final long serialVersionUID = 7080545951565930680L;
 
-    private EstateQueryCondition qc;
+    private BuildingQueryCondition qc = new BuildingQueryCondition();
 
     @Resource
     @Qualifier("BuildingService")
     private BuildingService service;
 
-    public void setQc(EstateQueryCondition qc) {
+    public void setQc(BuildingQueryCondition qc) {
         this.qc = qc;
     }
 
     @Override
-    public EstateQueryCondition getQc() {
+    public BuildingQueryCondition getQc() {
         return qc;
     }
 
