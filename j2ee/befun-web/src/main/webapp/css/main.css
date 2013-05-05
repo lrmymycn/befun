@@ -440,11 +440,11 @@ header .menu .more ul li a:hover{
 
 #filter .arrow{
 	position:absolute;
-	width:27px;
+	width:26px;
 	height:13px;
 	background:url('/img/sprite.png') no-repeat 0 -85px;
 	top:-12px;
-	right:85px;
+	right:152px;
 }
 
 #filter .filter-group{
@@ -1117,7 +1117,7 @@ footer a{
 #lightbox .top .title a{
 	border:1px solid #cccccc;
 	height:25px;
-	line-height:27px;
+	line-height:25px;
 	padding:0 10px;
 	border-radius: 4px;
 	display:inline-block;

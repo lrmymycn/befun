@@ -10,7 +10,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Befun</title>
+        <title>Befun Property</title>
         <meta name="description" content="">
         <link rel="stylesheet" href="css//normalize.css">
         <link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.9.2.custom.min.css"/>

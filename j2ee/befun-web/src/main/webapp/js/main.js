@@ -191,12 +191,24 @@ Main = {
 			$('#reminder-nodes').append('<div class="filterNode"><span>' + distanceText + '</span></div>');
 		}
 		
-		if(conditions.trainStation){
+		if(conditions.trainStation && conditions.trainStation != 'null'){
 			$('#reminder-nodes').append('<div class="filterNode"><span>Train Station</span></div>');
 		}
+		
+		if(conditions.shoppingCenter && conditions.shoppingCenter != 'null'){
+			$('#reminder-nodes').append('<div class="filterNode"><span>Shopping Centres</span></div>');
+		}
 	
-		if(conditions.chineseCommunity){
+		if(conditions.chineseCommunity && conditions.chineseCommunity != 'null'){
 			$('#reminder-nodes').append('<div class="filterNode"><span>Chinese Community</span></div>');
+		}
+		
+		if(conditions.universities && conditions.universities != 'null'){
+			$('#reminder-nodes').append('<div class="filterNode"><span>University Zone</span></div>');
+		}
+		
+		if(conditions.schools && conditions.schools != 'null'){
+			$('#reminder-nodes').append('<div class="filterNode"><span>School Zone</span></div>');
 		}
 		
 		var statusText = $('#filter select[name="status"] option:selected').text();
@@ -1161,7 +1173,6 @@ FloorplanPopup = {
 								$div.append($item);
 								
 								var div = '<div id="{id}" class="{cls}">' +
-											'<div class="name">{unit}</div>' +
 											'<table>' +
 												'<tr>' +
 													'<td width="25"></td>' +
@@ -1234,14 +1245,13 @@ FloorplanPopup = {
 									cls = 'shown';
 								}
 								div = div.replace('{id}', apartment.id).replace('{cls}', cls)
-									.replace('{unit}', apartment.unitNumber)
-									.replace('{split}', Tools.getTrueOrFalseIcon(floorplan.isSplit))
+									.replace('{split}', Tools.getTrueOrFalseIcon(floorplan.split))
 									.replace('{level}', apartment.floorLevel)
 									.replace('{lot}', apartment.lotNumber)
 									.replace('{stage}', apartment.stageName)
-									.replace('{building}', apartment.buildingNumber)
+									.replace('{building}', apartment.buildingNum)
 									.replace('{color}', apartment.colorScheme)
-									.replace('{aspect}', Tools.getAspect(floorplan.orientation))
+									.replace('{aspect}', Tools.getAspect(floorplan.orientationEast,floorplan.orientationNorth, floorplan.orientationSouth, floorplan.orientationWest))
 									.replace('{bedrooms}', floorplan.bedRoomCount)
 									.replace('{bathrooms}', floorplan.bathroomCount)
 									.replace('{study}', floorplan.studyroomCount)
@@ -1603,12 +1613,12 @@ Compare = {
 		ko.applyBindings(Compare.viewModel);
 		
 		$.ajax({
-          url: Main.root + 'index.php/Compare/data',
+          url: Main.root + 'estate/json/compare.action',
           dataType: "json",
           type: "GET",
           success: function(data){
-              if(data.contents != null && data.contents != undefined){
-              	var projects = data.contents;
+              if(data.rs != null && data.rs != undefined){
+              	var projects = data.rs;
               	for(var i = 0; i < projects.length; i++){
               		var project = projects[i];
               		Compare.viewModel.projects.replace(Compare.viewModel.projects()[i], {
@@ -1651,39 +1661,22 @@ Tools = {
 			return '<i class="cross"></i>';
 		}
 	},
-	getAspect: function(oritation){
-		switch(oritation){
-			case 1:
-				return "E";
-			case 2:
-				return "S";
-			case 3:
-				return "SE";
-			case 4:
-				return "W";
-			case 5:
-				return 'EW';
-			case 6:
-				return "WE";
-			case 7:
-				return 'ESW';
-			case 8:
-				return "N";
-			case 9:
-				return "NE";
-			case 10:
-				return 'SN';
-			case 11:
-				return 'ESN';
-			case 12:
-				return "NW";
-			case 13:
-				return 'EWN';
-			case 14:
-				return 'SWN';
-			case 15:
-				return 'ESWN';
+	getAspect: function(orientationEast, orientationNorth, orientationSouth, orientationWest){
+		var orientation = '';
+		if(orientationEast){
+			orientation += 'E';
 		}
+		if(orientationSouth){
+			orientation += 'S';
+		}
+		if(orientationWest){
+			orientation += 'W';
+		}
+		if(orientationNorth){
+			orientation += 'N';
+		}
+		
+		return orientation;
 	},
 	numberWithCommas: function (x) {
     	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

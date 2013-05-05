@@ -6,10 +6,7 @@
 	<span class="close"></span>
 	<div class="top">
 		<div class="title">
-			<a href="#" class="red" id="befun">Befun !</a>
-			<!--<a href="#">Send to friend</a>-->
-			<a href="#">View full floorplan </a>
-			<a href="#">Contact us</a>
+			<a href="#" class="red" id="befun">Compare</a>
 			<div class="sort">
 				<label>Sort:</label>
 				<div class="button-group">
