@@ -12,6 +12,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title>Befun Property</title>
         <meta name="description" content="">
+        <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="stylesheet" href="css//normalize.css">
         <link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.9.2.custom.min.css"/>
         <link rel="stylesheet" href="css/jquery.selectbox.css"/>
@@ -88,7 +89,7 @@
 			})
         </script>
         <script>
-            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            var _gaq=[['_setAccount','UA-40663296-1'],['_trackPageview']];
             (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
             g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
             s.parentNode.insertBefore(g,s)}(document,'script'));

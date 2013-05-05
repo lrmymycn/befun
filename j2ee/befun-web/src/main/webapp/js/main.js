@@ -5,6 +5,7 @@ Main = {
 	isHome:false,
 	currentProjectId:null,
 	currentFloorplanId:null,
+	currentApartmentId:null,
 	currentRadiusWidget:null,
 	init:function(){
 		this.isHome = true;
@@ -50,6 +51,7 @@ Main = {
 			
 		});
 		
+		/*
 		$('#filter #more-features').click(function(){
 			$('#features-filter').toggle();
 			if($(this).next('i').hasClass('arrow-down')){
@@ -58,7 +60,7 @@ Main = {
 				$(this).next('i').removeClass().addClass('arrow-down');
 			}
 		});
-		
+		*/
 		$("select.selectbox").selectbox();
 		
 		$('#reminder-nodes .filterNode').live('click', function(){
@@ -1095,7 +1097,7 @@ FloorplanPopup = {
 			FloorplanPopup.hide();
 		});
 		
-		$('#lightbox #units a').live('click', function(e){
+		$('#lightbox #units .scrollable a').live('click', function(e){
 			e.preventDefault();
 			
 			if($(this).hasClass('active')){
@@ -1107,8 +1109,9 @@ FloorplanPopup = {
 				$(target).siblings('.shown').removeClass('shown').addClass('hidden');
 				$(target).removeClass('hidden').addClass('shown');
 			}
+			Main.currentApartmentId = $(this).data('id');
 			
-			$('#lightbox #units a').removeClass('active');
+			$('#lightbox #units .scrollable a').removeClass('active');
 			$(this).addClass('active');
 		});
 	},
@@ -1150,6 +1153,7 @@ FloorplanPopup = {
 					if(floorplan != null && floorplan != undefined){
 						var img = '<img src="' + floorplan.salePicture.mediumUrl + '" alt=""/>';
 						$('#lightbox .floorplan .image').html(img);
+						$('#lightbox .floorplan .zoom').attr('href', floorplan.salePicture.largeUrl);
 						$('#units .items').empty();
 						$('#apartments').empty();
 						
@@ -1160,12 +1164,13 @@ FloorplanPopup = {
 								var active = ''
 								if(i == 0){
 									active = 'active';
+									Main.currentApartmentId = apartment.id;
 								}
 								
-								var $item = $('<a href="#' + apartment.id + '" class="item ' + active + '">' + apartment.unitNumber + '</a>');
+								var $item = $('<a href="#' + apartment.id + '" data-id="' + apartment.id + '" class="item ' + active + '">' + apartment.unitNumber + '</a>');
 								var index = Math.floor(i / 7);
 								
-								var $div = $('#units').find('div:data[id='+ index + ']');
+								var $div = $('#units').find('div[data-id='+ index + ']');
 								if($div == null || $div.length == 0){
 									$div = $('<div data-id="' + index + '"></div>');
 									$('#units .items').append($div);
@@ -1234,8 +1239,8 @@ FloorplanPopup = {
 													'<td></td>' +
 													'<td>CAR</td>' +
 													'<td>{carspace}</td>' +
-													'<td>AVG</td>' +
-													'<td>{averageprice}</td>' +
+													'<td>PPS</td>' +
+													'<td>{pricepersquare}</td>' +
 												'</tr>' +
 												/*
 												'<tr class="last">' +
@@ -1268,7 +1273,7 @@ FloorplanPopup = {
 									.replace('{externalsize}', floorplan.externalSize + ' m<sup>2</sup>')
 									.replace('{totalsize}', floorplan.totalSize + ' m<sup>2</sup>')
 									.replace('{carspace}', apartment.carParkingCount)
-									.replace('{averageprice}', floorplan.avgPricePerSQM.toFixed(2))
+									.replace('{pricepersquare}', floorplan.avgPricePerSQM.toFixed(0) + ' m<sup>2</sup>')
 									.replace('{price}', Tools.numberWithCommas(apartment.price));
 								$('#apartments').append($(div));
 							}
@@ -1502,7 +1507,7 @@ ComparePanel = {
 		});
 	},
 	addFloorplan:function(){
-		if(FloorPlan.get(Main.currentFloorplanId) != null){
+		if(FloorPlan.get(Main.currentApartmentId) != null){
 			alert("You already added this floorplan, please select another one.");
 			return;	
 		}
@@ -1513,7 +1518,7 @@ ComparePanel = {
 		}
 		
 		var image = $('#lightbox .floorplan .image img').attr('src');
-		FloorPlan.add({'id': Main.currentFloorplanId, 'image': image});
+		FloorPlan.add({'id': Main.currentApartmentId, 'image': image});
 		
 		ComparePanel.show(function(){
 			$('#compare-panel .slot').each(function(){
@@ -1592,7 +1597,31 @@ Compare = {
 				level: '',
 				internalArea: '',
 				externalArea: '',
-				totalArea: ''
+				totalArea: '',
+				studyRoom: '',
+				openBalcony: '',
+				enclosedBalcony: '',
+				countryard: '',
+				existing: '',
+				amenity: {
+					reception: false,
+					swimmingPool: false,
+					saunaRoom: false,
+					tennisCourt: false,
+					functionRoom: false,
+					theatreCinema: false,
+					library: false,
+					bbq: false,
+					landscaping: false,
+					skyGarden: false,
+					visitorParking: false,
+					carWashBay: false,
+					gym: false,
+					kidsPlayGround: false,
+					playRoom: false,
+					recreationPlace: false,
+					musicRoom: false
+				}
 			});
 		}
 		return arr;
@@ -1627,23 +1656,48 @@ Compare = {
           type: "GET",
           success: function(data){
               if(data.rs != null && data.rs != undefined){
-              	var projects = data.rs;
-              	for(var i = 0; i < projects.length; i++){
-              		var project = projects[i];
+              	var apartments = data.rs;
+              	for(var i = 0; i < apartments.length; i++){
+              		var apartment = apartments[i];
+              		var pricePerSquare = (apartment.price / apartment.floorplan.totalSize).toFixed(0);
               		Compare.viewModel.projects.replace(Compare.viewModel.projects()[i], {
-              			name: 'TODO',
-              			image: '<img src="' + project.medium_sale_floorplan + '" width="190" height="143" alt=""/>',
-              			suburb: 'TODO',
-						distance: 'TODO',
-						price: '',
-						pricesqm: '',
-						bedroom: project.bedroom_count,
-						bathroom: project.bathroom_count,
-						carspace: '0',
-						level: '10',
-						internalArea: project.internal_size,
-						externalArea: project.external_size,
-						totalArea: project.total_size
+              			name: apartment.floorplan.building.stage.project.name,
+              			image: '<a href="' + apartment.floorplan.salePicture.largeUrl + '" target="_blank"><img src="' + apartment.floorplan.salePicture.mediumUrl + '" width="190" height="143" alt=""/></a>',
+              			suburb: apartment.floorplan.building.stage.project.suburb.name,
+						distance: apartment.floorplan.building.stage.project.distanceToCity + 'km',
+						price: '$' + apartment.price,
+						pricesqm: '$' + pricePerSquare + '/m<sup>2</sup>',
+						bedroom: apartment.floorplan.bedRoomCount,
+						bathroom: apartment.floorplan.bathroomCount,
+						carspace: apartment.carParkingCount,
+						level: apartment.floorLevel,
+						internalArea: apartment.floorplan.internalSize + 'm<sup>2</sup>',
+						externalArea: apartment.floorplan.externalSize + 'm<sup>2</sup>',
+						totalArea: apartment.floorplan.totalSize + 'm<sup>2</sup>',
+						studyRoom: apartment.floorplan.studyroomCount > 0 ? '<i class="tick"></i>' : '<i class="cross"></i>',
+						openBalcony: apartment.floorplan.openBaclonyCount > 0 ? '<i class="tick"></i>' : '<i class="cross"></i>',
+						enclosedBalcony: apartment.floorplan.enclosedBaclonyCount > 0 ? '<i class="tick"></i>' : '<i class="cross"></i>',
+						countryard: apartment.floorplan.courtyardCount > 0 ? '<i class="tick"></i>' : '<i class="cross"></i>',
+						existing: apartment.floorplan.building.readyHouse ? '<i class="tick"></i>' : '<i class="cross"></i>',
+              			amenity: {
+              				reception: apartment.floorplan.building.stage.project.recreationPlace,
+							swimmingPool: apartment.floorplan.building.stage.project.swimmingPool,
+							saunaRoom: apartment.floorplan.building.stage.project.sauna,
+							tennisCourt: apartment.floorplan.building.stage.project.tennisCourt,
+							functionRoom: apartment.floorplan.building.stage.project.funcRoom,
+							theatreCinema: apartment.floorplan.building.stage.project.theatreCinema,
+							library: apartment.floorplan.building.stage.project.library,
+							bbq: apartment.floorplan.building.stage.project.bbq,
+							landscaping: apartment.floorplan.building.stage.project.landScaping,
+							skyGarden: apartment.floorplan.building.stage.project.skyGarden,
+							visitorParking: apartment.floorplan.building.stage.project.visitorParking,
+							carWashBay: apartment.floorplan.building.stage.project.carWashBay,
+							gym: apartment.floorplan.building.stage.project.gym,
+							kidsPlayGround: apartment.floorplan.building.stage.project.kidsPlayGround,
+							playRoom: apartment.floorplan.building.stage.project.playRoom,
+							recreationPlace: apartment.floorplan.building.stage.project.recreationPlace,
+							musicRoom: apartment.floorplan.building.stage.project.musicRoom
+              			}
               		});
               	}
               }
