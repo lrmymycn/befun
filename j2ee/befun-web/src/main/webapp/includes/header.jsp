@@ -11,12 +11,11 @@
 	</div>
 	<div class="menu">
 		<ul>
-			<li><a href="<c:url value='/j_spring_security_logout' />">Logout</a></li>
-			<li><a href="#">Join us</a></li>
+			<li><a href="#">John Macarons</a></li>
 			<li class="more"><a href="javascript:;">More<i class="arrow-down-grap"></i></a>
 				<ul>
-					<li><a href="#">About us</a></li>
-					<li><a href="#">Contact us</a></li>
+					<li><a href="#">Register Client</a></li>
+					<li><a href="<c:url value='/j_spring_security_logout' />">Log out</a></li>
 				</ul>
 			</li>
 			<li class="phone"><i class="phone"></i> 02-1234-5678</li>
@@ -137,11 +136,8 @@
 	        			<option value="20+">20km+</option>
 	        		</select>
         		</div>
-        	</div>
-        	<div class="more-features-field">
-        		<a href="javascript:;" id="more-features">More Features</a><i class="arrow-down"></i>		
-        	</div>        		
-    		<div id="features-filter" style="display:none;">
+        	</div>    		
+    		<div id="features-filter">
     			<ul class="checkbox-list clearfix">
     				<li class="first">
         				<span class="checkbox">

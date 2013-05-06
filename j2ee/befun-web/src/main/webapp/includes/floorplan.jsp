@@ -22,6 +22,7 @@
 			
 		</div>
 		<div class="floorplan">
+			<a href="#" class="zoom" target="_blank"></a>
 			<div class="image">
 
 			</div>
