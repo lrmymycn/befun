@@ -96,6 +96,7 @@
 						<input type="button" value="${bean.floorplanId }" onclick="showDialog('${u}')" />
 					</jmesa:htmlColumn>
 					<jmesa:htmlColumn property="description" />
+					<jmesa:htmlColumn property="unitNumber" />
 					<jmesa:htmlColumn property="lotNumber" />
 					<jmesa:htmlColumn property="price" />
 					<jmesa:htmlColumn property="creationDate" />

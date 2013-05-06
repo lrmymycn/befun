@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.befun.dao.common.IQueryCondition;
 import com.befun.dao.common.QueryCondition;
+import com.befun.domain.profile.Gender;
 import com.befun.domain.profile.Profile;
 import com.befun.domain.profile.ProfileRole;
 import com.befun.domain.profile.Role;
@@ -35,18 +36,31 @@ public class TestProfileService extends SpringTestBase {
     @Test
     public void testSaveProfileWithRole() {
         Profile profile = new Profile();
-        String employeeNumber = "employeeNumber";
         String username = "username";
         String password = "password";
-        String firstName = "firstName";
-        String lastName = "lastName";
-        String middleName = "middleName";
-        profile.setEmployeeNumber(employeeNumber);
+        String givenName = "givenName";
+        String surname = "surname";
+        String homeAddress = "homeAddress";
+        String homePhone = "homePhone";
+        String homePostcode = "homePostcode";
+        String mailAddress = "mailAddress";
+        String mailPostcode = "mailPostcode";
+        String mobileNumber = "mobileNumber";
+        String mobileNumber1 = "mobileNumber1";
+        String preferredName = "preferredName";
         profile.setUsername(username);
         profile.setPassword(password);
-        profile.setFirstName(firstName);
-        profile.setLastName(lastName);
-        profile.setMiddleName(middleName);
+        profile.setGender(Gender.MALE);
+        profile.setGivenName(givenName);
+        profile.setSurname(surname);
+        profile.setHomeAddress(homeAddress);
+        profile.setHomePhone(homePhone);
+        profile.setHomePostcode(homePostcode);
+        profile.setMailAddress(mailAddress);
+        profile.setMailPostcode(mailPostcode);
+        profile.setMobileNumber(mobileNumber);
+        profile.setMobileNumber1(mobileNumber1);
+        profile.setPreferredName(preferredName);
 
         Role role = new Role();
         role.setId(1l);
@@ -64,18 +78,31 @@ public class TestProfileService extends SpringTestBase {
     public void testUpdateProfileWithRole() {
         Profile profile = new Profile();
         profile.setId(3l);
-        String employeeNumber = "employeeNumber";
         String username = "username";
         String password = "password";
-        String firstName = "firstName";
-        String lastName = "lastName";
-        String middleName = "middleName";
-        profile.setEmployeeNumber(employeeNumber);
+        String givenName = "givenName";
+        String surname = "surname";
+        String homeAddress = "homeAddress";
+        String homePhone = "homePhone";
+        String homePostcode = "homePostcode";
+        String mailAddress = "mailAddress";
+        String mailPostcode = "mailPostcode";
+        String mobileNumber = "mobileNumber";
+        String mobileNumber1 = "mobileNumber1";
+        String preferredName = "preferredName";
         profile.setUsername(username);
         profile.setPassword(password);
-        profile.setFirstName(firstName);
-        profile.setLastName(lastName);
-        profile.setMiddleName(middleName);
+        profile.setGender(Gender.MALE);
+        profile.setGivenName(givenName);
+        profile.setSurname(surname);
+        profile.setHomeAddress(homeAddress);
+        profile.setHomePhone(homePhone);
+        profile.setHomePostcode(homePostcode);
+        profile.setMailAddress(mailAddress);
+        profile.setMailPostcode(mailPostcode);
+        profile.setMobileNumber(mobileNumber);
+        profile.setMobileNumber1(mobileNumber1);
+        profile.setPreferredName(preferredName);
         profile.setProfileRoles(null);
         target.update(profile);
     }
@@ -96,18 +123,31 @@ public class TestProfileService extends SpringTestBase {
     @Test
     public void testSaveProfile() {
         Profile profile = new Profile();
-        String employeeNumber = "employeeNumber";
         String username = "username";
         String password = "password";
-        String firstName = "firstName";
-        String lastName = "lastName";
-        String middleName = "middleName";
-        profile.setEmployeeNumber(employeeNumber);
+        String givenName = "givenName";
+        String surname = "surname";
+        String homeAddress = "homeAddress";
+        String homePhone = "homePhone";
+        String homePostcode = "homePostcode";
+        String mailAddress = "mailAddress";
+        String mailPostcode = "mailPostcode";
+        String mobileNumber = "mobileNumber";
+        String mobileNumber1 = "mobileNumber1";
+        String preferredName = "preferredName";
         profile.setUsername(username);
         profile.setPassword(password);
-        profile.setFirstName(firstName);
-        profile.setLastName(lastName);
-        profile.setMiddleName(middleName);
+        profile.setGender(Gender.MALE);
+        profile.setGivenName(givenName);
+        profile.setSurname(surname);
+        profile.setHomeAddress(homeAddress);
+        profile.setHomePhone(homePhone);
+        profile.setHomePostcode(homePostcode);
+        profile.setMailAddress(mailAddress);
+        profile.setMailPostcode(mailPostcode);
+        profile.setMobileNumber(mobileNumber);
+        profile.setMobileNumber1(mobileNumber1);
+        profile.setPreferredName(preferredName);
         target.save(profile);
     }
 

@@ -1,5 +1,6 @@
 package com.befun.domain.profile;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,11 +9,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import com.befun.domain.BaseModel;
 
 @Entity
 @Table(name = "DEPARTMENT")
 @TableGenerator(name = "departmentGenerator", table = "ID_GENERATOR", pkColumnName = "gen_name", valueColumnName = "gen_value", pkColumnValue = "department", allocationSize = 1)
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region="profile")
 public class Department implements BaseModel<Long> {
 
 	private static final long serialVersionUID = 6453428766156180600L;

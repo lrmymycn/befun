@@ -1,25 +1,36 @@
-package com.befun.service.security;
+package com.befun.dao.profile;
+
+import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.befun.dao.profile.ProfileDao;
 import com.befun.domain.profile.Gender;
 import com.befun.domain.profile.Profile;
-import com.befun.service.SpringTestBase;
 
-public class TestAuthService extends SpringTestBase {
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = { "classpath:context-datasource.xml" })
+@Transactional
+@TransactionConfiguration(transactionManager = "txManager", defaultRollback = false)
+public class TestProfileDao {
 
     @Resource
-    @Qualifier("AuthService")
-    private AuthService target;
+    @Qualifier("ProfileDao")
+    private ProfileDao target;
 
     @Test
-    public void testCreateUser() {
+    public void testSave() {
         Profile profile = new Profile();
-        String username = "auth1";
-        String password = "@dm!n123";
+        String username = "username";
+        String password = "password";
         String givenName = "givenName";
         String surname = "surname";
         String homeAddress = "homeAddress";
@@ -42,12 +53,15 @@ public class TestAuthService extends SpringTestBase {
         profile.setMailPostcode(mailPostcode);
         profile.setMobileNumber(mobileNumber);
         profile.setMobileNumber1(mobileNumber1);
-        profile.setPreferredName(preferredName);        
-        target.createUser(profile);
+        profile.setPreferredName(preferredName);
+        target.save(profile);
     }
-    
+
     @Test
-    public void testChangePassword() {
-        target.changePassword(9l, "@dm!n123");
+    public void testQuery() {
+        List<Profile> rs = target.queryAll();
+        for (Profile e : rs) {
+            System.out.println(e);
+        }
     }
 }

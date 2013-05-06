@@ -39,4 +39,13 @@ TRUNCATE TABLE profile;
 -- profile
 DELETE FROM profile_role;
 DELETE FROM role;
+DELETE FROM suburb_interest_list_item;
+DELETE FROM project_interest_list_item;
+DELETE FROM floorplan_interest_list_item;
+DELETE FROM apartment_interest_list_item;
+DELETE FROM interest_list;
+DELETE FROM client_preference;
+DELETE FROM employee_client;
+DELETE FROM client;
+DELETE FROM employee;
 DELETE FROM profile;
