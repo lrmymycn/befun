@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import com.befun.dao.IBaseDao;
 import com.befun.domain.estate.Floorplan;
@@ -25,11 +26,42 @@ public class FloorplanServiceImpl extends BaseEstateServiceImpl<Floorplan, Long>
     }
 
     @Override
+    @Transactional(readOnly = true)
+    public Floorplan get(Long id) {
+        Assert.notNull(id, "id should be not null!");
+        Floorplan rs = dao.get(id);
+        if (rs != null) {
+            if (rs.getMinPrice() != null && rs.getTotalSize().compareTo(0.0) > 0) {
+                Double t = rs.getMinPrice() / rs.getTotalSize();
+                rs.setAvgPricePerSQM(t.intValue());
+            }
+        }
+        return rs;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<Floorplan> get(Long... ids) {
+        List<Floorplan> rs = dao.get(ids);
+        for (Floorplan fp : rs) {
+            if (fp.getMinPrice() != null && fp.getTotalSize().compareTo(0.0) > 0) {
+                Double t = fp.getMinPrice() / fp.getTotalSize();
+                fp.setAvgPricePerSQM(t.intValue());
+            }
+        }
+        return rs;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public Floorplan getWithAveragePrice(Long id) {
         Floorplan rs = this.dao.get(id);
         if (rs == null) {
             this.log.debug("Can not find floorplan with id:" + id);
             return null;
+        }
+        if (rs.getTotalSize().compareTo(0.0) <= 0) {
+            return rs;
         }
         Map<String, Object> paramMap = new HashMap<String, Object>();
         paramMap.put("floorplanId", id);
@@ -37,7 +69,8 @@ public class FloorplanServiceImpl extends BaseEstateServiceImpl<Floorplan, Long>
         if (avgPrices != null && avgPrices.size() > 0) {
             Object p = avgPrices.get(0);
             Double avgPrice = (Double) p;
-            rs.setAvgPricePerSQM(avgPrice/rs.getTotalSize());
+            Double t = (avgPrice / rs.getTotalSize());
+            rs.setAvgPricePerSQM(t.intValue());
         } else {
             this.log.debug("Can not find avg price of floorplan with id:" + id);
         }

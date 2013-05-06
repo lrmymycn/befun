@@ -29,6 +29,8 @@ public class ApartmentView extends BaseView<Apartment> {
 
     private Integer price;
 
+    private Integer avgPricePerSQM;
+
     private Short unitEntitlement;
 
     private String colorScheme;
@@ -180,6 +182,14 @@ public class ApartmentView extends BaseView<Apartment> {
 
     public void setFloorplanName(String floorplanName) {
         this.floorplanName = floorplanName;
+    }
+
+    public Integer getAvgPricePerSQM() {
+        return avgPricePerSQM;
+    }
+
+    public void setAvgPricePerSQM(Integer avgPricePerSQM) {
+        this.avgPricePerSQM = avgPricePerSQM;
     }
 
     @Override

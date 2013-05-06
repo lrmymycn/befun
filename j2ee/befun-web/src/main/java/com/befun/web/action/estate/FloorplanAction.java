@@ -46,7 +46,8 @@ public class FloorplanAction extends CRUDAction<Floorplan, FloorplanView> {
 
     public String demandById() {
         try {
-            Floorplan obj = this.service.getWithAveragePrice(this.getId());
+//            Floorplan obj = this.service.getWithAveragePrice(this.getId());
+            Floorplan obj = this.service.get(this.getId());
             this.view = this.getConverter().convertToView(obj);
             if(this.apQC == null){
                 this.apQC = new ApartmentQueryCondition();

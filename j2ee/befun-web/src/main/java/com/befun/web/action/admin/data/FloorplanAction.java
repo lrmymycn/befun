@@ -57,7 +57,7 @@ public class FloorplanAction<T extends Floorplan, V extends FloorplanView> exten
 
     private static List<FloorplanType> floorplanTypes = new ArrayList<FloorplanType>();
 
-    {
+    static {
         if (floorplanTypes.size() < 1) {
             floorplanTypes.add(FloorplanType.APARTMENT);
             floorplanTypes.add(FloorplanType.HOUSE);

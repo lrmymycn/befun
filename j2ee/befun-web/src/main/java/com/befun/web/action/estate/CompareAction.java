@@ -16,8 +16,8 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import com.befun.domain.estate.Floorplan;
-import com.befun.service.estate.FloorplanService;
+import com.befun.domain.estate.Apartment;
+import com.befun.service.estate.ApartmentService;
 import com.befun.web.action.BaseAction;
 
 @Controller("CompareAction")
@@ -30,18 +30,18 @@ public class CompareAction extends BaseAction {
 
     private String compareIdsStr;
 
-    private List<Floorplan> rs;
+    private List<Apartment> rs;
 
     @Resource
-    @Qualifier("FloorplanService")
-    private FloorplanService service;
+    @Qualifier("ApartmentService")
+    private ApartmentService service;
 
     public String compareFloorplan() {
         List<Long> compareIds = this.getCompareList();
         if (compareIds.size() > 0) {
             rs = this.service.get(compareIds.toArray(new Long[] {}));
         } else {
-            this.addActionMessage("No floorplan selected!");
+            this.addActionMessage("No apartment selected!");
         }
         return SUCCESS;
     }
@@ -75,7 +75,7 @@ public class CompareAction extends BaseAction {
         return compareIds;
     }
 
-    public List<Floorplan> getRs() {
+    public List<Apartment> getRs() {
         return rs;
     }
 

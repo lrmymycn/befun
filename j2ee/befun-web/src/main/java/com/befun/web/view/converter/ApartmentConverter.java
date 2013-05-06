@@ -30,6 +30,10 @@ public class ApartmentConverter extends AbstractViewConverter<Apartment, Apartme
         view.setBuildingNum(model.getFloorplan().getBuilding().getBuildingNumber());
         view.setStageName(model.getFloorplan().getBuilding().getStage().getName());
         view.setProjectName(model.getFloorplan().getBuilding().getStage().getProject().getName());
+        if (model.getPrice()!=null && model.getFloorplan().getTotalSize().compareTo(0.0) > 0) {
+            Double t = model.getPrice() / model.getFloorplan().getTotalSize();
+            view.setAvgPricePerSQM(t.intValue());
+        }
         copyModelModification(model.getModelModification(), view);
     }
 

@@ -36,9 +36,9 @@ import com.befun.web.view.AreaView;
 import com.befun.web.view.FloorplanView;
 import com.befun.web.view.ProjectView;
 import com.befun.web.view.SuburbView;
-import com.befun.web.view.ViewCopier;
 import com.befun.web.view.converter.AreaConverter;
 import com.befun.web.view.converter.ConverterFactory;
+import com.befun.web.view.converter.FloorplanConverter;
 import com.befun.web.view.converter.ProjectConverter;
 import com.befun.web.view.converter.SuburbConverter;
 import com.befun.web.view.converter.ViewConverter;
@@ -58,6 +58,8 @@ public class ProjectAction extends CRUDAction<Project, ProjectView> {
     private AreaConverter areaConverter = ConverterFactory.getConverter(Area.class);
 
     private SuburbConverter suburbConverter = ConverterFactory.getConverter(Suburb.class);
+    
+    private FloorplanConverter floorplanConverter = ConverterFactory.getConverter(Floorplan.class);
 
     @Resource
     @Qualifier("ProjectService")
@@ -122,8 +124,7 @@ public class ProjectAction extends CRUDAction<Project, ProjectView> {
     public String demandById() {
         try {
             Project obj = service.get(this.id);
-            this.view = new ProjectView(obj);
-            ViewCopier.copyProjectToView(obj, this.view);
+            this.view = converter.convertToView(obj);
         } catch (Exception ex) {
             String errMsg = "Query failure!";
             this.log.warn(errMsg, ex);
@@ -136,8 +137,7 @@ public class ProjectAction extends CRUDAction<Project, ProjectView> {
     public String demandDetail() {
         try {
             Project obj = service.get(this.id);
-            this.view = new ProjectView(obj);
-            ViewCopier.copyProjectToView(obj, this.view);
+            this.view = converter.convertToView(obj);
         } catch (Exception ex) {
             String errMsg = "Query failure!";
             this.log.warn(errMsg, ex);
@@ -163,8 +163,7 @@ public class ProjectAction extends CRUDAction<Project, ProjectView> {
         bQC.setProjectId(this.id);
         List<Floorplan> floorplans = this.apartmentService.queryFloorplans(apQC);
         for (Floorplan f : floorplans) {
-            FloorplanView v = new FloorplanView(f);
-            ViewCopier.copyFloorplanToView(f, v);
+            FloorplanView v = floorplanConverter.convertToView(f);
             this.view.getFloorplans().add(v);
         }
         

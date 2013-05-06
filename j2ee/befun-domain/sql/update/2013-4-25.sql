@@ -29,3 +29,7 @@ ALTER TABLE `building` ADD INDEX `idx_orientation_west` USING BTREE (`orientatio
 ALTER TABLE `building` ADD INDEX `idx_orientation_north` USING BTREE (`orientation_north` ASC) ;
 
 --ALTER TABLE `building` DROP COLUMN `orientation`;
+
+
+
+ALTER TABLE `profile` CHANGE COLUMN `middle_name` `middle_name` VARCHAR(45) NULL;

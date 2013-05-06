@@ -119,7 +119,7 @@ public class Floorplan implements BaseEstateModel<Long> {
     @Embedded
     private ModelModification modelModification;
 
-    private transient Double avgPricePerSQM;
+    private transient Integer avgPricePerSQM;
 
     public Long getId() {
         return id;
@@ -345,11 +345,11 @@ public class Floorplan implements BaseEstateModel<Long> {
         this.orientationNorth = orientationNorth;
     }
 
-    public Double getAvgPricePerSQM() {
+    public Integer getAvgPricePerSQM() {
         return avgPricePerSQM;
     }
 
-    public void setAvgPricePerSQM(Double avgPricePerSQM) {
+    public void setAvgPricePerSQM(Integer avgPricePerSQM) {
         this.avgPricePerSQM = avgPricePerSQM;
     }
 

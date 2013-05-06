@@ -1,27 +1,167 @@
 CREATE TABLE IF NOT EXISTS `profile` (
   `id` bigint(20) NOT NULL,
   `username` varchar(50) NOT NULL,
-  `password` varchar(255) NOT NULL COMMENT '密码应该是经过单向散列算法加密过的，不可逆',
-  `first_name` varchar(45) NOT NULL,
-  `last_name` varchar(45) NOT NULL,
-  `middle_name` varchar(45) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL COMMENT '密码应该是经过单向散列算法加密过的，不可逆',
+  `gender` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0-male, 1-female, 2-other',
+  `surname` varchar(45) DEFAULT NULL,
+  `given_name` varchar(45) DEFAULT NULL,
+  `preferred_name` varchar(45) DEFAULT NULL,
   `mobile_number` varchar(45) DEFAULT NULL,
+  `mobile_number1` varchar(45) DEFAULT NULL,
+  `other_number` varchar(45) DEFAULT NULL,
   `home_phone` varchar(45) DEFAULT NULL,
-  `employee_number` varchar(255) DEFAULT NULL,
+  `home_address` varchar(200) DEFAULT NULL,
+  `home_postcode` varchar(20) DEFAULT NULL,
+  `mail_address` varchar(200) DEFAULT NULL,
+  `mail_postcode` varchar(20) DEFAULT NULL,
+  `email` varchar(200) DEFAULT NULL,
+  `description` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_username` (`username`),
-  KEY `idx_password` (`password`(255)),
-  KEY `idx_firstname` (`first_name`),
-  KEY `idx_lastname` (`last_name`),
-  KEY `idx_middlename` (`middle_name`),
-  KEY `idx_mobile_number` (`mobile_number`)
+  KEY `idx_surname` (`surname`),
+  KEY `idx_given_name` (`given_name`),
+  KEY `idx_preferred_name` (`preferred_name`),
+  KEY `idx_mobile_number` (`mobile_number`),
+  KEY `idx_mobile_number1` (`mobile_number1`),
+  KEY `idx_other_number` (`other_number`),
+  KEY `idx_home_phone` (`home_phone`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `employee` (
+  `id` bigint(20) NOT NULL,
+  `title` varchar(255) NULL ,
+  `title_desc` text NULL ,
+  `rank` tinyint(4) NOT NULL DEFAULT '0',
+  `employee_number` varchar(255) DEFAULT NULL,
+  `abn` varchar(50) DEFAULT NULL,
+  `gst` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_employee_number` (`employee_number`),
+  CONSTRAINT `fk_sale_id` FOREIGN KEY (`id`) REFERENCES `profile` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `client` (
+  `id` bigint(20) NOT NULL,
+  `current_employee` bigint(20) DEFAULT NULL,
+  `title` tinyint(4) NOT NULL DEFAULT '0',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'PR/Citizen, Overseas investor, Student',
+  `purchase_type_first` tinyint(1) NOT NULL DEFAULT '0',
+  `purchase_type_owner` tinyint(1) NOT NULL DEFAULT '0',
+  `purchase_type_inverstor` tinyint(1) NOT NULL DEFAULT '0',
+  `purchase_type_student` tinyint(1) NOT NULL DEFAULT '0',
+  `purchase_type_other` tinyint(1) NOT NULL DEFAULT '0',
+  `purchase_type_1` tinyint(1) NOT NULL DEFAULT '0',
+  `purchase_type_2` tinyint(1) NOT NULL DEFAULT '0',
+  `purchase_type_3` tinyint(1) NOT NULL DEFAULT '0',
+  `purchase_type_4` tinyint(1) NOT NULL DEFAULT '0',
+  `client_preference_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_status` (`status`),
+  KEY `idx_current_employee` (`current_employee`),
+  KEY `idx_purchase_type_first` (`purchase_type_first`),
+  KEY `idx_purchase_type_owner` (`purchase_type_owner`),
+  KEY `idx_purchase_type_inverstor` (`purchase_type_inverstor`),
+  KEY `idx_purchase_type_student` (`purchase_type_student`),
+  KEY `idx_purchase_type_other` (`purchase_type_other`),
+  KEY `idx_client_preference_id` (`client_preference_id`),
+  CONSTRAINT `fk_client_id` FOREIGN KEY (`id`) REFERENCES `profile` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `employee_client` (
+  `id` bigint(20) NOT NULL,
+  `employee_id` bigint(20) NOT NULL,
   `client_id` bigint(20) NOT NULL,
-  `address` varchar(200) NOT NULL,
-  PRIMARY KEY (`client_id`),
-  CONSTRAINT `fk_client_id` FOREIGN KEY (`client_id`) REFERENCES `profile` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  `start_date` datetime DEFAULT NULL,
+  `end_date` datetime DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_employee_id` (`employee_id`),
+  KEY `idx_client_id` (`client_id`),
+  KEY `idx_start_date` (`start_date`),
+  KEY `idx_end_date` (`end_date`),
+  CONSTRAINT `fk_interest_list_ep_id` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_interest_list_id` FOREIGN KEY (`client_id`) REFERENCES `client` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `client_preference` (
+  `id` bigint(20) NOT NULL,
+  `floorplan_type` varchar(255) NULL,
+  `area` varchar(255) NULL,
+  `distance_to_city` varchar(255) NULL,
+  `bedroom` varchar(255) NULL,
+  `bathroom` varchar(255) NULL,
+  `studyroom` varchar(255) NULL,
+  `price_range` varchar(255) NULL,
+  `ready_house` varchar(255) NULL,
+  `trains` varchar(255) NULL,
+  `shopping_centres` varchar(255) NULL,
+  `schools` varchar(255) NULL,
+  `water_view` varchar(255) NULL,
+  `city_view` varchar(255) NULL,
+  `high_quality_finish` varchar(255) NULL,
+  `luxury` varchar(255) NULL,
+  `good_live_env` varchar(255) NULL,
+  `description` varchar(255) NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `interest_list` (
+  `id` bigint(20) NOT NULL,
+  `client_id` bigint(20) NOT NULL,
+  `name` varchar(255) NULL,
+  `description` text DEFAULT NULL,
+  `creation_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_client_id` (`client_id`),
+  CONSTRAINT `fk_interest_list_c_id` FOREIGN KEY (`client_id`) REFERENCES `client` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `apartment_interest_list_item` (
+  `id` bigint(20) NOT NULL,
+  `interest_list_id` bigint(20) NOT NULL,
+  `apartment_id` bigint(20) NOT NULL,
+  `description` text DEFAULT NULL,
+  `creation_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_interest_list_id` (`interest_list_id`),
+  KEY `idx_apartment_id` (`apartment_id`),
+  CONSTRAINT `fk_ap_interest_list_id` FOREIGN KEY (`interest_list_id`) REFERENCES `interest_list` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `floorplan_interest_list_item` (
+  `id` bigint(20) NOT NULL,
+  `interest_list_id` bigint(20) NOT NULL,
+  `floorplan_id` bigint(20) NOT NULL,
+  `description` text DEFAULT NULL,
+  `creation_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_interest_list_id` (`interest_list_id`),
+  KEY `idx_floorplan_id` (`floorplan_id`),
+  CONSTRAINT `fk_fp_interest_list_id` FOREIGN KEY (`interest_list_id`) REFERENCES `interest_list` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `project_interest_list_item` (
+  `id` bigint(20) NOT NULL,
+  `interest_list_id` bigint(20) NOT NULL,
+  `project_id` bigint(20) NOT NULL,
+  `description` text DEFAULT NULL,
+  `creation_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_interest_list_id` (`interest_list_id`),
+  KEY `idx_project_id` (`project_id`),
+  CONSTRAINT `fk_pro_interest_list_id` FOREIGN KEY (`interest_list_id`) REFERENCES `interest_list` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `suburb_interest_list_item` (
+  `id` bigint(20) NOT NULL,
+  `interest_list_id` bigint(20) NOT NULL,
+  `suburb_id` bigint(20) NOT NULL,
+  `description` text DEFAULT NULL,
+  `creation_date` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_interest_list_id` (`interest_list_id`),
+  KEY `idx_suburb_id` (`suburb_id`),
+  CONSTRAINT `fk_s_interest_list_id` FOREIGN KEY (`interest_list_id`) REFERENCES `interest_list` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `role` (

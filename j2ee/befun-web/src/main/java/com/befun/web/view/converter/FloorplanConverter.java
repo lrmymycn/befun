@@ -30,6 +30,10 @@ public class FloorplanConverter extends AbstractViewConverter<Floorplan, Floorpl
         view.setBuildingNum(model.getBuilding().getBuildingNumber());
         view.setStageName(model.getBuilding().getStage().getName());
         view.setProjectName(model.getBuilding().getStage().getProject().getName());
+        if (model.getAvgPricePerSQM() == null && model.getMinPrice() != null && model.getTotalSize().compareTo(0.0) > 0) {
+            Double t = model.getMinPrice() / model.getTotalSize();
+            view.setAvgPricePerSQM(t.intValue());
+        }
         if (model.getPublicPicture() != null) {
             view.setPublicPictureId(model.getPublicPicture().getId());
         }

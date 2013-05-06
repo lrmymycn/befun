@@ -62,7 +62,7 @@ public class FloorplanView extends BaseView<Floorplan> {
 
     private Integer maxPrice;
 
-    private Double avgPricePerSQM;
+    private Integer avgPricePerSQM;
 
     private Double internalSize;
 
@@ -326,11 +326,11 @@ public class FloorplanView extends BaseView<Floorplan> {
         return sold;
     }
 
-    public Double getAvgPricePerSQM() {
+    public Integer getAvgPricePerSQM() {
         return avgPricePerSQM;
     }
 
-    public void setAvgPricePerSQM(Double avgPricePerSQM) {
+    public void setAvgPricePerSQM(Integer avgPricePerSQM) {
         this.avgPricePerSQM = avgPricePerSQM;
     }
 

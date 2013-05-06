@@ -143,9 +143,21 @@
                     actionMessages*,
                     errorMessages*,
                     rs\[\d+\]\.[^.]*,
+                    rs\[\d+\]\.floorplan\.[^.]*,
+                    rs\[\d+\]\.floorplan\.salePicture.[^.]*,
+                    rs\[\d+\]\.floorplan\.publicPicture.[^.]*,
+                    rs\[\d+\]\.floorplan\.building\.[^.]*,
+                    rs\[\d+\]\.floorplan\.building\.stage\.name,
+                    rs\[\d+\]\.floorplan\.building\.stage\.project\.[^.]*,
+                    rs\[\d+\]\.floorplan\.building\.stage\.project\.suburb\.[^.]*,
+                    rs\[\d+\]\.floorplan\.building\.stage\.project\.suburb\.area\.[^.]*,
                 </param>
                 <param name="excludeProperties">
-					rs\[\d+\]\.building.*,
+					rs\[\d+\]\.floorplan\.building\.floorplans,
+                    rs\[\d+\]\.floorplan\.building\.stage\.project\.stages,
+                    rs\[\d+\]\.floorplan\.building\.stage\.project\.suburb\.polylines,
+                    rs\[\d+\]\.floorplan\.building\.stage\.project\.suburb\.area\.polylines,
+                    rs\[\d+\]\.floorplan\.building\.stage\.project\.suburb\.area\.suburbs,
                 </param>
             </result>
         </action>
