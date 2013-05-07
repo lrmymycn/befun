@@ -5,6 +5,7 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import com.befun.service.security.AuthService;
 import com.befun.web.action.BaseAction;
 
 @Controller("ChangePasswordAction")
@@ -20,6 +21,8 @@ public class ChangePasswordAction extends BaseAction {
     private String newPassword;
 
     private String repeatNewPassword;
+    
+    private AuthService authService;
 
     public String changePasswordPage() {
         return SUCCESS;

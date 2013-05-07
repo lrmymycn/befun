@@ -13,12 +13,12 @@ import com.befun.dao.IBaseDao;
 import com.befun.dao.common.IQueryCondition;
 import com.befun.dao.common.QueryCondition;
 import com.befun.domain.profile.Profile;
-import com.befun.service.BaseService;
+import com.befun.service.BaseModificationService;
 import com.befun.service.profile.ProfileService;
 
 @Service("ProfileService")
 @Transactional(rollbackFor = Exception.class, propagation=Propagation.REQUIRED)
-public class ProfileServiceImpl extends BaseService<Profile, Long> implements ProfileService {
+public class ProfileServiceImpl extends BaseModificationService<Profile, Long> implements ProfileService {
 
     @Resource
     public void setDao(@Qualifier("ProfileDao") IBaseDao<Profile, Long> dao) {

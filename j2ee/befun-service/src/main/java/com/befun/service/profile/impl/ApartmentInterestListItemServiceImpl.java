@@ -9,12 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.befun.dao.IBaseDao;
 import com.befun.domain.profile.ApartmentInterestListItem;
-import com.befun.service.BaseService;
+import com.befun.service.BaseModificationService;
 import com.befun.service.profile.ApartmentInterestListItemService;
 
 @Service("ApartmentInterestListItemService")
 @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
-public class ApartmentInterestListItemServiceImpl extends BaseService<ApartmentInterestListItem, Long> implements ApartmentInterestListItemService {
+public class ApartmentInterestListItemServiceImpl extends BaseModificationService<ApartmentInterestListItem, Long> implements ApartmentInterestListItemService {
 
     @Resource
     public void setDao(@Qualifier("ApartmentInterestListItemDao") IBaseDao<ApartmentInterestListItem, Long> dao) {

@@ -9,12 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.befun.dao.IBaseDao;
 import com.befun.domain.profile.Client;
-import com.befun.service.BaseService;
+import com.befun.service.BaseModificationService;
 import com.befun.service.profile.ClientService;
 
 @Service("ClientService")
 @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
-public class ClientServiceImpl extends BaseService<Client, Long> implements ClientService {
+public class ClientServiceImpl extends BaseModificationService<Client, Long> implements ClientService {
 
     @Resource
     public void setDao(@Qualifier("ClientDao") IBaseDao<Client, Long> dao) {

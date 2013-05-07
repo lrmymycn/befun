@@ -42,9 +42,10 @@ public class AuthServiceImpl implements AuthService {
         if (profile == null) {
             throw new UsernameNotFoundException("User " + username + " not found!");
         }
-        boolean accountNonExpired = true;
-        boolean credentialsNonExpired = true;
-        boolean accountNonLocked = true;
+        boolean accountEnabled = profile.isEnabled();
+        boolean accountNonExpired = !profile.isExpired();
+        boolean credentialsNonExpired = !profile.isCredentialsExpired();
+        boolean accountNonLocked = !profile.isLocked();
         Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
         Set<ProfileRole> profileRoles = profile.getProfileRoles();
         if (profileRoles != null) {
@@ -53,7 +54,7 @@ public class AuthServiceImpl implements AuthService {
                 authorities.add(auth);
             }
         }
-        MyUser user = new MyUser(profile.getUsername(), profile.getPassword(), true, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
+        MyUser user = new MyUser(profile.getUsername(), profile.getPassword(), accountEnabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
         return user;
     }
 

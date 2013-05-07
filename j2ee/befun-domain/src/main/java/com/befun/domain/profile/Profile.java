@@ -1,12 +1,12 @@
 package com.befun.domain.profile;
 
-import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -20,7 +20,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
-import com.befun.domain.BaseModel;
+import com.befun.domain.ModificationModel;
+import com.befun.domain.Modification;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -28,7 +29,7 @@ import com.befun.domain.BaseModel;
 @TableGenerator(name = "profileGenerator", table = "ID_GENERATOR", pkColumnName = "gen_name", valueColumnName = "gen_value", pkColumnValue = "profile", allocationSize = 1)
 @DiscriminatorColumn(name = "discriminator", discriminatorType = DiscriminatorType.STRING, length = 30)
 @DiscriminatorValue("Profile")
-public class Profile implements BaseModel<Long> {
+public class Profile implements ModificationModel<Long> {
 
     private static final long serialVersionUID = -1108441860005157959L;
 
@@ -46,8 +47,17 @@ public class Profile implements BaseModel<Long> {
     @Column(name = "PASSWORD", length = 255)
     private String password;
 
-    @Column(name = "expired")
-    private Boolean expired;
+    @Column(name = "ENABLED")
+    private boolean enabled = true;
+
+    @Column(name = "EXPIRED")
+    private boolean expired = false;
+
+    @Column(name = "CREDENTIALS_EXPIRED")
+    private boolean credentialsExpired = false;
+
+    @Column(name = "LOCKED")
+    private boolean locked = false;
 
     @Column(name = "gender")
     @Enumerated(EnumType.ORDINAL)
@@ -95,11 +105,8 @@ public class Profile implements BaseModel<Long> {
     @OneToMany(mappedBy = "profile", fetch = FetchType.LAZY)
     private Set<ProfileRole> profileRoles;
 
-    @Column(name = "CREATION_DATE")
-    private Date creationDate;
-
-    @Column(name = "LAST_MODIFIED_DATE")
-    private Date lastModifiedDate;
+    @Embedded
+    private Modification modification = Modification.createDefault();
 
     public Long getId() {
         return id;
@@ -181,12 +188,36 @@ public class Profile implements BaseModel<Long> {
         this.mobileNumber1 = mobileNumber1;
     }
 
-    public Boolean getExpired() {
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public boolean isExpired() {
         return expired;
     }
 
-    public void setExpired(Boolean expired) {
+    public void setExpired(boolean expired) {
         this.expired = expired;
+    }
+
+    public boolean isCredentialsExpired() {
+        return credentialsExpired;
+    }
+
+    public void setCredentialsExpired(boolean credentialsExpired) {
+        this.credentialsExpired = credentialsExpired;
+    }
+
+    public boolean isLocked() {
+        return locked;
+    }
+
+    public void setLocked(boolean locked) {
+        this.locked = locked;
     }
 
     public String getOtherNumber() {
@@ -261,20 +292,12 @@ public class Profile implements BaseModel<Long> {
         this.profileRoles = profileRoles;
     }
 
-    public Date getCreationDate() {
-        return creationDate;
+    public Modification getModification() {
+        return modification;
     }
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public Date getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(Date lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
+    public void setModification(Modification modification) {
+        this.modification = modification;
     }
 
     @Override
@@ -341,11 +364,10 @@ public class Profile implements BaseModel<Long> {
 
     @Override
     public String toString() {
-        return "Profile [id=" + id + ", type=" + type + ", username=" + username + ", password=" + password + ", expired=" + expired + ", gender=" + gender
-               + ", surname=" + surname + ", givenName=" + givenName + ", preferredName=" + preferredName + ", mobileNumber=" + mobileNumber
-               + ", mobileNumber1=" + mobileNumber1 + ", otherNumber=" + otherNumber + ", homePhone=" + homePhone + ", homeAddress=" + homeAddress
-               + ", homePostcode=" + homePostcode + ", mailAddress=" + mailAddress + ", mailPostcode=" + mailPostcode + ", email=" + email + ", description="
-               + description + "]";
+        return "Profile [id=" + id + ", type=" + type + ", username=" + username + ", password=" + password + ", gender=" + gender + ", surname=" + surname
+               + ", givenName=" + givenName + ", preferredName=" + preferredName + ", mobileNumber=" + mobileNumber + ", mobileNumber1=" + mobileNumber1
+               + ", otherNumber=" + otherNumber + ", homePhone=" + homePhone + ", homeAddress=" + homeAddress + ", homePostcode=" + homePostcode
+               + ", mailAddress=" + mailAddress + ", mailPostcode=" + mailPostcode + ", email=" + email + ", description=" + description + "]";
     }
 
 }

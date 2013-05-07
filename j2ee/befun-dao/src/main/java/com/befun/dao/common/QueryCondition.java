@@ -18,7 +18,7 @@ public class QueryCondition implements IQueryCondition, Cloneable {
 
     private String selfAlias = "this";
 
-    private OrderBy orderBy;
+    private OrderBy orderBy = new OrderBy();
 
     private List<String> groupProperties = new ArrayList<String>();
 
@@ -47,7 +47,7 @@ public class QueryCondition implements IQueryCondition, Cloneable {
         return orderBy;
     }
 
-    public void setORderBy(OrderBy orderBy) {
+    public void setOrderBy(OrderBy orderBy) {
         this.orderBy = orderBy;
     }
 

@@ -1,9 +1,8 @@
 package com.befun.domain.profile;
 
-import java.util.Date;
-
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,14 +13,15 @@ import javax.persistence.TableGenerator;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import com.befun.domain.BaseModel;
+import com.befun.domain.ModificationModel;
+import com.befun.domain.Modification;
 
 @Entity
 @Table(name = "CLIENT_PREFERENCE")
 @TableGenerator(name = "clientPreferenceGenerator", table = "ID_GENERATOR", pkColumnName = "gen_name", valueColumnName = "gen_value", pkColumnValue = "clientPreference", allocationSize = 1)
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "profile")
-public class ClientPreference implements BaseModel<Long> {
+public class ClientPreference implements ModificationModel<Long> {
 
     private static final long serialVersionUID = -6858324543891644304L;
 
@@ -81,11 +81,8 @@ public class ClientPreference implements BaseModel<Long> {
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @Column(name = "CREATION_DATE")
-    private Date creationDate;
-
-    @Column(name = "LAST_MODIFIED_DATE")
-    private Date lastModifiedDate;
+    @Embedded
+    private Modification modification = Modification.createDefault();
 
     @Override
     public Long getId() {
@@ -233,20 +230,12 @@ public class ClientPreference implements BaseModel<Long> {
         this.description = description;
     }
 
-    public Date getCreationDate() {
-        return creationDate;
+    public Modification getModification() {
+        return modification;
     }
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public Date getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(Date lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
+    public void setModification(Modification modification) {
+        this.modification = modification;
     }
 
     @Override

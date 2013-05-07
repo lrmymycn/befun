@@ -1,9 +1,8 @@
 package com.befun.domain.profile;
 
-import java.util.Date;
-
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -17,14 +16,15 @@ import javax.persistence.TableGenerator;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import com.befun.domain.BaseModel;
+import com.befun.domain.ModificationModel;
+import com.befun.domain.Modification;
 
 @Entity
 @Table(name = "SUBURB_INTEREST_LIST_ITEM")
 @TableGenerator(name = "suburbInterestListItemGenerator", table = "ID_GENERATOR", pkColumnName = "gen_name", valueColumnName = "gen_value", pkColumnValue = "suburbInterestListItem", allocationSize = 1)
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "profile")
-public class SuburbInterestListItem implements BaseModel<Long> {
+public class SuburbInterestListItem implements ModificationModel<Long> {
 
     private static final long serialVersionUID = 2171356704749634553L;
 
@@ -43,11 +43,8 @@ public class SuburbInterestListItem implements BaseModel<Long> {
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @Column(name = "CREATION_DATE")
-    private Date creationDate;
-
-    @Column(name = "LAST_MODIFIED_DATE")
-    private Date lastModifiedDate;
+    @Embedded
+    private Modification modification = Modification.createDefault();
 
     @Override
     public Long getId() {
@@ -83,27 +80,18 @@ public class SuburbInterestListItem implements BaseModel<Long> {
         this.description = description;
     }
 
-    public Date getCreationDate() {
-        return creationDate;
+    public Modification getModification() {
+        return modification;
     }
 
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
-    }
-
-    public Date getLastModifiedDate() {
-        return lastModifiedDate;
-    }
-
-    public void setLastModifiedDate(Date lastModifiedDate) {
-        this.lastModifiedDate = lastModifiedDate;
+    public void setModification(Modification modification) {
+        this.modification = modification;
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((creationDate == null) ? 0 : creationDate.hashCode());
         result = prime * result + ((description == null) ? 0 : description.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         result = prime * result + ((propertyId == null) ? 0 : propertyId.hashCode());
@@ -116,9 +104,6 @@ public class SuburbInterestListItem implements BaseModel<Long> {
         if (obj == null) return false;
         if (getClass() != obj.getClass()) return false;
         SuburbInterestListItem other = (SuburbInterestListItem) obj;
-        if (creationDate == null) {
-            if (other.creationDate != null) return false;
-        } else if (!creationDate.equals(other.creationDate)) return false;
         if (description == null) {
             if (other.description != null) return false;
         } else if (!description.equals(other.description)) return false;
@@ -133,7 +118,7 @@ public class SuburbInterestListItem implements BaseModel<Long> {
 
     @Override
     public String toString() {
-        return "SuburbInterestListItem [id=" + id + ", propertyId=" + propertyId + ", description=" + description + ", creationDate=" + creationDate + "]";
+        return "SuburbInterestListItem [id=" + id + ", propertyId=" + propertyId + ", description=" + description + "]";
     }
 
 }
