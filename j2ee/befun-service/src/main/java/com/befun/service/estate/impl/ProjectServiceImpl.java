@@ -17,8 +17,8 @@ import com.befun.domain.estate.Area;
 import com.befun.domain.estate.Project;
 import com.befun.domain.estate.Suburb;
 import com.befun.service.estate.ProjectService;
-import com.befun.service.query.EstateQueryCondition;
-import com.befun.service.query.ProjectQueryCondition;
+import com.befun.service.query.estate.EstateQueryCondition;
+import com.befun.service.query.estate.ProjectQueryCondition;
 
 @Service("ProjectService")
 @Transactional(rollbackFor = Exception.class)

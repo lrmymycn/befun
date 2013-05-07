@@ -1,7 +1,9 @@
 CREATE TABLE IF NOT EXISTS `profile` (
   `id` bigint(20) NOT NULL,
+  `type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0-GENERAL, 1-EMPLOYEE, 2-SALE, 3-MANAGER, 4-CLIENT, 5-REFERRAL',
   `username` varchar(50) NOT NULL,
   `password` varchar(255) DEFAULT NULL COMMENT '密码应该是经过单向散列算法加密过的，不可逆',
+  `expired` tinyint(1) DEFAULT 0,
   `gender` tinyint(4) NOT NULL DEFAULT '0' COMMENT '0-male, 1-female, 2-other',
   `surname` varchar(45) DEFAULT NULL,
   `given_name` varchar(45) DEFAULT NULL,
@@ -16,15 +18,24 @@ CREATE TABLE IF NOT EXISTS `profile` (
   `mail_postcode` varchar(20) DEFAULT NULL,
   `email` varchar(200) DEFAULT NULL,
   `description` varchar(200) DEFAULT NULL,
+  `creation_date` datetime NOT NULL,
+  `last_modified_date` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_username` (`username`),
+  KEY `idx_expired` (`expired`) USING BTREE,
+  KEY `idx_gender` (`gender`) USING BTREE,
   KEY `idx_surname` (`surname`),
   KEY `idx_given_name` (`given_name`),
   KEY `idx_preferred_name` (`preferred_name`),
   KEY `idx_mobile_number` (`mobile_number`),
   KEY `idx_mobile_number1` (`mobile_number1`),
   KEY `idx_other_number` (`other_number`),
-  KEY `idx_home_phone` (`home_phone`)
+  KEY `idx_home_phone` (`home_phone`),
+  KEY `idx_home_postcode` (`home_postcode`),
+  KEY `idx_mail_postcode` (`mail_postcode`),
+  KEY `idx_email` (`email`),
+  KEY `idx_creation_date` (`creation_date`),
+  KEY `idx_last_modified_date` (`last_modified_date`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `employee` (
@@ -38,49 +49,6 @@ CREATE TABLE IF NOT EXISTS `employee` (
   PRIMARY KEY (`id`),
   KEY `idx_employee_number` (`employee_number`),
   CONSTRAINT `fk_sale_id` FOREIGN KEY (`id`) REFERENCES `profile` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE IF NOT EXISTS `client` (
-  `id` bigint(20) NOT NULL,
-  `current_employee` bigint(20) DEFAULT NULL,
-  `title` tinyint(4) NOT NULL DEFAULT '0',
-  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'PR/Citizen, Overseas investor, Student',
-  `purchase_type_first` tinyint(1) NOT NULL DEFAULT '0',
-  `purchase_type_owner` tinyint(1) NOT NULL DEFAULT '0',
-  `purchase_type_inverstor` tinyint(1) NOT NULL DEFAULT '0',
-  `purchase_type_student` tinyint(1) NOT NULL DEFAULT '0',
-  `purchase_type_other` tinyint(1) NOT NULL DEFAULT '0',
-  `purchase_type_1` tinyint(1) NOT NULL DEFAULT '0',
-  `purchase_type_2` tinyint(1) NOT NULL DEFAULT '0',
-  `purchase_type_3` tinyint(1) NOT NULL DEFAULT '0',
-  `purchase_type_4` tinyint(1) NOT NULL DEFAULT '0',
-  `client_preference_id` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `idx_status` (`status`),
-  KEY `idx_current_employee` (`current_employee`),
-  KEY `idx_purchase_type_first` (`purchase_type_first`),
-  KEY `idx_purchase_type_owner` (`purchase_type_owner`),
-  KEY `idx_purchase_type_inverstor` (`purchase_type_inverstor`),
-  KEY `idx_purchase_type_student` (`purchase_type_student`),
-  KEY `idx_purchase_type_other` (`purchase_type_other`),
-  KEY `idx_client_preference_id` (`client_preference_id`),
-  CONSTRAINT `fk_client_id` FOREIGN KEY (`id`) REFERENCES `profile` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-CREATE TABLE IF NOT EXISTS `employee_client` (
-  `id` bigint(20) NOT NULL,
-  `employee_id` bigint(20) NOT NULL,
-  `client_id` bigint(20) NOT NULL,
-  `start_date` datetime DEFAULT NULL,
-  `end_date` datetime DEFAULT NULL,
-  `description` text DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `idx_employee_id` (`employee_id`),
-  KEY `idx_client_id` (`client_id`),
-  KEY `idx_start_date` (`start_date`),
-  KEY `idx_end_date` (`end_date`),
-  CONSTRAINT `fk_interest_list_ep_id` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_interest_list_id` FOREIGN KEY (`client_id`) REFERENCES `client` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `client_preference` (
@@ -102,7 +70,57 @@ CREATE TABLE IF NOT EXISTS `client_preference` (
   `luxury` varchar(255) NULL,
   `good_live_env` varchar(255) NULL,
   `description` varchar(255) NULL,
-  PRIMARY KEY (`id`)
+  `creation_date` datetime NOT NULL,
+  `last_modified_date` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_creation_date` (`creation_date`),
+  KEY `idx_last_modified_date` (`last_modified_date`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `client` (
+  `id` bigint(20) NOT NULL,
+  `current_employee` bigint(20) DEFAULT NULL,
+  `title` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'MR, MRS, MS, DR',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT 'PR/Citizen, Overseas investor, Student',
+  `purchase_type_first` tinyint(1) DEFAULT '0',
+  `purchase_type_owner` tinyint(1) DEFAULT '0',
+  `purchase_type_inverstor` tinyint(1) DEFAULT '0',
+  `purchase_type_student` tinyint(1) DEFAULT '0',
+  `purchase_type_other` tinyint(1) DEFAULT '0',
+  `purchase_type_1` tinyint(1) DEFAULT '0',
+  `purchase_type_2` tinyint(1) DEFAULT '0',
+  `purchase_type_3` tinyint(1) DEFAULT '0',
+  `purchase_type_4` tinyint(1) DEFAULT '0',
+  `last_active_date` datetime NOT NULL,
+  `client_preference_id` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_status` (`status`) USING BTREE,
+  KEY `idx_current_employee` (`current_employee`),
+  KEY `idx_pc_type_first` (`purchase_type_first`) USING BTREE,
+  KEY `idx_pc_type_owner` (`purchase_type_owner`) USING BTREE,
+  KEY `idx_pc_type_inverstor` (`purchase_type_inverstor`) USING BTREE,
+  KEY `idx_pc_type_student` (`purchase_type_student`) USING BTREE,
+  KEY `idx_pc_type_other` (`purchase_type_other`) USING BTREE,
+  KEY `idx_last_active_date` (`last_active_date`),
+  KEY `idx_pref_id` (`client_preference_id`),
+  CONSTRAINT `fk_client_id` FOREIGN KEY (`id`) REFERENCES `profile` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_client_pref_id` FOREIGN KEY (`client_preference_id`) REFERENCES `client_preference` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `employee_client` (
+  `id` bigint(20) NOT NULL,
+  `employee_id` bigint(20) NOT NULL,
+  `client_id` bigint(20) NOT NULL,
+  `start_date` datetime DEFAULT NULL,
+  `end_date` datetime DEFAULT NULL,
+  `description` text DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_employee_id` (`employee_id`),
+  KEY `idx_client_id` (`client_id`),
+  KEY `idx_start_date` (`start_date`),
+  KEY `idx_end_date` (`end_date`),
+  CONSTRAINT `fk_interest_list_ep_id` FOREIGN KEY (`employee_id`) REFERENCES `employee` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_interest_list_id` FOREIGN KEY (`client_id`) REFERENCES `client` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `interest_list` (
@@ -111,8 +129,11 @@ CREATE TABLE IF NOT EXISTS `interest_list` (
   `name` varchar(255) NULL,
   `description` text DEFAULT NULL,
   `creation_date` datetime DEFAULT NULL,
+  `last_modified_date` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_client_id` (`client_id`),
+  KEY `idx_creation_date` (`creation_date`),
+  KEY `idx_last_modified_date` (`last_modified_date`),
   CONSTRAINT `fk_interest_list_c_id` FOREIGN KEY (`client_id`) REFERENCES `client` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -122,9 +143,12 @@ CREATE TABLE IF NOT EXISTS `apartment_interest_list_item` (
   `apartment_id` bigint(20) NOT NULL,
   `description` text DEFAULT NULL,
   `creation_date` datetime DEFAULT NULL,
+  `last_modified_date` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_interest_list_id` (`interest_list_id`),
   KEY `idx_apartment_id` (`apartment_id`),
+  KEY `idx_creation_date` (`creation_date`),
+  KEY `idx_last_modified_date` (`last_modified_date`),
   CONSTRAINT `fk_ap_interest_list_id` FOREIGN KEY (`interest_list_id`) REFERENCES `interest_list` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -134,9 +158,12 @@ CREATE TABLE IF NOT EXISTS `floorplan_interest_list_item` (
   `floorplan_id` bigint(20) NOT NULL,
   `description` text DEFAULT NULL,
   `creation_date` datetime DEFAULT NULL,
+  `last_modified_date` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_interest_list_id` (`interest_list_id`),
   KEY `idx_floorplan_id` (`floorplan_id`),
+  KEY `idx_creation_date` (`creation_date`),
+  KEY `idx_last_modified_date` (`last_modified_date`),
   CONSTRAINT `fk_fp_interest_list_id` FOREIGN KEY (`interest_list_id`) REFERENCES `interest_list` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -146,9 +173,12 @@ CREATE TABLE IF NOT EXISTS `project_interest_list_item` (
   `project_id` bigint(20) NOT NULL,
   `description` text DEFAULT NULL,
   `creation_date` datetime DEFAULT NULL,
+  `last_modified_date` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_interest_list_id` (`interest_list_id`),
   KEY `idx_project_id` (`project_id`),
+  KEY `idx_creation_date` (`creation_date`),
+  KEY `idx_last_modified_date` (`last_modified_date`),
   CONSTRAINT `fk_pro_interest_list_id` FOREIGN KEY (`interest_list_id`) REFERENCES `interest_list` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -158,9 +188,12 @@ CREATE TABLE IF NOT EXISTS `suburb_interest_list_item` (
   `suburb_id` bigint(20) NOT NULL,
   `description` text DEFAULT NULL,
   `creation_date` datetime DEFAULT NULL,
+  `last_modified_date` datetime NOT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_interest_list_id` (`interest_list_id`),
   KEY `idx_suburb_id` (`suburb_id`),
+  KEY `idx_creation_date` (`creation_date`),
+  KEY `idx_last_modified_date` (`last_modified_date`),
   CONSTRAINT `fk_s_interest_list_id` FOREIGN KEY (`interest_list_id`) REFERENCES `interest_list` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -245,8 +278,10 @@ CREATE TABLE IF NOT EXISTS `media` (
   PRIMARY KEY (`id`),
   KEY `idx_bid` (`bid`),
   KEY `idx_name` (`name`),
-  KEY `idx_media_type` (`media_type`),
-  KEY `idx_content_type` (`content_type`)
+  KEY `idx_alt` (`alt`),
+  KEY `idx_media_type` (`media_type`) USING BTREE,
+  KEY `idx_content_type` (`content_type`) USING BTREE,
+  KEY `idx_enabled` (`enabled`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `comment_rec` (
@@ -400,7 +435,7 @@ CREATE TABLE IF NOT EXISTS `project` (
   `enabled` tinyint(1) DEFAULT 1,
   PRIMARY KEY (`id`),
   KEY `idx_bid` (`bid`),
-  KEY `idx_suburb_id` (`suburb_id`),
+  KEY `idx_suburb_id` (`suburb_id`) USING BTREE,
   KEY `idx_name` (`name`),
   KEY `idx_developer` (`developer`),
   KEY `idx_address` (`address`(255)),
@@ -408,6 +443,7 @@ CREATE TABLE IF NOT EXISTS `project` (
   KEY `idx_longitude` (`longitude`),
   KEY `idx_latitude` (`latitude`),
   KEY `idx_distancetocity` (`distance_to_city`),
+  KEY `idx_enabled` (`enabled`) USING BTREE,
   CONSTRAINT `fk_project_suburb_id` FOREIGN KEY (`suburb_id`) REFERENCES `suburb` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_project_picture_id` FOREIGN KEY (`picture_id`) REFERENCES `media` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_project_logo_id` FOREIGN KEY (`logo_id`) REFERENCES `media` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -441,6 +477,7 @@ CREATE TABLE IF NOT EXISTS `stage` (
   KEY `idx_bid` (`bid`),
   KEY `idx_name` (`name`),
   KEY `idx_stage_project_id` (`project_id`),
+  KEY `idx_enabled` (`enabled`) USING BTREE,
   CONSTRAINT `fk_stage_project_id` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -478,10 +515,12 @@ CREATE TABLE IF NOT EXISTS `building` (
   KEY `idx_bid` (`bid`),
   KEY `idx_stage_id` (`stage_id`),
   KEY `idx_finish_date` (`finish_date`),
-  KEY `idx_orientation_east` (`orientation_east`),
-  KEY `idx_orientation_south` (`orientation_south`),
-  KEY `idx_orientation_west` (`orientation_west`),
-  KEY `idx_orientation_north` (`orientation_north`),
+  KEY `idx_orientation_east` (`orientation_east`) USING BTREE,
+  KEY `idx_orientation_south` (`orientation_south`) USING BTREE,
+  KEY `idx_orientation_west` (`orientation_west`) USING BTREE,
+  KEY `idx_orientation_north` (`orientation_north`) USING BTREE,
+  KEY `idx_ready_house` (`ready_house`) USING BTREE,
+  KEY `idx_enabled` (`enabled`) USING BTREE,
   CONSTRAINT `fk_building_stage_id` FOREIGN KEY (`stage_id`) REFERENCES `stage` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -533,23 +572,24 @@ CREATE TABLE IF NOT EXISTS `floorplan` (
   KEY `idx_building_id` (`building_id`),
   KEY `idx_public_picture_id` (`public_picture_id`),
   KEY `idx_sale_picture_id` (`sale_picture_id`),
-  KEY `idx_type` (`type`),
-  KEY `idx_bedroom_count` (`bedroom_count`),
-  KEY `idx_bathroom_count` (`bathroom_count`),
-  KEY `idx_studyroom_count` (`studyroom_count`),
-  KEY `idx_open_baclony_count` (`open_baclony_count`),
-  KEY `idx_enclosed_baclony_count` (`enclosed_baclony_count`),
-  KEY `idx_courtyard_count` (`courtyard_count`),
-  KEY `idx_orientation_east` (`orientation_east`),
-  KEY `idx_orientation_south` (`orientation_south`),
-  KEY `idx_orientation_west` (`orientation_west`),
-  KEY `idx_orientation_north` (`orientation_north`),
+  KEY `idx_type` (`type`) USING BTREE,
+  KEY `idx_bedroom_count` (`bedroom_count`) USING BTREE,
+  KEY `idx_bathroom_count` (`bathroom_count`) USING BTREE,
+  KEY `idx_studyroom_count` (`studyroom_count`) USING BTREE,
+  KEY `idx_open_baclony_count` (`open_baclony_count`) USING BTREE,
+  KEY `idx_enclosed_baclony_count` (`enclosed_baclony_count`) USING BTREE,
+  KEY `idx_courtyard_count` (`courtyard_count`) USING BTREE,
+  KEY `idx_orientation_east` (`orientation_east`) USING BTREE,
+  KEY `idx_orientation_south` (`orientation_south`) USING BTREE,
+  KEY `idx_orientation_west` (`orientation_west`) USING BTREE,
+  KEY `idx_orientation_north` (`orientation_north`) USING BTREE,
   KEY `idx_min_price` (`min_price`),
   KEY `idx_max_price` (`max_price`),
   KEY `idx_internal_size` (`internal_size`),
   KEY `idx_external_size` (`external_size`),
   KEY `idx_total_size` (`total_size`),
   KEY `idx_land_size` (`land_size`),
+  KEY `idx_enabled` (`enabled`) USING BTREE,
   CONSTRAINT `fk_floorplan_building_id` FOREIGN KEY (`building_id`) REFERENCES `building` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_floorplan_pub_picture_id` FOREIGN KEY (`public_picture_id`) REFERENCES `media` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_floorplan_sale_picture_id` FOREIGN KEY (`sale_picture_id`) REFERENCES `media` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
@@ -589,8 +629,13 @@ CREATE TABLE IF NOT EXISTS `apartment` (
   KEY `idx_bid` (`bid`),
   KEY `idx_floorplan_id` (`floorplan_id`),
   KEY `idx_price` (`price`),
-  KEY `idx_car_parking_count` (`car_parking_count`),
-  KEY `idx_storageroom_count` (`storageroom_count`),
+  KEY `idx_unit_number` (`unit_number`),
+  KEY `idx_lot_number` (`lot_number`),
+  KEY `idx_penthouse` (`penthouse`),
+  KEY `idx_car_parking_count` (`car_parking_count`) USING BTREE,
+  KEY `idx_storageroom_count` (`storageroom_count`) USING BTREE,
+  KEY `idx_sold_out` (`sold_out`) USING BTREE,
+  KEY `idx_enabled` (`enabled`) USING BTREE,
   CONSTRAINT `fk_apartment_floorplan_id` FOREIGN KEY (`floorplan_id`) REFERENCES `floorplan` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -621,7 +666,8 @@ CREATE TABLE IF NOT EXISTS `place_intrest` (
   KEY `idx_name` (`name`),
   KEY `idx_longitude` (`longitude`),
   KEY `idx_latitude` (`latitude`),
-  KEY `idx_description` (`description`(255))
+  KEY `idx_description` (`description`(255)),
+  KEY `idx_enabled` (`enabled`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `suburb_place_intrest` (
@@ -636,6 +682,7 @@ CREATE TABLE IF NOT EXISTS `suburb_place_intrest` (
   KEY `idx_suburb_id` (`suburb_id`),
   KEY `idx_place_intrest_id` (`place_intrest_id`),
   KEY `idx_distance` (`distance`),
+  KEY `idx_enabled` (`enabled`) USING BTREE,
   CONSTRAINT `fk_suburb_place_intrest_place_id` FOREIGN KEY (`place_intrest_id`) REFERENCES `place_intrest` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_suburb_place_intrest_suburb_id` FOREIGN KEY (`suburb_id`) REFERENCES `suburb` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -652,6 +699,7 @@ CREATE TABLE IF NOT EXISTS `project_place_intrest` (
   KEY `idx_project_id` (`project_id`),
   KEY `idx_place_intrest_id` (`place_intrest_id`),
   KEY `idx_distance` (`distance`),
+  KEY `idx_enabled` (`enabled`) USING BTREE,
   CONSTRAINT `fk_project_place_intrest_pro_id` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_project_place_intrest_pl_id` FOREIGN KEY (`place_intrest_id`) REFERENCES `place_intrest` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -668,6 +716,7 @@ CREATE TABLE IF NOT EXISTS `stage_place_intrest` (
   KEY `idx_stage_id` (`stage_id`),
   KEY `idx_place_id` (`place_intrest_id`),
   KEY `idx_distance` (`distance`),
+  KEY `idx_enabled` (`enabled`) USING BTREE,
   CONSTRAINT `fk_stage_place_intrest_place_id` FOREIGN KEY (`place_intrest_id`) REFERENCES `place_intrest` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_stage_place_intrest_stage_id` FOREIGN KEY (`stage_id`) REFERENCES `stage` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -683,6 +732,7 @@ CREATE TABLE IF NOT EXISTS `project_media` (
   PRIMARY KEY (`id`),
   KEY `idx_project_id` (`project_id`),
   KEY `idx_media_id` (`media_id`),
+  KEY `idx_enabled` (`enabled`) USING BTREE,
   CONSTRAINT `fk_project_media_pro_id` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_project_media_media_id` FOREIGN KEY (`media_id`) REFERENCES `media` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -698,6 +748,7 @@ CREATE TABLE IF NOT EXISTS `floorplan_media` (
   PRIMARY KEY (`id`),
   KEY `idx_floorplan_id` (`floorplan_id`),
   KEY `idx_media_id` (`media_id`),
+  KEY `idx_enabled` (`enabled`) USING BTREE,
   CONSTRAINT `fk_floorplan_media_pro_id` FOREIGN KEY (`floorplan_id`) REFERENCES `floorplan` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_floorplan_media_media_id` FOREIGN KEY (`media_id`) REFERENCES `media` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -713,6 +764,7 @@ CREATE TABLE IF NOT EXISTS `apartment_media` (
   PRIMARY KEY (`id`),
   KEY `idx_apartment_id` (`apartment_id`),
   KEY `idx_media_id` (`media_id`),
+  KEY `idx_enabled` (`enabled`) USING BTREE,
   CONSTRAINT `fk_apartment_media_ap_id` FOREIGN KEY (`apartment_id`) REFERENCES `apartment` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_apartment_media_med_id` FOREIGN KEY (`media_id`) REFERENCES `media` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -732,7 +784,8 @@ CREATE TABLE IF NOT EXISTS `busroute` (
   PRIMARY KEY (`id`),
   KEY `idx_name` (`name`),
   KEY `idx_starting_point` (`starting_point`),
-  KEY `idx_finishing_point` (`finishing_point`)
+  KEY `idx_finishing_point` (`finishing_point`),
+  KEY `idx_enabled` (`enabled`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `busroute_polyline` (
@@ -760,6 +813,7 @@ CREATE TABLE IF NOT EXISTS `project_busroute` (
   KEY `idx_project_id` (`project_id`),
   KEY `idx_busroute_id` (`busroute_id`),
   KEY `idx_distance` (`distance`),
+  KEY `idx_enabled` (`enabled`) USING BTREE,
   CONSTRAINT `fk_project_busroute_bus_id` FOREIGN KEY (`busroute_id`) REFERENCES `busroute` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_project_busroute_pro_id` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

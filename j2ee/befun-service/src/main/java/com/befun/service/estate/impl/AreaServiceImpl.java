@@ -16,7 +16,7 @@ import com.befun.dao.estate.AreaPolylineDao;
 import com.befun.domain.estate.Area;
 import com.befun.domain.estate.AreaPolyline;
 import com.befun.service.estate.AreaService;
-import com.befun.service.query.AreaQueryCondition;
+import com.befun.service.query.estate.AreaQueryCondition;
 
 @Service("AreaService")
 @Transactional(rollbackFor = Exception.class)

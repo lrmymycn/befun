@@ -5,7 +5,7 @@ import java.util.Map;
 import com.befun.domain.estate.Area;
 import com.befun.domain.estate.Project;
 import com.befun.domain.estate.Suburb;
-import com.befun.service.query.ProjectQueryCondition;
+import com.befun.service.query.estate.ProjectQueryCondition;
 
 public interface ProjectService extends BaseEstateService<Project, Long> {
 

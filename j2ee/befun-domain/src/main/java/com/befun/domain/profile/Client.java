@@ -1,5 +1,7 @@
 package com.befun.domain.profile;
 
+import java.util.Date;
+
 import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -27,7 +29,7 @@ public class Client extends Profile {
 
     private static final long serialVersionUID = 8457225248069897238L;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id", name = "CURRENT_EMPLOYEE")
     private Employee currentEmployee;
 
@@ -66,10 +68,17 @@ public class Client extends Profile {
     @Column(name = "PURCHASE_TYPE_4")
     private Boolean purchaseType4;
 
+    @Column(name = "LAST_ACTIVE_DATE")
+    private Date lastActiveDate;
+
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id", name = "CLIENT_PREFERENCE_ID")
     private ClientPreference preference;
 
+    public Client(){
+        this.setType(ProfileType.CLIENT);
+    }
+    
     public Employee getCurrentEmployee() {
         return currentEmployee;
     }
@@ -164,6 +173,14 @@ public class Client extends Profile {
 
     public void setPurchaseType4(Boolean purchaseType4) {
         this.purchaseType4 = purchaseType4;
+    }
+
+    public Date getLastActiveDate() {
+        return lastActiveDate;
+    }
+
+    public void setLastActiveDate(Date lastActiveDate) {
+        this.lastActiveDate = lastActiveDate;
     }
 
     public ClientPreference getPreference() {

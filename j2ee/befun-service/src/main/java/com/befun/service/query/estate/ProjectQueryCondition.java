@@ -1,4 +1,4 @@
-package com.befun.service.query;
+package com.befun.service.query.estate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +12,8 @@ import org.hibernate.criterion.Restrictions;
 import org.hibernate.criterion.Subqueries;
 
 import com.befun.domain.estate.Apartment;
+import com.befun.service.query.QCUtils;
+import com.befun.service.query.QueryConstants;
 
 public class ProjectQueryCondition extends EstateQueryCondition {
 

@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import com.befun.domain.estate.Project;
 import com.befun.service.ICommonService;
 import com.befun.service.SpringTestBase;
-import com.befun.service.query.ApartmentQueryCondition;
-import com.befun.service.query.FloorplanQueryCondition;
-import com.befun.service.query.ProjectQueryCondition;
-import com.befun.service.query.SuburbQueryCondition;
+import com.befun.service.query.estate.ApartmentQueryCondition;
+import com.befun.service.query.estate.FloorplanQueryCondition;
+import com.befun.service.query.estate.ProjectQueryCondition;
+import com.befun.service.query.estate.SuburbQueryCondition;
 
 public class TestProjectService extends SpringTestBase {
 

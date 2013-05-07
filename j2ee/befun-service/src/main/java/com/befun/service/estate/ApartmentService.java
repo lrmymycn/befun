@@ -5,7 +5,7 @@ import java.util.List;
 import com.befun.domain.PaginationBean;
 import com.befun.domain.estate.Apartment;
 import com.befun.domain.estate.Floorplan;
-import com.befun.service.query.ApartmentQueryCondition;
+import com.befun.service.query.estate.ApartmentQueryCondition;
 
 public interface ApartmentService extends BaseEstateService<Apartment, Long> {
 

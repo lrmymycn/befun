@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import com.befun.domain.estate.Stage;
 import com.befun.service.IBaseService;
 import com.befun.service.estate.StageService;
-import com.befun.service.query.StageQueryCondition;
+import com.befun.service.query.estate.StageQueryCondition;
 import com.befun.web.action.CRUDAction;
 import com.befun.web.view.StageView;
 import com.befun.web.view.converter.ConverterFactory;

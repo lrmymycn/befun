@@ -15,8 +15,8 @@ import com.befun.domain.PaginationBean;
 import com.befun.domain.estate.Apartment;
 import com.befun.domain.estate.Floorplan;
 import com.befun.service.estate.ApartmentService;
-import com.befun.service.query.ApartmentQueryCondition;
 import com.befun.service.query.QCUtils;
+import com.befun.service.query.estate.ApartmentQueryCondition;
 
 @Service("ApartmentService")
 @Transactional(rollbackFor = Exception.class)

@@ -19,7 +19,7 @@ public class ApartmentColumnParser implements ColumnParser<Apartment> {
         rs.setColorScheme(AccessUtil.getString(col, "colorscheme"));
         rs.setDescription(AccessUtil.getString(col, "description"));
         rs.setFloorLevel(AccessUtil.getShort(col, "floor"));
-        
+
         String floorplanId = AccessUtil.getString(col, "floorplan_id");
         if (StringUtils.isNotBlank(floorplanId)) {
             Floorplan floorplan = new Floorplan();
@@ -28,7 +28,7 @@ public class ApartmentColumnParser implements ColumnParser<Apartment> {
         } else {
             throw new IllegalArgumentException("floorplan_id should be not null for Apartment: " + rs.getBid());
         }
-                
+
         rs.setLotNumber(AccessUtil.getString(col, "lot_number"));
         rs.setPentHouse(AccessUtil.getBool(col, "penthouse"));
         rs.setPrice(AccessUtil.getInteger(col, "price"));
@@ -38,6 +38,9 @@ public class ApartmentColumnParser implements ColumnParser<Apartment> {
         rs.setUnitNumber(AccessUtil.getString(col, "unit_number"));
 
         ModelModification modelModification = ModelModification.createDefault();
+        if (rs.getPrice() <= 0) {
+            modelModification.setEnabled(false);
+        }
         rs.setModelModification(modelModification);
         return rs;
     }

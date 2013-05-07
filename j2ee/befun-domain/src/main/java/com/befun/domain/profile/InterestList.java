@@ -1,13 +1,18 @@
 package com.befun.domain.profile;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Cacheable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -41,6 +46,25 @@ public class InterestList implements BaseModel<Long> {
 
     @Column(name = "CREATION_DATE")
     private Date creationDate;
+
+    @Column(name = "LAST_MODIFIED_DATE")
+    private Date lastModifiedDate;
+
+    @OneToMany(mappedBy = "interestList", fetch = FetchType.LAZY, cascade = { CascadeType.REMOVE })
+    @OrderBy("lastModifiedDate ASC")
+    private List<ApartmentInterestListItem> apartments;
+
+    @OneToMany(mappedBy = "interestList", fetch = FetchType.LAZY, cascade = { CascadeType.REMOVE })
+    @OrderBy("lastModifiedDate ASC")
+    private List<FloorplanInterestListItem> floorplans;
+
+    @OneToMany(mappedBy = "interestList", fetch = FetchType.LAZY, cascade = { CascadeType.REMOVE })
+    @OrderBy("lastModifiedDate ASC")
+    private List<ProjectInterestListItem> projects;
+
+    @OneToMany(mappedBy = "interestList", fetch = FetchType.LAZY, cascade = { CascadeType.REMOVE })
+    @OrderBy("lastModifiedDate ASC")
+    private List<SuburbInterestListItem> suburbs;
 
     @Override
     public Long getId() {
@@ -82,6 +106,46 @@ public class InterestList implements BaseModel<Long> {
 
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public Date getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public List<ApartmentInterestListItem> getApartments() {
+        return apartments;
+    }
+
+    public void setApartments(List<ApartmentInterestListItem> apartments) {
+        this.apartments = apartments;
+    }
+
+    public List<FloorplanInterestListItem> getFloorplans() {
+        return floorplans;
+    }
+
+    public void setFloorplans(List<FloorplanInterestListItem> floorplans) {
+        this.floorplans = floorplans;
+    }
+
+    public List<ProjectInterestListItem> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<ProjectInterestListItem> projects) {
+        this.projects = projects;
+    }
+
+    public List<SuburbInterestListItem> getSuburbs() {
+        return suburbs;
+    }
+
+    public void setSuburbs(List<SuburbInterestListItem> suburbs) {
+        this.suburbs = suburbs;
     }
 
     @Override

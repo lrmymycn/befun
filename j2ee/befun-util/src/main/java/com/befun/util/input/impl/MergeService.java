@@ -18,7 +18,7 @@ import com.befun.domain.estate.Project;
 import com.befun.domain.estate.ProjectMedia;
 import com.befun.domain.estate.Stage;
 import com.befun.service.ICommonService;
-import com.befun.service.query.ProjectMediaQueryCondition;
+import com.befun.service.query.estate.ProjectMediaQueryCondition;
 
 @Component("ImportMergeService")
 public class MergeService {

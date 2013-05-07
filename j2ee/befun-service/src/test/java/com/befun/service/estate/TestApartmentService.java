@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.befun.domain.estate.Apartment;
 import com.befun.service.SpringTestBase;
-import com.befun.service.query.ApartmentQueryCondition;
+import com.befun.service.query.estate.ApartmentQueryCondition;
 
 public class TestApartmentService extends SpringTestBase {
 

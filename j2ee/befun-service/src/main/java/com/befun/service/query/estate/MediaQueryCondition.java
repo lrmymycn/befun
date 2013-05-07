@@ -1,4 +1,4 @@
-package com.befun.service.query;
+package com.befun.service.query.estate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,8 @@ import org.hibernate.criterion.Restrictions;
 
 import com.befun.domain.estate.ContentType;
 import com.befun.domain.estate.MediaType;
+import com.befun.service.query.QCUtils;
+import com.befun.service.query.QueryConstants;
 
 public class MediaQueryCondition extends EstateQueryCondition {
 

@@ -30,20 +30,8 @@ public class TestPasswordEncoder {
 
     @Test
     public void testPassword() {
-        String rawPass = "testDataAdmin";
+        String rawPass = "test123";
         String encodedPassword = standardPasswordEncoder1.encode(rawPass);
-        System.out.println("raw:" + rawPass + "|encoded:" + encodedPassword);
-        rawPass = "testSale";
-        encodedPassword = standardPasswordEncoder1.encode(rawPass);
-        System.out.println("raw:" + rawPass + "|encoded:" + encodedPassword);
-        rawPass = "testCustomer";
-        encodedPassword = standardPasswordEncoder1.encode(rawPass);
-        System.out.println("raw:" + rawPass + "|encoded:" + encodedPassword);
-        rawPass = "testPublic";
-        encodedPassword = standardPasswordEncoder1.encode(rawPass);
-        System.out.println("raw:" + rawPass + "|encoded:" + encodedPassword);
-        rawPass = "@dm!n123";
-        encodedPassword = standardPasswordEncoder1.encode(rawPass);
         System.out.println("raw:" + rawPass + "|encoded:" + encodedPassword);
     }
 }

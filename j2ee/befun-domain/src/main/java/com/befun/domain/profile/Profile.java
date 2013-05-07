@@ -1,5 +1,6 @@
 package com.befun.domain.profile;
 
+import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -36,11 +37,17 @@ public class Profile implements BaseModel<Long> {
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "profileGenerator")
     private Long id;
 
+    @Column(name = "TYPE", nullable = false)
+    private ProfileType type = ProfileType.GENERAL;
+
     @Column(name = "USERNAME", length = 50)
     private String username;
 
     @Column(name = "PASSWORD", length = 255)
     private String password;
+
+    @Column(name = "expired")
+    private Boolean expired;
 
     @Column(name = "gender")
     @Enumerated(EnumType.ORDINAL)
@@ -60,6 +67,9 @@ public class Profile implements BaseModel<Long> {
 
     @Column(name = "MOBILE_NUMBER1", length = 45)
     private String mobileNumber1;
+
+    @Column(name = "OTHER_NUMBER", length = 45)
+    private String otherNumber;
 
     @Column(name = "HOME_PHONE", length = 45)
     private String homePhone;
@@ -85,12 +95,26 @@ public class Profile implements BaseModel<Long> {
     @OneToMany(mappedBy = "profile", fetch = FetchType.LAZY)
     private Set<ProfileRole> profileRoles;
 
+    @Column(name = "CREATION_DATE")
+    private Date creationDate;
+
+    @Column(name = "LAST_MODIFIED_DATE")
+    private Date lastModifiedDate;
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public ProfileType getType() {
+        return type;
+    }
+
+    protected void setType(ProfileType type) {
+        this.type = type;
     }
 
     public String getUsername() {
@@ -157,6 +181,22 @@ public class Profile implements BaseModel<Long> {
         this.mobileNumber1 = mobileNumber1;
     }
 
+    public Boolean getExpired() {
+        return expired;
+    }
+
+    public void setExpired(Boolean expired) {
+        this.expired = expired;
+    }
+
+    public String getOtherNumber() {
+        return otherNumber;
+    }
+
+    public void setOtherNumber(String otherNumber) {
+        this.otherNumber = otherNumber;
+    }
+
     public String getHomePhone() {
         return homePhone;
     }
@@ -221,25 +261,37 @@ public class Profile implements BaseModel<Long> {
         this.profileRoles = profileRoles;
     }
 
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Date getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((description == null) ? 0 : description.hashCode());
         result = prime * result + ((email == null) ? 0 : email.hashCode());
         result = prime * result + ((gender == null) ? 0 : gender.hashCode());
         result = prime * result + ((givenName == null) ? 0 : givenName.hashCode());
         result = prime * result + ((homeAddress == null) ? 0 : homeAddress.hashCode());
-        result = prime * result + ((homePhone == null) ? 0 : homePhone.hashCode());
         result = prime * result + ((homePostcode == null) ? 0 : homePostcode.hashCode());
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((mailAddress == null) ? 0 : mailAddress.hashCode());
-        result = prime * result + ((mailPostcode == null) ? 0 : mailPostcode.hashCode());
         result = prime * result + ((mobileNumber == null) ? 0 : mobileNumber.hashCode());
         result = prime * result + ((mobileNumber1 == null) ? 0 : mobileNumber1.hashCode());
-        result = prime * result + ((password == null) ? 0 : password.hashCode());
+        result = prime * result + ((otherNumber == null) ? 0 : otherNumber.hashCode());
         result = prime * result + ((preferredName == null) ? 0 : preferredName.hashCode());
         result = prime * result + ((surname == null) ? 0 : surname.hashCode());
+        result = prime * result + ((type == null) ? 0 : type.hashCode());
         result = prime * result + ((username == null) ? 0 : username.hashCode());
         return result;
     }
@@ -250,9 +302,6 @@ public class Profile implements BaseModel<Long> {
         if (obj == null) return false;
         if (getClass() != obj.getClass()) return false;
         Profile other = (Profile) obj;
-        if (description == null) {
-            if (other.description != null) return false;
-        } else if (!description.equals(other.description)) return false;
         if (email == null) {
             if (other.email != null) return false;
         } else if (!email.equals(other.email)) return false;
@@ -263,36 +312,27 @@ public class Profile implements BaseModel<Long> {
         if (homeAddress == null) {
             if (other.homeAddress != null) return false;
         } else if (!homeAddress.equals(other.homeAddress)) return false;
-        if (homePhone == null) {
-            if (other.homePhone != null) return false;
-        } else if (!homePhone.equals(other.homePhone)) return false;
         if (homePostcode == null) {
             if (other.homePostcode != null) return false;
         } else if (!homePostcode.equals(other.homePostcode)) return false;
-        if (id == null) {
-            if (other.id != null) return false;
-        } else if (!id.equals(other.id)) return false;
-        if (mailAddress == null) {
-            if (other.mailAddress != null) return false;
-        } else if (!mailAddress.equals(other.mailAddress)) return false;
-        if (mailPostcode == null) {
-            if (other.mailPostcode != null) return false;
-        } else if (!mailPostcode.equals(other.mailPostcode)) return false;
         if (mobileNumber == null) {
             if (other.mobileNumber != null) return false;
         } else if (!mobileNumber.equals(other.mobileNumber)) return false;
         if (mobileNumber1 == null) {
             if (other.mobileNumber1 != null) return false;
         } else if (!mobileNumber1.equals(other.mobileNumber1)) return false;
-        if (password == null) {
-            if (other.password != null) return false;
-        } else if (!password.equals(other.password)) return false;
+        if (otherNumber == null) {
+            if (other.otherNumber != null) return false;
+        } else if (!otherNumber.equals(other.otherNumber)) return false;
         if (preferredName == null) {
             if (other.preferredName != null) return false;
         } else if (!preferredName.equals(other.preferredName)) return false;
         if (surname == null) {
             if (other.surname != null) return false;
         } else if (!surname.equals(other.surname)) return false;
+        if (type == null) {
+            if (other.type != null) return false;
+        } else if (!type.equals(other.type)) return false;
         if (username == null) {
             if (other.username != null) return false;
         } else if (!username.equals(other.username)) return false;
@@ -301,10 +341,11 @@ public class Profile implements BaseModel<Long> {
 
     @Override
     public String toString() {
-        return "Profile [id=" + id + ", username=" + username + ", password=" + password + ", gender=" + gender + ", surname=" + surname + ", givenName="
-               + givenName + ", preferredName=" + preferredName + ", mobileNumber=" + mobileNumber + ", mobileNumber1=" + mobileNumber1 + ", homePhone="
-               + homePhone + ", homeAddress=" + homeAddress + ", homePostcode=" + homePostcode + ", mailAddress=" + mailAddress + ", mailPostcode="
-               + mailPostcode + ", email=" + email + ", description=" + description + "]";
+        return "Profile [id=" + id + ", type=" + type + ", username=" + username + ", password=" + password + ", expired=" + expired + ", gender=" + gender
+               + ", surname=" + surname + ", givenName=" + givenName + ", preferredName=" + preferredName + ", mobileNumber=" + mobileNumber
+               + ", mobileNumber1=" + mobileNumber1 + ", otherNumber=" + otherNumber + ", homePhone=" + homePhone + ", homeAddress=" + homeAddress
+               + ", homePostcode=" + homePostcode + ", mailAddress=" + mailAddress + ", mailPostcode=" + mailPostcode + ", email=" + email + ", description="
+               + description + "]";
     }
 
 }

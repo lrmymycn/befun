@@ -24,7 +24,6 @@ public interface ICommonService {
 
     <M extends Serializable> void deleteObject(M... models);
 
-    
     <M extends Serializable, PK extends Serializable> M get(Class<M> entityClass, PK id);
 
     <M extends Serializable, PK extends Serializable> List<M> get(Class<M> entityClass, PK... ids);

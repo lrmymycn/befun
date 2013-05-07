@@ -1,4 +1,4 @@
-package com.befun.service.query;
+package com.befun.service.query.estate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,8 @@ import java.util.List;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
+
+import com.befun.service.query.QCUtils;
 
 public class StageQueryCondition extends EstateQueryCondition {
 

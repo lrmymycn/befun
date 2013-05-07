@@ -15,7 +15,7 @@ import com.befun.domain.estate.ContentType;
 import com.befun.domain.estate.Media;
 import com.befun.domain.estate.MediaType;
 import com.befun.service.estate.MediaService;
-import com.befun.service.query.MediaQueryCondition;
+import com.befun.service.query.estate.MediaQueryCondition;
 import com.befun.web.action.admin.AdminAction;
 import com.befun.web.view.MediaView;
 import com.befun.web.view.converter.ConverterFactory;

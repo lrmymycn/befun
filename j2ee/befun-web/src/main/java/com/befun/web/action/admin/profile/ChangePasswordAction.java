@@ -1,5 +1,6 @@
 package com.befun.web.action.admin.profile;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -12,9 +13,9 @@ public class ChangePasswordAction extends BaseAction {
 
     private static final long serialVersionUID = 155989715212153042L;
 
-    private String oldPassword;
-
     private Long profileId;
+
+    private String oldPassword;
 
     private String newPassword;
 
@@ -22,6 +23,15 @@ public class ChangePasswordAction extends BaseAction {
 
     public String changePasswordPage() {
         return SUCCESS;
+    }
+
+    public void validateChangePassword() {
+        if (StringUtils.isBlank(newPassword)) {
+            this.addFieldError("newPassword", "Password not correct!");
+        }
+        if (!newPassword.equals(repeatNewPassword)) {
+            this.addFieldError("newPassword", "Password not equals Repeat password!");
+        }
     }
 
     public String changePassword() {

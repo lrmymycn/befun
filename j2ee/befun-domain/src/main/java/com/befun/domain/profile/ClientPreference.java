@@ -1,5 +1,7 @@
 package com.befun.domain.profile;
 
+import java.util.Date;
+
 import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -78,6 +80,12 @@ public class ClientPreference implements BaseModel<Long> {
 
     @Column(name = "DESCRIPTION")
     private String description;
+
+    @Column(name = "CREATION_DATE")
+    private Date creationDate;
+
+    @Column(name = "LAST_MODIFIED_DATE")
+    private Date lastModifiedDate;
 
     @Override
     public Long getId() {
@@ -223,6 +231,22 @@ public class ClientPreference implements BaseModel<Long> {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Date getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
     }
 
     @Override

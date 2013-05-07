@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import com.befun.domain.estate.Apartment;
 import com.befun.service.IBaseService;
 import com.befun.service.estate.ApartmentService;
-import com.befun.service.query.ApartmentQueryCondition;
+import com.befun.service.query.estate.ApartmentQueryCondition;
 import com.befun.web.action.CRUDAction;
 import com.befun.web.view.ApartmentView;
 import com.befun.web.view.converter.ConverterFactory;

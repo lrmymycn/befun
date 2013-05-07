@@ -16,7 +16,7 @@ import com.befun.dao.estate.SuburbPolylineDao;
 import com.befun.domain.estate.Suburb;
 import com.befun.domain.estate.SuburbPolyline;
 import com.befun.service.estate.SuburbService;
-import com.befun.service.query.SuburbQueryCondition;
+import com.befun.service.query.estate.SuburbQueryCondition;
 
 @Service("SuburbService")
 @Transactional(rollbackFor = Exception.class)

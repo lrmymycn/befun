@@ -15,7 +15,7 @@ import com.befun.domain.estate.Area;
 import com.befun.domain.estate.Project;
 import com.befun.domain.estate.Suburb;
 import com.befun.service.SpringTestBase;
-import com.befun.service.query.ProjectQueryCondition;
+import com.befun.service.query.estate.ProjectQueryCondition;
 
 public class TestProjectService extends SpringTestBase {
 

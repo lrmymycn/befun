@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 
 import com.befun.domain.estate.Area;
 import com.befun.service.IBaseService;
-import com.befun.service.query.AreaQueryCondition;
+import com.befun.service.query.estate.AreaQueryCondition;
 import com.befun.web.action.admin.AdminAction;
 import com.befun.web.view.AreaView;
 import com.befun.web.view.converter.ConverterFactory;

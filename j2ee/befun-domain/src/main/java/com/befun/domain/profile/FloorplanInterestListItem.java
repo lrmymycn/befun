@@ -46,6 +46,9 @@ public class FloorplanInterestListItem implements BaseModel<Long> {
     @Column(name = "CREATION_DATE")
     private Date creationDate;
 
+    @Column(name = "LAST_MODIFIED_DATE")
+    private Date lastModifiedDate;
+
     @Override
     public Long getId() {
         return id;
@@ -86,6 +89,14 @@ public class FloorplanInterestListItem implements BaseModel<Long> {
 
     public void setCreationDate(Date creationDate) {
         this.creationDate = creationDate;
+    }
+
+    public Date getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Date lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
     }
 
     @Override

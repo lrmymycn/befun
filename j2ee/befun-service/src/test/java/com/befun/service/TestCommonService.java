@@ -17,7 +17,7 @@ import com.befun.domain.PaginationBean;
 import com.befun.domain.estate.Area;
 import com.befun.domain.estate.ModelModification;
 import com.befun.domain.estate.Project;
-import com.befun.service.query.EstateQueryCondition;
+import com.befun.service.query.estate.EstateQueryCondition;
 
 public class TestCommonService extends SpringTestBase {
 

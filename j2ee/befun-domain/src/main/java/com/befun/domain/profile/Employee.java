@@ -38,6 +38,10 @@ public class Employee extends Profile {
     @Column(name = "GST", length = 50)
     private String gst;
 
+    public Employee(){
+        this.setType(ProfileType.EMPLOYEE);
+    }
+    
     public String getTitle() {
         return title;
     }

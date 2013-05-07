@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
 import com.befun.domain.estate.Suburb;
 import com.befun.service.IBaseService;
 import com.befun.service.estate.SuburbService;
-import com.befun.service.query.SuburbQueryCondition;
+import com.befun.service.query.estate.SuburbQueryCondition;
 import com.befun.web.action.CRUDAction;
 import com.befun.web.view.SuburbView;
 import com.befun.web.view.converter.ConverterFactory;

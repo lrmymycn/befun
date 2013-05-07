@@ -33,3 +33,6 @@ ALTER TABLE `building` ADD INDEX `idx_orientation_north` USING BTREE (`orientati
 
 
 ALTER TABLE `profile` CHANGE COLUMN `middle_name` `middle_name` VARCHAR(45) NULL;
+
+-- BTREE index
+-- ALTER TABLE `apartment` ADD INDEX `idx_enabled` USING BTREE (`enabled` ASC) ;

@@ -23,7 +23,7 @@ import com.befun.domain.profile.Gender;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:context-datasource.xml" })
 @Transactional
-@TransactionConfiguration(transactionManager = "txManager", defaultRollback = false)
+@TransactionConfiguration(transactionManager = "txManager", defaultRollback = true)
 public class TestClientDao {
 
     @Resource

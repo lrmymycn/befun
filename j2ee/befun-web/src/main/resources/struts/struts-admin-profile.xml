@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+  <!DOCTYPE struts PUBLIC  
+      "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"  
+      "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <package name="admin-profile" extends="struts-default" namespace="/admin/profile">
+        <action name="demand*" class="Admin{1}Action" method="demand">
+            <result name="input">/admin/profile/list/{1}.jsp</result>
+            <result name="success">/admin/profile/list/{1}.jsp</result>
+            <result name="error">/admin/result.jsp</result>
+        </action>
+        <action name="getById*" class="Admin{1}Action" method="demandById">
+            <result name="success">/admin/profile/editor/{1}.jsp</result>
+            <result name="error">/admin/result.jsp</result>
+        </action>
+        <action name="createPage*" class="Admin{1}Action" method="createPage">
+            <param name="editable">true</param>
+            <result name="success">/admin/profile/editor/{1}.jsp</result>
+            <result name="error">/admin/result.jsp</result>
+        </action>
+        <action name="view*" class="Admin{1}Action" method="demandById">
+            <param name="editable">false</param>
+            <result name="success">/admin/profile/editor/{1}.jsp</result>
+            <result name="error">/admin/result.jsp</result>
+        </action>
+        <action name="edit*" class="Admin{1}Action" method="demandById">
+            <param name="editable">true</param>
+            <result name="success">/admin/profile/editor/{1}.jsp</result>
+            <result name="error">/admin/result.jsp</result>
+        </action>
+        <action name="save*" class="Admin{1}Action" method="createOrUpdate">
+            <result name="input">/admin/profile/editor/{1}.jsp</result>
+            <result name="success">/admin/result.jsp</result>
+            <result name="error">/admin/result.jsp</result>
+        </action>
+        <action name="remove*" class="Admin{1}Action" method="remove">
+            <result name="success">/admin/result.jsp</result>
+            <result name="error">/admin/result.jsp</result>
+        </action>
+        <action name="expiredProfile" class="AdminProfileAction" method="expire">
+            <result name="success">/admin/result.jsp</result>
+            <result name="error">/admin/result.jsp</result>
+        </action>
+        <action name="renewalProfile" class="AdminProfileAction" method="renewal">
+            <result name="success">/admin/result.jsp</result>
+            <result name="error">/admin/result.jsp</result>
+        </action>
+    </package>
+</struts>  

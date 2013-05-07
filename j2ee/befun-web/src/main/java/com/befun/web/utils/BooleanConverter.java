@@ -6,6 +6,7 @@ import org.apache.struts2.util.StrutsTypeConverter;
 
 public class BooleanConverter extends StrutsTypeConverter {
 
+    @SuppressWarnings("rawtypes")
     @Override
     public Object convertFromString(Map context, String[] values, Class toClass) {
         Boolean rs = null;
@@ -29,6 +30,7 @@ public class BooleanConverter extends StrutsTypeConverter {
         return rs;
     }
 
+    @SuppressWarnings("rawtypes")
     @Override
     public String convertToString(Map context, Object o) {
         Boolean bl = (Boolean) o;
