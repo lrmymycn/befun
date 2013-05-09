@@ -29,7 +29,7 @@ public interface IBaseDao<M extends Serializable, PK extends Serializable> {
 
     List<M> get(PK... ids);
 
-    List<?> query(String hql, Map<String, Object> paramMap);
+    <T> List<T> query(String hql, Map<String, Object> paramMap);
 
     int execute(String hql, Map<String, Object> paramMap);
 

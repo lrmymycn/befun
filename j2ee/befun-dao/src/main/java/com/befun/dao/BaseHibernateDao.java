@@ -128,11 +128,12 @@ public class BaseHibernateDao<M extends Serializable, PK extends Serializable> i
         return rs;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
-    public List<?> query(String hql, Map<String, Object> paramMap) {
+    public <T> List<T> query(String hql, Map<String, Object> paramMap) {
         Query query = this.getSession().createQuery(hql);
         this.setParameters(query, paramMap);
-        return query.list();
+        return (List<T>)query.list();
     }
 
     @Override

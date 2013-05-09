@@ -50,7 +50,7 @@ public class AuthServiceImpl implements AuthService {
         Set<ProfileRole> profileRoles = profile.getProfileRoles();
         if (profileRoles != null) {
             for (ProfileRole pr : profileRoles) {
-                SimpleGrantedAuthority auth = new SimpleGrantedAuthority(pr.getRole().getName());
+                SimpleGrantedAuthority auth = new SimpleGrantedAuthority(pr.getRole().getCode().name());
                 authorities.add(auth);
             }
         }

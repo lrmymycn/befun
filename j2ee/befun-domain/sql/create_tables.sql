@@ -206,9 +206,11 @@ CREATE TABLE IF NOT EXISTS `suburb_interest_list_item` (
 CREATE TABLE IF NOT EXISTS `role` (
   `id` bigint(20) NOT NULL,
   `name` varchar(255) NOT NULL,
+  `code` tinyint(4) NOT NULL,
   `description` text DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `idx_name` (`name`)
+  KEY `idx_name` (`name`),
+  KEY `idx_code` (`code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `profile_role` (
@@ -248,7 +250,7 @@ CREATE TABLE IF NOT EXISTS `role_permission` (
 CREATE TABLE IF NOT EXISTS `department` (
   `id` bigint(20) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `description` text NOT NULL,
+  `description` text DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `name` (`name`),
   KEY `idx_name` (`name`)
@@ -263,8 +265,8 @@ CREATE TABLE IF NOT EXISTS `profile_department` (
   PRIMARY KEY (`id`),
   KEY `idx_profile_id` (`profile_id`),
   KEY `idx_department_id` (`department_id`),
-  CONSTRAINT `fk_profile_department_profile_id` FOREIGN KEY (`profile_id`) REFERENCES `profile` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_profile_department_dp_id` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_profile_dep_pro_id` FOREIGN KEY (`profile_id`) REFERENCES `profile` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_profile_dep_dp_id` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `media` (
@@ -284,7 +286,6 @@ CREATE TABLE IF NOT EXISTS `media` (
   PRIMARY KEY (`id`),
   KEY `idx_bid` (`bid`),
   KEY `idx_name` (`name`),
-  KEY `idx_alt` (`alt`),
   KEY `idx_media_type` (`media_type`) USING BTREE,
   KEY `idx_content_type` (`content_type`) USING BTREE,
   KEY `idx_enabled` (`enabled`) USING BTREE
@@ -300,10 +301,8 @@ CREATE TABLE IF NOT EXISTS `comment_rec` (
   `enabled_by` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_profile_id` (`profile_id`),
-  KEY `idx_enabled` (`enabled`),
-  KEY `idx_enabled_by` (`enabled_by`),
-  CONSTRAINT `fk_area_comment_profile_id` FOREIGN KEY (`profile_id`) REFERENCES `profile` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_area_comment_enabled_by` FOREIGN KEY (`enabled_by`) REFERENCES `profile` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `idx_enabled` (`enabled`) USING BTREE,
+  KEY `idx_enabled_by` (`enabled_by`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `area` (
@@ -672,7 +671,6 @@ CREATE TABLE IF NOT EXISTS `place_intrest` (
   KEY `idx_name` (`name`),
   KEY `idx_longitude` (`longitude`),
   KEY `idx_latitude` (`latitude`),
-  KEY `idx_description` (`description`(255)),
   KEY `idx_enabled` (`enabled`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

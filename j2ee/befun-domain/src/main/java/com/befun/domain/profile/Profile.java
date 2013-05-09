@@ -105,6 +105,9 @@ public class Profile implements ModificationModel<Long> {
     @OneToMany(mappedBy = "profile", fetch = FetchType.LAZY)
     private Set<ProfileRole> profileRoles;
 
+    @OneToMany(mappedBy = "profile", fetch = FetchType.LAZY)
+    private Set<ProfileDepartment> profileDepartments;
+
     @Embedded
     private Modification modification = Modification.createDefault();
 
@@ -290,6 +293,14 @@ public class Profile implements ModificationModel<Long> {
 
     public void setProfileRoles(Set<ProfileRole> profileRoles) {
         this.profileRoles = profileRoles;
+    }
+
+    public Set<ProfileDepartment> getProfileDepartments() {
+        return profileDepartments;
+    }
+
+    public void setProfileDepartments(Set<ProfileDepartment> profileDepartments) {
+        this.profileDepartments = profileDepartments;
     }
 
     public Modification getModification() {
