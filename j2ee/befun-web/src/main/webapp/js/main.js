@@ -1088,6 +1088,18 @@ FloorplanPopup = {
 			
 			$('#lightbox .sort a').removeClass('active');
 			$(this).addClass('active');
+			
+			var activeItem = $('#floorplan-list2 a.active').data('id');
+			
+			var type = $(this).data('type');
+			FloorPlanFilter.updateList(type);
+			
+			$('#floorplan-list2 a[data-id="' + activeItem + '"]').addClass('active');
+			
+			var api = $('#floorplan-list2 .scrollable').data("scrollable");
+			var index = $('#floorplan-list2 a.active').parent('div').data('id');
+			
+			api.seekTo(index, 1000);
 		});
 		
 		$('#lightbox .close').click(function(){
@@ -1181,76 +1193,94 @@ FloorplanPopup = {
 											'<table>' +
 												'<tr>' +
 													'<td width="25"></td>' +
-													'<td width="25"><i class="building"></i></td>' +
-													'<td width="80">{building}</td>' + 
-													'<td width="25"><i class="lot"></i></td>' +
+													'<td width="100">Building No.</td>' +
+													'<td>{building}</td>' +
+												'</tr>' +
+												'<tr>' +
+													'<td></td>' +
+													'<td>Lot No.</td>' +
 													'<td>{lot}</td>' +
 												'</tr>' +
-												'<tr class="even">' +
+												'<tr>' +
 													'<td></td>' +
-													'<td>SPT</td>' +
+													'<td>Split Level</td>' +
 													'<td>{split}</td>' +
-													'<td>STG</td>' +
+												'</tr>' +
+												'<tr>' +
+													'<td></td>' +
+													'<td>Stage</td>' +
 													'<td>{stage}</td>' +
 												'</tr>' +
 												'<tr>' +
 													'<td></td>' + 
-													'<td><i class="level"></i></td>' +
+													'<td>Level</td>' +
 													'<td>{level}</td>' + 
-													'<td><i class="color"></i></td>' +
-													'<td>{color}</td>' +
-												'</tr>' +
-												'<tr class="even">' +
-													'<td></td>' +
-													'<td><i class="bedroom"></i></td>' +
-													'<td>{bedrooms}</td>' +
-													'<td><i class="bathroom"></i></td>' +
-													'<td>{bathrooms}</td>' +
 												'</tr>' +
 												'<tr>' +
 													'<td></td>' + 
-													'<td><i class="study"></i></td>' +
+													'<td>Color Schema</td>' +
+													'<td>{color}</td>' +
+												'</tr>' +
+												'<tr>' +
+													'<td></td>' +
+													'<td>Bedroom</td>' +
+													'<td>{bedrooms}</td>' +
+												'</tr>' +
+												'<tr>' +
+													'<td></td>' +
+													'<td>Bathroom</td>' +
+													'<td>{bathrooms}</td>' +
+												'</tr>' +
+												'<tr>' +
+													'<td></td>' +
+													'<td>Car Space</td>' +
+													'<td>{carspace}</td>' +
+												'</tr>' +
+												'<tr>' +
+													'<td></td>' + 
+													'<td>Study</td>' +
 													'<td>{study}</td>' + 
-													'<td>ASP</td>' +
+												'</tr>' +
+												'<tr>' +
+													'<td></td>' + 
+													'<td>Aspect</td>' +
 													'<td>{aspect}</td>' +
 												'</tr>' +
-												'<tr class="even">' +
+												'<tr>' +
 													'<td></td>' +
-													'<td><i class="openbalcony"></i></td>' +
+													'<td>Open Balcony</td>' +
 													'<td>{openbaclony}</td>' +
-													'<td><i class="enclosedbalcony"></i></td>' +
+												'</tr>' +
+												'<tr>' +
+													'<td></td>' +
+													'<td>Enclosed Balcony</td>' +
 													'<td>{enclosedbaclony}</td>' +
 												'</tr>' +
 												'<tr>' +
 													'<td></td>' + 
-													'<td><i class="internalarea"></i></td>' +
+													'<td>Internal Size</td>' +
 													'<td>{internalsize}</td>' + 
-													'<td><i class="externalarea"></i></td>' +
+												'</tr>' +
+												'<tr>' +
+													'<td></td>' + 
+													'<td>External Size</td>' +
 													'<td>{externalsize}</td>' +
 												'</tr>' +
-												'<tr class="even">' +
+												'<tr>' +
 													'<td></td>' +
-													'<td><i class="totalarea"></i></td>' +
+													'<td>Total Size</td>' +
 													'<td>{totalsize}</td>' +
-													'<td><i class="money"></i></td>' +
+												'</tr>' +
+												'<tr>' +
+													'<td></td>' +
+													'<td>Price</td>' +
 													'<td>{price}</td>' +
 												'</tr>' +
 												'<tr>' +
 													'<td></td>' +
-													'<td>CAR</td>' +
-													'<td>{carspace}</td>' +
-													'<td>PPS</td>' +
+													'<td>Price/m<sup>2</sup></td>' +
 													'<td>{pricepersquare}</td>' +
 												'</tr>' +
-												/*
-												'<tr class="last">' +
-													'<td></td>' + 
-													'<td><i class="speech"></i></td>' +
-													'<td colspan="3" class="comment">' +
-														'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.' +
-													'</td>' +
-												'</tr>' +
-												*/
 											'</table>';
 								var cls = 'hidden';
 								if(i == 0){
@@ -1266,15 +1296,15 @@ FloorplanPopup = {
 									.replace('{aspect}', Tools.getAspect(floorplan.orientationEast,floorplan.orientationNorth, floorplan.orientationSouth, floorplan.orientationWest))
 									.replace('{bedrooms}', floorplan.bedRoomCount)
 									.replace('{bathrooms}', floorplan.bathroomCount)
-									.replace('{study}', floorplan.studyroomCount)
-									.replace('{openbaclony}', floorplan.openBaclonyCount)
-									.replace('{enclosedbaclony}', floorplan.enclosedBaclonyCount)
+									.replace('{study}', Tools.getTrueOrFalseIcon(floorplan.studyroomCount))
+									.replace('{openbaclony}', Tools.getTrueOrFalseIcon(floorplan.openBaclonyCount))
+									.replace('{enclosedbaclony}', Tools.getTrueOrFalseIcon(floorplan.enclosedBaclonyCount))
 									.replace('{internalsize}', floorplan.internalSize + ' m<sup>2</sup>')
 									.replace('{externalsize}', floorplan.externalSize + ' m<sup>2</sup>')
 									.replace('{totalsize}', floorplan.totalSize + ' m<sup>2</sup>')
 									.replace('{carspace}', apartment.carParkingCount)
-									.replace('{pricepersquare}', floorplan.avgPricePerSQM.toFixed(0) + ' m<sup>2</sup>')
-									.replace('{price}', Tools.numberWithCommas(apartment.price));
+									.replace('{pricepersquare}', '$' + Tools.numberWithCommas(apartment.avgPricePerSQM) + '/m<sup>2</sup>')
+									.replace('{price}', '$' + Tools.numberWithCommas(apartment.price));
 								$('#apartments').append($(div));
 							}
 						}
@@ -1374,10 +1404,25 @@ FloorPlanFilter = {
 			});
 		});
 	},
-	updateList: function(){
+	updateList: function(type){
+		if(type == undefined){
+			type = 'price';
+		}
 		$('#floorplan-list .items').empty().css('top', 0);
 		$('#floorplan-list2 .items').empty().css('left', 0);
 		var floorplans = this.currentFloorPlans;
+		switch(type){
+			case 'price':
+				floorplans = Tools.sortByMinPrice(floorplans);
+				break;
+			case 'sqm':
+				floorplans = Tools.sortByPricePerSQM(floorplans);
+				break;
+			case 'area':
+				floorplans = Tools.sortByArea(floorplans);
+				break;
+		}
+		
 		for(var i = 0; i < floorplans.length; i++){
 			var $item = $('<a href="javascript:;" class="item" data-id="' + floorplans[i].id + '"><img src="' + floorplans[i].salePicture.smallUrl + '" alt="" /></a>');				
 			var $item2 = $item.clone();
@@ -1742,7 +1787,50 @@ Tools = {
 		return orientation;
 	},
 	numberWithCommas: function (x) {
-    	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		if(x != null && x != undefined){
+    		return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    	}else{
+    		return x;
+    	}
+	},
+	sortByMinPrice: function(arr){
+		function compare(a, b){
+			if(a.minPrice < b.minPrice){
+				return -1;
+			}
+			else if(a.minPrice > b.minPrice){
+				return 1;
+			}
+			return 0;
+		}
+		
+		return arr.sort(compare);
+	},
+	sortByPricePerSQM: function(arr){
+		function compare(a, b){
+			if(a.avgPricePerSQM < b.avgPricePerSQM){
+				return -1;
+			}
+			else if(a.avgPricePerSQM > b.avgPricePerSQM){
+				return 1;
+			}
+			return 0;
+		}
+		
+		return arr.sort(compare);
+	},
+	sortByArea: function(arr){
+		function compare(a, b){
+			if(a.totalSize < b.totalSize){
+				return -1;
+			}
+			else if(a.totalSize > b.totalSize){
+				return 1;
+			}
+			return 0;
+		}
+		
+		return arr.sort(compare);
 	}
 }
 

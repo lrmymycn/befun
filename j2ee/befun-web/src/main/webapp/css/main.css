@@ -1286,19 +1286,10 @@ footer a{
 }
 
 #apartments table tr{
-	height:31px;
+	height:28px;
 }
 
-#apartments table .last td{
-	padding:5px 0;
-	vertical-align: top;
-}
-
-#apartments table td.comment{
-	padding:7px 5px 7px 0;
-}
-
-#apartments table tr.even{
+#apartments table tr:nth-child(even){
 	background:#eaeaea;
 }
 

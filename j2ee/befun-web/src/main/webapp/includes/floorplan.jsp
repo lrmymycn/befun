@@ -10,9 +10,9 @@
 			<div class="sort">
 				<label>Sort:</label>
 				<div class="button-group">
-					<a href="#" class="active">Price</a>
-					<a href="#">Price/sqm</a>
-					<a href="#">Area</a>
+					<a href="javascript:;" class="active" data-type="price">Price</a>
+					<a href="javascript:;" data-type="sqm">Price/sqm</a>
+					<a href="javascript:;" data-type="area">Area</a>
 				</div>			
 			</div>
 		</div> 
