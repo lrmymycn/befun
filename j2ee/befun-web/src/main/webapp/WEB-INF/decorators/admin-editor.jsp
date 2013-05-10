@@ -8,14 +8,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><decorator:title default="Befun Administration Editor"/></title>
 <%@ include file="/includes/admin/style.jsp"%>
-<%@ include file="/includes/admin/edit/style.jsp"%>
+<%@ include file="/includes/admin/data/edit/style.jsp"%>
 <%@ include file="/includes/admin/js.jsp"%>
-<%@ include file="/includes/admin/edit/js.jsp"%>
+<%@ include file="/includes/admin/data/edit/js.jsp"%>
 <decorator:head />
 </head>
 <body>
 	<%@ include file="/includes/admin/header.jsp" %>
-	<%@ include file="/includes/admin/edit/header.jsp" %>
+	<%@ include file="/includes/admin/data/edit/header.jsp" %>
 	<decorator:body />
 	<%@ include file="/includes/admin/footer.jsp" %>
 </body>

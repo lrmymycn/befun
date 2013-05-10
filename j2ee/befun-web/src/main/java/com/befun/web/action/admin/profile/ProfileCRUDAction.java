@@ -5,8 +5,9 @@ import com.befun.domain.BaseModel;
 import com.befun.domain.PaginationBean;
 import com.befun.service.IBaseService;
 import com.befun.web.action.BaseAction;
+import com.opensymphony.xwork2.Preparable;
 
-public abstract class ProfileCRUDAction<M extends BaseModel<Long>> extends BaseAction {
+public abstract class ProfileCRUDAction<M extends BaseModel<Long>> extends BaseAction implements Preparable {
 
     private static final long serialVersionUID = -1189470712587953039L;
 

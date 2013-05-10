@@ -42,16 +42,16 @@
             requires-channel="http" />
         <intercept-url pattern="/admin/impAccess.action**" access="hasAnyRole('SUPER','DATA_ADMIN')"
             requires-channel="http" />
-        <intercept-url pattern="/admin/data/*.action*" access="hasAnyRole('SUPER','DATA_ADMIN')"
+        <intercept-url pattern="/admin/data/*.action**" access="hasAnyRole('SUPER','DATA_ADMIN')"
             requires-channel="http" />
-        <intercept-url pattern="/admin/user/*.action**" access="hasAnyRole('SUPER','DATA_ADMIN')"
+        <intercept-url pattern="/admin/profile/*.action**" access="hasAnyRole('SUPER','DATA_ADMIN')"
             requires-channel="http" />
 
-        <intercept-url pattern="/*" access="denyAll" requires-channel="any" />
+        <intercept-url pattern="/**" access="denyAll" requires-channel="any" />
         <form-login login-page="/login.jsp" authentication-failure-url="/login.jsp" />
         <logout logout-success-url="/" />
         <session-management invalid-session-url="/login.jsp" session-fixation-protection="newSession">
-            <concurrency-control max-sessions="1" error-if-maximum-exceeded="true" />
+            <concurrency-control max-sessions="1" />
         </session-management>
         <!-- 如果为非标准端口，可在此指定 -->
         <!-- <port-mappings> <prot-mapping http="" https=""/> </port-mappings> -->

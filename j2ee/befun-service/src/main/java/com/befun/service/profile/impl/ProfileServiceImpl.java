@@ -17,7 +17,7 @@ import com.befun.service.BaseModificationService;
 import com.befun.service.profile.ProfileService;
 
 @Service("ProfileService")
-@Transactional(rollbackFor = Exception.class, propagation=Propagation.REQUIRED)
+@Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED)
 public class ProfileServiceImpl extends BaseModificationService<Profile, Long> implements ProfileService {
 
     @Resource
@@ -36,6 +36,48 @@ public class ProfileServiceImpl extends BaseModificationService<Profile, Long> i
             return null;
         }
         return rs.get(0);
+    }
+
+    @Override
+    public void enable(Long id) {
+        Profile model = this.dao.get(id);
+        model.setEnabled(true);
+        this.dao.update(model);
+    }
+
+    @Override
+    public void disable(Long id) {
+        Profile model = this.dao.get(id);
+        model.setEnabled(false);
+        this.dao.update(model);
+    }
+
+    @Override
+    public void expire(Long id) {
+        Profile model = this.dao.get(id);
+        model.setExpired(true);
+        this.dao.update(model);
+    }
+
+    @Override
+    public void renewal(Long id) {
+        Profile model = this.dao.get(id);
+        model.setExpired(false);
+        this.dao.update(model);
+    }
+
+    @Override
+    public void lock(Long id) {
+        Profile model = this.dao.get(id);
+        model.setLocked(true);
+        this.dao.update(model);
+    }
+
+    @Override
+    public void unlock(Long id) {
+        Profile model = this.dao.get(id);
+        model.setLocked(false);
+        this.dao.update(model);
     }
 
 }

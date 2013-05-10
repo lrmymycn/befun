@@ -79,11 +79,11 @@
 		</init-param>
 	</filter> -->
 	
-	<!--  -->
+	<!--  
 	<filter-mapping>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
-	</filter-mapping>
+	</filter-mapping>-->
 
 	<filter-mapping>
 		<filter-name>CharacterEncoding</filter-name>
@@ -103,10 +103,10 @@
 		<dispatcher>FORWARD</dispatcher>
 		<dispatcher>INCLUDE</dispatcher>
 	</filter-mapping>
-
+	
 	<filter-mapping>
 		<filter-name>struts-execute</filter-name>
-		<url-pattern>*.action</url-pattern>
+		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
 	<!-- 
@@ -142,6 +142,10 @@
 			<taglib-uri>/struts-tags</taglib-uri>
 			<taglib-location>/WEB-INF/tlds/struts-tags.tld</taglib-location>
 		</taglib>
+        <taglib>
+            <taglib-uri>/struts-dojo-tags</taglib-uri>
+            <taglib-location>/WEB-INF/tlds/struts-dojo-tags.tld</taglib-location>
+        </taglib>
 		<taglib>
 			<taglib-uri>http://java.sun.com/jsp/jstl/core</taglib-uri>
 			<taglib-location>/WEB-INF/tlds/c.tld</taglib-location>

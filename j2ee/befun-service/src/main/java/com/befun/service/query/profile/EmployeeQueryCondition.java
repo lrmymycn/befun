@@ -6,14 +6,11 @@ import java.util.List;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
-import com.befun.dao.common.QueryCondition;
 import com.befun.service.query.QCUtils;
 
-public class EmployeeQueryCondition extends QueryCondition {
+public class EmployeeQueryCondition extends ProfileQueryCondition {
 
     private static final long serialVersionUID = 1892171088100059344L;
-
-    private ProfileQueryCondition proQC = new ProfileQueryCondition();
 
     private String title;
 
@@ -37,10 +34,6 @@ public class EmployeeQueryCondition extends QueryCondition {
         List<Criterion> rs = new ArrayList<Criterion>();
         rs.addAll(super.getCriterions());
         Criterion tmp = null;
-        if (this.proQC != null) {
-            List<Criterion> proCrs = this.proQC.getCriterions();
-            rs.addAll(proCrs);
-        }
         if (this.title != null) {
             tmp = Restrictions.eq(QCUtils.generatePropertyName(this.getSelfAlias(), "title"), this.title);
             rs.add(tmp);
@@ -62,14 +55,6 @@ public class EmployeeQueryCondition extends QueryCondition {
             rs.add(tmp);
         }
         return rs;
-    }
-
-    public ProfileQueryCondition getProQC() {
-        return proQC;
-    }
-
-    public void setProQC(ProfileQueryCondition proQC) {
-        this.proQC = proQC;
     }
 
     public String getTitle() {
@@ -114,7 +99,7 @@ public class EmployeeQueryCondition extends QueryCondition {
 
     @Override
     public String toString() {
-        return "EmployeeQueryCondition [proQC=" + proQC + ", title=" + title + ", rank=" + rank + ", employeeNumber=" + employeeNumber + ", abn=" + abn
+        return "EmployeeQueryCondition [title=" + title + ", rank=" + rank + ", employeeNumber=" + employeeNumber + ", abn=" + abn
                + ", gst=" + gst + ", toString()=" + super.toString() + "]";
     }
 

@@ -16,9 +16,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.util.StringUtils;
 
-import com.befun.domain.profile.Client;
 import com.befun.domain.profile.Permission;
 import com.befun.domain.profile.Profile;
+import com.befun.domain.profile.RoleCode;
+import com.befun.service.security.MyUser;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -42,16 +43,13 @@ public class BaseAction extends ActionSupport {
      * @return the current profile
      */
     protected Profile getCurrentProfile() {
-        return null;
-    }
-
-    /**
-     * Gets the current client.
-     *
-     * @return the current client
-     */
-    protected Client getCurrentClient() {
-        return null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (principal instanceof MyUser) {
+            MyUser userDetails = (MyUser) principal;
+            return userDetails.getProfile();
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -99,7 +97,7 @@ public class BaseAction extends ActionSupport {
      * @param roles the roles
      * @return true, if current profile contains all roles in <code>roles</code>, else return false
      */
-    protected boolean containsAllRoles(String... roles) {
+    protected boolean containsAllRoles(RoleCode... roles) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
             UserDetails userDetails = (UserDetails) principal;
@@ -107,12 +105,12 @@ public class BaseAction extends ActionSupport {
             if (authorities == null) {
                 return false;
             }
-            labelA: for (String r : roles) {
+            labelA: for (RoleCode r : roles) {
                 if (StringUtils.isEmpty(r)) {
                     continue;
                 }
                 for (GrantedAuthority a : authorities) {
-                    if (r.equals(a.toString())) {
+                    if (r.name().equals(a.getAuthority())) {
                         continue labelA;
                     }
                 }
@@ -129,7 +127,7 @@ public class BaseAction extends ActionSupport {
      * @param roles the roles
      * @return true, if current profile contains any role in <code>roles</code>, else return false
      */
-    protected boolean containsAnyRoles(String... roles) {
+    protected boolean containsAnyRoles(RoleCode... roles) {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
             UserDetails userDetails = (UserDetails) principal;
@@ -137,12 +135,9 @@ public class BaseAction extends ActionSupport {
             if (authorities == null) {
                 return false;
             }
-            for (String r : roles) {
-                if (StringUtils.isEmpty(r)) {
-                    continue;
-                }
+            for (RoleCode r : roles) {
                 for (GrantedAuthority a : authorities) {
-                    if (r.equals(a.toString())) {
+                    if (r.name().equals(a.toString())) {
                         return true;
                     }
                 }

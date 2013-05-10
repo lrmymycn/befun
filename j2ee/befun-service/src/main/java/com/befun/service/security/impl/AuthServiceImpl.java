@@ -55,6 +55,7 @@ public class AuthServiceImpl implements AuthService {
             }
         }
         MyUser user = new MyUser(profile.getUsername(), profile.getPassword(), accountEnabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
+        user.setProfile(profile);
         return user;
     }
 

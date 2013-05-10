@@ -6,16 +6,13 @@ import java.util.List;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
-import com.befun.dao.common.QueryCondition;
 import com.befun.domain.profile.ClientStatus;
 import com.befun.domain.profile.ClientTitle;
 import com.befun.service.query.QCUtils;
 
-public class ClientQueryCondition extends QueryCondition {
+public class ClientQueryCondition extends ProfileQueryCondition {
 
     private static final long serialVersionUID = 1892171088100059344L;
-
-    private ProfileQueryCondition proQC = new ProfileQueryCondition();
 
     private ClientTitle title;
 
@@ -37,10 +34,6 @@ public class ClientQueryCondition extends QueryCondition {
         List<Criterion> rs = new ArrayList<Criterion>();
         rs.addAll(super.getCriterions());
         Criterion tmp = null;
-        if (this.proQC != null) {
-            List<Criterion> proCrs = this.proQC.getCriterions();
-            rs.addAll(proCrs);
-        }
         if (this.title != null) {
             tmp = Restrictions.eq(QCUtils.generatePropertyName(this.getSelfAlias(), "title"), this.title);
             rs.add(tmp);
@@ -82,14 +75,6 @@ public class ClientQueryCondition extends QueryCondition {
         return rs;
     }
 
-    public ProfileQueryCondition getProQC() {
-        return proQC;
-    }
-
-    public void setProQC(ProfileQueryCondition proQC) {
-        this.proQC = proQC;
-    }
-
     public ClientTitle getTitle() {
         return title;
     }
@@ -124,7 +109,7 @@ public class ClientQueryCondition extends QueryCondition {
 
     @Override
     public String toString() {
-        return "ClientQueryCondition [proQC=" + proQC + ", title=" + title + ", status=" + status + ", purchaseType=" + purchaseType + ", currentEmployeeId="
+        return "ClientQueryCondition [title=" + title + ", status=" + status + ", purchaseType=" + purchaseType + ", currentEmployeeId="
                + currentEmployeeId + ", toString()=" + super.toString() + "]";
     }
 

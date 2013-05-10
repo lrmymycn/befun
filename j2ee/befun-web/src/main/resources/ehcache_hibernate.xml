@@ -127,4 +127,9 @@
 	<cache name="com.befun.domain.community.ApartmentComment" maxElementsInMemory="10000" maxElementsOnDisk="20000"
 		eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="3600" overflowToDisk="true">
 	</cache>
+    
+    
+    <cache name="project" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="300"
+        timeToLiveSeconds="3600" overflowToDisk="false">
+    </cache>
 </ehcache>

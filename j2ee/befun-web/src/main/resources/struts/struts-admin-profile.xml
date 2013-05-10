@@ -37,11 +37,37 @@
             <result name="success">/admin/result.jsp</result>
             <result name="error">/admin/result.jsp</result>
         </action>
-        <action name="expiredProfile" class="AdminProfileAction" method="expire">
+        <action name="enable*" class="Admin{1}Action" method="enable">
             <result name="success">/admin/result.jsp</result>
             <result name="error">/admin/result.jsp</result>
         </action>
-        <action name="renewalProfile" class="AdminProfileAction" method="renewal">
+        <action name="disable*" class="Admin{1}Action" method="disable">
+            <result name="success">/admin/result.jsp</result>
+            <result name="error">/admin/result.jsp</result>
+        </action>
+        <action name="lock*" class="Admin{1}Action" method="lock">
+            <result name="success">/admin/result.jsp</result>
+            <result name="error">/admin/result.jsp</result>
+        </action>
+        <action name="unlock*" class="Admin{1}Action" method="unlock">
+            <result name="success">/admin/result.jsp</result>
+            <result name="error">/admin/result.jsp</result>
+        </action>
+        <action name="expire*" class="Admin{1}Action" method="expire">
+            <result name="success">/admin/result.jsp</result>
+            <result name="error">/admin/result.jsp</result>
+        </action>
+        <action name="renewal*" class="Admin{1}Action" method="renewal">
+            <result name="success">/admin/result.jsp</result>
+            <result name="error">/admin/result.jsp</result>
+        </action>
+        <action name="assignRolesPage" class="AdminEmployeeAction" method="assignRolesPage">
+            <param name="editable">true</param>
+            <result name="success">/admin/profile/editor/assignRoles.jsp</result>
+            <result name="error">/admin/result.jsp</result>
+        </action>
+        <action name="assignRoles" class="AdminEmployeeAction" method="assignRoles">
+            <result name="input">/admin/profile/editor/assignRoles.jsp</result>
             <result name="success">/admin/result.jsp</result>
             <result name="error">/admin/result.jsp</result>
         </action>

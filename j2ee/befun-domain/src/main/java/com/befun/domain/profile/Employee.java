@@ -27,7 +27,7 @@ public class Employee extends Profile {
     private String titleDesc;
 
     @Column(name = "RANK")
-    private Integer rank;
+    private Integer rank = 1;
 
     @Column(name = "EMPLOYEE_NUMBER", length = 255)
     private String employeeNumber;

@@ -8,9 +8,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title><decorator:title default="Befun Administration List view" /></title>
 <%@ include file="/includes/admin/style.jsp"%>
-<%@ include file="/includes/admin/list/style.jsp"%>
+<%@ include file="/includes/admin/data/list/style.jsp"%>
 <%@ include file="/includes/admin/js.jsp"%>
-<%@ include file="/includes/admin/list/js.jsp"%>
+<%@ include file="/includes/admin/data/list/js.jsp"%>
 <decorator:head />
 <script>
 
@@ -320,7 +320,7 @@ function getFloorplanByBuilding(building, floorplan){
 </head>
 <body>
 	<%@ include file="/includes/admin/header.jsp"%>
-	<%@ include file="/includes/admin/list/header.jsp"%>
+	<%@ include file="/includes/admin/data/list/header.jsp"%>
 	<decorator:body />
 	<%@ include file="/includes/admin/footer.jsp"%>
 </body>

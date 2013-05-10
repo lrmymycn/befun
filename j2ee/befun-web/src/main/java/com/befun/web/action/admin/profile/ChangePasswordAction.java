@@ -38,6 +38,7 @@ public class ChangePasswordAction extends BaseAction {
     }
 
     public String changePassword() {
+        authService.changePassword(profileId, newPassword);
         return SUCCESS;
     }
 
