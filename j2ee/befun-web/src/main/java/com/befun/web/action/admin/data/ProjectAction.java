@@ -32,10 +32,14 @@ public class ProjectAction<T extends Project, V extends ProjectView> extends Adm
     private List<AreaView> qcAreas = new ArrayList<AreaView>();
 
     private List<SuburbView> qcSuburbs = new ArrayList<SuburbView>();
-    
+
+    public ProjectAction() {
+        this.view = new ProjectView();
+    }
+
     protected void prepareQueryList() {
         AreaQueryCondition queryCondition = new AreaQueryCondition();
-//        queryCondition.setEnabled(null);
+        // queryCondition.setEnabled(null);
         List<Area> areas = this.areaService.query(queryCondition);
         AreaView av = null;
         for (Area a : areas) {
@@ -44,7 +48,7 @@ public class ProjectAction<T extends Project, V extends ProjectView> extends Adm
         }
         if (this.qc != null && this.qc.getSuburbQC() != null) {
             SuburbQueryCondition sQC = this.qc.getSuburbQC();
-//            sQC.setEnabled(null);
+            // sQC.setEnabled(null);
             List<Suburb> suburbs = this.suburbService.query(sQC);
             SuburbView sv = null;
             for (Suburb s : suburbs) {

@@ -9,6 +9,7 @@
     <include file="struts/struts-admin-profile.xml" />
     <include file="struts/struts-estate.xml" />
     <include file="struts/struts-estate-json.xml" />
+    <include file="struts/struts-profile-json.xml" />
     <constant name="struts.multipart.parser" value="jakarta" />
     <!-- use javax.servlet.context.tempdir by default -->
     <!-- <constant name="struts.multipart.saveDir" value="" /> -->

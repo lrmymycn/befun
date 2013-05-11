@@ -13,13 +13,17 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
+import org.springframework.util.CollectionUtils;
 
 import com.befun.dao.IBaseDao;
 import com.befun.domain.profile.Employee;
 import com.befun.domain.profile.ProfileDepartment;
+import com.befun.domain.profile.Role;
 import com.befun.domain.profile.RoleCode;
 import com.befun.service.BaseModificationService;
 import com.befun.service.profile.EmployeeService;
+import com.befun.service.profile.ProfileRoleService;
+import com.befun.service.profile.RoleService;
 import com.befun.service.query.profile.EmployeeQueryCondition;
 
 @Service("EmployeeService")
@@ -27,11 +31,35 @@ import com.befun.service.query.profile.EmployeeQueryCondition;
 public class EmployeeServiceImpl extends BaseModificationService<Employee, Long> implements EmployeeService {
 
     private final static String HQL_GETEMPLOYEE_BYID_ROLE = "select distinct(e) from com.befun.domain.profile.Employee e left join e.profileRoles pr "
-                                                      + "where e.id = :managerId AND pr.role.code = :roleCode";
+                                                            + "where e.id = :managerId AND pr.role.code = :roleCode";
+
+    @Resource
+    @Qualifier("ProfileRoleService")
+    private ProfileRoleService profileRoleService;
+
+    @Resource
+    @Qualifier("RoleService")
+    private RoleService roleService;
 
     @Resource
     public void setDao(@Qualifier("EmployeeDao") IBaseDao<Employee, Long> dao) {
         this.dao = dao;
+    }
+
+    @Override
+    public Long save(Employee model) {
+        Assert.notNull(model, "model should be not null!");
+        Long pk = dao.save(model);
+        RoleCode[] codes = { RoleCode.SALE };
+        List<Role> roles = this.roleService.queryRoleByCodes(codes);
+        if (!CollectionUtils.isEmpty(roles)) {
+            List<Long> roleIds = new ArrayList<Long>();
+            for (Role role : roles) {
+                roleIds.add(role.getId());
+            }
+            this.profileRoleService.refreshProfileRoles(pk, roleIds);
+        }
+        return pk;
     }
 
     @Transactional(rollbackFor = Exception.class, propagation = Propagation.REQUIRED, readOnly = true)

@@ -49,20 +49,24 @@ public class InterestList implements ModificationModel<Long> {
     private Modification modification = Modification.createDefault();
 
     @OneToMany(mappedBy = "interestList", fetch = FetchType.LAZY, cascade = { CascadeType.REMOVE })
-    @OrderBy("lastModifiedDate ASC")
+    @OrderBy("modification.lastModifiedDate ASC")
     private List<ApartmentInterestListItem> apartments;
 
     @OneToMany(mappedBy = "interestList", fetch = FetchType.LAZY, cascade = { CascadeType.REMOVE })
-    @OrderBy("lastModifiedDate ASC")
+    @OrderBy("modification.lastModifiedDate ASC")
     private List<FloorplanInterestListItem> floorplans;
 
     @OneToMany(mappedBy = "interestList", fetch = FetchType.LAZY, cascade = { CascadeType.REMOVE })
-    @OrderBy("lastModifiedDate ASC")
+    @OrderBy("modification.lastModifiedDate ASC")
     private List<ProjectInterestListItem> projects;
 
     @OneToMany(mappedBy = "interestList", fetch = FetchType.LAZY, cascade = { CascadeType.REMOVE })
-    @OrderBy("lastModifiedDate ASC")
+    @OrderBy("modification.lastModifiedDate ASC")
     private List<SuburbInterestListItem> suburbs;
+
+    public InterestList() {
+        super();
+    }
 
     @Override
     public Long getId() {

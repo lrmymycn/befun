@@ -46,6 +46,10 @@ public class ApartmentInterestListItem implements ModificationModel<Long> {
     @Embedded
     private Modification modification = Modification.createDefault();
 
+    public ApartmentInterestListItem() {
+        super();
+    }
+
     @Override
     public Long getId() {
         return id;

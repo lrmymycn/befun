@@ -29,10 +29,13 @@
 	<decorator name="admin-profile-list" page="admin-profile-list.jsp">
 		<pattern>/admin/profile/demand*.action</pattern>
 	</decorator>
-    <!--  
-    <decorator name="admin-profile-editor" page="admin-editor.jsp">
+    <!--  -->
+    <decorator name="admin-profile-editor" page="admin-profile-editor.jsp">
         <pattern>/admin/profile/assignRolesPage.action</pattern>
-    </decorator>-->
+        <pattern>/admin/profile/view*.action</pattern>
+        <pattern>/admin/profile/edit*.action</pattern>
+        <pattern>/admin/profile/createPage*.action</pattern>
+    </decorator>
 	<decorator name="admin-user-result" page="admin-modify-result.jsp">
 		<pattern>/admin/user/createProfile.action</pattern>
 		<pattern>/admin/user/changePassword.action</pattern>

@@ -41,7 +41,11 @@ public class ProfileDepartment implements BaseModel<Long> {
 	@Column(name = "END_DATE")
 	private Date endDate;
 
-	public Long getId() {
+	public ProfileDepartment() {
+        super();
+    }
+
+    public Long getId() {
 		return id;
 	}
 

@@ -18,4 +18,6 @@ public interface ProfileService extends IBaseService<Profile, Long> {
     void lock(Long id);
 
     void unlock(Long id);
+    
+    boolean exists(String userName);
 }

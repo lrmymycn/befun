@@ -21,4 +21,11 @@ public class ApartmentInterestListItemServiceImpl extends BaseModificationServic
         this.dao = dao;
     }
 
+    @Override
+    public ApartmentInterestListItem getFetchList(Long id) {
+        ApartmentInterestListItem rs = this.get(id);
+        rs.getInterestList().getClientId();
+        return rs;
+    }
+
 }

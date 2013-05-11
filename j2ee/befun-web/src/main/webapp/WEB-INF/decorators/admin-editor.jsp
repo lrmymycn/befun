@@ -11,6 +11,13 @@
 <%@ include file="/includes/admin/data/edit/style.jsp"%>
 <%@ include file="/includes/admin/js.jsp"%>
 <%@ include file="/includes/admin/data/edit/js.jsp"%>
+<s:head labelposition="left" locale="en_US"/>
+<sx:head locale="en_US"/>
+<style>
+.tdLabel {
+    text-align: left;
+}
+</style>
 <decorator:head />
 </head>
 <body>

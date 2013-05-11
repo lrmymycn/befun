@@ -7,7 +7,7 @@ import com.befun.domain.estate.Floorplan;
 import com.befun.domain.estate.Media;
 import com.befun.web.view.FloorplanView;
 
-public class FloorplanConverter extends AbstractViewConverter<Floorplan, FloorplanView> {
+public class FloorplanConverter extends AbstractEstateViewConverter<Floorplan, FloorplanView> {
 
     public final static String[] IGNORED_PROPS_FLOORPLAN_VIEW = new String[] { "apartments" };
 

@@ -80,4 +80,14 @@ public class ProfileServiceImpl extends BaseModificationService<Profile, Long> i
         this.dao.update(model);
     }
 
+    @Override
+    public boolean exists(String userName) {
+        IQueryCondition queryCondition = new QueryCondition();
+        queryCondition.setHql(true);
+        queryCondition.setHqlString("from Profile P WHERE P.username=:username");
+        queryCondition.setParameter("username", userName);
+        List<Profile> rs = this.dao.query(queryCondition);
+        return rs.size() > 0;
+    }
+
 }

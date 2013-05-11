@@ -71,14 +71,15 @@ public class Client extends Profile {
     @Column(name = "LAST_ACTIVE_DATE")
     private Date lastActiveDate;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(referencedColumnName = "id", name = "CLIENT_PREFERENCE_ID")
     private ClientPreference preference;
 
-    public Client(){
+    public Client() {
+        super();
         this.setType(ProfileType.CLIENT);
     }
-    
+
     public Employee getCurrentEmployee() {
         return currentEmployee;
     }
@@ -253,7 +254,7 @@ public class Client extends Profile {
 
     @Override
     public String toString() {
-        return "Client [currentEmployee=" + currentEmployee + ", title=" + title + ", status=" + status + ", purchaseTypeFirst=" + purchaseTypeFirst
+        return "Client [title=" + title + ", status=" + status + ", purchaseTypeFirst=" + purchaseTypeFirst
                + ", purchaseTypeOwner=" + purchaseTypeOwner + ", purchaseTypeInverstor=" + purchaseTypeInverstor + ", purchaseTypeStudent="
                + purchaseTypeStudent + ", purchaseTypeOther=" + purchaseTypeOther + ", purchaseType1=" + purchaseType1 + ", purchaseType2=" + purchaseType2
                + ", purchaseType3=" + purchaseType3 + ", purchaseType4=" + purchaseType4 + ", toString()=" + super.toString() + "]";

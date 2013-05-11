@@ -51,6 +51,10 @@ public class BuildingAction<T extends Building, V extends BuildingView> extends 
     @Qualifier("BuildingService")
     private BuildingService service;
 
+    public BuildingAction(){
+        this.view = new BuildingView();
+    }
+    
     protected void prepareQueryList() {
         AreaQueryCondition queryCondition = new AreaQueryCondition();
         // queryCondition.setEnabled(null);

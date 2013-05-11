@@ -1,0 +1,84 @@
+#!/bin/bash
+# chkconfig: 2345 95 20
+# description: befun
+# What your script does (not sure if this is necessary though)
+# processname: befun
+#
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+RETVAL=0
+prog="befun-test"
+LOCK_DIR=/befun/lock
+#LOCK_DIR=/var/lock/subsys
+export JAVA_HOME=/befun/jdk
+export TOMCAT_HOME=/befun/tomcat-test
+
+start() {
+	# Start daemons.
+
+        # Check that networking is up.
+        [ ${NETWORKING} = "no" ] && exit 1
+	[ -x $TOMCAT_HOME/bin/startup.sh ] || exit 1
+
+	echo -n $"Starting $pro: "
+	daemon $TOMCAT_HOME/bin/startup.sh $i
+	RETVAL=$?
+	PROC_FAILED=0
+        echo
+        if [ $RETVAL -eq 0 ] && [ ! -f $LOCK_DIR/$prog ]; then
+                touch $LOCK_DIR/$prog
+        elif [ $RETVAL -ne 0 ];	then
+                ps -FC tomcat | grep "$i" > /dev/null
+                RETVAL=$?
+                if [ $PROC_FAILED -eq 0 ] && [ $RETVAL -ne 0 ];	then
+                        PROC_FAILED=1
+                fi
+        fi
+        if [ $RETVAL -eq 0 ] && [ $PROC_FAILED -ne 0 ];	then
+                RETVAL=1
+        fi
+        return $RETVAL
+}
+
+stop() {
+	[ -x $TOMCAT_HOME/bin/shutdown.sh ] || exit 1
+
+        # Stop daemons.
+        echo -n $"Shutting down $prog: "
+        $TOMCAT_HOME/bin/shutdown.sh
+        # killproc $prog
+        RETVAL=$?
+        echo
+        [ $RETVAL -eq 0 ] && rm -f $LOCK_DIR/$prog
+        return $RETVAL
+}
+
+# See how we were called.
+case "$1" in
+  start)
+        start
+        ;;
+  stop)
+        stop
+        ;;
+  restart|reload)
+        stop
+        start
+        RETVAL=$?
+        ;;
+  status)
+        #status $prog
+        #status $JAVA_HOME/bin/java-test 
+	ps -ef|grep 'tomcat-test '
+        RETVAL=$?
+        ;;
+  *)
+        echo $"Usage: $0 {start|stop|restart|reload|status}"
+        exit 1
+esac
+
+exit $RETVAL

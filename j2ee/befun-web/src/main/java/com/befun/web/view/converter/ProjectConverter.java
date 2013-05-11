@@ -7,7 +7,7 @@ import com.befun.domain.estate.Project;
 import com.befun.domain.estate.Suburb;
 import com.befun.web.view.ProjectView;
 
-public class ProjectConverter extends AbstractViewConverter<Project, ProjectView> {
+public class ProjectConverter extends AbstractEstateViewConverter<Project, ProjectView> {
 
     public final static String[] IGNORED_PROPS_PROJECT_VIEW = new String[] {};
 

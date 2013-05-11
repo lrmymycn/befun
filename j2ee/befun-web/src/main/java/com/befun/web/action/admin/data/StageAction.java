@@ -49,6 +49,10 @@ public class StageAction<T extends Stage, V extends StageView> extends AdminActi
     @Resource
     @Qualifier("StageService")
     private StageService service;
+    
+    public StageAction(){
+        this.view = new StageView();
+    }
 
     protected void prepareQueryList() {
         AreaQueryCondition queryCondition = new AreaQueryCondition();

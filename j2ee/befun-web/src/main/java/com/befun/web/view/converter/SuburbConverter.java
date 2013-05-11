@@ -6,7 +6,7 @@ import com.befun.domain.estate.Area;
 import com.befun.domain.estate.Suburb;
 import com.befun.web.view.SuburbView;
 
-public class SuburbConverter extends AbstractViewConverter<Suburb, SuburbView> {
+public class SuburbConverter extends AbstractEstateViewConverter<Suburb, SuburbView> {
 
     public final static String[] IGNORED_PROPS_SUBURB_VIEW = new String[] {};
 

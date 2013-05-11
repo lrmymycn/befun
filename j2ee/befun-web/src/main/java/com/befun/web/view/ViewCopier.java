@@ -45,7 +45,7 @@ public class ViewCopier {
 
     public final static String[] IGNORE_PROPS_VIEW_APARTMENT = new String[] {};
 
-    public static void copyModelModification(ModelModification source, BaseView<?> target) {
+    public static void copyModelModification(ModelModification source, BaseEasteView<?> target) {
         target.setCreationDate(source.getCreationDate());
         target.setEnabled(source.isEnabled());
         target.setLastModifiedDate(source.getLastModifiedDate());

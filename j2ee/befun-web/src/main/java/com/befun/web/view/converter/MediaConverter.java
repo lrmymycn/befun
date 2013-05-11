@@ -5,7 +5,7 @@ import org.springframework.beans.BeanUtils;
 import com.befun.domain.estate.Media;
 import com.befun.web.view.MediaView;
 
-public class MediaConverter extends AbstractViewConverter<Media, MediaView> {
+public class MediaConverter extends AbstractEstateViewConverter<Media, MediaView> {
 
     public final static String[] IGNORED_PROPS_MEDIA_VIEW = new String[] {};
 

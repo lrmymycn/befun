@@ -9,4 +9,7 @@ public interface ProfileRoleService extends IBaseService<ProfileRole, Long> {
 
     List<ProfileRole> queryRolesByProfileId(Long profileId);
 
+    void deleteRolesByProfileId(Long profileId);
+
+    void refreshProfileRoles(Long profileId, List<Long> roleIds);
 }

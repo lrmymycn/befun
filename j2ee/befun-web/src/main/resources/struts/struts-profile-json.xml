@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+  <!DOCTYPE struts PUBLIC  
+      "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"  
+      "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="profile-json" extends="my-json" namespace="/profile/json">
+		<action name="changePassword" class="ChangePasswordAction" method="changePassword">
+            <result name="input" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+			<result name="success" type="myJson">
+				<param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+				</param>
+			</result>
+		</action>
+		<action name="createClient" class="ClientManageAction" method="createClient">
+            <result name="input" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+			<result name="success" type="myJson">
+				<param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+				</param>
+			</result>
+		</action>
+		<action name="updateClient" class="ClientManageAction" method="updateClient">
+            <result name="input" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+			<result name="success" type="myJson">
+				<param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+				</param>
+			</result>
+		</action>
+        <action name="saveOrUpdateClient" class="ClientManageAction" method="saveOrUpdateClient">
+            <result name="input" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+            <result name="success" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+        </action>
+        <action name="updateClientPreference" class="ClientManageAction" method="updateClientPreference">
+            <result name="input" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+            <result name="success" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+        </action>
+        <action name="selectClient" class="EmployeeAction" method="selectClient">
+            <result name="input" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+            <result name="success" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+        </action>
+        <action name="addAppartmentToList" class="EmployeeAction" method="addAppartmentToList">
+            <result name="input" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+            <result name="success" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+        </action>
+        <action name="removeApartmentItem" class="EmployeeAction" method="removeApartmentItem">
+            <result name="input" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+            <result name="success" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+        </action>
+        <action name="addFloorplanToList" class="EmployeeAction" method="addFloorplanToList">
+            <result name="input" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+            <result name="success" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+        </action>
+        <action name="removeFloorplanFromList" class="EmployeeAction" method="removeFloorplanFromList">
+            <result name="input" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+            <result name="success" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+        </action>
+        <action name="viewMineClients" class="ClientListAction" method="viewMineClients">
+            <result name="input" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+            <result name="success" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                    clients\[\d+\]\..*,
+                </param>
+                <param name="excludeProperties">
+                    clients\[\d+\]\..*model.*,
+                </param>
+            </result>
+        </action>
+        <action name="viewClientDetail" class="ClientListAction" method="viewClientDetail">
+            <result name="input" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+            <result name="success" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                    client\..*,
+                </param>
+                <param name="excludeProperties">
+                    client.*model.*,
+                </param>
+            </result>
+        </action>
+        <action name="viewInterestList" class="ClientListAction" method="viewInterestList">
+            <result name="input" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+            <result name="success" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                    interestList.*,
+                </param>
+                <param name="excludeProperties">
+                    interestList.*model.*,
+                </param>
+            </result>
+        </action>
+	</package>
+</struts>  

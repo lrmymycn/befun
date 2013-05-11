@@ -7,7 +7,7 @@ import java.util.List;
 import com.befun.domain.estate.Media;
 import com.befun.domain.estate.Project;
 
-public class ProjectView extends BaseView<Project> {
+public class ProjectView extends BaseEasteView<Project> {
 
     private static final long serialVersionUID = -2928670235531216770L;
 

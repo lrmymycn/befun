@@ -25,7 +25,7 @@ import com.befun.service.estate.StageService;
 import com.befun.service.estate.SuburbService;
 import com.befun.web.action.CRUDAction;
 import com.befun.web.utils.JmesaUtils;
-import com.befun.web.view.BaseView;
+import com.befun.web.view.BaseEasteView;
 import com.befun.web.view.converter.AreaConverter;
 import com.befun.web.view.converter.BuildingConverter;
 import com.befun.web.view.converter.ConverterFactory;
@@ -35,7 +35,7 @@ import com.befun.web.view.converter.StageConverter;
 import com.befun.web.view.converter.SuburbConverter;
 import com.opensymphony.xwork2.Preparable;
 
-public abstract class AdminAction<M extends BaseModel<Long>, V extends BaseView<M>> extends CRUDAction<M, V> implements Preparable {
+public abstract class AdminAction<M extends BaseModel<Long>, V extends BaseEasteView<M>> extends CRUDAction<M, V> implements Preparable {
 
     private static final long serialVersionUID = -4633078816479738427L;
 

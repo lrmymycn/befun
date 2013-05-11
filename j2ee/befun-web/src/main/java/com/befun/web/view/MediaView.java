@@ -4,7 +4,7 @@ import com.befun.domain.estate.ContentType;
 import com.befun.domain.estate.Media;
 import com.befun.domain.estate.MediaType;
 
-public class MediaView extends BaseView<Media> {
+public class MediaView extends BaseEasteView<Media> {
 
     private static final long serialVersionUID = -1484346576753677173L;
 

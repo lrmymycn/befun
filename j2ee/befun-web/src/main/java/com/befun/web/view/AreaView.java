@@ -6,7 +6,7 @@ import java.util.List;
 import com.befun.domain.estate.Area;
 import com.befun.domain.estate.AreaPolyline;
 
-public class AreaView extends BaseView<Area> {
+public class AreaView extends BaseEasteView<Area> {
 
     private static final long serialVersionUID = 5757966846983558308L;
 

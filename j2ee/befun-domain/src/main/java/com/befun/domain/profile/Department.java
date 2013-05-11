@@ -34,7 +34,11 @@ public class Department implements BaseModel<Long> {
 	@Column(name = "DESCRIPTION")
 	private String description;
 
-	public Long getId() {
+	public Department() {
+        super();
+    }
+
+    public Long getId() {
 		return id;
 	}
 

@@ -6,7 +6,7 @@ import com.befun.domain.estate.Building;
 import com.befun.domain.estate.Stage;
 import com.befun.web.view.BuildingView;
 
-public class BuildingConverter extends AbstractViewConverter<Building, BuildingView> {
+public class BuildingConverter extends AbstractEstateViewConverter<Building, BuildingView> {
 
     public final static String[] IGNORED_PROPS_BUILDING_VIEW = new String[] {};
 

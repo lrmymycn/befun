@@ -84,6 +84,10 @@ public class ClientPreference implements ModificationModel<Long> {
     @Embedded
     private Modification modification = Modification.createDefault();
 
+    public ClientPreference() {
+        super();
+    }
+
     @Override
     public Long getId() {
         return id;

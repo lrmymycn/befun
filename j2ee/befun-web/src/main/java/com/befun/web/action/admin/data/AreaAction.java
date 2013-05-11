@@ -20,6 +20,10 @@ public class AreaAction<T extends Area, V extends AreaView> extends AdminAction<
 
     private AreaQueryCondition qc = new AreaQueryCondition();
 
+    public AreaAction(){
+        this.view = new AreaView();
+    }
+    
     public String demandById() {
         try {
             Area obj = this.areaService.getDetail(this.getId());

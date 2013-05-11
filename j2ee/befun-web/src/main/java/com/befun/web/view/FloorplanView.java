@@ -7,7 +7,7 @@ import com.befun.domain.estate.Floorplan;
 import com.befun.domain.estate.FloorplanType;
 import com.befun.domain.estate.Media;
 
-public class FloorplanView extends BaseView<Floorplan> {
+public class FloorplanView extends BaseEasteView<Floorplan> {
 
     private static final long serialVersionUID = -8975615351491500648L;
 

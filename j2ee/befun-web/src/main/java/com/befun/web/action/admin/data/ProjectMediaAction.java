@@ -49,6 +49,10 @@ public class ProjectMediaAction<T extends ProjectMedia, V extends ProjectMediaVi
     @Resource
     @Qualifier("ProjectMediaService")
     private ProjectMediaService service;
+    
+    public ProjectMediaAction(){
+        this.view = new ProjectMediaView();
+    }
 
     protected void prepareQueryList() {
         AreaQueryCondition queryCondition = new AreaQueryCondition();

@@ -29,7 +29,11 @@ public class SuburbAction<T extends Suburb, V extends SuburbView> extends AdminA
     private List<SuburbView> keyRs = new ArrayList<SuburbView>();
 
     private List<AreaView> qcAreas = new ArrayList<AreaView>();
-    
+
+    public SuburbAction() {
+        this.view = new SuburbView();
+    }
+
     public String demandByKey() {
         List<Suburb> queryRs = this.suburbService.queryByInputKey(this.qc.getKey());
         SuburbView tmpV = null;
@@ -69,7 +73,7 @@ public class SuburbAction<T extends Suburb, V extends SuburbView> extends AdminA
 
     protected void prepareQueryList() {
         AreaQueryCondition queryCondition = new AreaQueryCondition();
-//        queryCondition.setEnabled(null);
+        // queryCondition.setEnabled(null);
         List<Area> areas = this.areaService.query(queryCondition);
         AreaView av = null;
         for (Area a : areas) {

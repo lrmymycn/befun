@@ -6,7 +6,7 @@ import com.befun.domain.estate.Project;
 import com.befun.domain.estate.ProjectMedia;
 import com.befun.web.view.ProjectMediaView;
 
-public class ProjectMediaConverter extends AbstractViewConverter<ProjectMedia, ProjectMediaView> {
+public class ProjectMediaConverter extends AbstractEstateViewConverter<ProjectMedia, ProjectMediaView> {
 
     public final static String[] IGNORED_PROPS_PM_VIEW = new String[] {};
 

@@ -5,7 +5,7 @@ import org.springframework.beans.BeanUtils;
 import com.befun.domain.estate.Area;
 import com.befun.web.view.AreaView;
 
-public class AreaConverter extends AbstractViewConverter<Area, AreaView> {
+public class AreaConverter extends AbstractEstateViewConverter<Area, AreaView> {
 
     public final static String[] IGNORED_PROPS_AREA_VIEW = new String[] { "suburbs" };
 

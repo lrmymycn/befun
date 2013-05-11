@@ -22,15 +22,15 @@ import com.befun.service.query.profile.EmployeeQueryCondition;
 
 @Controller("AdminEmployeeAction")
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class EmployeeAction<M extends Employee> extends ProfileAction<Employee> {
+public class EmployeeAction<M extends Employee> extends AbstractProfileAction<Employee> {
 
     private static final long serialVersionUID = 5495201659557835300L;
 
     private EmployeeQueryCondition qc = new EmployeeQueryCondition();
 
-    private List<Role> allRoles;
-
     private List<Role> currentRoles;
+
+    private List<Role> rightRoles;
 
     private List<Long> roleIds;
 
@@ -45,10 +45,9 @@ public class EmployeeAction<M extends Employee> extends ProfileAction<Employee> 
     @Resource
     @Qualifier("RoleService")
     private RoleService roleService;
-
-    public void prepare() {
-        allRoles = roleService.query(null);
-        super.prepare();
+    
+    public EmployeeAction(){
+        this.model = new Employee();
     }
 
     public String assignRolesPage() {
@@ -61,10 +60,26 @@ public class EmployeeAction<M extends Employee> extends ProfileAction<Employee> 
         for (ProfileRole pr : prs) {
             currentRoles.add(pr.getRole());
         }
+        List<Role> allRoles = roleService.query(null);
+        rightRoles = new ArrayList<Role>();
+        for (Role r : allRoles) {
+            if (!currentRoles.contains(r)) {
+                rightRoles.add(r);
+            }
+        }
         return SUCCESS;
     }
 
     public String assignRoles() {
+        try {
+            this.profileRoleService.refreshProfileRoles(this.id, this.roleIds);
+            this.addActionMessage("Assign roles successfully! ID:" + this.id);
+        } catch (Exception ex) {
+            String errMsg = "Assign roles failure! Employee:" + this.id;
+            this.log.error(errMsg, ex);
+            this.addActionError(errMsg + "\nCause:" + ex.getMessage());
+            return ERROR;
+        }
         return SUCCESS;
     }
 
@@ -73,16 +88,12 @@ public class EmployeeAction<M extends Employee> extends ProfileAction<Employee> 
         return super.createPage();
     }
 
-    public List<Role> getAllRoles() {
-        return allRoles;
-    }
-
     public List<Role> getCurrentRoles() {
         return currentRoles;
     }
 
-    public void setCurrentRoles(List<Role> currentRoles) {
-        this.currentRoles = currentRoles;
+    public List<Role> getRightRoles() {
+        return rightRoles;
     }
 
     public List<Long> getRoleIds() {

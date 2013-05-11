@@ -21,4 +21,11 @@ public class FloorplanInterestListItemServiceImpl extends BaseModificationServic
         this.dao = dao;
     }
 
+    @Override
+    public FloorplanInterestListItem getFetchList(Long id) {
+        FloorplanInterestListItem rs = this.get(id);
+        rs.getInterestList().getClientId();
+        return rs;
+    }
+
 }

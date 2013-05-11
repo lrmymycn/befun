@@ -6,7 +6,7 @@ import java.util.List;
 import com.befun.domain.estate.Suburb;
 import com.befun.domain.estate.SuburbPolyline;
 
-public class SuburbView extends BaseView<Suburb> {
+public class SuburbView extends BaseEasteView<Suburb> {
 
     private static final long serialVersionUID = -7550239119710508633L;
 

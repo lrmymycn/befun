@@ -2,7 +2,7 @@ package com.befun.web.view;
 
 import com.befun.domain.estate.Apartment;
 
-public class ApartmentView extends BaseView<Apartment> {
+public class ApartmentView extends BaseEasteView<Apartment> {
 
     private static final long serialVersionUID = -1484346576753677173L;
 

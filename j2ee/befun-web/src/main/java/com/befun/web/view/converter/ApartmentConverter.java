@@ -6,7 +6,7 @@ import com.befun.domain.estate.Apartment;
 import com.befun.domain.estate.Floorplan;
 import com.befun.web.view.ApartmentView;
 
-public class ApartmentConverter extends AbstractViewConverter<Apartment, ApartmentView> {
+public class ApartmentConverter extends AbstractEstateViewConverter<Apartment, ApartmentView> {
 
     public final static String[] IGNORED_PROPS_APARTMENT_VIEW = new String[] {};
 

@@ -46,6 +46,10 @@ public class FloorplanInterestListItem implements ModificationModel<Long> {
     @Embedded
     private Modification modification = Modification.createDefault();
 
+    public FloorplanInterestListItem() {
+        super();
+    }
+
     @Override
     public Long getId() {
         return id;

@@ -6,12 +6,15 @@ import java.util.Date;
 import org.springframework.beans.BeanUtils;
 import org.springframework.util.Assert;
 
+import com.befun.common.IgnorePropertiesUtil;
 import com.befun.domain.ModificationModel;
 import com.befun.domain.Modification;
 
 public abstract class BaseModificationService<M extends ModificationModel<PK>, PK extends Serializable> extends BaseService<M, PK> implements
                 IBaseModificationService<M, PK> {
-
+    
+    private static final String[] DEFAULT_UPDATE_IGNORED_PROPS = new String[] { "creationDate", "lastModifiedDate" };
+    
     @Override
     public PK save(M model) {
         model.setModification(Modification.createDefault());
@@ -34,7 +37,9 @@ public abstract class BaseModificationService<M extends ModificationModel<PK>, P
         Assert.notNull(model.getId());
         M exist = this.dao.get(model.getId());
         Assert.notNull(exist, model.getClass() + " with id" + model.getId() + " can not be found!");
-        BeanUtils.copyProperties(model, exist, ignoreProps);
+        String[] ignoreProperties = IgnorePropertiesUtil.generateIgnoredProps(getUpdatingIgnoreProps(), ignoreProps);
+        BeanUtils.copyProperties(model, exist, ignoreProperties);
+        
         if (exist.getModification() == null) {
             exist.setModification(Modification.createDefault());
         } else {
@@ -43,4 +48,7 @@ public abstract class BaseModificationService<M extends ModificationModel<PK>, P
         dao.update(exist);
     }
 
+    public String[] getUpdatingIgnoreProps(){
+        return DEFAULT_UPDATE_IGNORED_PROPS;
+    }
 }

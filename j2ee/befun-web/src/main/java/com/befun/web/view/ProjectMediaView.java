@@ -3,7 +3,7 @@ package com.befun.web.view;
 import com.befun.domain.estate.Media;
 import com.befun.domain.estate.ProjectMedia;
 
-public class ProjectMediaView extends BaseView<ProjectMedia> {
+public class ProjectMediaView extends BaseEasteView<ProjectMedia> {
 
     private static final long serialVersionUID = 2255410903151688539L;
 

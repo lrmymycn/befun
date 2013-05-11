@@ -111,6 +111,10 @@ public class Profile implements ModificationModel<Long> {
     @Embedded
     private Modification modification = Modification.createDefault();
 
+    public Profile(){
+        super();
+    }
+    
     public Long getId() {
         return id;
     }

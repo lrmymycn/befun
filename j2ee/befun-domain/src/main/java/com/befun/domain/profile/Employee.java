@@ -39,6 +39,7 @@ public class Employee extends Profile {
     private String gst;
 
     public Employee(){
+        super();
         this.setType(ProfileType.EMPLOYEE);
     }
     

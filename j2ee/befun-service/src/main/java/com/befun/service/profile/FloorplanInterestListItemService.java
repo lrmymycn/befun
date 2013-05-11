@@ -5,4 +5,5 @@ import com.befun.service.IBaseService;
 
 public interface FloorplanInterestListItemService extends IBaseService<FloorplanInterestListItem, Long> {
 
+    FloorplanInterestListItem getFetchList(Long id);
 }

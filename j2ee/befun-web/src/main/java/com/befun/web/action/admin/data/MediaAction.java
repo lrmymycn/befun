@@ -34,8 +34,8 @@ public class MediaAction<T extends Media, V extends MediaView> extends AdminActi
     private static List<MediaType> mediaTypes = new ArrayList<MediaType>();
 
     private static List<ContentType> contentTypes = new ArrayList<ContentType>();
-    
-    {
+
+    static {
         if (mediaTypes.size() < 1) {
             mediaTypes.add(MediaType.PICTURE);
             mediaTypes.add(MediaType.FILE);
@@ -55,6 +55,10 @@ public class MediaAction<T extends Media, V extends MediaView> extends AdminActi
     @Resource
     @Qualifier("MediaService")
     private MediaService service;
+
+    public MediaAction() {
+        this.view = new MediaView();
+    }
 
     @Override
     public String create() {

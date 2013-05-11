@@ -50,6 +50,10 @@ public class EmployeeClient implements BaseModel<Long> {
     @Column(name = "DESCRIPTION")
     private String description;
 
+    public EmployeeClient() {
+        super();
+    }
+
     @Override
     public Long getId() {
         return id;

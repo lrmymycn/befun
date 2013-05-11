@@ -46,6 +46,10 @@ public class ProjectInterestListItem implements ModificationModel<Long> {
     @Embedded
     private Modification modification = Modification.createDefault();
 
+    public ProjectInterestListItem() {
+        super();
+    }
+
     @Override
     public Long getId() {
         return id;

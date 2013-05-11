@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.befun.domain.estate.Building;
 
-public class BuildingView extends BaseView<Building> {
+public class BuildingView extends BaseEasteView<Building> {
 
     private static final long serialVersionUID = 4757553952765339386L;
 

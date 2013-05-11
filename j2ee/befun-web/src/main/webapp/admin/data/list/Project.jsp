@@ -66,7 +66,7 @@
 						<s:url var="e" action="admin/data/editProject.action" namespace="/">
 							<s:param name="id">${bean.id}</s:param>
 						</s:url>
-						<input type="button" value="Edit" onclick="showDialog('${e}')" />
+						<input type="button" value="Edit" onclick="showDialog('${e}',700,450)" />
 						
 						<!-- 
 						<s:url var="r" action="admin/data/removeProject.action" namespace="/">

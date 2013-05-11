@@ -60,6 +60,10 @@ public class ApartmentAction<T extends Apartment, V extends ApartmentView> exten
     @Resource
     @Qualifier("ApartmentService")
     private ApartmentService service;
+    
+    public ApartmentAction(){
+        this.view = new ApartmentView();
+    }
 
     protected void prepareQueryList() {
         AreaQueryCondition queryCondition = new AreaQueryCondition();

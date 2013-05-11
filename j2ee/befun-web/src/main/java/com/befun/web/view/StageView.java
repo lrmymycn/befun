@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.befun.domain.estate.Stage;
 
-public class StageView extends BaseView<Stage> {
+public class StageView extends BaseEasteView<Stage> {
 
     private static final long serialVersionUID = 8472013261079987847L;
 

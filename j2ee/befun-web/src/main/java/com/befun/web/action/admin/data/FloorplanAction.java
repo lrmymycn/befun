@@ -68,6 +68,10 @@ public class FloorplanAction<T extends Floorplan, V extends FloorplanView> exten
     @Resource
     @Qualifier("FloorplanService")
     private FloorplanService service;
+    
+    public FloorplanAction(){
+        this.view = new FloorplanView();
+    }
 
     protected void prepareQueryList() {
         AreaQueryCondition queryCondition = new AreaQueryCondition();

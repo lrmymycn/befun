@@ -31,7 +31,11 @@ public class Permission implements BaseModel<Long> {
 	@Column(name = "DESCRIPTION")
 	private String description;
 
-	public Long getId() {
+	public Permission() {
+        super();
+    }
+
+    public Long getId() {
 		return id;
 	}
 

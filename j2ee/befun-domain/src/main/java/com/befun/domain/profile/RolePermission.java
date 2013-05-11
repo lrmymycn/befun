@@ -33,7 +33,11 @@ public class RolePermission implements BaseModel<Long> {
 	@JoinColumn(referencedColumnName = "id", name = "PERMISSION_ID")
 	private Permission permission;
 
-	public Long getId() {
+	public RolePermission() {
+        super();
+    }
+
+    public Long getId() {
 		return id;
 	}
 

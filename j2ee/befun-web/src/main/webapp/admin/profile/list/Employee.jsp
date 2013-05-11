@@ -58,6 +58,8 @@
 					<jmesa:htmlColumn property="surname" />
 					<jmesa:htmlColumn property="givenName" />
 					<jmesa:htmlColumn property="preferredName" />
+					<jmesa:htmlColumn property="modification.creationDate" title="Creation"/>
+					<jmesa:htmlColumn property="modification.lastModifiedDate" title="Last Modified"/>
 					<jmesa:htmlColumn sortable="false" title="Operation">
 						<s:url var="e" action="admin/profile/editEmployee.action" namespace="/">
 							<s:param name="id">${bean.id}</s:param>

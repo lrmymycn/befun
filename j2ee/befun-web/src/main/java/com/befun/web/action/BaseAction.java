@@ -1,25 +1,33 @@
 package com.befun.web.action;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.ServletActionContext;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.util.StringUtils;
 
+import com.befun.domain.profile.Client;
+import com.befun.domain.profile.Employee;
 import com.befun.domain.profile.Permission;
 import com.befun.domain.profile.Profile;
 import com.befun.domain.profile.RoleCode;
+import com.befun.service.profile.ClientService;
 import com.befun.service.security.MyUser;
+import com.befun.web.box.SessionContainer;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -37,6 +45,10 @@ public class BaseAction extends ActionSupport {
     /** Indicate if current request is json request. */
     private int jsonRequest = 0;
 
+    @Resource
+    @Qualifier("ClientService")
+    protected ClientService clientService;
+
     /**
      * Gets the current profile.
      *
@@ -50,6 +62,13 @@ public class BaseAction extends ActionSupport {
         } else {
             return null;
         }
+    }
+
+    protected Employee getCurrentEmployee() {
+        if (this.getCurrentProfile() instanceof Employee) {
+            return (Employee) this.getCurrentProfile();
+        }
+        return null;
     }
 
     /**
@@ -161,5 +180,60 @@ public class BaseAction extends ActionSupport {
         ActionContext ctx = ActionContext.getContext();
         HttpServletResponse response = (HttpServletResponse) ctx.get(ServletActionContext.HTTP_RESPONSE);
         return response;
+    }
+
+    protected HttpSession getSession() {
+        return getRequest().getSession(true);
+    }
+
+    protected Serializable getSessionProperty(String propertyName) {
+        HttpSession session = this.getSession();
+        synchronized (session) {
+            Object c = session.getAttribute("befunContainer");
+            SessionContainer container = null;
+            if (c == null) {
+                container = new SessionContainer();
+                session.setAttribute("befunContainer", container);
+            } else if (!(c instanceof SessionContainer)) {
+                this.log.warn("BefunContainer destroyed by illegal code!");
+                container = new SessionContainer();
+                session.setAttribute("befunContainer", container);
+            } else {
+                container = (SessionContainer) c;
+            }
+            return container.getProperty(propertyName);
+        }
+    }
+
+    protected void setSessionProperty(String propertyName, Serializable property) {
+        HttpSession session = this.getSession();
+        synchronized (session) {
+            Object c = session.getAttribute("befunContainer");
+            SessionContainer container = null;
+            if (c == null) {
+                container = new SessionContainer();
+                session.setAttribute("befunContainer", container);
+            } else if (!(c instanceof SessionContainer)) {
+                this.log.warn("BefunContainer destroyed by illegal code!");
+                container = new SessionContainer();
+                session.setAttribute("befunContainer", container);
+            } else {
+                container = (SessionContainer) c;
+            }
+            container.setProperty(propertyName, property);
+        }
+    }
+
+    public Long getCurrentClientId() {
+        return (Long) this.getSessionProperty("currentClient");
+    }
+
+    public boolean isCurrentSaleOfClient(Long clientId) {
+        Long currentProfileId = this.getCurrentProfile().getId();
+        Client c = clientService.get(clientId);
+        if (c == null) {
+            return false;
+        }
+        return c.getCurrentEmployee().getId().equals(currentProfileId);
     }
 }

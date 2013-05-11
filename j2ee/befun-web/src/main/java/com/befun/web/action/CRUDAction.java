@@ -9,10 +9,10 @@ import com.befun.domain.BaseModel;
 import com.befun.domain.PaginationBean;
 import com.befun.service.IBaseService;
 import com.befun.service.estate.BaseEstateService;
-import com.befun.web.view.BaseView;
+import com.befun.web.view.BaseEasteView;
 import com.befun.web.view.converter.ViewConverter;
 
-public abstract class CRUDAction<M extends BaseModel<Long>, V extends BaseView<M>> extends BaseAction {
+public abstract class CRUDAction<M extends BaseModel<Long>, V extends BaseEasteView<M>> extends BaseAction {
 
     private static final long serialVersionUID = -1189470712587953039L;
 

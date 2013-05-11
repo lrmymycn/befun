@@ -114,11 +114,7 @@
 		</div>
 		<div class="menu-div">
 			<ul id="menuEmployee">
-				<li><a href="<c:url value='/admin/profile/demandEmployee.action'/>"> Employee </a>
-					<ul>
-						<s:url var="e" action="admin/data/createPageMedia.action" namespace="/"/>
-						<li><a href="#" onclick="showDialog('${e}')">Create</a></li>
-					</ul></li>
+				<li><a href="<c:url value='/admin/profile/demandEmployee.action'/>"> Profile </a></li>
 			</ul>			
 		</div>
 	</div>

@@ -46,6 +46,10 @@ public class SuburbInterestListItem implements ModificationModel<Long> {
     @Embedded
     private Modification modification = Modification.createDefault();
 
+    public SuburbInterestListItem() {
+        super();
+    }
+
     @Override
     public Long getId() {
         return id;
