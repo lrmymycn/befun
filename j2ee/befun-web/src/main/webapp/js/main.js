@@ -12,7 +12,7 @@ Main = {
 		this.windowResize();
 		$(window).resize(this.windowResize);
 		this.initFilter();
-		//this.initLogin();
+		this.initClient();
 		MapMenu.init();
 		PanelPopup.init();
 		FloorplanPopup.init();
@@ -45,7 +45,7 @@ Main = {
 			PanelPopup.hide();
 			$('#filter').toggle();
 			
-			if(!$('#signin-panel').is(':visible')){	
+			if(!$('#client').is(':visible')){	
 				$('#filter-overlay').toggle();
 			}
 			
@@ -72,29 +72,22 @@ Main = {
 			Main.hideFilter();
 		});
 	},
-	initLogin: function(){
-		$('#signin').click(function(){
-			$('#signin-panel').toggle();
+	initClient: function(){
+		$('#change-client').click(function(){
+			$('#client').toggle();
 			
 			if(!$('#filter').is(':visible')){	
 				$('#filter-overlay').toggle();
 			}
 		});
 		
-		$('#login-form').submit(function(){
-			var valid = true;
-			if($('#login-form input[name="email"]').val().lengt == 0){
-				valid = false;
-			}
-			if($('#login-form input[name="password"]').val().length == 0){
-				valid = false
-			}
-			return valid;
+		$('#client select[name="client"]').change(function(){
+			console.log($(this).val());
 		});
 	},
 	hideFilter:function(){
 		$('#filter').hide();
-		$('#signin-panel').hide();
+		$('#client').hide();
 		$('#filter-overlay').hide();
 	},
 	loadProjectList:function(){

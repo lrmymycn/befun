@@ -4,23 +4,13 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Befun Property</title>
-        <meta name="description" content="">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="css//normalize.css">
-        <link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.9.2.custom.min.css"/>
-        <link rel="stylesheet" href="css/jquery.selectbox.css"/>
-        <link rel="stylesheet" href="css/main.css">
-        <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+        <jsp:include page="includes/head.jsp" />
     </head>
 	<body>
 		<div class="standard">
 	        <header>
 	        	<div class="inner">
-	        		<jsp:include page="includes/header.jsp" />
+	        		<jsp:include page="includes/search.jsp" />
 	        	</div>
 	        </header>
 	        <div id="content" class="compare">	         	        	
@@ -97,28 +87,12 @@
 		</footer>
 		<div id="filter-overlay"></div>
 		<div id="overlay"></div>
-		
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
-        <script src="js/vendor/jquery-ui-1.9.2.custom.min.js"></script>
-        <script src="js/plugins.js"></script>
-        <script src="js/knockout-2.2.1.js"></script>
-        <script src="js/json2.js"></script>
-        <script src="js/jquery.selectbox-0.2.js"></script>
-        <script src="js/jquery.tools.min.js"></script>
-        <script src="js/jquery.cookie.js"></script>
-        <script src="js/main.js"></script>	
+		<jsp:include page="includes/script.jsp" />
         <script>
         	$(function(){
 				Debug.enable = true;
 				Compare.init();
 			})
-        </script>
-        <script>
-            var _gaq=[['_setAccount','UA-40663296-1'],['_trackPageview']];
-            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(g,s)}(document,'script'));
         </script>
 	</body>
 </html>

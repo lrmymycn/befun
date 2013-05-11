@@ -6,13 +6,13 @@
 	<span class="close"></span>
 	<div class="top">
 		<div class="title">
-			<a href="#" class="red" id="befun">Compare</a>
+			<a href="#" class="btn red" id="befun">Add to Compare List</a>
 			<div class="sort">
 				<label>Sort:</label>
 				<div class="button-group">
-					<a href="javascript:;" class="active" data-type="price">Price</a>
-					<a href="javascript:;" data-type="sqm">Price/sqm</a>
-					<a href="javascript:;" data-type="area">Area</a>
+					<a href="javascript:;" class="btn active" data-type="price">Price</a>
+					<a href="javascript:;" class="btn" data-type="sqm">Price/sqm</a>
+					<a href="javascript:;" class="btn" data-type="area">Area</a>
 				</div>			
 			</div>
 		</div> 

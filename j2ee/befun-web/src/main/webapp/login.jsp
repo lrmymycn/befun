@@ -5,18 +5,7 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Befun Property</title>
-        <meta name="description" content="">
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.9.2.custom.min.css"/>
-        <link rel="stylesheet" href="css/jquery.selectbox.css"/>
-        <link rel="stylesheet" href="css/main.css">
-        <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
-        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+        <jsp:include page="includes/head.jsp" />
     </head>
 	<body class="standard">
 		<header style="position:absolute;">
@@ -64,7 +53,7 @@
 			});
 		</script>
 		<script>
-            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            var _gaq=[['_setAccount','UA-40663296-1'],['_trackPageview']];
             (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
             g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
             s.parentNode.insertBefore(g,s)}(document,'script'));

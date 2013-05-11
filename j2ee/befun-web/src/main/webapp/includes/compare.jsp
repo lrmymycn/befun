@@ -42,7 +42,7 @@
 			</ul>
 		</div>
 		<div class="button">
-			<a href="compare.jsp" target="_blank" class="btn-compare disabled">COMPARE</a>
+			<a href="compare.jsp" target="_blank" class="btn-compare disabled">Compare</a>
 			<a href="#" class="clear">Clear the list</a>
 		</div>
 	</div>

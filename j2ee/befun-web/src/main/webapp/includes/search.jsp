@@ -11,29 +11,13 @@
 	</div>
 	<div class="menu">
 		<ul>
-			<li><a href="#">Ryan</a></li>
+			<li><a href="javascript:;" id="change-client">Hi! Ryan and Johnny Walker</a></li>
 			<li class="more"><a href="javascript:;">More<i class="arrow-down-grap"></i></a>
 				<ul>
-					<li><a href="#">Register Client</a></li>
 					<li><a href="<c:url value='/j_spring_security_logout' />">Log out</a></li>
 				</ul>
 			</li>
-			<li class="phone"><i class="phone"></i> 02-1234-5678</li>
 		</ul>
-		<div id="signin-panel" class="popover" style="display:none;">
-			<div class="arrow"></div>
-			<div class="inner">
-				<h3>Sign in</h3>
-				<form id="login-form" method="post" action="/index.php/Authorize/login">
-					<input type="text" name="username" placeholder="Username"/>
-					<input type="password" name="password" placeholder="Password"/>
-					<div class="buttons">
-						<input type="submit" class="submit" value="LOGIN"/>
-						<a href="#" class="forgot">Forgot password?</a>
-					</div>
-				</form>
-			</div>
-		</div>
 	</div>
 	<div id="filter" class="popover" style="display:none;">
 		<div class="arrow"></div>
