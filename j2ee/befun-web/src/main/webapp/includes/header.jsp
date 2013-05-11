@@ -11,7 +11,7 @@
 	</div>
 	<div class="menu">
 		<ul>
-			<li><a href="#">John Macarons</a></li>
+			<li><a href="#">Ryan</a></li>
 			<li class="more"><a href="javascript:;">More<i class="arrow-down-grap"></i></a>
 				<ul>
 					<li><a href="#">Register Client</a></li>

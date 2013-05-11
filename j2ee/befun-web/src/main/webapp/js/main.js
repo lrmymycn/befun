@@ -105,7 +105,7 @@ Main = {
 			if(i == Search.projects.length - 1){
 				cls = 'item last';
 			}
-			var $div = $('<div class="' + cls +'" data-id="' + project.id + '" data-lat="' + project.latitude + '" data-lng="' + project.longitude + '"><img src="' + project.logo.smallUrl + '" alt="' + project.name + '" height="70" width="170" /></div>');
+			var $div = $('<div class="' + cls +'" data-id="' + project.id + '" data-lat="' + project.latitude + '" data-lng="' + project.longitude + '"><img src="' + project.logo.largeUrl + '" alt="' + project.name + '" height="70" width="170" /></div>');
 			
 			$div.click(function(){
 				var lat = $(this).data('lat');
@@ -1980,7 +1980,7 @@ ClusterPolygon.prototype = new google.maps.Polygon();
 function ProjectOverlay(project, map){
 	this._map = map;
 	this._div = null;
-	this._logo = project.logo.smallUrl;
+	this._logo = project.logo.largeUrl;
 	this._markerCenter = new google.maps.LatLng(project.latitude, project.longitude);
 	this._imageCenter = null;
 	this._projectId = project.id;

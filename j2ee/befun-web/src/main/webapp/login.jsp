@@ -42,10 +42,10 @@
 		<div id="login">
 			<form action="${pageContext.request.contextPath}/j_spring_security_check" method="post">
 				<div class="row">
-					<input type="text" name="j_username" value="${sessionScope['SPRING_SECURITY_LAST_USERNAME']}" />
+					<input type="text" placeholder="Username" name="j_username" value="${sessionScope['SPRING_SECURITY_LAST_USERNAME']}" />
 				</div>
 				<div class="row">
-					<input type="password" name="j_password" />
+					<input type="password" placeholder="Password" name="j_password" />
 				</div>
 				<div>
 					<input class="btn-submit" name="submit" value="Login" type="submit"/>
