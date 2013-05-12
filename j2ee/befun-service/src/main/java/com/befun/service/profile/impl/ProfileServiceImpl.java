@@ -13,6 +13,7 @@ import com.befun.dao.IBaseDao;
 import com.befun.dao.common.IQueryCondition;
 import com.befun.dao.common.QueryCondition;
 import com.befun.domain.profile.Profile;
+import com.befun.domain.profile.ProfileRole;
 import com.befun.service.BaseModificationService;
 import com.befun.service.profile.ProfileService;
 
@@ -27,13 +28,18 @@ public class ProfileServiceImpl extends BaseModificationService<Profile, Long> i
 
     @Override
     public Profile getByUserName(String userName) {
+        //TODO join fetch and pagination
         IQueryCondition queryCondition = new QueryCondition();
         queryCondition.setHql(true);
-        queryCondition.setHqlString("from Profile P left join fetch P.profileRoles PR left join fetch PR.role WHERE P.username=:username");
+        queryCondition.setHqlString("from Profile P WHERE P.username=:username");
         queryCondition.setParameter("username", userName);
         List<Profile> rs = this.dao.query(queryCondition);
         if (rs.size() == 0) {
             return null;
+        }
+        Profile p = rs.get(0);
+        for (ProfileRole pr : p.getProfileRoles()) {
+            pr.getRole().getId();
         }
         return rs.get(0);
     }
