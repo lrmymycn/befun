@@ -14,6 +14,8 @@
 			<li><a href="javascript:;" id="change-client">Hi! Ryan and Johnny Walker</a></li>
 			<li class="more"><a href="javascript:;">More<i class="arrow-down-grap"></i></a>
 				<ul>
+					<li><a href="#">Clients</a></li>
+					<li><a href="#">Cases</a></li>
 					<li><a href="<c:url value='/j_spring_security_logout' />">Log out</a></li>
 				</ul>
 			</li>

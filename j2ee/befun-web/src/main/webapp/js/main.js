@@ -1745,6 +1745,9 @@ Compare = {
 },
 
 ClientForm = {
+	data:{
+		
+	},
 	init: function(){
 		$('#client-form').validate({
 			submitHandler: function(form){
