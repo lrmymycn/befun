@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
 <script>
@@ -112,11 +113,13 @@
 					</ul></li>
 			</ul>
 		</div>
-		<div class="menu-div">
-			<ul id="menuEmployee">
-				<li><a href="<c:url value='/admin/profile/demandEmployee.action'/>"> Profile </a></li>
-			</ul>			
-		</div>
+		<sec:authorize ifAllGranted="SUPER">
+			<div class="menu-div">
+				<ul id="menuEmployee">
+					<li><a href="<c:url value='/admin/profile/demandEmployee.action'/>"> Profile </a></li>
+				</ul>			
+			</div>
+		</sec:authorize>
 	</div>
 </body>
 </html>
