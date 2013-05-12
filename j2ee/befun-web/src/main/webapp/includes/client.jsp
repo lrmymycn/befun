@@ -12,7 +12,7 @@
 		</div>
 		<span class="title">OR</span>
 		<div class="button">
-			<a href="#" class="btn red">Create a New Client</a>
+			<a href="client.jsp" class="btn red">Create a New Client</a>
 		</div>
 	</div>
 </div>

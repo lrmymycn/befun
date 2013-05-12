@@ -1742,6 +1742,18 @@ Compare = {
           }
         });
 	}
+},
+
+ClientForm = {
+	init: function(){
+		$('#client-form').validate({
+			submitHandler: function(form){
+				$.post('register-post.php', $('#client-form').serialize(), function(data){
+					
+				});
+			}
+		});
+	}
 }
 
 Tools = {
