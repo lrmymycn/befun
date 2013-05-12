@@ -15,6 +15,7 @@
     <http pattern="/error/**" security="none" />
     <http pattern="/jmesa/**" security="none" />
     <http pattern="/jquery-ui/**" security="none" />
+    <http pattern="/struts/**" security="none" />
     <http use-expressions="true" auto-config="true">
         <intercept-url pattern="/" access="hasAnyRole('SUPER','DATA_ADMIN','MANAGER','SALE')" requires-channel="http" />
         <intercept-url pattern="/index.jsp**" access="hasAnyRole('SUPER','DATA_ADMIN','MANAGER','SALE')" requires-channel="http" />

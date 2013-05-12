@@ -49,7 +49,7 @@ public class EmployeeAction extends BaseAction {
     public String selectClient() {
         if (!isCurrentSaleOfClient(this.clientId)) {
             this.addActionError("You are not the current sale of this client!");
-            return ERROR;
+            return SUCCESS;
         }
         this.setSessionProperty("currentClient", this.clientId);
         return SUCCESS;

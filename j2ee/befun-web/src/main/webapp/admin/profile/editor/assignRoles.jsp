@@ -7,7 +7,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Assign roles:${model.id},Name:${model.username}</title>
-<sx:head/>
 </head>
 <body>
 	<s:form action="assignRoles.action" method="post">
