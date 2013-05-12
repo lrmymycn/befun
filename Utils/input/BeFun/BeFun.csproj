@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{788B2961-9D6A-4028-9176-780B98635CB2}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BeFun</RootNamespace>
+    <AssemblyName>BeFun</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <PlatformTarget>x64</PlatformTarget>
+    <OutputPath>bin\x64\Release\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Access, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\ComboBoxItem.cs" />
+    <Compile Include="Common\MyConstants.cs" />
+    <Compile Include="Common\OutputUtils.cs" />
+    <Compile Include="Common\PathUtils.cs" />
+    <Compile Include="Common\PictureOperation.cs" />
+    <Compile Include="Common\PictureUtils.cs" />
+    <Compile Include="Common\Utils.cs" />
+    <Compile Include="Model\Dao\ApartmentDao.cs" />
+    <Compile Include="Model\Dao\BuildingDao.cs" />
+    <Compile Include="Model\Dao\FloorplanDao.cs" />
+    <Compile Include="Model\Dao\MediaDao.cs" />
+    <Compile Include="Model\Dao\StageDao.cs" />
+    <Compile Include="Model\DBUtils.cs" />
+    <Compile Include="Model\Domain\Apartment.cs" />
+    <Compile Include="Model\Domain\BaseModel.cs" />
+    <Compile Include="Model\Domain\Floorplan.cs" />
+    <Compile Include="Model\Domain\Media.cs" />
+    <Compile Include="Model\Domain\Orientation.cs" />
+    <Compile Include="Model\Domain\ProjectMedia.cs" />
+    <Compile Include="Model\Domain\Stage.cs" />
+    <Compile Include="Model\Domain\Building.cs" />
+    <Compile Include="Model\PaginationBean.cs" />
+    <Compile Include="Model\ConnectionPool.cs" />
+    <Compile Include="Model\Dao\ProjectDao.cs" />
+    <Compile Include="Model\Domain\Project.cs" />
+    <Compile Include="Model\Dao\AccessDao.cs" />
+    <Compile Include="Model\Query\ApartmentQueryCondition.cs" />
+    <Compile Include="Model\Query\BuildingQueryCondition.cs" />
+    <Compile Include="Model\Query\FloorplanQueryCondition.cs" />
+    <Compile Include="Model\Query\MediaQueryCondition.cs" />
+    <Compile Include="Model\Query\ProjectQueryCondition.cs" />
+    <Compile Include="Model\Query\QueryCondition.cs" />
+    <Compile Include="Model\Query\StageQueryCondition.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\Component\Common\ProgressBarBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Component\Common\ProgressBarBox.designer.cs">
+      <DependentUpon>ProgressBarBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Editor\MultiMediaEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Editor\MultiMediaEditor.Designer.cs">
+      <DependentUpon>MultiMediaEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ListWindow\ApartmentWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ListWindow\ApartmentWindow.Designer.cs">
+      <DependentUpon>ApartmentWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ListWindow\BuildingWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ListWindow\BuildingWindow.Designer.cs">
+      <DependentUpon>BuildingWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Component\Common\MyConfirmBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Component\Common\MyConfirmBox.Designer.cs">
+      <DependentUpon>MyConfirmBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Component\Common\MyMessageBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Component\Common\MyMessageBox.Designer.cs">
+      <DependentUpon>MyMessageBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Component\GirdView\ApartmentDataView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Component\GirdView\BuildingDataView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Component\GirdView\FloorplanDataView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Component\GirdView\MediaDataView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Component\GirdView\MyDataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Component\GirdView\ProjectDataView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Component\GirdView\StageDataView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="View\Component\MediaListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\Component\MediaListView.Designer.cs">
+      <DependentUpon>MediaListView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Editor\ApartmentEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Editor\ApartmentEditor.Designer.cs">
+      <DependentUpon>ApartmentEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Editor\BuildingEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Editor\BuildingEditor.Designer.cs">
+      <DependentUpon>BuildingEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Editor\FloorplanEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Editor\FloorplanEditor.Designer.cs">
+      <DependentUpon>FloorplanEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Editor\MediaEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Editor\MediaEditor.Designer.cs">
+      <DependentUpon>MediaEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Editor\StageEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Editor\StageEditor.Designer.cs">
+      <DependentUpon>StageEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ListWindow\FloorplanWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ListWindow\FloorplanWindow.Designer.cs">
+      <DependentUpon>FloorplanWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ListWindow\ListWindowType.cs" />
+    <Compile Include="View\ListWindow\MediaWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ListWindow\MediaWindow.Designer.cs">
+      <DependentUpon>MediaWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Editor\MyEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Editor\ProjectEditor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Editor\ProjectEditor.Designer.cs">
+      <DependentUpon>ProjectEditor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ListWindow\MainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ListWindow\MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ListWindow\StageWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ListWindow\StageWindow.Designer.cs">
+      <DependentUpon>StageWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\OutputWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\OutputWindow.Designer.cs">
+      <DependentUpon>OutputWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Test.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Test.Designer.cs">
+      <DependentUpon>Test.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="View\Component\Common\ProgressBarBox.resx">
+      <DependentUpon>ProgressBarBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Editor\MultiMediaEditor.resx">
+      <DependentUpon>MultiMediaEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ListWindow\ApartmentWindow.resx">
+      <DependentUpon>ApartmentWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ListWindow\BuildingWindow.resx">
+      <DependentUpon>BuildingWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Component\Common\MyConfirmBox.resx">
+      <DependentUpon>MyConfirmBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Component\Common\MyMessageBox.resx">
+      <DependentUpon>MyMessageBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Component\MediaListView.resx">
+      <DependentUpon>MediaListView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Editor\ApartmentEditor.resx">
+      <DependentUpon>ApartmentEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Editor\BuildingEditor.resx">
+      <DependentUpon>BuildingEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Editor\FloorplanEditor.resx">
+      <DependentUpon>FloorplanEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Editor\MediaEditor.resx">
+      <DependentUpon>MediaEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Editor\MyEditor.resx">
+      <DependentUpon>MyEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Editor\StageEditor.resx">
+      <DependentUpon>StageEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ListWindow\FloorplanWindow.resx">
+      <DependentUpon>FloorplanWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ListWindow\MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ListWindow\MediaWindow.resx">
+      <DependentUpon>MediaWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Editor\ProjectEditor.resx">
+      <DependentUpon>ProjectEditor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ListWindow\StageWindow.resx">
+      <DependentUpon>StageWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\OutputWindow.resx">
+      <DependentUpon>OutputWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Test.resx">
+      <DependentUpon>Test.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controller\" />
+    <Folder Include="Model\Service\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
