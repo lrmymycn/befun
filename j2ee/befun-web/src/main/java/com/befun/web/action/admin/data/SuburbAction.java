@@ -48,6 +48,7 @@ public class SuburbAction<T extends Suburb, V extends SuburbView> extends AdminA
         try {
             Suburb obj = this.suburbService.getDetail(this.getId());
             this.view = this.getConverter().convertToView(obj);
+            this.prepareEditorList();
         } catch (Exception ex) {
             String errMsg = "Query failure!";
             this.log.warn(errMsg, ex);
@@ -57,6 +58,17 @@ public class SuburbAction<T extends Suburb, V extends SuburbView> extends AdminA
         return SUCCESS;
     }
 
+    private void prepareEditorList() {
+        AreaQueryCondition queryCondition = new AreaQueryCondition();
+        // queryCondition.setEnabled(null);
+        List<Area> areas = this.areaService.query(queryCondition);
+        AreaView av = null;
+        for (Area a : areas) {
+            av = areaConverter.convertToView(a);
+            qcAreas.add(av);
+        }
+    }
+    
     public String createOrUpdate() {
         try {
             Suburb model = this.getConverter().convertToModel(this.view);

@@ -34,6 +34,7 @@
         <intercept-url pattern="/admin/impPage.action**" access="hasAnyRole('SUPER','DATA_ADMIN')" requires-channel="http" />
         <intercept-url pattern="/admin/impAccess.action**" access="hasAnyRole('SUPER','DATA_ADMIN')" requires-channel="http" />
         <intercept-url pattern="/admin/data/*.action**" access="hasAnyRole('SUPER','DATA_ADMIN')" requires-channel="http" />
+        <intercept-url pattern="/admin/data/json/*.action**" access="hasAnyRole('SUPER','DATA_ADMIN')" requires-channel="http" />
         <intercept-url pattern="/admin/profile/*.action**" access="hasAnyRole('SUPER')" requires-channel="http" />
         <intercept-url pattern="/profile/json/changePassword.action**" access="isAuthenticated()" requires-channel="http" />
         <intercept-url pattern="/profile/json/createClient.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />

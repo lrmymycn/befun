@@ -12,7 +12,7 @@
 		<s:hidden name="view.id"></s:hidden>
 		<s:label name="view.id" label="ID"></s:label>
 		<s:label name="view.bid" label="BID"></s:label>
-		<s:textfield name="view.areaId" label="Area"></s:textfield>
+		<s:select name="view.areaId" label="area" list="qcAreas" listKey="id" listValue="name"/>
 		<s:textfield name="view.name" label="name"></s:textfield>
 		<s:textfield name="view.postCode" label="postCode"></s:textfield>
 		<s:textfield name="view.longitude" label="longitude"></s:textfield>
@@ -25,12 +25,12 @@
 		<s:checkbox name="view.chineseCommunity" label="chineseCommunity" labelposition="left"></s:checkbox>
 		<s:textarea name="view.description" label="Description" labelposition="left" cols="40"></s:textarea>
 		<s:textarea name="view.polylinesString" label="Polylines" labelposition="left" cols="40"></s:textarea>
-		<s:if test="editable">
-			<s:submit></s:submit>
-			<s:reset></s:reset>
-		</s:if>
 		<tr>
 			<td colspan="2"><div align="right">
+					<s:if test="editable">
+						<input type="submit" value="Submit" />
+						<input type="reset" value="Reset" />
+					</s:if>
 					<input type="button" value="Close" onclick="closeCurrentWindow();" />
 				</div></td>
 		</tr>

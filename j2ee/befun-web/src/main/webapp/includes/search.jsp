@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.befun.web.box.SessionContainer"%>  
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
@@ -10,8 +11,19 @@
 		<a href="javascript:;" id="btn-search"></a>
 	</div>
 	<div class="menu">
-		<ul>
-			<li><a href="javascript:;" id="change-client">Hi! Ryan and Johnny Walker</a></li>
+		<ul><%
+				Long currentClientId = null; 
+				try{
+				    Object obj = session.getAttribute("befunContainer");
+				    if(obj != null && obj instanceof SessionContainer){
+						SessionContainer sc =(SessionContainer)obj;
+						currentClientId = (Long)sc.getProperty("currentClient");
+				    }
+				}catch(Exception ex){
+				    
+				}
+			%>
+			<li><a href="javascript:;" id="change-client">Hi! Ryan and Client:<%= currentClientId %>></a></li>
 			<li class="more"><a href="javascript:;">More<i class="arrow-down-grap"></i></a>
 				<ul>
 					<li><a href="#">Clients</a></li>

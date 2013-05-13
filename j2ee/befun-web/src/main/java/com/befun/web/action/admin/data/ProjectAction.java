@@ -36,7 +36,25 @@ public class ProjectAction<T extends Project, V extends ProjectView> extends Adm
     public ProjectAction() {
         this.view = new ProjectView();
     }
+    
+    @Override
+    public String demandById(){
+        String rs = super.demandById();
+        this.prepareEditorList();
+        return rs;
+    }
 
+    private void prepareEditorList() {
+        AreaQueryCondition queryCondition = new AreaQueryCondition();
+        // queryCondition.setEnabled(null);
+        List<Area> areas = this.areaService.query(queryCondition);
+        AreaView av = null;
+        for (Area a : areas) {
+            av = areaConverter.convertToView(a);
+            qcAreas.add(av);
+        }
+    }
+    
     protected void prepareQueryList() {
         AreaQueryCondition queryCondition = new AreaQueryCondition();
         // queryCondition.setEnabled(null);
