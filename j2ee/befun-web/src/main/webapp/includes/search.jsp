@@ -23,6 +23,7 @@
 				    
 				}
 			%>
+			<sec:authentication property="principal" var="authentication" />
 			<li><a href="javascript:;" id="change-client">Hi! ${authentication.username} and Client:<%= currentClientId %></a></li>
 			<li class="more"><a href="javascript:;">More<i class="arrow-down-grap"></i></a>
 				<ul>
