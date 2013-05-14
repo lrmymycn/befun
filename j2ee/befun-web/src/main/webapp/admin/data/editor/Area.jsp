@@ -16,13 +16,15 @@
 		<s:textfield name="view.longitude" label="Longitude"></s:textfield>
 		<s:textfield name="view.latitude" label="Latitude"></s:textfield>
 		<s:textarea name="view.description" label="Description" labelposition="left" cols="40"></s:textarea>
-		<s:textarea name="view.polylinesString" label="Polylines" labelposition="left" cols="40"></s:textarea>
-		<s:submit></s:submit>
-		<s:reset></s:reset>
+		<s:textarea name="view.polylinesString" label="Polylines" labelposition="left" cols="40" rows="8"></s:textarea>
 		<tr>
 			<td colspan="2"><div align="right">
-					<input type="button" value="Close" onclick="closeCurrentWindow();" />
-				</div></td>
+				<s:if test="editable">
+					<s:submit theme="simple"/>
+					<s:reset theme="simple"/>
+				</s:if>
+				<input type="button" value="Close" onclick="closeCurrentWindow();" />
+			</div></td>
 		</tr>
 	</s:form>
 </body>

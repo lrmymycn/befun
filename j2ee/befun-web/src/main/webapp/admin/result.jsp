@@ -16,7 +16,6 @@
 		<h1>
 			<s:actionmessage />
 		</h1>
-		<input type="button" value="Close" onclick="closeCurrentWindow();" />
 	</center>
 </body>
 </html>

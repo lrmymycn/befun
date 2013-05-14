@@ -27,6 +27,7 @@ public class ProjectMediaConverter extends AbstractEstateViewConverter<ProjectMe
         BeanUtils.copyProperties(model, view, ignoredProperties);
         view.setProjectId(model.getProject().getId());
         view.setProjectName(model.getProject().getName());
+        copyModelModification(model.getModelModification(), view);
     }
 
     @Override

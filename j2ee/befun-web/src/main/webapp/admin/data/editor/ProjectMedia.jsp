@@ -15,14 +15,14 @@
 		<s:label name="view.projectName" label="projectName"></s:label>
 		<s:textfield name="view.media.id" label="mediaId"></s:textfield>
 		<s:label name="view.media.smallUrl" label="mediaSmallUrl"></s:label>
-		<s:if test="editable">
-			<s:submit></s:submit>
-			<s:reset></s:reset>
-		</s:if>
 		<tr>
 			<td colspan="2"><div align="right">
-					<input type="button" value="Close" onclick="closeCurrentWindow();" />
-				</div></td>
+				<s:if test="editable">
+					<s:submit theme="simple"/>
+					<s:reset theme="simple"/>
+				</s:if>
+				<input type="button" value="Close" onclick="closeCurrentWindow();" />
+			</div></td>
 		</tr>
 	</s:form>
 </body>

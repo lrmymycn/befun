@@ -75,15 +75,18 @@ public class BuildingAction<T extends Building, V extends BuildingView> extends 
                 qcSuburbs.add(sv);
             }
         }
-        if (this.getQc() != null && this.getQc().getProQC() != null && this.getQc().getProQC().getSuburbId() != null) {
-            ProjectQueryCondition pQC = this.getQc().getProQC();
-            // sQC.setEnabled(null);
-            List<Project> projects = this.projectService.query(pQC);
-            ProjectView sv = null;
-            for (Project s : projects) {
-                sv = projectConverter.convertToView(s);
-                qcProjects.add(sv);
-            }
+        
+        ProjectQueryCondition pQC = null;
+        if (this.getQc() != null && this.getQc().getProQC() != null) {
+            pQC = this.qc.getProQC();
+        } else {
+            pQC = new ProjectQueryCondition();
+        }
+        List<Project> projects = this.projectService.query(pQC);
+        ProjectView psv = null;
+        for (Project s : projects) {
+            psv = projectConverter.convertToView(s);
+            qcProjects.add(psv);
         }
 
         if (this.qc != null && this.qc.getProjectId() != null) {

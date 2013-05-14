@@ -14,6 +14,9 @@
 		$( "#stageCombobox" ).combobox();
 		$( "#buildingCombobox" ).combobox();
 		$( "#floorplanCombobox" ).combobox();
+		$( "#pentHouseCombobox" ).combobox();
+		$( "#soldOutCombobox" ).combobox();
+		$( "#enabledCombobox" ).combobox();
 	}
 </script>
 </head>
@@ -78,9 +81,32 @@
 			<td width="50">
 			<label>PentHouse: </label></td>
 			<td width="200">
-			<input name="qc.pentHouse" type="checkbox" value="true" <c:if test="${qc.pentHouse }"> checked="checked"</c:if>/>
+			<select id="pentHouseCombobox" name="qc.pentHouse">
+				<option value="null">All</option>
+				<option value="true" <c:if test="${qc.pentHouse == true}">selected="selected"</c:if>>Is</option>
+				<option value="false" <c:if test="${qc.pentHouse == false}">selected="selected"</c:if>>Not</option>
+			</select>
 			</td>
-			<td align="right" colspan="10"><input type="submit" value="Query" /></td></tr>
+			<td width="50">
+			<label>Sold Out: </label></td>
+			<td width="200">
+			<select id="soldOutCombobox" name="qc.soldOut">
+				<option value="null">All</option>
+				<option value="true" <c:if test="${qc.soldOut == true}">selected="selected"</c:if>>Sold out</option>
+				<option value="false" <c:if test="${qc.soldOut == false}">selected="selected"</c:if>>In Stock</option>
+			</select>
+			</td></tr>
+			<tr>
+			<td width="50">
+			<label>Enabled: </label></td>
+			<td width="200">
+			<select id="enabledCombobox" name="qc.enabled">
+				<option value="null">All</option>
+				<option value="true" <c:if test="${qc.enabled == true}">selected="selected"</c:if>>Enabled</option>
+				<option value="false" <c:if test="${qc.enabled == false}">selected="selected"</c:if>>Disabled</option>
+			</select>
+			</td>
+			<td align="right" colspan="10"><input id="queryButton" type="button" value="Query" onclick="jQuery.jmesa.removeAllFiltersFromLimit('apartment_table');onInvokeAction('apartment_table','clear')" /></td></tr>
 		</table>
 		<input type="hidden" name="tableName" value="apartment_table" />
 		<jmesa:struts2TableModel items="${pgb.models}" id="apartment_table" var="bean" stateAttr="restore"
@@ -117,13 +143,19 @@
 						<s:url var="r" action="admin/data/enableApartment.action" namespace="/">
 							<s:param name="id">${bean.id}</s:param>
 						</s:url>
-						<input type="button" value="Enable" onclick="showDialog('${r}')" />
+						<input type="button" value="Enable" onclick="showModalDialog('${r}')" />
 						</c:if>
 						<c:if test="${bean.enabled }">
 						<s:url var="r" action="admin/data/disableApartment.action" namespace="/">
 							<s:param name="id">${bean.id}</s:param>
 						</s:url>
-						<input type="button" value="Disable" onclick="showDialog('${r}')" />
+						<input type="button" value="Disable" onclick="showModalDialog('${r}')" />
+						</c:if>
+						<c:if test="${!bean.soldOut }">
+						<s:url var="r" action="admin/data/markApartmentSoldOut.action" namespace="/">
+							<s:param name="id">${bean.id}</s:param>
+						</s:url>
+						<input type="button" value="SoldOut" onclick="showModalDialog('${r}')" />
 						</c:if>
 					</jmesa:htmlColumn>
 				</jmesa:htmlRow>

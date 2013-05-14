@@ -8,6 +8,7 @@
 <title>Clients</title>
 <script>
 	function initPage(){
+		$( "#genderCombobox" ).combobox();
 		$( "#saleCombobox" ).combobox();
 	}
 </script>
@@ -20,7 +21,7 @@
 				<td width="200"><input type="text" name="qc.username" value="${qc.username }"/></td>
 				<td width="50"><label>Gender: </label></td>
 				<td width="200">
-					<select name="qc.gender">
+					<select id="genderCombobox" name="qc.gender">
 						<option value="">Select Gender</option>
 						<c:forEach items="${paramGenders }" var="s">
 							<option value="${s }" <c:if test="${qc.gender eq s}">selected="selected"</c:if>>${s }</option>
@@ -36,7 +37,7 @@
 						</c:forEach>
 					</select>
 				</td>
-				<td align="right" colspan="10"><input type="submit" value="Query" /></td>
+				<td align="right" colspan="10"><input id="queryButton" type="button" value="Query" onclick="jQuery.jmesa.removeAllFiltersFromLimit('Client_table');onInvokeAction('Client_table','clear')" /></td>
 			</tr>
 		</table>
 		<input type="hidden" name="tableName" value="Client_table" />

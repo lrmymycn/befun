@@ -95,5 +95,9 @@
             <result name="success">/admin/data/result.jsp</result>
             <result name="error">/admin/data/result.jsp</result>
         </action>
+        <action name="markApartmentSoldOut" class="AdminApartmentAction" method="markSoldOut">
+            <result name="success">/admin/data/result.jsp</result>
+            <result name="error">/admin/data/result.jsp</result>
+        </action>
     </package>
 </struts>  

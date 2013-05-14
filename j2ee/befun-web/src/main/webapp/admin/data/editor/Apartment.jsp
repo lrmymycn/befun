@@ -25,14 +25,14 @@
 		<s:checkbox name="view.pentHouse" label="Pent House" labelposition="left"></s:checkbox>
 		<s:checkbox name="view.soldOut" label="Sold Out" labelposition="left"></s:checkbox>
 		<s:textarea name="view.description" label="Description" labelposition="left" cols="40"></s:textarea>
-		<s:if test="editable">
-			<s:submit></s:submit>
-			<s:reset></s:reset>
-		</s:if>
 		<tr>
 			<td colspan="2"><div align="right">
-					<input type="button" value="Close" onclick="closeCurrentWindow();" />
-				</div></td>
+				<s:if test="editable">
+					<s:submit theme="simple"/>
+					<s:reset theme="simple"/>
+				</s:if>
+				<input type="button" value="Close" onclick="closeCurrentWindow();" />
+			</div></td>
 		</tr>
 	</s:form>
 </body>

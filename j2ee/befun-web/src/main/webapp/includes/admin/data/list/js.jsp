@@ -8,5 +8,8 @@
 <script src="<c:url value="/jquery-ui/ui/jquery.ui.menu.js"/>"></script>
 <script src="<c:url value="/jquery-ui/ui/jquery.ui.autocomplete.js"/>"></script>
 <script src="<c:url value="/jquery-ui/ui/jquery.ui.tooltip.js"/>"></script>
+<script src="<c:url value="/jquery-ui/ui/jquery.ui.dialog.js"/>"></script>
+<script src="<c:url value="/jquery-ui/ui/jquery.ui.resizable.js"/>"></script>
+<script src="<c:url value="/jquery-ui/ui/jquery.ui.effect.js"/>"></script>
 <script src="<c:url value="/jmesa/js/jquery.jmesa.js"/>"></script>
 <script src="<c:url value="/jmesa/js/jmesa.js"/>"></script>

@@ -76,7 +76,7 @@ public class ProjectAction extends CRUDAction<Project, ProjectView> {
     @Resource
     @Qualifier("ApartmentService")
     private ApartmentService apartmentService;
-
+    
     public String demandAggregated() {
         // query aggregated information
         Map<Suburb, Long> queryRs = service.queryGroupBySuburb(qc);

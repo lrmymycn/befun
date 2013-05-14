@@ -48,4 +48,14 @@ public class ApartmentServiceImpl extends BaseEstateServiceImpl<Apartment, Long>
         return this.dao.queryFree(apQC, pageNumber, pageSize);
     }
 
+    @Override
+    public void markSoldOut(Long id) {
+        Apartment model = this.get(id);
+        if(model == null){
+            return;
+        }
+        model.setSoldOut(true);
+        this.update(model);
+    }
+
 }

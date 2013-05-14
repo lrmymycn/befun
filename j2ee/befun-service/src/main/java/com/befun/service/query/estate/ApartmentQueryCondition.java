@@ -45,6 +45,8 @@ public class ApartmentQueryCondition extends EstateQueryCondition {
 
     private Short maxStorageRoomCount;
 
+    private Boolean soldOut = false;
+
     public ApartmentQueryCondition() {
         super();
     }
@@ -115,9 +117,13 @@ public class ApartmentQueryCondition extends EstateQueryCondition {
         }
         tmp = Restrictions.gt(QCUtils.generatePropertyName(this.getSelfAlias(), "price"), 0);
         rs.add(tmp);
+
+        if (this.soldOut != null) {
+            tmp = Restrictions.eq(QCUtils.generatePropertyName(this.getSelfAlias(), "soldOut"), soldOut);
+            rs.add(tmp);
+        }
         return rs;
     }
-
 
     @Override
     public void setAlias(Criteria criteria) {
@@ -263,6 +269,14 @@ public class ApartmentQueryCondition extends EstateQueryCondition {
 
     public void setStorageRoomCountStr(String storageRoomCountStr) {
         this.storageRoomCountStr = storageRoomCountStr;
+    }
+
+    public Boolean getSoldOut() {
+        return soldOut;
+    }
+
+    public void setSoldOut(Boolean soldOut) {
+        this.soldOut = soldOut;
     }
 
 }

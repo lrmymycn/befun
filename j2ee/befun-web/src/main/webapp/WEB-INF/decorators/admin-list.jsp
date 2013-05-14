@@ -154,7 +154,7 @@ function getSuburbByArea(area, suburb){
     $.ajax({   
         type: "POST",   
         url: "<c:url value='/admin/data/json/demandAllSuburb.action'/>",   
-        data: "qc.areaId=" + area.val(),   
+        data: "qc.areaId=" + area.val() + "&qc.enabled=null",   
         dataType:"json",
         async: false,     //如果设置为false，则表示异步提交，否则表示同步提交
          timeout: 10000,

@@ -9,6 +9,7 @@
 <script>
 	function initPage(){
 		$( "#areaCombobox" ).combobox();
+		$( "#enabledCombobox" ).combobox();
 		/*
 		$( "#areaToggle" ).click(function() {
 			$( "#areaCombobox" ).toggle();
@@ -17,19 +18,27 @@
 </script>
 </head>
 <body>
-		<form action="" method="post">
-			<table width="1000">
-			<tr><td width="%100">
-			<label>Area: </label>
+	<form action="" method="post">
+		<table width="1000">
+			<tr><td width="50"><label>Area: </label></td>
+			<td width="200">
 			<select id="areaCombobox" name="qc.areaId">
 				<option value="" <c:if test="${empty qc.areaId}">selected="selected"</c:if>>Select Area</option>
 				<c:forEach items="${qcAreas }" var="a">
 					<option value="${a.id }" <c:if test="${qc.areaId eq a.id}">selected="selected"</c:if>>${a.name }</option>
 				</c:forEach>
 			</select>
-			</td><td></td></tr>
-			<tr><td align="right" colspan="2"><input type="submit" value="Query" /></td></tr>
-			</table>
+			</td>
+			<td width="50"><label>Enabled: </label></td>
+			<td width="200">
+			<select id="enabledCombobox" name="qc.enabled">
+				<option value="null">All</option>
+				<option value="true" <c:if test="${qc.enabled == true}">selected="selected"</c:if>>Enabled</option>
+				<option value="false" <c:if test="${qc.enabled == false}">selected="selected"</c:if>>Disabled</option>
+			</select>
+			</td>
+			<td align="right" colspan="10"><input id="queryButton" type="button" value="Query" onclick="jQuery.jmesa.removeAllFiltersFromLimit('suburb_table');onInvokeAction('suburb_table','clear')" /></td></tr>
+		</table>
 		<input type="hidden" name="tableName" value="suburb_table" />
 		<jmesa:struts2TableModel items="${pgb.models}" id="suburb_table" var="bean" stateAttr="restore"
 			totalCount="${pgb.totalCount}">
@@ -67,13 +76,13 @@
 						<s:url var="r" action="admin/data/enableSuburb.action" namespace="/">
 							<s:param name="id">${bean.id}</s:param>
 						</s:url>
-						<input type="button" value="Enable" onclick="showDialog('${r}')" />
+						<input type="button" value="Enable" onclick="showModalDialog('${r}')" />
 						</c:if>
 						<c:if test="${bean.enabled }">
 						<s:url var="r" action="admin/data/disableSuburb.action" namespace="/">
 							<s:param name="id">${bean.id}</s:param>
 						</s:url>
-						<input type="button" value="Disable" onclick="showDialog('${r}')" />
+						<input type="button" value="Disable" onclick="showModalDialog('${r}')" />
 						</c:if>
 					</jmesa:htmlColumn>
 				</jmesa:htmlRow>

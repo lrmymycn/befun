@@ -14,6 +14,8 @@
 		$( "#stageCombobox" ).combobox();
 		$( "#buildingCombobox" ).combobox();
 		$( "#floorplanTypeCombobox" ).combobox();
+		$( "#splitCombobox" ).combobox();
+		$( "#enabledCombobox" ).combobox();
 	}
 </script>
 </head>
@@ -79,9 +81,23 @@
 			<td width="50">
 			<label>Split: </label></td>
 			<td width="200">
-			<input name="qc.split" type="checkbox" value="true" <c:if test="${qc.split }"> checked="checked"</c:if>/>
+			<select id="splitCombobox" name="qc.split">
+				<option value="null">All</option>
+				<option value="true" <c:if test="${qc.split == true}">selected="selected"</c:if>>Is</option>
+				<option value="false" <c:if test="${qc.split == false}">selected="selected"</c:if>>Not</option>
+			</select>
 			</td>
-			<td align="right" colspan="10"><input type="submit" value="Query" /></td></tr>
+			<td width="50">
+			<label>Enabled: </label></td>
+			<td width="200">
+			<select id="enabledCombobox" name="qc.enabled">
+				<option value="null">All</option>
+				<option value="true" <c:if test="${qc.enabled == true}">selected="selected"</c:if>>Enabled</option>
+				<option value="false" <c:if test="${qc.enabled == false}">selected="selected"</c:if>>Disabled</option>
+			</select>
+			</td>
+			</tr>
+			<tr><td align="right" colspan="10"><input id="queryButton" type="button" value="Query" onclick="jQuery.jmesa.removeAllFiltersFromLimit('floorplan_table');onInvokeAction('floorplan_table','clear')" /></td></tr>
 		</table>
 		<input type="hidden" name="tableName" value="floorplan_table" />
 		<jmesa:struts2TableModel items="${pgb.models}" id="floorplan_table" var="bean" stateAttr="restore"
@@ -137,13 +153,13 @@
 						<s:url var="r" action="admin/data/enableFloorplan.action" namespace="/">
 							<s:param name="id">${bean.id}</s:param>
 						</s:url>
-						<input type="button" value="Enable" onclick="showDialog('${r}')" />
+						<input type="button" value="Enable" onclick="showModalDialog('${r}')" />
 						</c:if>
 						<c:if test="${bean.enabled }">
 						<s:url var="r" action="admin/data/disableFloorplan.action" namespace="/">
 							<s:param name="id">${bean.id}</s:param>
 						</s:url>
-						<input type="button" value="Disable" onclick="showDialog('${r}')" />
+						<input type="button" value="Disable" onclick="showModalDialog('${r}')" />
 						</c:if>
 					</jmesa:htmlColumn>
 				</jmesa:htmlRow>

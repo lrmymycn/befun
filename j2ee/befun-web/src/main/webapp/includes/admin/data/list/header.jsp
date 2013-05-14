@@ -31,6 +31,7 @@
 </style>
 </head>
 <body>
+	<div id="childrenDiv"></div>
 	<div class="ui-widget" style="width: 1200px; height: 30px;">
 		<div class="menu-div">
 			<ul id="menuArea">

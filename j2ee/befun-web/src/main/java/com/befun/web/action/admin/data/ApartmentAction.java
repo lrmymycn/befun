@@ -85,15 +85,20 @@ public class ApartmentAction<T extends Apartment, V extends ApartmentView> exten
                 qcSuburbs.add(sv);
             }
         }
-        if (this.qc != null && this.qc.getFpQC().getBdQC() != null && this.qc.getFpQC().getBdQC().getProQC() != null && this.qc.getFpQC().getBdQC().getProQC().getSuburbId() != null) {
-            ProjectQueryCondition pQC = this.qc.getFpQC().getBdQC().getProQC();
+        ProjectQueryCondition pQC = null;
+        // if (this.qc != null && this.qc.getFpQC().getBdQC() != null && this.qc.getFpQC().getBdQC().getProQC() != null
+        // && this.qc.getFpQC().getBdQC().getProQC().getSuburbId() != null) {
+        if (this.qc != null && this.qc.getFpQC().getBdQC() != null && this.qc.getFpQC().getBdQC().getProQC() != null) {
+            pQC = this.qc.getFpQC().getBdQC().getProQC();
             // sQC.setEnabled(null);
-            List<Project> projects = this.projectService.query(pQC);
-            ProjectView sv = null;
-            for (Project s : projects) {
-                sv = projectConverter.convertToView(s);
-                qcProjects.add(sv);
-            }
+        } else {
+            pQC = new ProjectQueryCondition();
+        }
+        List<Project> projects = this.projectService.query(pQC);
+        ProjectView psv = null;
+        for (Project s : projects) {
+            psv = projectConverter.convertToView(s);
+            qcProjects.add(psv);
         }
 
         if (this.qc != null && this.qc.getFpQC().getBdQC() != null && this.qc.getFpQC().getBdQC().getProjectId() != null) {
@@ -202,6 +207,19 @@ public class ApartmentAction<T extends Apartment, V extends ApartmentView> exten
      * }
      */
 
+    public String markSoldOut(){
+        try {
+            this.service.markSoldOut(this.id);
+            this.addActionMessage("Mark soldout successfully! ID:" + this.id);
+        } catch (Exception ex) {
+            String errMsg = "Mark failure! Object:" + this.view;
+            this.log.error(errMsg, ex);
+            this.addActionError(errMsg + "\nCause:" + ex.getMessage());
+            return ERROR;
+        }
+        return SUCCESS;
+    }
+    
     public void setQc(ApartmentQueryCondition qc) {
         this.qc = qc;
     }

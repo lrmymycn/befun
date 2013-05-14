@@ -6,9 +6,26 @@
 <html>
 <head>
 <title>Medias</title>
+<script>
+	function initPage(){
+		$( "#enabledCombobox" ).combobox();
+	}
+</script>
 </head>
 <body>
 	<form name="mediaForm" action="" method="post">
+		<table width="1000">
+			<tr>
+			<td width="50"><label>Enabled: </label></td>
+			<td width="200">
+			<select id="enabledCombobox" name="qc.enabled">
+				<option value="null">All</option>
+				<option value="true" <c:if test="${qc.enabled == true}">selected="selected"</c:if>>Enabled</option>
+				<option value="false" <c:if test="${qc.enabled == false}">selected="selected"</c:if>>Disabled</option>
+			</select>
+			</td>
+			<td align="right" colspan="10"><input id="queryButton" type="button" value="Query" onclick="jQuery.jmesa.removeAllFiltersFromLimit('media_table');onInvokeAction('media_table','clear')" /></td></tr>
+		</table>
 		<input type="hidden" name="tableName" value="media_table" />
 		<jmesa:struts2TableModel items="${pgb.models}" id="media_table" var="bean" stateAttr="restore"
 			totalCount="${pgb.totalCount}">
@@ -46,13 +63,13 @@
 						<s:url var="r" action="admin/data/enableMedia.action" namespace="/">
 							<s:param name="id">${bean.id}</s:param>
 						</s:url>
-						<input type="button" value="Enable" onclick="showDialog('${r}')" />
+						<input type="button" value="Enable" onclick="showModalDialog('${r}')" />
 						</c:if>
 						<c:if test="${bean.enabled }">
 						<s:url var="r" action="admin/data/disableMedia.action" namespace="/">
 							<s:param name="id">${bean.id}</s:param>
 						</s:url>
-						<input type="button" value="Disable" onclick="showDialog('${r}')" />
+						<input type="button" value="Disable" onclick="showModalDialog('${r}')" />
 						</c:if>
 					</jmesa:htmlColumn>
 				</jmesa:htmlRow>

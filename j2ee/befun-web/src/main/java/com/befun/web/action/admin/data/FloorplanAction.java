@@ -93,15 +93,17 @@ public class FloorplanAction<T extends Floorplan, V extends FloorplanView> exten
                 qcSuburbs.add(sv);
             }
         }
-        if (this.qc != null && this.qc.getBdQC() != null && this.qc.getBdQC().getProQC() != null && this.qc.getBdQC().getProQC().getSuburbId() != null) {
-            ProjectQueryCondition pQC = this.qc.getBdQC().getProQC();
-            // sQC.setEnabled(null);
-            List<Project> projects = this.projectService.query(pQC);
-            ProjectView sv = null;
-            for (Project s : projects) {
-                sv = projectConverter.convertToView(s);
-                qcProjects.add(sv);
-            }
+        ProjectQueryCondition pQC = null;
+        if (this.qc != null && this.qc.getBdQC() != null && this.qc.getBdQC().getProQC() != null) {
+            pQC = this.qc.getBdQC().getProQC();
+        } else {
+            pQC = new ProjectQueryCondition();
+        }
+        List<Project> projects = this.projectService.query(pQC);
+        ProjectView psv = null;
+        for (Project s : projects) {
+            psv = projectConverter.convertToView(s);
+            qcProjects.add(psv);
         }
 
         if (this.qc != null && this.qc.getBdQC() != null && this.qc.getBdQC().getProjectId() != null) {

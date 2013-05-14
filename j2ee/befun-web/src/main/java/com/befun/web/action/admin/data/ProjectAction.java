@@ -36,9 +36,19 @@ public class ProjectAction<T extends Project, V extends ProjectView> extends Adm
     public ProjectAction() {
         this.view = new ProjectView();
     }
+
+    public String createPage() {
+        this.prepareEditorList();
+        return super.createPage();
+    }
+
+    public String demand() {
+        this.qc.getSuburbQC().setEnabled(null);
+        return super.demand();        
+    }
     
     @Override
-    public String demandById(){
+    public String demandById() {
         String rs = super.demandById();
         this.prepareEditorList();
         return rs;
@@ -46,18 +56,32 @@ public class ProjectAction<T extends Project, V extends ProjectView> extends Adm
 
     private void prepareEditorList() {
         AreaQueryCondition queryCondition = new AreaQueryCondition();
-        // queryCondition.setEnabled(null);
+        queryCondition.setEnabled(null);
         List<Area> areas = this.areaService.query(queryCondition);
         AreaView av = null;
         for (Area a : areas) {
             av = areaConverter.convertToView(a);
             qcAreas.add(av);
         }
+        SuburbQueryCondition sQC = new SuburbQueryCondition();
+        sQC.setEnabled(null);
+        if (this.view != null && this.view.getAreaId() != null) {
+            sQC.setAreaId(this.view.getAreaId());
+        } else if (qcAreas.size() > 0) {
+            av = qcAreas.get(0);
+            sQC.setAreaId(av.getId());
+        }
+        List<Suburb> suburbs = this.suburbService.query(sQC);
+        SuburbView sv = null;
+        for (Suburb s : suburbs) {
+            sv = suburbConverter.convertToView(s);
+            qcSuburbs.add(sv);
+        }
     }
-    
+
     protected void prepareQueryList() {
         AreaQueryCondition queryCondition = new AreaQueryCondition();
-        // queryCondition.setEnabled(null);
+        queryCondition.setEnabled(null);
         List<Area> areas = this.areaService.query(queryCondition);
         AreaView av = null;
         for (Area a : areas) {
@@ -66,7 +90,7 @@ public class ProjectAction<T extends Project, V extends ProjectView> extends Adm
         }
         if (this.qc != null && this.qc.getSuburbQC() != null) {
             SuburbQueryCondition sQC = this.qc.getSuburbQC();
-            // sQC.setEnabled(null);
+            sQC.setEnabled(null);
             List<Suburb> suburbs = this.suburbService.query(sQC);
             SuburbView sv = null;
             for (Suburb s : suburbs) {

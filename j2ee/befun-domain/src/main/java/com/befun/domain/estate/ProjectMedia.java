@@ -16,14 +16,14 @@ import javax.persistence.TableGenerator;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import com.befun.domain.BaseModel;
+import com.befun.domain.BaseEstateModel;
 
 @Entity
 @Table(name = "PROJECT_MEDIA")
 @TableGenerator(name = "projectMediaGenerator", table = "ID_GENERATOR", pkColumnName = "gen_name", valueColumnName = "gen_value", pkColumnValue = "projectMedia", allocationSize = 1)
 @Cacheable
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region="project")
-public class ProjectMedia implements BaseModel<Long> {
+public class ProjectMedia implements BaseEstateModel<Long> {
 
     private static final long serialVersionUID = -5085346163844201100L;
 

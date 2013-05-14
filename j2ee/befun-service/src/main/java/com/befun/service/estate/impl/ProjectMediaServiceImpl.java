@@ -8,12 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.befun.dao.IBaseDao;
 import com.befun.domain.estate.ProjectMedia;
-import com.befun.service.BaseService;
 import com.befun.service.estate.ProjectMediaService;
 
 @Service("ProjectMediaService")
 @Transactional(rollbackFor = Exception.class)
-public class ProjectMediaServiceImpl extends BaseService<ProjectMedia, Long> implements ProjectMediaService {
+public class ProjectMediaServiceImpl extends BaseEstateServiceImpl<ProjectMedia, Long> implements ProjectMediaService {
 
     @Override
     @Resource

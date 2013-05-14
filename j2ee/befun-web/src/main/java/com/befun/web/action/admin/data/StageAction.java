@@ -63,9 +63,11 @@ public class StageAction<T extends Stage, V extends StageView> extends AdminActi
             av = areaConverter.convertToView(a);
             qcAreas.add(av);
         }
+        ProjectQueryCondition pQC = new ProjectQueryCondition();
         if (this.qcAreaId != null) {
             SuburbQueryCondition sQC = new SuburbQueryCondition();
             sQC.setAreaId(this.qcAreaId);
+            pQC.setSuburbQC(sQC);
             // sQC.setEnabled(null);
             List<Suburb> suburbs = this.suburbService.query(sQC);
             SuburbView sv = null;
@@ -74,16 +76,12 @@ public class StageAction<T extends Stage, V extends StageView> extends AdminActi
                 qcSuburbs.add(sv);
             }
         }
-        if (this.qcSuburbId != null) {
-            ProjectQueryCondition pQC = new ProjectQueryCondition();
-            pQC.setSuburbId(this.qcSuburbId);
-            // sQC.setEnabled(null);
-            List<Project> projects = this.projectService.query(pQC);
-            ProjectView sv = null;
-            for (Project s : projects) {
-                sv = projectConverter.convertToView(s);
-                qcProjects.add(sv);
-            }
+        pQC.setSuburbId(this.qcSuburbId);
+        List<Project> projects = this.projectService.query(pQC);
+        ProjectView psv = null;
+        for (Project s : projects) {
+            psv = projectConverter.convertToView(s);
+            qcProjects.add(psv);
         }
     }
 
