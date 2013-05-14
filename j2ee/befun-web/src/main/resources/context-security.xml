@@ -10,6 +10,7 @@
        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
        ">
     <http pattern="/test.jsp" security="none" />
+    <http pattern="/favicon.ico" security="none" />
     <http pattern="/css/**" security="none" />
     <http pattern="/js/**" security="none" />
     <http pattern="/img/**" security="none" />
@@ -22,8 +23,7 @@
         <intercept-url pattern="/index.jsp**" access="hasAnyRole('SUPER','DATA_ADMIN','MANAGER','SALE')" requires-channel="http" />
         <intercept-url pattern="/compare.jsp**" access="hasAnyRole('SUPER','DATA_ADMIN','MANAGER','SALE')" requires-channel="http" />
         <intercept-url pattern="/index.action**" access="hasAnyRole('SUPER','DATA_ADMIN','MANAGER','SALE')" requires-channel="http" />
-        <!-- 
-        <intercept-url pattern="/login.jsp**" access="isAnonymous()" requires-channel="http" /> -->
+        <intercept-url pattern="/login.jsp**" access="permitAll" requires-channel="http" />
         <intercept-url pattern="/j_spring_security_check" access="isAnonymous()" requires-channel="http" />
         <intercept-url pattern="/j_spring_security_logout" access="isAuthenticated()" requires-channel="http" />
         <intercept-url pattern="/estate/json/demandProjectAggregated.action**" access="permitAll" requires-channel="http" />

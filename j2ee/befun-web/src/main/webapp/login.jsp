@@ -7,8 +7,8 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
-		<sec:authorize access="isAuthenticated()">
-    		<meta http-equiv="refresh" content="5; url=<c:url value="/"/>" />
+		<sec:authorize access="isAuthenticated()" >
+			<% response.sendRedirect(""); %>
     	</sec:authorize>
         <jsp:include page="includes/head.jsp" />
     </head>
