@@ -135,7 +135,7 @@
 					<div class="row clearfix">
 						<span class="title">Price Range</span>
 						<div class="input">
-							<input type="checkbox" name="pricerange" value="1">Below 600k
+							<input type="checkbox" name="pricerange" value="1">Below $600k
 							<input type="checkbox" name="pricerange" value="1">600k - 800k
 							<input type="checkbox" name="pricerange" value="1">800k - 1m
 							<input type="checkbox" name="pricerange" value="1">1m and above
