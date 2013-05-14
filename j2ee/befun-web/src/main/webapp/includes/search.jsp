@@ -3,7 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
-<sec:authentication property="principal" var="authentication" />
 <div class="top">
 	<a href="/"><h1 class="logo">BeFun Property</h1></a>
 	<div class="search">
@@ -24,7 +23,7 @@
 				    
 				}
 			%>
-			<li><a href="javascript:;" id="change-client">Hi! ${authentication.username } and Client:<%= currentClientId %></a></li>
+			<li><a href="javascript:;" id="change-client">Hi! ${authentication.username} and Client:<%= currentClientId %></a></li>
 			<li class="more"><a href="javascript:;">More<i class="arrow-down-grap"></i></a>
 				<ul>
 					<li><a href="#">Clients</a></li>
