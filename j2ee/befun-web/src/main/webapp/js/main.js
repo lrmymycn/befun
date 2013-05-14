@@ -1745,14 +1745,50 @@ Compare = {
 },
 
 ClientForm = {
-	data:{
+	viewModel : null,
+	init: function(){		
+		ClientForm.viewModel = {
+			title : ko.observable('MR'),
+			givenName : ko.observable('Sam11'),
+			surname : ko.observable('Wang11'),
+			preferredName : ko.observable('ss'),
+			gender: ko.observable('FEMALE'),
+			status: ko.observable('PR'),
+			mobileNumber : ko.observable('123456'),
+			mailAddress: ko.observable('aa@aa.com'),
+			homeAddress: ko.observable('Sydney'),
+			homePostcode: ko.observable('2000'),
+			areaList: ['Eastern Sydney', 'Southern Sydney', 'Inner West', 'Western Sydney', 'Northern Sydney', 'City CBD'],
+			selectedAreaList: ko.observableArray(['Eastern Sydney', 'City CBD']),
+			
+		};
 		
-	},
-	init: function(){
+		ko.applyBindings(ClientForm.viewModel);
+		
 		$('#client-form').validate({
 			submitHandler: function(form){
-				$.post('register-post.php', $('#client-form').serialize(), function(data){
-					
+				var data = {
+					'client.username' : 'samwang',
+					'client.title' : ClientForm.viewModel.title,
+					'client.givenName' : ClientForm.viewModel.givenName,
+					'client.surname' : ClientForm.viewModel.surname,
+					'client.preferredName' : ClientForm.viewModel.preferredName,
+					'client.gender' : ClientForm.viewModel.gender,
+					'client.status' : ClientForm.viewModel.status,
+					'client.mobileNumber' : ClientForm.viewModel.mobileNumber,
+					'client.mailAddress' : ClientForm.viewModel.mailAddress,
+					'client.homeAddress' : ClientForm.viewModel.homeAddress,
+					'client.homePostcode' : ClientForm.viewModel.homePostcode
+				};
+			
+				$.ajax({
+					type: 'POST',
+					url: Main.root + "profile/json/saveOrUpdateClient.action",
+					data: data,
+					dataType: "json",
+					success: function(json){
+						console.log(json);
+					}
 				});
 			}
 		});
@@ -1841,7 +1877,6 @@ Tools = {
 		return arr.sort(compare);
 	}
 }
-
 
 /* ClusterOverlay Class */
 function ClusterOverlay(cluster, map){

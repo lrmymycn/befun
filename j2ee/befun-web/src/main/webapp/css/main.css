@@ -1854,14 +1854,36 @@ footer a{
    Login classes
    ========================================================================== */
 
+img.bg-login{
+	margin-top: 66px;
+}
+
+#login {
+	width:980px;
+	height:400px;
+	position:absolute;
+	left:50%;
+	top:50%;
+	margin-left:-490px;
+	margin-top:-170px;
+}
+
+#login .slogan{
+	position:absolute;
+	top:0;
+	left:70px;
+}
+
+#login .demo{
+	position:absolute;
+	right:20px;
+	top:0;
+}
+
 #login form{
 	position:absolute;
-	width:320px;
-	height:150px;
-	top:50%;
-	left:50%;
-	margin-top:-100px;
-	margin-left:-160px;
+	top:140px;
+	left:70px;
 }
 
 #login form .row{
@@ -1870,7 +1892,7 @@ footer a{
 
 #login form input[type="text"],
 #login form input[type="password"]{
-	width:300px;
+	width:270px;
 }
 
 #login form .btn-submit{

@@ -19,11 +19,12 @@
 					<div class="row clearfix">
 						<span class="title">Title</span>
 						<div class="input">
-							<select name="title">
-								<option>Ms.</option>
-								<option>Mr.</option>
-								<option>Mrs.</option>
-								<option>Dr.</option>
+							<select name="title" data-bind="value: title">
+								<option value="">Select</option>
+								<option value="MS">Ms</option>
+								<option value="MR">Mr</option>
+								<option value="MRS">Mrs</option>
+								<option value="DR">Dr</option>
 							</select>
 						</div>
 					</div>
@@ -41,64 +42,71 @@
 						</div>
 					</div>
 					<div class="row clearfix">
-						<span class="title">First Name</span>
+						<span class="title">Given Name</span>
 						<div class="input">
-							<input type="text" name="firstname" class="required"/>
+							<input type="text" name="givenname" class="required" data-bind="value: givenName"/>
 						</div>
 					</div>
 					<div class="row clearfix">
-						<span class="title">Last Name</span>
+						<span class="title">Surname</span>
 						<div class="input">
-							<input type="text" name="lastname"/>
+							<input type="text" name="surname" data-bind="value: surname"/>
 						</div>
 					</div>
 					<div class="row clearfix">
 						<span class="title">Preferred Name</span>
 						<div class="input">
-							<input type="text" name="preferredname"/>
+							<input type="text" name="preferredname" data-bind="value: preferredName"/>
 						</div>
 					</div>
 					<div class="row clearfix">
-						<span class="title">Phone</span>
+						<span class="title">Gender</span>
 						<div class="input">
-							<input type="text" name="phone"/>
+							<input type="radio" name="gender" value="MALE" data-bind="checked: gender"/>Male<br/>
+							<input type="radio" name="gender" value="FEMALE" data-bind="checked: gender"/>Female
+						</div>
+					</div>
+					<div class="row clearfix">
+						<span class="title">Status</span>
+						<div class="input">
+							<select name="title" data-bind="value: status">
+								<option value="">Select</option>
+								<option value="PR">PR</option>
+								<option value="CITIZEN">Citizen</option>
+								<option value="OVERSEAS_INVESTOR">Oversea's Investor</option>
+								<option value="STUDENT">Student</option>
+							</select>
+						</div>
+					</div>
+					<div class="row clearfix">
+						<span class="title">Mobile</span>
+						<div class="input">
+							<input type="text" name="mobilenumber" data-bind="value: mobileNumber"/>
 						</div>
 					</div>
 					<div class="row clearfix">
 						<span class="title">Email</span>
 						<div class="input">
-							<input type="text" name="email"/>
+							<input type="text" name="email" data-bind="value: mailAddress"/>
 						</div>
 					</div>
 					<div class="row clearfix">
 						<span class="title">Home Address</span>
 						<div class="input">
-							<input type="text" name="address"/>
+							<input type="text" name="address" data-bind="value: homeAddress"/>
 						</div>
 					</div>
 					<div class="row clearfix">
 						<span class="title">Postcode</span>
 						<div class="input">
-							<input type="text" name="postcode"/>
-						</div>
-					</div>
-					<div class="row clearfix">
-						<span class="title">Citizenship</span>
-						<div class="input">
-							<input type="radio" name="citizenship" value="foreigner">Foreigner
-							<input type="radio" name="citizenship" value="pr">Australian Citizen/PR
+							<input type="text" name="postcode" data-bind="value: homePostcode"/>
 						</div>
 					</div>
 					<div class="row clearfix">
 						<span class="title">Preferred Area</span>
-						<div class="input">
-							<input type="checkbox" name="area" value="1">Eastern Sydney
-							<input type="checkbox" name="area" value="2">Southern Sydney
-							<input type="checkbox" name="area" value="3">Inner West
-							<input type="checkbox" name="area" value="4">Western Sydney
-							<input type="checkbox" name="area" value="5">Northern Sydney
-							<input type="checkbox" name="area" value="6">City CBD
-						</div>
+						<ul data-bind="foreach: areaList">
+							<li><input type="checkbox" data-bind="attr: { value: $data }, checked: $root.selectedAreaList"><span data-bind="text: $data"></span></li>
+						</ul>
 					</div>
 					<div class="row clearfix">
 						<span class="title">Purchaser Type</span>
