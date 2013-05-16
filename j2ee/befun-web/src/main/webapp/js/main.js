@@ -61,7 +61,7 @@ Main = {
 			}
 		});
 		*/
-		$("select.selectbox").selectbox();
+		$("#filter select.selectbox").selectbox();
 		
 		$('#reminder-nodes .filterNode').live('click', function(){
 			$('#btn-filter').click();
@@ -82,7 +82,46 @@ Main = {
 		});
 		
 		$('#client select[name="client"]').change(function(){
-			console.log($(this).val());
+			var $this = $(this);
+			var id = $this.val();
+			if(id == ''){
+				return;
+			}
+			$.ajax({
+				url: Main.root + '/profile/json/selectClient.action?clientId=' + id,
+				dataType: "json",
+				type: "GET",
+				success: function(data){
+					if(data.errorMessages.length > 0){
+						alert('An error happened');
+					}else{
+						var name = $this.find('option:selected').text();
+						$('#clientname').text('and ' + name);
+						
+						Main.hideFilter();
+					}
+				}
+			});
+		});
+		
+		$.ajax({
+			url: Main.root + 'profile/json/viewMineClients.action',
+			dataType: "json",
+			type: "GET",
+			success: function(data){
+				var clients = data.clients;
+				var currentClientId = $('#clientname').data('id');
+				for(var i = 0; i < clients.length; i++){
+					var client = clients[i];
+					var option = $('<option value="' + client.id + '">' + client.givenName +  ' ' + client.surname + '</option>');
+					$('#client select').append(option);
+					if(currentClientId == client.id){
+						$('#clientname').text('and ' + client.givenName + ' ' + client.surname);
+					}
+				}
+				
+				$("#client select.selectbox").selectbox();
+			}
 		});
 	},
 	hideFilter:function(){

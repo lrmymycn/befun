@@ -1825,6 +1825,10 @@ footer a{
 	width:172px;
 }
 
+#client .sbOptions li:first-child{
+	display:none;
+}
+
 #client .change{
 	margin:0 auto 10px;
 	width:172px;

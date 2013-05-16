@@ -5,9 +5,6 @@
 		<div class="change">
 			<select name="client" class="selectbox">
 				<option value="" selected="true">Select</option>
-				<option value="1">Sam Wang</option>
-				<option value="2">Ryan Liang</option>
-				<option value="3">Jade Yang</option>
 			</select>
 		</div>
 		<span class="title">OR</span>
