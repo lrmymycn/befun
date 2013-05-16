@@ -44,7 +44,10 @@ namespace BeFun.View.Component.GirdView
             try
             {
                 Stage stage = new Stage();
-                stage.project_id = this.parentWindow.queryCondition.project_id;
+                if (this.parentWindow.queryCondition != null)
+                {
+                    stage.project_id = this.parentWindow.queryCondition.project_id;
+                }
                 editor.entity = stage;
                 editor.renderEntity();
                 return editor.ShowDialog(this);

@@ -44,10 +44,13 @@ namespace BeFun.View.Component.GirdView
             try
             {
                 Apartment apartment = new Apartment();
-                apartment.floorplan_id = this.parentWindow.queryCondition.floorplan_id;
-                apartment.building_id = this.parentWindow.queryCondition.building_id;
-                apartment.stage_id = this.parentWindow.queryCondition.stage_id;
-                apartment.project_id = this.parentWindow.queryCondition.project_id;
+                if (this.parentWindow.queryCondition != null)
+                {
+                    apartment.floorplan_id = this.parentWindow.queryCondition.floorplan_id;
+                    apartment.building_id = this.parentWindow.queryCondition.building_id;
+                    apartment.stage_id = this.parentWindow.queryCondition.stage_id;
+                    apartment.project_id = this.parentWindow.queryCondition.project_id;
+                }
                 editor.entity = apartment;
                 editor.renderEntity();
                 return editor.ShowDialog(this);

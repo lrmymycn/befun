@@ -44,9 +44,12 @@ namespace BeFun.View.Component.GirdView
             try
             {
                 Floorplan floorplan = new Floorplan();
-                floorplan.project_id = this.parentWindow.queryCondition.project_id;
-                floorplan.stage_id = this.parentWindow.queryCondition.stage_id;
-                floorplan.building_id = this.parentWindow.queryCondition.building_id;
+                if (this.parentWindow.queryCondition != null)
+                {
+                    floorplan.project_id = this.parentWindow.queryCondition.project_id;
+                    floorplan.stage_id = this.parentWindow.queryCondition.stage_id;
+                    floorplan.building_id = this.parentWindow.queryCondition.building_id;
+                }
                 editor.entity = floorplan;
                 editor.renderEntity();
                 return editor.ShowDialog(this);
