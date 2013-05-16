@@ -16,6 +16,8 @@ public class MediaQueryCondition extends EstateQueryCondition {
 
     private static final long serialVersionUID = 1574250681229084211L;
 
+    private Long projectId;
+
     private MediaType mediaType;
 
     private ContentType contentType;
@@ -36,6 +38,10 @@ public class MediaQueryCondition extends EstateQueryCondition {
         List<Criterion> rs = new ArrayList<Criterion>();
         rs.addAll(super.getCriterions());
         Criterion tmp = null;
+        if (this.projectId != null) {
+            tmp = Restrictions.eq(QCUtils.generatePropertyName(this.getSelfAlias(), "projectId"), this.projectId);
+            rs.add(tmp);
+        }
         if (this.mediaType != null) {
             tmp = Restrictions.eq(QCUtils.generatePropertyName(this.getSelfAlias(), "mediaType"), this.mediaType);
             rs.add(tmp);
@@ -52,6 +58,14 @@ public class MediaQueryCondition extends EstateQueryCondition {
         }
 
         return rs;
+    }
+
+    public Long getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(Long projectId) {
+        this.projectId = projectId;
     }
 
     public String getKey() {

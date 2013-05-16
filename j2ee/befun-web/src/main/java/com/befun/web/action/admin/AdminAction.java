@@ -144,8 +144,56 @@ public abstract class AdminAction<M extends BaseModel<Long>, V extends BaseEaste
     public List<V> getViews() {
         return views;
     }
-
+    
     protected void prepareQueryList() {
+    }
+
+    public AreaService getAreaService() {
+        return areaService;
+    }
+
+    public void setAreaService(AreaService areaService) {
+        this.areaService = areaService;
+    }
+
+    public SuburbService getSuburbService() {
+        return suburbService;
+    }
+
+    public void setSuburbService(SuburbService suburbService) {
+        this.suburbService = suburbService;
+    }
+
+    public ProjectService getProjectService() {
+        return projectService;
+    }
+
+    public void setProjectService(ProjectService projectService) {
+        this.projectService = projectService;
+    }
+
+    public StageService getStageService() {
+        return stageService;
+    }
+
+    public void setStageService(StageService stageService) {
+        this.stageService = stageService;
+    }
+
+    public BuildingService getBuildingService() {
+        return buildingService;
+    }
+
+    public void setBuildingService(BuildingService buildingService) {
+        this.buildingService = buildingService;
+    }
+
+    public FloorplanService getFloorplanService() {
+        return floorplanService;
+    }
+
+    public void setFloorplanService(FloorplanService floorplanService) {
+        this.floorplanService = floorplanService;
     }
 
 }

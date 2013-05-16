@@ -6,17 +6,43 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Edit Media ID:${view.id},LN:${view.name}</title>
+<script>
+	function initPage(){
+		$( "#projectCombobox" ).combobox();
+	}
+</script>
 </head>
 <body>
-	<s:form action="saveMedia.action" method="post">
+	<s:form action="saveMedia.action" method="post" enctype="multipart/form-data">
 		<s:hidden name="view.id"></s:hidden>
 		<s:hidden name="view.bid"></s:hidden>
 		<s:label name="view.id" label="ID"></s:label>
 		<s:label name="view.bid" label="BID"></s:label>
+		<tr>
+			<td class="tdLabel"><label>Project: </label></td>
+			<td width="200">
+			<select id="projectCombobox" name="view.projectId" onChange="getStageByProject($('#projectCombobox'), $('#stageCombobox'));">
+				<c:forEach items="${qcProjects }" var="s">
+					<option value="${s.id }" <c:if test="${view.projectId eq s.id}">selected="selected"</c:if>>${s.name }</option>
+				</c:forEach>
+			</select></td>
+		</tr>
 		<s:textfield name="view.name" label="name"></s:textfield>
-		<s:textfield name="view.smallUrl" label="smallUrl"></s:textfield>
-		<s:textfield name="view.mediumUrl" label="mediumUrl"></s:textfield>
-		<s:textfield name="view.largeUrl" label="largeUrl"></s:textfield>
+		<s:file name="smallFile" label="Small Img"></s:file>
+		<tr>
+			<td class="tdLabel"><label>smallUrl:</label></td>
+			<td><s:textfield name="view.smallUrl" theme="simple"/><c:if test="${not empty view.smallUrl }"><a href="${view.smallUrl }" target="blank">small</a></c:if></td>
+		</tr>
+		<s:file name="mediumFile" label="Medium Img"></s:file>
+		<tr>
+			<td class="tdLabel"><label>mediumUrl:</label></td>
+			<td><s:textfield name="view.mediumUrl" theme="simple"/><c:if test="${not empty view.mediumUrl }"><a href="${view.mediumUrl }" target="blank">medium</a></c:if></td>
+		</tr>
+		<s:file name="largeFile" label="Large Img"></s:file>
+		<tr>
+			<td class="tdLabel"><label>largeUrl:</label></td>
+			<td><s:textfield name="view.largeUrl" theme="simple"/><c:if test="${not empty view.largeUrl }"><a href="${view.largeUrl }" target="blank">large</a></c:if></td>
+		</tr>
 		<s:textfield name="view.alt" label="alt"></s:textfield>
 		<s:select name="view.mediaType" list="mediaTypes" />
 		<s:select name="view.contentType" list="contentTypes" />

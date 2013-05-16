@@ -21,7 +21,7 @@ import com.befun.domain.BaseEstateModel;
 @Table(name = "MEDIA")
 @TableGenerator(name = "mediaGenerator", table = "ID_GENERATOR", pkColumnName = "gen_name", valueColumnName = "gen_value", pkColumnValue = "media", allocationSize = 1)
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region="media")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "media")
 public class Media implements BaseEstateModel<Long> {
 
     private static final long serialVersionUID = 4659158480955460910L;
@@ -33,6 +33,12 @@ public class Media implements BaseEstateModel<Long> {
 
     @Column(name = "BID", length = 255)
     private String bid;
+
+    @Column(name = "PROJECT_ID")
+    private Long projectId;
+
+    @Column(name = "PROJECT_BID", length = 255)
+    private String projectBid;
 
     @Column(name = "NAME", length = 255)
     private String name;
@@ -74,6 +80,22 @@ public class Media implements BaseEstateModel<Long> {
 
     public void setBid(String bid) {
         this.bid = bid;
+    }
+
+    public Long getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(Long projectId) {
+        this.projectId = projectId;
+    }
+
+    public String getProjectBid() {
+        return projectBid;
+    }
+
+    public void setProjectBid(String projectBid) {
+        this.projectBid = projectBid;
     }
 
     public String getName() {

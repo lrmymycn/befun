@@ -11,8 +11,7 @@
     <include file="struts/struts-estate-json.xml" />
     <include file="struts/struts-profile-json.xml" />
     <constant name="struts.multipart.parser" value="jakarta" />
-    <!-- use javax.servlet.context.tempdir by default -->
-    <!-- <constant name="struts.multipart.saveDir" value="" /> -->
+    <constant name="struts.multipart.saveDir" value="/befun/upload/temp"></constant>  
     <constant name="struts.multipart.maxSize" value="20971520" />
     <constant name="struts.i18n.encoding" value="UTF-8" />
     <constant name="struts.enable.DynamicMethodInvocation" value="true" />

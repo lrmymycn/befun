@@ -19,6 +19,7 @@ public class MediaColumnParser implements ColumnParser<Media> {
         Media rs = new Media();
         rs.setAlt(AccessUtil.getString(col, "alt"));
         rs.setBid(AccessUtil.getString(col, "id"));
+        rs.setProjectBid(AccessUtil.getString(col, "project_id"));
 
         Byte contentTypeV = AccessUtil.getByte(col, "content_type");
         ContentType contentType = ContentType.ENVIRONMENT;

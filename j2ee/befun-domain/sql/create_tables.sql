@@ -272,6 +272,8 @@ CREATE TABLE IF NOT EXISTS `profile_department` (
 CREATE TABLE IF NOT EXISTS `media` (
   `id` bigint(20) NOT NULL,
   `bid` varchar(255) DEFAULT NULL,
+  `project_id` bigint(20) DEFAULT NULL,
+  `project_bid` varchar(255) DEFAULT NULL,
   `name` varchar(255) NOT NULL,
   `small_url` varchar(5000) NOT NULL,
   `medium_url` varchar(5000) NOT NULL,
@@ -285,6 +287,8 @@ CREATE TABLE IF NOT EXISTS `media` (
   `enabled` tinyint(1) DEFAULT 1,
   PRIMARY KEY (`id`),
   KEY `idx_bid` (`bid`),
+  KEY `idx_project_id` (`project_id`),
+  KEY `idx_project_bid` (`project_bid`),
   KEY `idx_name` (`name`),
   KEY `idx_media_type` (`media_type`) USING BTREE,
   KEY `idx_content_type` (`content_type`) USING BTREE,

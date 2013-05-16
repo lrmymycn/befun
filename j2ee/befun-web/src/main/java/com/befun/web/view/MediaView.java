@@ -8,6 +8,8 @@ public class MediaView extends BaseEasteView<Media> {
 
     private static final long serialVersionUID = -1484346576753677173L;
 
+    private Long projectId;
+
     private String name;
 
     private String smallUrl;
@@ -33,6 +35,14 @@ public class MediaView extends BaseEasteView<Media> {
     @Override
     public Media getModel() {
         return this.model;
+    }
+
+    public Long getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(Long projectId) {
+        this.projectId = projectId;
     }
 
     public String getName() {
