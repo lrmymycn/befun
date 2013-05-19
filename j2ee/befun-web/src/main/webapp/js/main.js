@@ -994,6 +994,8 @@ PanelPopup = {
 		$("#overview-list .scrollable").scrollable();
 		$("#floorplan-list .scrollable").scrollable({vertical: true});
 		$('#floorplan-list2 .scrollable').scrollable();
+		
+		$("#panel select.selectbox").selectbox();
 	},
 	show:function(){
 		$('#panel .top .tabs a:first-child').click();
