@@ -457,6 +457,11 @@ header .menu .more ul li a:hover{
 	background:#EAEAEA;
 }
 
+header .menu #view-client{
+	text-decoration:underline;
+	display:none;
+}
+
 #search-suburb{
 	float:left;
 	width:225px;

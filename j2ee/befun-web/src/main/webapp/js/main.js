@@ -7,6 +7,7 @@ Main = {
 	currentFloorplanId:null,
 	currentApartmentId:null,
 	currentRadiusWidget:null,
+	currentClientId:null,
 	init:function(){
 		this.isHome = true;
 		this.windowResize();
@@ -73,6 +74,8 @@ Main = {
 		});
 	},
 	initClient: function(){
+		Main.currentClientId = $('#clientname').data('id');
+		
 		$('#change-client').click(function(){
 			$('#client').toggle();
 			
@@ -97,7 +100,8 @@ Main = {
 					}else{
 						var name = $this.find('option:selected').text();
 						$('#clientname').text('and ' + name);
-						
+						$('#view-client').show();
+						Main.currentClientId = id;
 						Main.hideFilter();
 					}
 				}
@@ -110,13 +114,13 @@ Main = {
 			type: "GET",
 			success: function(data){
 				var clients = data.clients;
-				var currentClientId = $('#clientname').data('id');
 				for(var i = 0; i < clients.length; i++){
 					var client = clients[i];
 					var option = $('<option value="' + client.id + '">' + client.givenName +  ' ' + client.surname + '</option>');
 					$('#client select').append(option);
-					if(currentClientId == client.id){
+					if(Main.currentClientId == client.id){
 						$('#clientname').text('and ' + client.givenName + ' ' + client.surname);
+						$('#view-client').show();
 					}
 				}
 				
@@ -1115,6 +1119,10 @@ FloorplanPopup = {
 			ComparePanel.addFloorplan();
 		});
 		
+		$('#interest').click(function(){
+			InterestList.add();
+		});
+		
 		$('#lightbox .sort a').click(function(){
 			if($(this).hasClass('active')){
 				return;
@@ -1785,9 +1793,37 @@ Compare = {
 	}
 },
 
+InterestList = {
+	add: function(){
+		if(Main.currentClientId == null || Main.currentClientId == 'null'){
+			alert('Please select a client first!');
+			return;	
+		}
+		
+		if(Main.currentApartmentId == null || Main.currentApartmentId == 0){
+			alert('Please select an apartment first!');
+			return;
+		}
+		
+		$.ajax({
+			url: Main.root + 'profile/json/addAppartmentToList.action?propertyId=' + Main.currentApartmentId,
+			dataType: "json",
+			type: "GET",
+			success: function(data){
+				alert('This apartment has been added to your interest list.');
+			}
+        });
+	}
+};
+
 ClientForm = {
 	viewModel : null,
-	init: function(){		
+	init: function(){
+		Main.initClient();
+		Search.init();
+		ClientForm.initInterestList();
+		$('#client-tabs').tabs();
+				
 		ClientForm.viewModel = {
 			title : ko.observable('MR'),
 			givenName : ko.observable('Sam11'),
@@ -1833,7 +1869,32 @@ ClientForm = {
 				});
 			}
 		});
+	},
+	initInterestList: function(){
+		if(Main.currentClientId == null || Main.currentClientId == 'null'){
+			return;
+		}
+		
+		$.ajax({
+			type: 'GET',
+			url: Main.root + "profile/json/viewInterestList.action?clientId=" + Main.currentClientId,
+			dataType: "json",
+			success: function(json){
+				var apartments = json.interestList.apartments;
+				if(apartments.length > 0){
+					$('#tab-interest span').hide();
+					
+					for(var i = 0; i < apartments.length; i++){
+						var apartment = apartments[i].apartment;
+						var $li = $('<li><a href="#">' + apartment.projectName + ' ' + apartment.unitNumber + '</a></li>');
+						
+						$('#tab-interest ul').append($li);
+					}
+				}
+			}
+		});
 	}
+	
 }
 
 Tools = {

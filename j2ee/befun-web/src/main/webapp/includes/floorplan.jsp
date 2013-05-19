@@ -6,7 +6,8 @@
 	<span class="close"></span>
 	<div class="top">
 		<div class="title">
-			<a href="#" class="btn red" id="befun">Add to Compare List</a>
+			<a href="javascript:;" class="btn red" id="befun">Add to Compare List</a>
+			<a href="javascript:;" class="btn" id="interest">Add to Interest List</a>
 			<div class="sort">
 				<label>Sort:</label>
 				<div class="button-group">
