@@ -31,15 +31,15 @@
 		<div id="login">
 			<img src="/img/slogan.png" width="254" height="71" alt="Befun property" class="slogan"/>
 			<img src="/img/demo.png" width="542" height="371" alt="" class="demo"/>
-			<form action="${pageContext.request.contextPath}/j_spring_security_check" method="post">
+			<form id="form-login" action="${pageContext.request.contextPath}/j_spring_security_check" method="post">
 				<div class="row">
 					<input type="text" placeholder="Username" name="j_username" value="${sessionScope['SPRING_SECURITY_LAST_USERNAME']}" />
 				</div>
 				<div class="row">
 					<input type="password" placeholder="Password" name="j_password" />
 				</div>
-				<div>
-					<input class="btn-submit" name="submit" value="Login" type="submit"/>
+				<div class="button">
+					<a class="btn red" href="javascript:;" onclick="$('#form-login').submit();">Login</a> <span class="or">OR</span> <a href="http://demo.befun.com.au" class="try btn">Try Demo Website</a>
 				</div>
 			</form>
 		</div>

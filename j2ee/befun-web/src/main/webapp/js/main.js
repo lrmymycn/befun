@@ -7,6 +7,7 @@ Main = {
 	currentFloorplanId:null,
 	currentApartmentId:null,
 	currentRadiusWidget:null,
+	currentClientId:null,
 	init:function(){
 		this.isHome = true;
 		this.windowResize();
@@ -61,7 +62,7 @@ Main = {
 			}
 		});
 		*/
-		$("select.selectbox").selectbox();
+		$("#filter select.selectbox").selectbox();
 		
 		$('#reminder-nodes .filterNode').live('click', function(){
 			$('#btn-filter').click();
@@ -73,6 +74,8 @@ Main = {
 		});
 	},
 	initClient: function(){
+		Main.currentClientId = $('#clientname').data('id');
+		
 		$('#change-client').click(function(){
 			$('#client').toggle();
 			
@@ -82,7 +85,47 @@ Main = {
 		});
 		
 		$('#client select[name="client"]').change(function(){
-			console.log($(this).val());
+			var $this = $(this);
+			var id = $this.val();
+			if(id == ''){
+				return;
+			}
+			$.ajax({
+				url: Main.root + '/profile/json/selectClient.action?clientId=' + id,
+				dataType: "json",
+				type: "GET",
+				success: function(data){
+					if(data.errorMessages.length > 0){
+						alert('An error happened');
+					}else{
+						var name = $this.find('option:selected').text();
+						$('#clientname').text('and ' + name);
+						$('#view-client').show();
+						Main.currentClientId = id;
+						Main.hideFilter();
+					}
+				}
+			});
+		});
+		
+		$.ajax({
+			url: Main.root + 'profile/json/viewMineClients.action',
+			dataType: "json",
+			type: "GET",
+			success: function(data){
+				var clients = data.clients;
+				for(var i = 0; i < clients.length; i++){
+					var client = clients[i];
+					var option = $('<option value="' + client.id + '">' + client.givenName +  ' ' + client.surname + '</option>');
+					$('#client select').append(option);
+					if(Main.currentClientId == client.id){
+						$('#clientname').text('and ' + client.givenName + ' ' + client.surname);
+						$('#view-client').show();
+					}
+				}
+				
+				$("#client select.selectbox").selectbox();
+			}
 		});
 	},
 	hideFilter:function(){
@@ -955,6 +998,8 @@ PanelPopup = {
 		$("#overview-list .scrollable").scrollable();
 		$("#floorplan-list .scrollable").scrollable({vertical: true});
 		$('#floorplan-list2 .scrollable').scrollable();
+		
+		$("#panel select.selectbox").selectbox();
 	},
 	show:function(){
 		$('#panel .top .tabs a:first-child').click();
@@ -1072,6 +1117,10 @@ FloorplanPopup = {
 	init:function(){
 		$('#befun').click(function(){
 			ComparePanel.addFloorplan();
+		});
+		
+		$('#interest').click(function(){
+			InterestList.add();
 		});
 		
 		$('#lightbox .sort a').click(function(){
@@ -1744,9 +1793,37 @@ Compare = {
 	}
 },
 
+InterestList = {
+	add: function(){
+		if(Main.currentClientId == null || Main.currentClientId == 'null'){
+			alert('Please select a client first!');
+			return;	
+		}
+		
+		if(Main.currentApartmentId == null || Main.currentApartmentId == 0){
+			alert('Please select an apartment first!');
+			return;
+		}
+		
+		$.ajax({
+			url: Main.root + 'profile/json/addAppartmentToList.action?propertyId=' + Main.currentApartmentId,
+			dataType: "json",
+			type: "GET",
+			success: function(data){
+				alert('This apartment has been added to your interest list.');
+			}
+        });
+	}
+};
+
 ClientForm = {
 	viewModel : null,
-	init: function(){		
+	init: function(){
+		Main.initClient();
+		Search.init();
+		ClientForm.initInterestList();
+		$('#client-tabs').tabs();
+				
 		ClientForm.viewModel = {
 			title : ko.observable('MR'),
 			givenName : ko.observable('Sam11'),
@@ -1792,7 +1869,32 @@ ClientForm = {
 				});
 			}
 		});
+	},
+	initInterestList: function(){
+		if(Main.currentClientId == null || Main.currentClientId == 'null'){
+			return;
+		}
+		
+		$.ajax({
+			type: 'GET',
+			url: Main.root + "profile/json/viewInterestList.action?clientId=" + Main.currentClientId,
+			dataType: "json",
+			success: function(json){
+				var apartments = json.interestList.apartments;
+				if(apartments.length > 0){
+					$('#tab-interest span').hide();
+					
+					for(var i = 0; i < apartments.length; i++){
+						var apartment = apartments[i].apartment;
+						var $li = $('<li><a href="#">' + apartment.projectName + ' ' + apartment.unitNumber + '</a></li>');
+						
+						$('#tab-interest ul').append($li);
+					}
+				}
+			}
+		});
 	}
+	
 }
 
 Tools = {
