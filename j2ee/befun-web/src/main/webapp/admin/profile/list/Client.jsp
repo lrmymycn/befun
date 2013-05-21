@@ -10,6 +10,7 @@
 	function initPage(){
 		$( "#genderCombobox" ).combobox();
 		$( "#saleCombobox" ).combobox();
+		$( "#enabledCombobox" ).combobox();
 	}
 </script>
 </head>
@@ -37,6 +38,16 @@
 						</c:forEach>
 					</select>
 				</td>
+				<td width="50"><label>Enabled: </label></td>
+				<td width="200">
+				<select id="enabledCombobox" name="qc.enabled">
+					<option value="null">All</option>
+					<option value="true" <c:if test="${qc.enabled == true}">selected="selected"</c:if>>Enabled</option>
+					<option value="false" <c:if test="${qc.enabled == false}">selected="selected"</c:if>>Disabled</option>
+				</select>
+				</td>
+			</tr>
+			<tr>
 				<td align="right" colspan="10"><input id="queryButton" type="button" value="Query" onclick="jQuery.jmesa.removeAllFiltersFromLimit('Client_table');onInvokeAction('Client_table','clear')" /></td>
 			</tr>
 		</table>
@@ -65,6 +76,19 @@
 							<s:param name="id">${bean.id}</s:param>
 						</s:url>
 						<input type="button" value="Edit" onclick="showDialog('${e}')" />
+						
+						<c:if test="${!bean.enabled }">
+						<s:url var="r" action="admin/profile/enableEmployee.action" namespace="/">
+							<s:param name="id">${bean.id}</s:param>
+						</s:url>
+						<input type="button" value="Enable" onclick="showModalDialog('${r}')" />
+						</c:if>
+						<c:if test="${bean.enabled }">
+						<s:url var="r" action="admin/profile/disableEmployee.action" namespace="/">
+							<s:param name="id">${bean.id}</s:param>
+						</s:url>
+						<input type="button" value="Disable" onclick="showModalDialog('${r}')" />
+						</c:if>
 					</jmesa:htmlColumn>
 				</jmesa:htmlRow>
 			</jmesa:htmlTable>

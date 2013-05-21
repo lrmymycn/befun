@@ -68,6 +68,24 @@
                 </param>
             </result>
         </action>
+        <action name="enableClient" class="ClientManageAction" method="enable">
+            <result name="success" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+        </action>
+        <action name="disableClient" class="ClientManageAction" method="disable">
+            <result name="success" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+        </action>
         <action name="updateClientPreference" class="ClientManageAction" method="updateClientPreference">
             <result name="input" type="myJson">
                 <param name="includeProperties">

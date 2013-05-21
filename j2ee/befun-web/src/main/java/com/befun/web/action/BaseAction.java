@@ -231,7 +231,7 @@ public class BaseAction extends ActionSupport {
     public boolean isCurrentSaleOfClient(Long clientId) {
         Long currentProfileId = this.getCurrentProfile().getId();
         Client c = clientService.get(clientId);
-        if (c == null) {
+        if (c == null || c.getCurrentEmployee() == null) {
             return false;
         }
         return c.getCurrentEmployee().getId().equals(currentProfileId);

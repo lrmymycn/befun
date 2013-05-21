@@ -14,6 +14,7 @@ import org.springframework.util.Assert;
 import org.springframework.util.CollectionUtils;
 
 import com.befun.dao.IBaseDao;
+import com.befun.domain.Modification;
 import com.befun.domain.profile.Client;
 import com.befun.domain.profile.ClientPreference;
 import com.befun.domain.profile.Role;
@@ -84,5 +85,34 @@ public class ClientServiceImpl extends BaseModificationService<Client, Long> imp
         model.setPassword(null);
         super.update(model, ignoreProps);
     }
+
+    @Override
+    public void enable(Long id) {
+        Client model = this.dao.get(id);
+        Assert.notNull(model, model.getClass() + " with id" + id + " can not be found!");
+        
+        if (model.getModification() == null) {
+            model.setModification(Modification.createDefault());
+        } else {
+            model.getModification().setLastModifiedDate(new Date());
+        }
+        model.setEnabled(true);
+        this.dao.update(model);
+    }
+
+    @Override
+    public void disable(Long id) {
+        Client model = this.dao.get(id);
+        Assert.notNull(model, model.getClass() + " with id" + id + " can not be found!");
+        
+        if (model.getModification() == null) {
+            model.setModification(Modification.createDefault());
+        } else {
+            model.getModification().setLastModifiedDate(new Date());
+        }
+        model.setEnabled(false);
+        this.dao.update(model);
+    }
+
 
 }

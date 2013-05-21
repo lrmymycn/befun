@@ -22,6 +22,7 @@
         <intercept-url pattern="/" access="hasAnyRole('SUPER','DATA_ADMIN','MANAGER','SALE')" requires-channel="http" />
         <intercept-url pattern="/index.jsp**" access="hasAnyRole('SUPER','DATA_ADMIN','MANAGER','SALE')" requires-channel="http" />
         <intercept-url pattern="/compare.jsp**" access="hasAnyRole('SUPER','DATA_ADMIN','MANAGER','SALE')" requires-channel="http" />
+        <intercept-url pattern="/clientlist.jsp**" access="hasAnyRole('SUPER','DATA_ADMIN','MANAGER','SALE')" requires-channel="http" />
         <intercept-url pattern="/index.action**" access="hasAnyRole('SUPER','DATA_ADMIN','MANAGER','SALE')" requires-channel="http" />
         <intercept-url pattern="/login.jsp**" access="permitAll" requires-channel="http" />
         <intercept-url pattern="/j_spring_security_check" access="isAnonymous()" requires-channel="http" />
@@ -42,6 +43,8 @@
         <intercept-url pattern="/profile/json/createClient.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
         <intercept-url pattern="/profile/json/updateClient.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
         <intercept-url pattern="/profile/json/saveOrUpdateClient.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
+        <intercept-url pattern="/profile/json/disableClient.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
+        <intercept-url pattern="/profile/json/enableClient.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
         <intercept-url pattern="/profile/json/updateClientPreference.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
         <intercept-url pattern="/profile/json/selectClient.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
         <intercept-url pattern="/profile/json/addAppartmentToList.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />

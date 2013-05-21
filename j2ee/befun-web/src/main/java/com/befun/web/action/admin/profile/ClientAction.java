@@ -95,6 +95,32 @@ public class ClientAction<M extends Client> extends AbstractProfileAction<Client
         return super.createPage();
     }
 
+    public String enable() {
+        try {
+            this.service.enable(this.id);
+            this.addActionMessage("Enabled!");
+        } catch (Exception ex) {
+            String errMsg = "Enable failure!";
+            this.log.warn(errMsg, ex);
+            this.addActionError(errMsg + "\nCause:" + ex.getMessage());
+            return ERROR;
+        }
+        return SUCCESS;
+    }
+
+    public String disable() {
+        try {
+            this.service.disable(this.id);
+            this.addActionMessage("Disabled!");
+        } catch (Exception ex) {
+            String errMsg = "Disable failure!";
+            this.log.warn(errMsg, ex);
+            this.addActionError(errMsg + "\nCause:" + ex.getMessage());
+            return ERROR;
+        }
+        return SUCCESS;
+    }
+    
     public void setQc(ClientQueryCondition qc) {
         this.qc = qc;
     }

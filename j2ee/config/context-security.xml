@@ -9,6 +9,8 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
        ">
+    <http pattern="/test.jsp" security="none" />
+    <http pattern="/favicon.ico" security="none" />
     <http pattern="/css/**" security="none" />
     <http pattern="/js/**" security="none" />
     <http pattern="/img/**" security="none" />
@@ -20,8 +22,9 @@
         <intercept-url pattern="/" access="permitAll" requires-channel="http" />
         <intercept-url pattern="/index.jsp**" access="permitAll" requires-channel="http" />
         <intercept-url pattern="/compare.jsp**" access="permitAll" requires-channel="http" />
+        <intercept-url pattern="/clientlist.jsp**" access="permitAll" requires-channel="http" />
         <intercept-url pattern="/index.action**" access="permitAll" requires-channel="http" />
-        <intercept-url pattern="/login.jsp**" access="isAnonymous()" requires-channel="http" />
+        <intercept-url pattern="/login.jsp**" access="permitAll" requires-channel="http" />
         <intercept-url pattern="/j_spring_security_check" access="isAnonymous()" requires-channel="http" />
         <intercept-url pattern="/j_spring_security_logout" access="isAuthenticated()" requires-channel="http" />
         <intercept-url pattern="/estate/json/demandProjectAggregated.action**" access="permitAll" requires-channel="http" />
@@ -40,6 +43,8 @@
         <intercept-url pattern="/profile/json/createClient.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
         <intercept-url pattern="/profile/json/updateClient.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
         <intercept-url pattern="/profile/json/saveOrUpdateClient.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
+        <intercept-url pattern="/profile/json/disableClient.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
+        <intercept-url pattern="/profile/json/enableClient.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
         <intercept-url pattern="/profile/json/updateClientPreference.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
         <intercept-url pattern="/profile/json/selectClient.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
         <intercept-url pattern="/profile/json/addAppartmentToList.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />

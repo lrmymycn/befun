@@ -21,7 +21,7 @@ public class ClientManageAction extends BaseAction {
 
     private static final long serialVersionUID = -9024856877901046254L;
 
-    private static String[] IGNORE_PROPS = { "lastActiveDate", "preference" };
+    private static String[] IGNORE_PROPS = { "currentEmployee", "lastActiveDate", "preference" };
 
     private Long clientId;
 
@@ -97,6 +97,40 @@ public class ClientManageAction extends BaseAction {
         return SUCCESS;
     }
 
+    public String enable() {
+        try {
+            if (!isCurrentSaleOfClient(this.clientId)) {
+                this.addActionError("You are not the current sale of this client!");
+                return SUCCESS;
+            }
+            this.clientService.enable(this.clientId);
+            this.addActionMessage("Enabled!");
+        } catch (Exception ex) {
+            String errMsg = "Enable failure!";
+            this.log.warn(errMsg, ex);
+            this.addActionError(errMsg + "\nCause:" + ex.getMessage());
+            return ERROR;
+        }
+        return SUCCESS;
+    }
+
+    public String disable() {
+        try {
+            if (!isCurrentSaleOfClient(this.clientId)) {
+                this.addActionError("You are not the current sale of this client!");
+                return SUCCESS;
+            }
+            this.clientService.disable(this.clientId);
+            this.addActionMessage("Disabled!");
+        } catch (Exception ex) {
+            String errMsg = "Disable failure!";
+            this.log.warn(errMsg, ex);
+            this.addActionError(errMsg + "\nCause:" + ex.getMessage());
+            return ERROR;
+        }
+        return SUCCESS;
+    }
+    
     public void setClientId(Long clientId) {
         this.clientId = clientId;
     }

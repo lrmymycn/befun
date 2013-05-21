@@ -5,4 +5,7 @@ import com.befun.service.IBaseService;
 
 public interface ClientService extends IBaseService<Client, Long> {
 
+    void enable(Long id);
+
+    void disable(Long id);
 }

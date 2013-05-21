@@ -50,6 +50,8 @@ public class ClientListAction extends BaseAction {
 
     private InterestListView interestList;
 
+    private ClientQueryCondition qc = new ClientQueryCondition();
+
     private ClientConverter converter = ConverterFactory.getConverter(Client.class);
 
     private ClientPreferenceConverter preferenceConverter = ConverterFactory.getConverter(ClientPreference.class);
@@ -77,7 +79,6 @@ public class ClientListAction extends BaseAction {
     private FloorplanService floorplanService;
 
     public String viewMineClients() {
-        ClientQueryCondition qc = new ClientQueryCondition();
         Long currentEmployeeId = this.getCurrentProfile().getId();
         qc.setCurrentEmployeeId(currentEmployeeId);
         qc.getOrderBy().add(Order.desc("lastActiveDate"));
@@ -98,7 +99,7 @@ public class ClientListAction extends BaseAction {
     }
 
     public String viewClientDetail() {
-//        Long clientId = this.getCurrentClientId();
+        // Long clientId = this.getCurrentClientId();
         if (!isCurrentSaleOfClient(clientId)) {
             this.addActionError("You are not the current sale of this client!");
             return SUCCESS;
@@ -116,7 +117,7 @@ public class ClientListAction extends BaseAction {
     }
 
     public String viewInterestList() {
-//      Long clientId = this.getCurrentClientId();
+        // Long clientId = this.getCurrentClientId();
         List<InterestList> lists = interestListService.queryByClientFetchItem(this.clientId);
         InterestList il = null;
         if (lists.size() == 0) {
@@ -172,6 +173,14 @@ public class ClientListAction extends BaseAction {
 
     public InterestListView getInterestList() {
         return interestList;
+    }
+
+    public ClientQueryCondition getQc() {
+        return qc;
+    }
+
+    public void setQc(ClientQueryCondition qc) {
+        this.qc = qc;
     }
 
 }

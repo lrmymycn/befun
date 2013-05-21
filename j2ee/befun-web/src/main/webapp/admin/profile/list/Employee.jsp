@@ -130,7 +130,7 @@
 						<s:url var="e" action="admin/profile/assignRolesPage.action" namespace="/">
 							<s:param name="id">${bean.id}</s:param>
 						</s:url>
-						<input type="button" value="Roles" onclick="showModalDialog('${e}')" />
+						<input type="button" value="Roles" onclick="showDialog('${e}')" />
 					</jmesa:htmlColumn>
 				</jmesa:htmlRow>
 			</jmesa:htmlTable>
