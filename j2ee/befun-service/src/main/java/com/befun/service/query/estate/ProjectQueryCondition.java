@@ -144,9 +144,20 @@ public class ProjectQueryCondition extends EstateQueryCondition {
             this.apQC.setBuildingAlias("pro_ap_b");
             this.apQC.setStageAlias("pro_ap_st");
             this.apQC.setProjectAlias("pro_ap_pro");
+            this.apQC.setSuburbAlias("pro_ap_s");
         }
     }
 
+    @Override
+    public void setAlias(DetachedCriteria criteria) {
+        if (this.suburbId == null) {
+            if (this.suburbQC != null && !this.suburbQC.isEmpty()) {
+                this.suburbQC.setSelfAlias(this.getSuburbAlias());
+                criteria.createAlias(QCUtils.generatePropertyName(this.getSelfAlias(), "suburb"), this.getSuburbAlias());
+            }
+        }
+    }
+    
     public String getSuburbAlias() {
         return suburbAlias;
     }

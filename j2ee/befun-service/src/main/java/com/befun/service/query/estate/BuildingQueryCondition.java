@@ -20,6 +20,8 @@ public class BuildingQueryCondition extends EstateQueryCondition {
 
     private String projectAlias = QueryConstants.ALIAS_PROJECT;
 
+    private String suburbAlias = QueryConstants.ALIAS_SUBURB;
+
     private Long projectId;
 
     private ProjectQueryCondition proQC = new ProjectQueryCondition();
@@ -79,6 +81,7 @@ public class BuildingQueryCondition extends EstateQueryCondition {
         } else if (this.proQC != null && !this.proQC.isEmpty()) {
             criteria.createAlias(QCUtils.generatePropertyName(getSelfAlias(), "stage"), getStageAlias());
             this.proQC.setSelfAlias(this.getProjectAlias());
+            this.proQC.setSuburbAlias(this.getSuburbAlias());
             criteria.createAlias(QCUtils.generatePropertyName(getStageAlias(), "project"), getProjectAlias());
             this.proQC.setAlias(criteria);
         }
@@ -90,6 +93,7 @@ public class BuildingQueryCondition extends EstateQueryCondition {
             // criteria.createAlias(QCUtils.generatePropertyName(getSelfAlias(), "stage"), getStageAlias());
         } else if (this.proQC != null && !this.proQC.isEmpty()) {
             this.proQC.setSelfAlias(this.getProjectAlias());
+            this.proQC.setSuburbAlias(this.getSuburbAlias());
             criteria.createAlias(QCUtils.generatePropertyName(getStageAlias(), "project"), getProjectAlias());
             this.proQC.setAlias(criteria);
         }
@@ -109,6 +113,14 @@ public class BuildingQueryCondition extends EstateQueryCondition {
 
     public void setProjectAlias(String projectAlias) {
         this.projectAlias = projectAlias;
+    }
+
+    public String getSuburbAlias() {
+        return suburbAlias;
+    }
+
+    public void setSuburbAlias(String suburbAlias) {
+        this.suburbAlias = suburbAlias;
     }
 
     public Long getProjectId() {

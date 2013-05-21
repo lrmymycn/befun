@@ -23,6 +23,8 @@ public class ApartmentQueryCondition extends EstateQueryCondition {
 
     private String projectAlias = QueryConstants.ALIAS_PROJECT;
 
+    private String suburbAlias = QueryConstants.ALIAS_SUBURB;
+
     private Long floorplanId;
 
     private FloorplanQueryCondition fpQC = new FloorplanQueryCondition();
@@ -132,6 +134,7 @@ public class ApartmentQueryCondition extends EstateQueryCondition {
             this.fpQC.setBuildingAlias(this.getBuildingAlias());
             this.fpQC.setStageAlias(this.getStageAlias());
             this.fpQC.setProjectAlias(this.getProjectAlias());
+            this.fpQC.setSuburbAlias(this.getSuburbAlias());
             criteria.createAlias(QCUtils.generatePropertyName(getSelfAlias(), "floorplan"), this.getFloorplanAlias());
             this.fpQC.setAlias(criteria);
         }
@@ -147,6 +150,7 @@ public class ApartmentQueryCondition extends EstateQueryCondition {
             this.fpQC.setBuildingAlias(this.getBuildingAlias());
             this.fpQC.setStageAlias(this.getStageAlias());
             this.fpQC.setProjectAlias(this.getProjectAlias());
+            this.fpQC.setSuburbAlias(this.getSuburbAlias());
             this.fpQC.setAlias(criteria);
         }
     }
@@ -181,6 +185,14 @@ public class ApartmentQueryCondition extends EstateQueryCondition {
 
     public void setProjectAlias(String projectAlias) {
         this.projectAlias = projectAlias;
+    }
+
+    public String getSuburbAlias() {
+        return suburbAlias;
+    }
+
+    public void setSuburbAlias(String suburbAlias) {
+        this.suburbAlias = suburbAlias;
     }
 
     public Long getFloorplanId() {
