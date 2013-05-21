@@ -55,14 +55,7 @@
 	        <jsp:include page="includes/panel.jsp" />
 	        <jsp:include page="includes/floorplan.jsp" />
 	        <jsp:include page="includes/compare.jsp" />
-	        <jsp:include page="includes/client.jsp" />
         </div>
-        <div id="loading"><img src="/img/loading.gif" width="60" height="60" alt="" /></div>
-    	<div id="filter-overlay" class="overlay"></div>
-    	<div id="panel-overlay" class="overlay"></div>
-    	<div id="lightbox-overlay" class="overlay"></div>
-    	<div id="compare-overlay" class="overlay"></div>
-
       	<jsp:include page="includes/script.jsp" />
         <script>
         	$(function(){

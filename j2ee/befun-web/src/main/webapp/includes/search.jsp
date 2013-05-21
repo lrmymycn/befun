@@ -27,12 +27,27 @@
 			<li><a href="javascript:;" id="change-client">Hi ${authentication.username} <span id="clientname" data-id="<%= currentClientId %>"></span></a> <a href="client.jsp" id="view-client">(view)</a></li>
 			<li class="more"><a href="javascript:;">More<i class="arrow-down-grap"></i></a>
 				<ul>
-					<li><a href="#">Clients</a></li>
+					<li><a href="clientlist.jsp">Clients</a></li>
 					<li><a href="#">Cases</a></li>
 					<li><a href="<c:url value='/j_spring_security_logout' />">Log out</a></li>
 				</ul>
 			</li>
 		</ul>
+	</div>
+	<div id="client" class="popover">
+		<div class="arrow"></div>
+		<div class="inner">
+			<span class="title">Change client</span>
+			<div class="change long">
+				<select name="client" class="selectbox">
+					<option value="" selected="true">Select</option>
+				</select>
+			</div>
+			<span class="title">OR</span>
+			<div class="button">
+				<a href="client.jsp" class="btn red">Create a New Client</a>
+			</div>
+		</div>
 	</div>
 	<div id="filter" class="popover" style="display:none;">
 		<div class="arrow"></div>

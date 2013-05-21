@@ -100,7 +100,7 @@ Main = {
 					}else{
 						var name = $this.find('option:selected').text();
 						$('#clientname').text('and ' + name);
-						$('#view-client').show();
+						$('#view-client').attr('href','client.jsp?id=' + id).show();
 						Main.currentClientId = id;
 						Main.hideFilter();
 					}
@@ -120,7 +120,7 @@ Main = {
 					$('#client select').append(option);
 					if(Main.currentClientId == client.id){
 						$('#clientname').text('and ' + client.givenName + ' ' + client.surname);
-						$('#view-client').show();
+						$('#view-client').attr('href','client.jsp?id=' + Main.currentClientId).show();
 					}
 				}
 				
@@ -1715,7 +1715,7 @@ Compare = {
 	},
 	init: function(){
 		Main.initFilter();
-		//Main.initLogin();
+		Main.initClient();
 		Search.init();
 		
 		$('div.project-column div, div.label-column div').mouseover(function(){		
@@ -1820,27 +1820,58 @@ ClientForm = {
 	viewModel : null,
 	init: function(){
 		Main.initClient();
+		Main.initFilter();
 		Search.init();
 		ClientForm.initInterestList();
 		$('#client-tabs').tabs();
+		
+		$('#client-form select').selectbox();
 				
 		ClientForm.viewModel = {
-			title : ko.observable('MR'),
-			givenName : ko.observable('Sam11'),
-			surname : ko.observable('Wang11'),
-			preferredName : ko.observable('ss'),
-			gender: ko.observable('FEMALE'),
-			status: ko.observable('PR'),
-			mobileNumber : ko.observable('123456'),
-			mailAddress: ko.observable('aa@aa.com'),
-			homeAddress: ko.observable('Sydney'),
-			homePostcode: ko.observable('2000'),
+			title : ko.observable(''),
+			givenName : ko.observable(''),
+			surname : ko.observable(''),
+			preferredName : ko.observable(''),
+			gender: ko.observable(''),
+			status: ko.observable(''),
+			mobileNumber : ko.observable(''),
+			mailAddress: ko.observable(''),
+			homeAddress: ko.observable(''),
+			homePostcode: ko.observable(''),
 			areaList: ['Eastern Sydney', 'Southern Sydney', 'Inner West', 'Western Sydney', 'Northern Sydney', 'City CBD'],
 			selectedAreaList: ko.observableArray(['Eastern Sydney', 'City CBD']),
 			
 		};
 		
 		ko.applyBindings(ClientForm.viewModel);
+		
+		var clientId = Tools.getParameterByName('id');
+		if(clientId != ""){
+			Main.loadingShow();
+			$.ajax({
+				type: 'GET',
+				url: Main.root + "profile/json/viewClientDetail.action?clientId=" + clientId,
+				dataType: "json",
+				success: function(json){
+					Main.loadingHide();
+					var client = json.client;
+					if(client != null){
+						ClientForm.viewModel.title(client.title);
+						$('#client-form select[name="title"]').selectbox('change', client.title, client.title);
+						ClientForm.viewModel.givenName(client.givenName);
+						ClientForm.viewModel.surname(client.surname);
+						ClientForm.viewModel.preferredName(client.preferredName);
+						ClientForm.viewModel.gender(client.gender);
+						ClientForm.viewModel.status(client.status);
+						$('#client-form select[name="status"]').selectbox('change', client.status, client.status);
+						ClientForm.viewModel.mobileNumber(client.mobileNumber);
+						ClientForm.viewModel.mailAddress(client.mailAddress);
+						ClientForm.viewModel.homeAddress(client.homeAddress);
+						ClientForm.viewModel.homePostcode(client.homePostcode);
+					}
+				}
+			});
+		}
 		
 		$('#client-form').validate({
 			submitHandler: function(form){
@@ -1857,14 +1888,18 @@ ClientForm = {
 					'client.homeAddress' : ClientForm.viewModel.homeAddress,
 					'client.homePostcode' : ClientForm.viewModel.homePostcode
 				};
-			
+				if(clientId != ''){
+					data["client.id"] = clientId;
+				}
+				Main.loadingShow();
 				$.ajax({
 					type: 'POST',
 					url: Main.root + "profile/json/saveOrUpdateClient.action",
 					data: data,
 					dataType: "json",
 					success: function(json){
-						console.log(json);
+						Main.loadingHide();
+						Tools.showSuccessMessage('Client has been updated!');
 					}
 				});
 			}
@@ -1977,6 +2012,19 @@ Tools = {
 		}
 		
 		return arr.sort(compare);
+	},
+	showSuccessMessage: function(msg){
+		var $msg = $('<div class="ui-state-highlight ui-corner-all message"><span class="ui-icon ui-icon-info"></span> ' + msg + '</div>');
+		$('#content').prepend($msg);
+		setTimeout(function() {
+			$msg.remove();
+		}, 5000);
+	},
+	getParameterByName: function(name) {
+		name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+		var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+			results = regex.exec(location.search);
+		return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 	}
 }
 

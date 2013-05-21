@@ -13,8 +13,8 @@
 	        		<jsp:include page="includes/search.jsp" />
 	        	</div>
 	        </header>
-	        <div id="content">	         	        	
-				<h2>Client</h2>
+	        <div id="content">		         	        	
+				<h2>Client</h2>	
 				<div id="client-tabs">
 					<ul>
 						<li><a href="#tab-info">Information</a></li>
@@ -38,7 +38,7 @@
 							<div class="row clearfix">
 								<span class="title">Language</span>
 								<div class="input">
-									<select name="title">
+									<select name="language">
 										<option>English</option>
 										<option>Mandarin</option>
 										<option>Cantonese</option>
@@ -69,14 +69,13 @@
 							<div class="row clearfix">
 								<span class="title">Gender</span>
 								<div class="input">
-									<input type="radio" name="gender" value="MALE" data-bind="checked: gender"/>Male<br/>
-									<input type="radio" name="gender" value="FEMALE" data-bind="checked: gender"/>Female
+									<input type="radio" name="gender" value="MALE" data-bind="checked: gender"/> Male <input type="radio" name="gender" value="FEMALE" data-bind="checked: gender"/> Female
 								</div>
 							</div>
 							<div class="row clearfix">
 								<span class="title">Status</span>
-								<div class="input">
-									<select name="title" data-bind="value: status">
+								<div class="input long">
+									<select name="status" data-bind="value: status">
 										<option value="">Select</option>
 										<option value="PR">PR</option>
 										<option value="CITIZEN">Citizen</option>
@@ -220,8 +219,6 @@
 				&copy; 2012 Befun Property 
 			</footer>
 		</div>
-		<div id="filter-overlay"></div>
-		<div id="overlay"></div>
 		<jsp:include page="includes/script.jsp" />
         <script>
         	$(function(){

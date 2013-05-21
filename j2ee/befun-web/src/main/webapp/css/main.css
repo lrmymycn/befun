@@ -362,6 +362,33 @@ span.checkbox input{
 	display:none;
 }
 
+.long .sbHolder{
+	width:172px;
+	background:url("/img/select-bg-long.png") no-repeat;
+}
+
+.long .sbSelector{
+	width:139px;
+}
+
+.long .sbOptions{
+	width:172px;
+}
+
+.long .sbOptions li:first-child{
+	display:none;
+}
+
+.message{
+	padding:5px;
+	margin-bottom:10px;
+}
+
+.message .ui-icon{
+	float:left;
+	margin-right:5px;
+}
+
 /* ==========================================================================
    Header
    ========================================================================== */
@@ -1410,7 +1437,7 @@ footer a{
 	height:60px;
 	padding:10px;
 	border-radius:5px;
-	position:absolute;
+	position:fixed;
 	left:50%;
 	top:50%;
 	margin-left:-131px;
@@ -1814,23 +1841,6 @@ footer a{
 	padding:15px 10;
 }
 
-#client .sbHolder{
-	width:172px;
-	background:url("/img/select-bg-long.png") no-repeat;
-}
-
-#client .sbSelector{
-	width:139px;
-}
-
-#client .sbOptions{
-	width:172px;
-}
-
-#client .sbOptions li:first-child{
-	display:none;
-}
-
 #client .change{
 	margin:0 auto 10px;
 	width:172px;
@@ -1932,6 +1942,28 @@ img.bg-login{
 	position:absolute;
 	right:0;
 	top:200px;
+}
+
+/* ==========================================================================
+   Form
+   ========================================================================== */
+form .row{
+	margin-bottom:10px;
+}   
+   
+form .title{
+	float:left;
+	width:120px;
+	height:31px;
+	line-height:31px;
+}
+
+form .input{
+	float:left;
+}
+
+form input[type="text"]{
+	width:200px;
 }
 
 /* ==========================================================================
