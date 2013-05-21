@@ -1,3 +1,9 @@
+<div id="loading"><img src="/img/loading.gif" width="60" height="60" alt="" /></div>
+<div id="filter-overlay" class="overlay"></div>
+<div id="panel-overlay" class="overlay"></div>
+<div id="lightbox-overlay" class="overlay"></div>
+<div id="compare-overlay" class="overlay"></div>
+    	
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.8.3.min.js"><\/script>')</script>
 <script src="js/vendor/jquery-ui-1.9.2.custom.min.js"></script>
