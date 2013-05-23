@@ -1078,7 +1078,9 @@ PanelPopup = {
 						
 						var photos = project.medias;
 						$('#overview-main').empty();
-						$('#overview-main').append('<img src="' + photos[0].mediumUrl + '" width="510" height="343" alt=""/>');
+						if(photos.length > 0){
+							$('#overview-main').append('<img src="' + photos[0].mediumUrl + '" width="510" height="343" alt=""/>');
+						}
 						$('#overview-list .items').empty();
 						for(var i = 0; i < photos.length; i++){
 							var cls = '';

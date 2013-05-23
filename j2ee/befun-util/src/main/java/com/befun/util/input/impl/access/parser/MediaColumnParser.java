@@ -45,8 +45,10 @@ public class MediaColumnParser implements ColumnParser<Media> {
             }
             if(StringUtils.isEmpty(rs.getSmallUrl())){
                 String smallUrl = this.getDestUrl(rs.getLargeUrl(), "small");
-                rs.setMediumUrl(smallUrl);
+                rs.setSmallUrl(smallUrl);
             }
+            String largeUrl = this.getDestUrl(rs.getLargeUrl(), "large");
+            rs.setLargeUrl(largeUrl);
         }
         rs.setName(AccessUtil.getString(col, "name1"));
 

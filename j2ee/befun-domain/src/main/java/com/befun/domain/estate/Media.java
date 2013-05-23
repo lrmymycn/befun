@@ -37,7 +37,6 @@ public class Media implements BaseEstateModel<Long> {
     @Column(name = "PROJECT_ID")
     private Long projectId;
 
-    @Column(name = "PROJECT_BID", length = 255)
     private String projectBid;
 
     @Column(name = "NAME", length = 255)

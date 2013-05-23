@@ -39,6 +39,7 @@ public class AccessImportService implements ImportService {
         this.importMedia(ds);
         this.importProject(ds);
         this.importProjectMedia(ds);
+        this.updateMediaProjectProperty(ds);
         this.importStage(ds);
         this.importBuilding(ds);
         this.importFloorplan(ds);
@@ -72,6 +73,20 @@ public class AccessImportService implements ImportService {
         }
     }
 
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public void updateMediaProjectProperty(ImportDataSource ds) throws ImportException {
+        List<Media> list = ds.listMedias();
+        for (Media o : list) {
+            Media merged = mergeService.mergeMedia(o);
+            if (merged.getProjectBid() != null) {
+                Project tmpPro = dbService.getByBid(Project.class, merged.getProjectBid());
+                merged.setProjectId(tmpPro.getId());
+            }
+            dbService.saveOrUpdate(merged);
+        }
+    }
+    
     @Transactional(propagation = Propagation.REQUIRED)
     public void importStage(ImportDataSource ds) throws ImportException {
         List<Stage> list = ds.listStages();
