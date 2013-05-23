@@ -28,6 +28,8 @@ public class FloorplanQueryCondition extends EstateQueryCondition {
 
     private BuildingQueryCondition bdQC = new BuildingQueryCondition();
 
+    private String floorplanTypeStr;
+
     private FloorplanType floorplanType;
 
     // >
@@ -57,6 +59,8 @@ public class FloorplanQueryCondition extends EstateQueryCondition {
     private Boolean split;
 
     private Boolean studio;
+
+    private String orientationStr;
 
     private Boolean orientationEast;
 
@@ -97,6 +101,11 @@ public class FloorplanQueryCondition extends EstateQueryCondition {
         if (this.floorplanType != null) {
             tmp = Restrictions.eq(QCUtils.generatePropertyName(this.getSelfAlias(), "type"), this.floorplanType);
             rs.add(tmp);
+        } else {
+            Criterion floorplanTypes = QCUtils.parseFloorplanTypes(QCUtils.generatePropertyName(this.getSelfAlias(), "type"), this.floorplanTypeStr);
+            if (floorplanTypes != null) {
+                rs.add(floorplanTypes);
+            }
         }
         if (this.minTotalSize != null) {
             tmp = Restrictions.gt(QCUtils.generatePropertyName(this.getSelfAlias(), "totalSize"), this.minTotalSize);
@@ -150,6 +159,17 @@ public class FloorplanQueryCondition extends EstateQueryCondition {
         if (this.orientationNorth != null) {
             tmp = Restrictions.eq(QCUtils.generatePropertyName(this.getSelfAlias(), "orientationNorth"), this.orientationNorth);
             rs.add(tmp);
+        }
+        if (this.orientationEast == null && this.orientationSouth == null && this.orientationWest == null && this.orientationNorth == null) {
+            String eastProp =QCUtils.generatePropertyName(this.getSelfAlias(), "orientationEast");
+            String southProp =QCUtils.generatePropertyName(this.getSelfAlias(), "orientationSouth");
+            String westProp =QCUtils.generatePropertyName(this.getSelfAlias(), "orientationWest");
+            String northProp =QCUtils.generatePropertyName(this.getSelfAlias(), "orientationNorth");
+
+            Criterion orientations = QCUtils.parseOrientations(orientationStr, eastProp, southProp, westProp, northProp);
+            if (orientations != null) {
+                rs.add(orientations);
+            }
         }
         return rs;
     }

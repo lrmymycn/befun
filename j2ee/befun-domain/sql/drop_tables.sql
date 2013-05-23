@@ -39,6 +39,7 @@ DROP TABLE IF EXISTS floorplan_interest_list_item;
 DROP TABLE IF EXISTS apartment_interest_list_item;
 DROP TABLE IF EXISTS interest_list;
 DROP TABLE IF EXISTS employee_client;
+DROP TABLE IF EXISTS client_requirement;
 DROP TABLE IF EXISTS client;
 DROP TABLE IF EXISTS client_preference;
 DROP TABLE IF EXISTS employee;

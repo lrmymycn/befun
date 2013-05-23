@@ -34,6 +34,11 @@ public class SuburbAction<T extends Suburb, V extends SuburbView> extends AdminA
         this.view = new SuburbView();
     }
 
+    public String createPage() {
+        this.prepareEditorList();
+        return super.createPage();
+    }
+
     public String demandByKey() {
         List<Suburb> queryRs = this.suburbService.queryByInputKey(this.qc.getKey());
         SuburbView tmpV = null;
