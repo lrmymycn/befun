@@ -14,6 +14,7 @@ import com.befun.domain.profile.Client;
 import com.befun.domain.profile.ClientRequirement;
 import com.befun.domain.profile.RoleCode;
 import com.befun.service.profile.ClientRequirementService;
+import com.befun.service.query.estate.ProjectQueryCondition;
 import com.befun.service.query.profile.ClientRequirementQueryCondition;
 import com.befun.web.action.BaseAction;
 
@@ -32,6 +33,8 @@ public class ClientRequirementAction extends BaseAction {
     private ClientRequirement model = new ClientRequirement();
 
     private List<ClientRequirement> requirements = new ArrayList<ClientRequirement>();
+
+    private ProjectQueryCondition projectQC;
 
     @Resource
     @Qualifier("ClientRequirementService")
@@ -146,6 +149,11 @@ public class ClientRequirementAction extends BaseAction {
         }
     }
 
+    public String convertToQueryCondition() {
+        
+        return SUCCESS;
+    }
+
     public ClientRequirementQueryCondition getQc() {
         return qc;
     }
@@ -172,6 +180,10 @@ public class ClientRequirementAction extends BaseAction {
 
     public List<ClientRequirement> getRequirements() {
         return requirements;
+    }
+
+    public ProjectQueryCondition getProjectQC() {
+        return projectQC;
     }
 
 }

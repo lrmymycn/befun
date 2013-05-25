@@ -218,7 +218,6 @@ public class Client extends Profile {
     public int hashCode() {
         final int prime = 31;
         int result = super.hashCode();
-        result = prime * result + ((currentEmployee == null) ? 0 : currentEmployee.hashCode());
         result = prime * result + ((purchaseType1 == null) ? 0 : purchaseType1.hashCode());
         result = prime * result + ((purchaseType2 == null) ? 0 : purchaseType2.hashCode());
         result = prime * result + ((purchaseType3 == null) ? 0 : purchaseType3.hashCode());
@@ -239,9 +238,6 @@ public class Client extends Profile {
         if (!super.equals(obj)) return false;
         if (getClass() != obj.getClass()) return false;
         Client other = (Client) obj;
-        if (currentEmployee == null) {
-            if (other.currentEmployee != null) return false;
-        } else if (!currentEmployee.equals(other.currentEmployee)) return false;
         if (purchaseType1 == null) {
             if (other.purchaseType1 != null) return false;
         } else if (!purchaseType1.equals(other.purchaseType1)) return false;

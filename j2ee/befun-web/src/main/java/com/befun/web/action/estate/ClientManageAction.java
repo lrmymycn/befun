@@ -21,7 +21,7 @@ public class ClientManageAction extends BaseAction {
 
     private static final long serialVersionUID = -9024856877901046254L;
 
-    private static String[] IGNORE_PROPS = { "currentEmployee", "lastActiveDate", "preference" };
+    private static String[] IGNORE_PROPS = { "username", "currentEmployee", "lastActiveDate", "preference" };
 
     private Long clientId;
 
@@ -47,9 +47,17 @@ public class ClientManageAction extends BaseAction {
             this.addActionError("Current sale not found!");
             return SUCCESS;
         }
+        client.setUsername(generateRandomUsername(client));
         client.setCurrentEmployee(currentEmployee);
         this.clientService.save(client);
         return SUCCESS;
+    }
+    
+    private String generateRandomUsername(Client client){
+        StringBuilder rs = new StringBuilder("C");
+        rs.append(client.hashCode());
+        rs.append(client.getSurname()).append(" ").append(client.getGivenName());
+        return rs.toString();
     }
 
     public void validateUpdateClient() {
