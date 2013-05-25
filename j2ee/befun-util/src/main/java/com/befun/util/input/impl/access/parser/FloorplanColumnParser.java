@@ -3,6 +3,8 @@ package com.befun.util.input.impl.access.parser;
 import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import com.befun.domain.estate.Building;
 import com.befun.domain.estate.Floorplan;
@@ -12,6 +14,8 @@ import com.befun.domain.estate.ModelModification;
 import com.befun.util.input.impl.access.AccessUtil;
 
 public class FloorplanColumnParser implements ColumnParser<Floorplan> {
+    
+    private Log log = LogFactory.getLog(this.getClass());
 
     @Override
     public Floorplan parse(Map<String, Object> col) {
@@ -48,7 +52,8 @@ public class FloorplanColumnParser implements ColumnParser<Floorplan> {
             publicPicture.setBid(publicPictureId);
             rs.setPublicPicture(publicPicture);
         } else {
-            throw new IllegalArgumentException("picture_id should be not null for Floorplan: " + rs.getBid());
+            this.log.warn("picture_id is null!");
+//            throw new IllegalArgumentException("picture_id should be not null for Floorplan: " + rs.getBid());
         }
 
         String salePictureId = AccessUtil.getString(col, "sale_picture_id");

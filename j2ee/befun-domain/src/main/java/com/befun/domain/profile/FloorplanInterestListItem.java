@@ -23,7 +23,7 @@ import com.befun.domain.Modification;
 @Table(name = "FLOORPLAN_INTEREST_LIST_ITEM")
 @TableGenerator(name = "floorplanInterestListItemGenerator", table = "ID_GENERATOR", pkColumnName = "gen_name", valueColumnName = "gen_value", pkColumnValue = "floorplanInterestListItem", allocationSize = 1)
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "profile")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "floorplanInterestListItem")
 public class FloorplanInterestListItem implements ModificationModel<Long> {
 
     private static final long serialVersionUID = 2171356704749634553L;

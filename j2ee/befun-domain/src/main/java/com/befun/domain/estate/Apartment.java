@@ -22,7 +22,7 @@ import com.befun.domain.BaseEstateModel;
 @Table(name = "APARTMENT")
 @TableGenerator(name = "apartmentGenerator", table = "ID_GENERATOR", pkColumnName = "gen_name", valueColumnName = "gen_value", pkColumnValue = "apartment", allocationSize = 1)
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region="floorplan")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region="apartment")
 public class Apartment implements BaseEstateModel<Long> {
 
     private static final long serialVersionUID = 5737500338859325930L;

@@ -20,7 +20,7 @@ import com.befun.domain.Modification;
 @Table(name = "CLIENT_PREFERENCE")
 @TableGenerator(name = "clientPreferenceGenerator", table = "ID_GENERATOR", pkColumnName = "gen_name", valueColumnName = "gen_value", pkColumnValue = "clientPreference", allocationSize = 1)
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "profile")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "clientPreference")
 public class ClientPreference implements ModificationModel<Long> {
 
     private static final long serialVersionUID = -6858324543891644304L;

@@ -22,7 +22,7 @@ import com.befun.domain.estate.Building;
 @Table(name = "BUILDING_COMMENT")
 @TableGenerator(name = "buildingCommentGenerator", table = "ID_GENERATOR", pkColumnName = "gen_name", valueColumnName = "gen_value", pkColumnValue = "buildingComment", allocationSize = 1)
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region="comment")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region="buildingComment")
 public class BuildingComment implements BaseModel<Long> {
 
     private static final long serialVersionUID = -3535513754010362552L;

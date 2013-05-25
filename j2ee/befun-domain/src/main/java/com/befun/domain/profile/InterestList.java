@@ -26,7 +26,7 @@ import com.befun.domain.Modification;
 @Table(name = "INTEREST_LIST")
 @TableGenerator(name = "interestListItemGenerator", table = "ID_GENERATOR", pkColumnName = "gen_name", valueColumnName = "gen_value", pkColumnValue = "interestList", allocationSize = 1)
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "profile")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "interestList")
 public class InterestList implements ModificationModel<Long> {
 
     private static final long serialVersionUID = -2254810037484271969L;

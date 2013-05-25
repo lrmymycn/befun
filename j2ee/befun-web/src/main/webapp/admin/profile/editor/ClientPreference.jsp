@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Edit Client ID:${model.id},Name:${model.username}</title>
+<title>Edit ClientPreference ID:${model.id}</title>
 </head>
 <body>
-	<s:form action="saveClient.action" method="post" > 
+	<s:form action="saveClientPreference.action" method="post" > 
 		<s:hidden name="model.id"></s:hidden>
 		<s:label name="model.id" label="ID"/>
 		<s:textfield name="model.username" label="Username" />
@@ -43,8 +43,6 @@
 				</select>
 			</td>
 		</tr>
-		<s:textfield name="model.national" label="national" />
-		<s:textfield name="model.language" label="language" />
 		<s:textfield name="model.surname" label="surname" />
 		<s:textfield name="model.givenName" label="givenName" />
 		<s:textfield name="model.preferredName" label="preferredName" />

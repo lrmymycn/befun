@@ -24,7 +24,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @DiscriminatorValue("Client")
 @PrimaryKeyJoinColumn(name = "ID")
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "profile")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "client")
 public class Client extends Profile {
 
     private static final long serialVersionUID = 8457225248069897238L;
@@ -40,6 +40,12 @@ public class Client extends Profile {
     @Column(name = "STATUS")
     @Enumerated(EnumType.ORDINAL)
     private ClientStatus status;
+
+    @Column(name = "LANGUAGE")
+    private String language;
+
+    @Column(name = "NATIONAL")
+    private String national;
 
     @Column(name = "PURCHASE_TYPE_FIRST")
     private Boolean purchaseTypeFirst;
@@ -102,6 +108,22 @@ public class Client extends Profile {
 
     public void setStatus(ClientStatus status) {
         this.status = status;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public String getNational() {
+        return national;
+    }
+
+    public void setNational(String national) {
+        this.national = national;
     }
 
     public Boolean getPurchaseTypeFirst() {
@@ -254,10 +276,10 @@ public class Client extends Profile {
 
     @Override
     public String toString() {
-        return "Client [title=" + title + ", status=" + status + ", purchaseTypeFirst=" + purchaseTypeFirst
-               + ", purchaseTypeOwner=" + purchaseTypeOwner + ", purchaseTypeInverstor=" + purchaseTypeInverstor + ", purchaseTypeStudent="
-               + purchaseTypeStudent + ", purchaseTypeOther=" + purchaseTypeOther + ", purchaseType1=" + purchaseType1 + ", purchaseType2=" + purchaseType2
-               + ", purchaseType3=" + purchaseType3 + ", purchaseType4=" + purchaseType4 + ", toString()=" + super.toString() + "]";
+        return "Client [title=" + title + ", status=" + status + ", purchaseTypeFirst=" + purchaseTypeFirst + ", purchaseTypeOwner=" + purchaseTypeOwner
+               + ", purchaseTypeInverstor=" + purchaseTypeInverstor + ", purchaseTypeStudent=" + purchaseTypeStudent + ", purchaseTypeOther="
+               + purchaseTypeOther + ", purchaseType1=" + purchaseType1 + ", purchaseType2=" + purchaseType2 + ", purchaseType3=" + purchaseType3
+               + ", purchaseType4=" + purchaseType4 + ", toString()=" + super.toString() + "]";
     }
 
 }

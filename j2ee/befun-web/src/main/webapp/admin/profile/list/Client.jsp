@@ -62,9 +62,24 @@
 					<jmesa:htmlColumn property="surname" />
 					<jmesa:htmlColumn property="givenName" />
 					<jmesa:htmlColumn property="preferredName" />
-					<jmesa:htmlColumn property="modification.creationDate" title="Creation"/>
-					<jmesa:htmlColumn property="modification.lastModifiedDate" title="Last Modified"/>
-					<jmesa:htmlColumn property="lastActiveDate" />
+					<jmesa:htmlColumn property="Reference" title="Reference">
+						<c:if test="${not empty bean.preference.id }">
+						<s:url var="u" action="admin/profile/viewClientPreference.action" namespace="/">
+							<s:param name="id">${bean.preference.id}</s:param>
+						</s:url>
+						<input type="button" value="Preference" onclick="showDialog('${u}')" />
+						</c:if>
+						
+						<s:url var="u" action="admin/profile/demandClientRequirement.action" namespace="/">
+							<s:param name="qc.clientId">${bean.id}</s:param>
+						</s:url>
+						<a href="${u}" target="_blank">Requirements</a>
+						
+						<s:url var="u" action="admin/profile/createPageClientRequirement.action" namespace="/">
+							<s:param name="model.client.id">${bean.id}</s:param>
+						</s:url>
+						<input type="button" value="Create Req" onclick="showDialog('${u}')" />
+					</jmesa:htmlColumn>
 					<jmesa:htmlColumn property="currentEmployee.id" title="Current Sale" >
 						<s:url var="u" action="admin/profile/viewEmployee.action" namespace="/">
 							<s:param name="id">${bean.currentEmployee.id}</s:param>

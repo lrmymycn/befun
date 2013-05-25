@@ -1,5 +1,6 @@
 package com.befun.domain.profile;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -12,12 +13,17 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import com.befun.domain.Modification;
 import com.befun.domain.ModificationModel;
 
 @Entity
 @Table(name = "CLIENT_REQUIREMENT")
 @TableGenerator(name = "clientRequirementGenerator", table = "ID_GENERATOR", pkColumnName = "gen_name", valueColumnName = "gen_value", pkColumnValue = "clientRequirement", allocationSize = 1)
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "clientRequirement")
 public class ClientRequirement implements ModificationModel<Long> {
 
     private static final long serialVersionUID = -102971164729347498L;
@@ -39,12 +45,6 @@ public class ClientRequirement implements ModificationModel<Long> {
 
     @Column(name = "PENTHOUSE")
     private Boolean pentHouse;
-
-    @Column(name = "CAR_PARKING_COUNT_STR")
-    private String carParkingCountStr;
-
-    @Column(name = "STORAGEROOM_COUNT_STR")
-    private String storageRoomCountStr;
 
     @Column(name = "FLOORPLAN_TYPE_STR")
     private String floorplanTypeStr;
@@ -69,6 +69,12 @@ public class ClientRequirement implements ModificationModel<Long> {
 
     @Column(name = "STUDYROOM_COUNT_STR")
     private String studyroomCountStr;
+
+    @Column(name = "CAR_PARKING_COUNT_STR")
+    private String carParkingCountStr;
+
+    @Column(name = "STORAGEROOM_COUNT_STR")
+    private String storageRoomCountStr;
 
     @Column(name = "IS_SPLIT")
     private Boolean split;

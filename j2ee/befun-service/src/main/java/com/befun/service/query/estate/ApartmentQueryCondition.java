@@ -81,11 +81,11 @@ public class ApartmentQueryCondition extends EstateQueryCondition {
             tmp = Restrictions.eq(QCUtils.generatePropertyName(this.getSelfAlias(), "pentHouse"), this.pentHouse);
             rs.add(tmp);
         }
-        Criterion carParkingCounts = QCUtils.parseCounts(QCUtils.generatePropertyName(this.getSelfAlias(), "carParkingCount"), this.carParkingCountStr);
+        Criterion carParkingCounts = QCUtils.parseCountsCriterion(QCUtils.generatePropertyName(this.getSelfAlias(), "carParkingCount"), this.carParkingCountStr);
         if (carParkingCounts != null) {
             rs.add(carParkingCounts);
         }
-        Criterion storageRoomCounts = QCUtils.parseCounts(QCUtils.generatePropertyName(this.getSelfAlias(), "storageRoomCount"), this.storageRoomCountStr);
+        Criterion storageRoomCounts = QCUtils.parseCountsCriterion(QCUtils.generatePropertyName(this.getSelfAlias(), "storageRoomCount"), this.storageRoomCountStr);
         if (storageRoomCounts != null) {
             rs.add(storageRoomCounts);
         }

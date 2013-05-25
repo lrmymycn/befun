@@ -15,7 +15,7 @@
 		element before it expires. Is only used if the element is not eternal. TTL is now - creation time overflowToDisk 
 		- Sets whether elements can overflow to disk when the in-memory cache has reached the maxInMemory limit. -->
 	<defaultCache maxElementsInMemory="1000" eternal="false" timeToIdleSeconds="300"
-		timeToLiveSeconds="3600" overflowToDisk="true" diskSpoolBufferSizeMB="30" maxElementsOnDisk="10000000"
+		timeToLiveSeconds="3600" overflowToDisk="true" diskSpoolBufferSizeMB="30" maxElementsOnDisk="100000"
 		diskPersistent="false" diskExpiryThreadIntervalSeconds="120" memoryStoreEvictionPolicy="LRU" />
 
 	<!--Predefined caches. Add your cache configuration settings here. If you do not have a configuration for your 
@@ -68,68 +68,89 @@
 	</cache>
 	
 	<!-- estate configuration -->
-	<cache name="com.befun.domain.estate.Area" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="300"
+	<cache name="area" maxElementsInMemory="10000" eternal="false" timeToIdleSeconds="300"
 		timeToLiveSeconds="3600" overflowToDisk="false">
 	</cache>
-	<cache name="com.befun.domain.estate.AreaPolyline" maxElementsInMemory="10000" eternal="false"
+	<cache name="suburb" maxElementsInMemory="1000" eternal="false"
 		timeToIdleSeconds="300" timeToLiveSeconds="3600" overflowToDisk="false">
 	</cache>
-	<cache name="com.befun.domain.estate.Suburb" maxElementsInMemory="1000" eternal="false"
-		timeToIdleSeconds="300" timeToLiveSeconds="3600" overflowToDisk="false">
-	</cache>
-	<cache name="com.befun.domain.estate.SuburbPolyline" maxElementsInMemory="10000" maxElementsOnDisk="20000"
-		eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="3600" overflowToDisk="false">
-	</cache>
-	<cache name="com.befun.domain.estate.Project" maxElementsInMemory="10000" maxElementsOnDisk="20000"
+	<cache name="project" maxElementsInMemory="1000" maxElementsOnDisk="2000"
 		eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="3600" overflowToDisk="true">
 	</cache>
-	<cache name="com.befun.domain.estate.Stage" maxElementsInMemory="10000" maxElementsOnDisk="20000"
+	<cache name="stage" maxElementsInMemory="2000" maxElementsOnDisk="4000"
 		eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="3600" overflowToDisk="true">
 	</cache>
-	<cache name="com.befun.domain.estate.Building" maxElementsInMemory="10000" maxElementsOnDisk="20000"
+	<cache name="building" maxElementsInMemory="2000" maxElementsOnDisk="4000"
 		eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="3600" overflowToDisk="true">
 	</cache>
-	<cache name="com.befun.domain.estate.Floorplan" maxElementsInMemory="50000" maxElementsOnDisk="100000"
+	<cache name="floorplan" maxElementsInMemory="50000" maxElementsOnDisk="100000"
 		eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="3600" overflowToDisk="true">
 	</cache>
-	<cache name="com.befun.domain.estate.Apartment" maxElementsInMemory="50000" maxElementsOnDisk="100000"
+	<cache name="apartment" maxElementsInMemory="50000" maxElementsOnDisk="100000"
 		eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="3600" overflowToDisk="true">
 	</cache>
-	<cache name="com.befun.domain.estate.Media" maxElementsInMemory="10000" maxElementsOnDisk="20000"
+	<cache name="media" maxElementsInMemory="10000" maxElementsOnDisk="20000"
 		eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="3600" overflowToDisk="true">
 	</cache>
-	<cache name="com.befun.domain.estate.ProjectMedia" maxElementsInMemory="10000" maxElementsOnDisk="20000"
+	<cache name="projectMedia" maxElementsInMemory="10000" maxElementsOnDisk="20000"
 		eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="3600" overflowToDisk="true">
 	</cache>
 	
 	<!-- community configuration -->
-	<cache name="com.befun.domain.community.Comment" maxElementsInMemory="10000" maxElementsOnDisk="20000"
+	<cache name="comment" maxElementsInMemory="10000" maxElementsOnDisk="20000"
 		eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="3600" overflowToDisk="true">
 	</cache>
-	<cache name="com.befun.domain.community.AreaComment" maxElementsInMemory="10000" maxElementsOnDisk="20000"
+	<cache name="areaComment" maxElementsInMemory="10000" maxElementsOnDisk="20000"
 		eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="3600" overflowToDisk="true">
 	</cache>
-	<cache name="com.befun.domain.community.SuburbComment" maxElementsInMemory="10000" maxElementsOnDisk="20000"
+	<cache name="suburbComment" maxElementsInMemory="10000" maxElementsOnDisk="20000"
 		eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="3600" overflowToDisk="true">
 	</cache>
-	<cache name="com.befun.domain.community.ProjectComment" maxElementsInMemory="10000" maxElementsOnDisk="20000"
+	<cache name="projectComment" maxElementsInMemory="10000" maxElementsOnDisk="20000"
 		eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="3600" overflowToDisk="true">
 	</cache>
-	<cache name="com.befun.domain.community.StageComment" maxElementsInMemory="10000" maxElementsOnDisk="20000"
+	<cache name="stageComment" maxElementsInMemory="10000" maxElementsOnDisk="20000"
 		eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="3600" overflowToDisk="true">
 	</cache>
-	<cache name="com.befun.domain.community.BuildingComment" maxElementsInMemory="10000" maxElementsOnDisk="20000"
+	<cache name="buildingComment" maxElementsInMemory="10000" maxElementsOnDisk="20000"
 		eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="3600" overflowToDisk="true">
 	</cache>
-	<cache name="com.befun.domain.community.FloorplanComment" maxElementsInMemory="10000" maxElementsOnDisk="20000"
+	<cache name="floorplanComment" maxElementsInMemory="10000" maxElementsOnDisk="20000"
 		eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="3600" overflowToDisk="true">
 	</cache>
-	<cache name="com.befun.domain.community.ApartmentComment" maxElementsInMemory="10000" maxElementsOnDisk="20000"
+	<cache name="apartmentComment" maxElementsInMemory="10000" maxElementsOnDisk="20000"
 		eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="3600" overflowToDisk="true">
 	</cache>
     
-    
-    <cache name="project" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="300"
-        timeToLiveSeconds="3600" overflowToDisk="false">
+    <!-- profile configuration -->
+    <cache name="profile" maxElementsInMemory="10000" maxElementsOnDisk="20000"
+        eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="3600" overflowToDisk="true">
+    </cache>
+    <cache name="employee" maxElementsInMemory="1000" maxElementsOnDisk="2000"
+        eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="3600" overflowToDisk="true">
+    </cache>
+	<cache name="client" maxElementsInMemory="10000" maxElementsOnDisk="20000"
+		eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="3600" overflowToDisk="true">
+	</cache>
+    <cache name="clientPreference" maxElementsInMemory="10000" maxElementsOnDisk="20000"
+        eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="3600" overflowToDisk="true">
+    </cache>
+    <cache name="clientRequirement" maxElementsInMemory="20000" maxElementsOnDisk="40000"
+        eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="3600" overflowToDisk="true">
+    </cache>
+    <cache name="employeeClient" maxElementsInMemory="10000" maxElementsOnDisk="20000"
+        eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="3600" overflowToDisk="true">
+    </cache>
+    <cache name="interestList" maxElementsInMemory="10000" maxElementsOnDisk="20000"
+        eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="3600" overflowToDisk="true">
+    </cache>
+    <cache name="apartmentInterestListItem" maxElementsInMemory="10000" maxElementsOnDisk="20000"
+        eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="3600" overflowToDisk="true">
+    </cache>
+    <cache name="floorplanInterestListItem" maxElementsInMemory="10000" maxElementsOnDisk="20000"
+        eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="3600" overflowToDisk="true">
+    </cache>
+    <cache name="projectInterestListItem" maxElementsInMemory="10000" maxElementsOnDisk="20000"
+        eternal="false" timeToIdleSeconds="300" timeToLiveSeconds="3600" overflowToDisk="true">
     </cache>
 </ehcache>

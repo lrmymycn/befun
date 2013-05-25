@@ -26,7 +26,7 @@ import com.befun.domain.BaseEstateModel;
 @Table(name = "STAGE")
 @TableGenerator(name = "stageGenerator", table = "ID_GENERATOR", pkColumnName = "gen_name", valueColumnName = "gen_value", pkColumnValue = "stage", allocationSize = 1)
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region="project")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region="stage")
 public class Stage implements BaseEstateModel<Long> {
 
     private static final long serialVersionUID = 815536881447855957L;

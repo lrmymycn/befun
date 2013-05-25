@@ -102,7 +102,7 @@ public class FloorplanQueryCondition extends EstateQueryCondition {
             tmp = Restrictions.eq(QCUtils.generatePropertyName(this.getSelfAlias(), "type"), this.floorplanType);
             rs.add(tmp);
         } else {
-            Criterion floorplanTypes = QCUtils.parseFloorplanTypes(QCUtils.generatePropertyName(this.getSelfAlias(), "type"), this.floorplanTypeStr);
+            Criterion floorplanTypes = QCUtils.parseFloorplanTypesCriterion(QCUtils.generatePropertyName(this.getSelfAlias(), "type"), this.floorplanTypeStr);
             if (floorplanTypes != null) {
                 rs.add(floorplanTypes);
             }
@@ -115,24 +115,24 @@ public class FloorplanQueryCondition extends EstateQueryCondition {
             tmp = Restrictions.le(QCUtils.generatePropertyName(this.getSelfAlias(), "totalSize"), this.maxTotalSize);
             rs.add(tmp);
         }
-        Criterion bedRoomCounts = QCUtils.parseCounts(QCUtils.generatePropertyName(this.getSelfAlias(), "bedRoomCount"), this.bedRoomCountStr);
+        Criterion bedRoomCounts = QCUtils.parseCountsCriterion(QCUtils.generatePropertyName(this.getSelfAlias(), "bedRoomCount"), this.bedRoomCountStr);
         if (bedRoomCounts != null) {
             rs.add(bedRoomCounts);
         }
-        Criterion bathRoomCounts = QCUtils.parseCounts(QCUtils.generatePropertyName(this.getSelfAlias(), "bathroomCount"), this.bathRoomCountStr);
+        Criterion bathRoomCounts = QCUtils.parseCountsCriterion(QCUtils.generatePropertyName(this.getSelfAlias(), "bathroomCount"), this.bathRoomCountStr);
         if (bathRoomCounts != null) {
             rs.add(bathRoomCounts);
         }
-        Criterion courtyardCounts = QCUtils.parseCounts(QCUtils.generatePropertyName(this.getSelfAlias(), "courtyardCount"), this.courtyardCountStr);
+        Criterion courtyardCounts = QCUtils.parseCountsCriterion(QCUtils.generatePropertyName(this.getSelfAlias(), "courtyardCount"), this.courtyardCountStr);
         if (courtyardCounts != null) {
             rs.add(courtyardCounts);
         }
-        Criterion enclosedBaclonyCounts = QCUtils.parseCounts(QCUtils.generatePropertyName(this.getSelfAlias(), "enclosedBaclonyCount"),
+        Criterion enclosedBaclonyCounts = QCUtils.parseCountsCriterion(QCUtils.generatePropertyName(this.getSelfAlias(), "enclosedBaclonyCount"),
                                                               this.enclosedBaclonyCountStr);
         if (enclosedBaclonyCounts != null) {
             rs.add(enclosedBaclonyCounts);
         }
-        Criterion studyroomCounts = QCUtils.parseCounts(QCUtils.generatePropertyName(this.getSelfAlias(), "studyroomCount"), this.studyroomCountStr);
+        Criterion studyroomCounts = QCUtils.parseCountsCriterion(QCUtils.generatePropertyName(this.getSelfAlias(), "studyroomCount"), this.studyroomCountStr);
         if (studyroomCounts != null) {
             rs.add(studyroomCounts);
         }
@@ -161,12 +161,12 @@ public class FloorplanQueryCondition extends EstateQueryCondition {
             rs.add(tmp);
         }
         if (this.orientationEast == null && this.orientationSouth == null && this.orientationWest == null && this.orientationNorth == null) {
-            String eastProp =QCUtils.generatePropertyName(this.getSelfAlias(), "orientationEast");
-            String southProp =QCUtils.generatePropertyName(this.getSelfAlias(), "orientationSouth");
-            String westProp =QCUtils.generatePropertyName(this.getSelfAlias(), "orientationWest");
-            String northProp =QCUtils.generatePropertyName(this.getSelfAlias(), "orientationNorth");
+            String eastProp = QCUtils.generatePropertyName(this.getSelfAlias(), "orientationEast");
+            String southProp = QCUtils.generatePropertyName(this.getSelfAlias(), "orientationSouth");
+            String westProp = QCUtils.generatePropertyName(this.getSelfAlias(), "orientationWest");
+            String northProp = QCUtils.generatePropertyName(this.getSelfAlias(), "orientationNorth");
 
-            Criterion orientations = QCUtils.parseOrientations(orientationStr, eastProp, southProp, westProp, northProp);
+            Criterion orientations = QCUtils.parseOrientationsCriterion(orientationStr, eastProp, southProp, westProp, northProp);
             if (orientations != null) {
                 rs.add(orientations);
             }

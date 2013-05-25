@@ -242,5 +242,110 @@
                 </param>
             </result>
         </action>
+        
+        <action name="demandClientRequirement" class="ClientRequirementAction" method="demand">
+            <result name="input" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+            <result name="success" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                    requirements\..*,
+                </param>
+                <param name="excludeProperties">
+                    requirements.*client.*,
+                </param>
+            </result>
+        </action>
+        <action name="demandClientRequirementById" class="ClientRequirementAction" method="demandById">
+            <result name="input" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+            <result name="success" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                    model\..*,
+                </param>
+                <param name="excludeProperties">
+                    model.*client.*,
+                </param>
+            </result>
+        </action>
+        <action name="removeClientRequirement" class="ClientRequirementAction" method="remove">
+            <result name="input" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+            <result name="success" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+        </action>
+        <action name="createClientRequirement" class="ClientRequirementAction" method="create">
+            <result name="input" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+            <result name="success" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+        </action>
+        <action name="updateClientRequirement" class="ClientRequirementAction" method="update">
+            <result name="input" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+            <result name="success" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+        </action>
+        <action name="createOrUpdateClientRequirement" class="ClientRequirementAction" method="createOrUpdate">
+            <result name="input" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+            <result name="success" type="myJson">
+                <param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+                    fieldErrors.*,
+                </param>
+            </result>
+        </action>
 	</package>
 </struts>  

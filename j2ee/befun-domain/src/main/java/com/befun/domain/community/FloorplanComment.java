@@ -22,7 +22,7 @@ import com.befun.domain.estate.Floorplan;
 @Table(name = "FLOORPLAN_COMMENT")
 @TableGenerator(name = "floorplanCommentGenerator", table = "ID_GENERATOR", pkColumnName = "gen_name", valueColumnName = "gen_value", pkColumnValue = "floorplanComment", allocationSize = 1)
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region="comment")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region="floorplanComment")
 public class FloorplanComment implements BaseModel<Long> {
 
     private static final long serialVersionUID = -3535513754010362552L;

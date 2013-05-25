@@ -14,6 +14,7 @@ INSERT INTO id_generator (id,gen_name) VALUES(1011,'suburbInterestListItem');
 INSERT INTO id_generator (id,gen_name) VALUES(1012,'profileDepartment');
 INSERT INTO id_generator (id,gen_name) VALUES(1013,'profileRole');
 INSERT INTO id_generator (id,gen_name) VALUES(1014,'permission');
+INSERT INTO id_generator (id,gen_name) VALUES(1015,'clientRequirement');
 INSERT INTO id_generator (id,gen_name) VALUES(2000,'comment');
 INSERT INTO id_generator (id,gen_name) VALUES(2001,'area');
 INSERT INTO id_generator (id,gen_name) VALUES(2002,'areaComment');

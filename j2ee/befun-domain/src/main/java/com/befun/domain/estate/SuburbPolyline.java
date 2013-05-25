@@ -21,7 +21,7 @@ import com.befun.domain.BaseModel;
 @Table(name = "SUBURB_POLYLINE")
 @TableGenerator(name = "suburbPolylineGenerator", table = "ID_GENERATOR", pkColumnName = "gen_name", valueColumnName = "gen_value", pkColumnValue = "suburbPolyline", allocationSize = 1)
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region="geography")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region="suburb")
 public class SuburbPolyline implements BaseModel<Long> {
 
     private static final long serialVersionUID = 4608233353150580737L;

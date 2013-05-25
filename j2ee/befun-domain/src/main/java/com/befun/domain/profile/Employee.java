@@ -15,7 +15,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 @DiscriminatorValue("Employee")
 @PrimaryKeyJoinColumn(name = "ID")
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "profile")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "employee")
 public class Employee extends Profile {
 
     private static final long serialVersionUID = -4386534442370261990L;

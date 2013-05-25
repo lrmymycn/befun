@@ -26,7 +26,7 @@ import com.befun.domain.BaseEstateModel;
 @Table(name = "AREA")
 @TableGenerator(name = "areaGenerator", table = "ID_GENERATOR", pkColumnName = "gen_name", valueColumnName = "gen_value", pkColumnValue = "area", allocationSize = 1)
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "geography")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "area")
 public class Area implements BaseEstateModel<Long> {
 
     private static final long serialVersionUID = -1911564613374735429L;

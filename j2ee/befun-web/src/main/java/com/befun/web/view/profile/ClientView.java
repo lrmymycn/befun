@@ -14,6 +14,10 @@ public class ClientView extends BaseProfileView<Client> {
 
     private ProfileType type = ProfileType.GENERAL;
 
+    private String language;
+
+    private String national;
+
     private String username;
 
     private String password;
@@ -83,6 +87,22 @@ public class ClientView extends BaseProfileView<Client> {
 
     public void setType(ProfileType type) {
         this.type = type;
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
+    }
+
+    public String getNational() {
+        return national;
+    }
+
+    public void setNational(String national) {
+        this.national = national;
     }
 
     public String getUsername() {

@@ -8,6 +8,7 @@ import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
 import com.befun.domain.estate.FloorplanType;
+import com.befun.domain.estate.OrientationType;
 
 public class QCUtils {
 
@@ -25,65 +26,127 @@ public class QCUtils {
         return alias + "." + propertyName;
     }
 
-    public static Criterion parseFloorplanTypes(String propertyName, String floorplanTypeStr) {
-        if (StringUtils.isBlank(floorplanTypeStr)) {
+    public static Criterion parseFloorplanTypesCriterion(String propertyName, String floorplanTypeStr) {
+        List<FloorplanType> types = parseFloorplanTypes(floorplanTypeStr);
+        if (types.isEmpty()) {
             return null;
+        }
+        List<Criterion> rs = new ArrayList<Criterion>();
+        Criterion tmp = null;
+        for (FloorplanType type : types) {
+            tmp = Restrictions.eq(propertyName, type);
+            rs.add(tmp);
+        }
+        return Restrictions.or(rs.toArray(new Criterion[] {}));
+    }
+
+    public static List<FloorplanType> parseFloorplanTypes(String floorplanTypeStr) {
+        List<FloorplanType> rs = new ArrayList<FloorplanType>();
+        if (StringUtils.isBlank(floorplanTypeStr)) {
+            return rs;
         }
         String[] floorplanTypeStrArray = floorplanTypeStr.split(",");
         int l = floorplanTypeStrArray.length;
         if (l == 0) {
-            return null;
+            return rs;
         }
-        List<Criterion> rs = new ArrayList<Criterion>();
-        Criterion tmp = null;
         for (String str : floorplanTypeStrArray) {
             try {
                 str = str.trim();
                 FloorplanType type = FloorplanType.valueOf(str);
-                if (type == null) {
-                    continue;
+                if (type != null) {
+                    rs.add(type);
                 }
-                tmp = Restrictions.eq(propertyName, type);
-                rs.add(tmp);
+
             } catch (Exception ex) {
                 continue;
             }
         }
-        if (rs.size() <= 0) {
+        return rs;
+    }
+
+    public static Criterion parseOrientationsCriterion(String orientationStr, String orientationEastProp, String orientationSouthProp,
+                                                       String orientationWestProp, String orientationNorthProp) {
+        List<OrientationType> types = parseOrientations(orientationStr);
+        if (types.isEmpty()) {
             return null;
+        }
+        List<Criterion> rs = new ArrayList<Criterion>();
+        Criterion tmp = null;
+        for (OrientationType type : types) {
+            switch (type) {
+            case EAST:
+                tmp = Restrictions.eq(orientationEastProp, true);
+                rs.add(tmp);
+                break;
+            case SOUTH:
+                tmp = Restrictions.eq(orientationSouthProp, true);
+                rs.add(tmp);
+                break;
+            case WEST:
+                tmp = Restrictions.eq(orientationWestProp, true);
+                rs.add(tmp);
+                break;
+            case NORTH:
+                tmp = Restrictions.eq(orientationNorthProp, true);
+                rs.add(tmp);
+                break;
+            default:
+                break;
+            }
         }
         return Restrictions.or(rs.toArray(new Criterion[] {}));
     }
 
-    public static Criterion parseOrientations(String orientationStr, String orientationEastProp, String orientationSouthProp, String orientationWestProp,
-                                              String orientationNorthProp) {
+    public static List<OrientationType> parseOrientations(String orientationStr) {
+        List<OrientationType> rs = new ArrayList<OrientationType>();
         if (StringUtils.isBlank(orientationStr)) {
-            return null;
+            return rs;
         }
         String[] orientationStrArray = orientationStr.split(",");
         int l = orientationStrArray.length;
         if (l == 0) {
+            return rs;
+        }
+        for (String str : orientationStrArray) {
+            try {
+                str = str.trim();
+                OrientationType type = OrientationType.valueOf(str);
+                if (type != null) {
+                    rs.add(type);
+                }
+            } catch (Exception ex) {
+                continue;
+            }
+        }
+        return rs;
+    }
+
+    public static Criterion parseCountsCriterion(String propertyName, String countStr) {
+        List<String> counts = parseCounts(countStr);
+        if (counts.isEmpty()) {
             return null;
         }
         List<Criterion> rs = new ArrayList<Criterion>();
         Criterion tmp = null;
-        for (String str : orientationStrArray) {
+        for (String str : counts) {
             try {
-                str = str.trim();
-                if (str.equalsIgnoreCase("east")) {
-                    tmp = Restrictions.eq(orientationEastProp, true);
-                    rs.add(tmp);
-                } else if (str.equalsIgnoreCase("south")) {
-                    tmp = Restrictions.eq(orientationSouthProp, true);
-                    rs.add(tmp);
-                } else if (str.equalsIgnoreCase("west")) {
-                    tmp = Restrictions.eq(orientationWestProp, true);
-                    rs.add(tmp);
-                } else if (str.equalsIgnoreCase("north")) {
-                    tmp = Restrictions.eq(orientationNorthProp, true);
-                    rs.add(tmp);
+                if (str.endsWith("+")) {
+                    int i = str.indexOf("+");
+                    str = str.substring(0, i);
+                    Short count = Short.parseShort(str);
+                    if (count != null) {
+                        tmp = Restrictions.gt(propertyName, count);
+                        rs.add(tmp);
+                    }
+                } else {
+                    Short count = Short.parseShort(str);
+                    if (count != null) {
+                        tmp = Restrictions.eq(propertyName, count);
+                        rs.add(tmp);
+                    }
                 }
-            } catch (Exception ex) {
+            } catch (NumberFormatException ex) {
                 continue;
             }
         }
@@ -93,48 +156,23 @@ public class QCUtils {
         return Restrictions.or(rs.toArray(new Criterion[] {}));
     }
 
-    public static Criterion parseCounts(String propertyName, String countStr) {
+    public static List<String> parseCounts(String countStr) {
+        List<String> rs = new ArrayList<String>();
         if (StringUtils.isBlank(countStr)) {
-            return null;
+            return rs;
         }
         String[] countStrArray = countStr.split(",");
         int l = countStrArray.length;
         if (l == 0) {
-            return null;
+            return rs;
         }
-        List<Criterion> rs = new ArrayList<Criterion>();
-        Criterion tmp = null;
         for (String str : countStrArray) {
-            try {
-                str = str.trim();
-                Short count = Short.parseShort(str);
-                if (count == null) {
-                    continue;
-                }
-                tmp = Restrictions.eq(propertyName, count);
-                rs.add(tmp);
-            } catch (NumberFormatException ex) {
-                if (!str.endsWith("+")) {
-                    continue;
-                }
-                int i = str.indexOf("+");
-                str = str.substring(0, i);
-                try {
-                    Short count = Short.parseShort(str);
-                    if (count == null) {
-                        continue;
-                    }
-                    tmp = Restrictions.gt(propertyName, count);
-                    rs.add(tmp);
-                } catch (NumberFormatException ne) {
-                    continue;
-                }
+            str = str.trim();
+            if (!StringUtils.isEmpty(str)) {
+                rs.add(str);
             }
         }
-        if (rs.size() <= 0) {
-            return null;
-        }
-        return Restrictions.or(rs.toArray(new Criterion[] {}));
+        return rs;
     }
 
     public static Integer getRealPrice(Integer priceEnum) {

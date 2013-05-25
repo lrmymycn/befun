@@ -23,7 +23,7 @@ import com.befun.domain.BaseModel;
 @Table(name = "EMPLOYEE_CLIENT")
 @TableGenerator(name = "employeeClientGenerator", table = "ID_GENERATOR", pkColumnName = "gen_name", valueColumnName = "gen_value", pkColumnValue = "employeeClient", allocationSize = 1)
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region="profile")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region="employeeClient")
 public class EmployeeClient implements BaseModel<Long> {
 
     private static final long serialVersionUID = 8255083610104049731L;

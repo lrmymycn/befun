@@ -21,7 +21,7 @@ import com.befun.domain.BaseModel;
 @Table(name = "AREA_POLYLINE")
 @TableGenerator(name = "areaPolylineGenerator", table = "ID_GENERATOR", pkColumnName = "gen_name", valueColumnName = "gen_value", pkColumnValue = "areaPolyline", allocationSize = 1)
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region="geography")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region="area")
 public class AreaPolyline implements BaseModel<Long> {
 
 	private static final long serialVersionUID = 3796416770488305633L;

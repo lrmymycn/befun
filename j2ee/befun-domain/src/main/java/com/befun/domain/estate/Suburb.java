@@ -27,7 +27,7 @@ import com.befun.domain.BaseEstateModel;
 @Table(name = "SUBURB")
 @TableGenerator(name = "suburbGenerator", table = "ID_GENERATOR", pkColumnName = "gen_name", valueColumnName = "gen_value", pkColumnValue = "suburb", allocationSize = 1)
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region="geography")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region="suburb")
 public class Suburb implements BaseEstateModel<Long> {
 
     private static final long serialVersionUID = -2452607355221937007L;
