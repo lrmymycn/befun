@@ -89,7 +89,8 @@
 	<Connector port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol" SSLEnabled="true" sslProtocol="TLS" scheme="https" secure="true"
 			   acceptCount="100" disableUploadTimeout="true" maxThreads="100"
 			   enableLookups="true" 
-			   keystoreFile="/befun/SSL/befun-estate.ks" keystorePass="E$t@te_+|098"/>
+			   keystoreFile="/befun/SSL/befun-estate.ks" keystorePass="E$t@te_+|098"
+			   truststoreFile="/befun/SSL/befun-estate-trust.ks" truststorePass="E$t@teTrust_+|098"/>
 
     <!-- Define an AJP 1.3 Connector on port 8009 -->
     <Connector port="8009" protocol="AJP/1.3" redirectPort="8443" />

@@ -54,6 +54,12 @@
         <intercept-url pattern="/profile/json/viewMineClients.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
         <intercept-url pattern="/profile/json/viewClientDetail.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
         <intercept-url pattern="/profile/json/viewInterestList.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
+        <intercept-url pattern="/profile/json/demandClientRequirement.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
+        <intercept-url pattern="/profile/json/demandClientRequirementById.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
+        <intercept-url pattern="/profile/json/removeClientRequirement.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
+        <intercept-url pattern="/profile/json/createClientRequirement.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
+        <intercept-url pattern="/profile/json/updateClientRequirement.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
+        <intercept-url pattern="/profile/json/createOrUpdateClientRequirement.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
         <intercept-url pattern="/client.jsp**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
 
         <intercept-url pattern="/**" access="denyAll" requires-channel="any" />
@@ -63,7 +69,9 @@
             <concurrency-control max-sessions="1" />
         </session-management>
         <!-- 如果为非标准端口，可在此指定 -->
-        <!-- <port-mappings> <prot-mapping http="" https=""/> </port-mappings> -->
+        <port-mappings>
+		    <port-mapping http="48080" https="48443"/> 
+		</port-mappings>
     </http>
     <global-method-security secured-annotations="enabled">
         <!-- 批量授权 -->
