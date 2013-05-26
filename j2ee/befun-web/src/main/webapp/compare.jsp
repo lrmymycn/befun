@@ -81,12 +81,10 @@
 	         		</div>
          		</div>
          	</div>
+         	<footer>
+				&copy; 2012 Befun Property 
+			</footer>
 		</div>
-		<footer>
-			&copy; 2012 Befun Property 
-		</footer>
-		<div id="filter-overlay"></div>
-		<div id="overlay"></div>
 		<jsp:include page="includes/script.jsp" />
         <script>
         	$(function(){

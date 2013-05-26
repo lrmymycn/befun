@@ -5,7 +5,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link rel="icon" type="image/x-icon" href="/befun-web/favicon.ico" />
 <link rel="stylesheet" href="css//normalize.css">
-<link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.9.2.custom.min.css"/>
+<link rel="stylesheet" href="css/ui-lightness/jquery-ui-1.9.2.custom.css"/>
 <link rel="stylesheet" href="css/jquery.selectbox.css"/>
 <link rel="stylesheet" href="css/main.css">
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&sensor=true"></script>

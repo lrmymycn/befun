@@ -115,7 +115,7 @@
 	        		</span>
 	        		<label for="bathroom-2">2</label>
 	        		<span class="checkbox">
-	        			<input type="checkbox" value="3" name="bathrooms" id="bathroom-2plus"/>
+	        			<input type="checkbox" value="2+" name="bathrooms" id="bathroom-2plus"/>
 					</span>	
 					<label for="bathroom-2plus">2+</label>
         		</div>
@@ -132,7 +132,7 @@
 	        		</span>
 	        		<label for="carspace-2">2</label>
 	        		<span class="checkbox">
-	        			<input type="checkbox" value="3" name="carspace" id="carspace-2plus"/>
+	        			<input type="checkbox" value="2+" name="carspace" id="carspace-2plus"/>
 					</span>	
 					<label for="carspace-2plus">2+</label>
         		</div>

@@ -54,7 +54,7 @@ fieldset {
  */
 
 textarea {
-    resize: vertical;
+    resize: none;
 }
 
 /* ==========================================================================
@@ -101,6 +101,11 @@ h2{
 	text-transform:uppercase;
 	font-size:18px;
 	line-height:23px;
+}
+
+.compare h2,
+.clientlist h2{
+	background:url('/img/sprite.png') 0 -165px no-repeat;	
 }
 
 i{
@@ -1705,22 +1710,77 @@ footer a{
 }
 
 /* ==========================================================================
+   List Table
+   ========================================================================== */
+
+table.list{
+	width:100%;
+	overflow:hidden;
+	border-radius: 10px;
+	-webkit-box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow:    0px 1px 5px rgba(0, 0, 0, 0.25);
+	box-shadow:         0px 1px 5px rgba(0, 0, 0, 0.25);
+	margin-bottom:10px;
+}
+
+table.list tr{
+	border-bottom:1px solid #E7E7E7;
+	height:32px;
+	background: #F7F7F7;
+}
+
+table.list thead tr{
+	line-height:32px;
+}
+
+table.list tbody tr:last-child{
+	border-bottom:none;
+}
+
+table.list tbody tr:nth-child(even){
+	background: #F2F2F2;
+}
+
+table.list th{
+	border-right: 1px solid #D7D7D7;
+	background:url("/img/compare-name-bg.png");
+}
+
+table.list th:last-child{
+	border-right:none;
+}
+
+table.list td{
+	padding:4px 10px;
+	vertical-align:top;
+	border-right: 1px solid #D7D7D7;
+}
+
+table.list td:last-child{
+	border-right:none;
+}
+
+table.list td.action{
+	text-align:center;
+}
+
+table.list td.action a{
+	text-decoration:underline;
+}
+
+/* ==========================================================================
    Compare Page
    ========================================================================== */
 
 .standard #content{
-	width:984px;
-	padding:80px 20px 0;
+	width:970px;
+	padding:80px 5px 0;
 	margin:0 auto;
-}
-
-.compare h2{
-	background:url('/img/sprite.png') 0 -165px no-repeat;	
 }
 
 .compare-table {
 	border:1px solid #d7d7d7;
-	width:982px;
+	width:970px;
 	overflow:hidden;
 	border-radius: 10px;
 	-webkit-box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.25);
@@ -1740,7 +1800,7 @@ footer a{
 }
 
 .compare-table .label-column{
-	width:137px;
+	width:125px;
 	float:left;
 	border-right:1px solid #d7d7d7;
 	font-weight:bold;
@@ -1764,7 +1824,7 @@ footer a{
 }
 
 .compare-table .label-column div{
-	padding-left:25px;
+	padding-left:13px;
 }
 
 .compare-table .name{
@@ -1962,8 +2022,34 @@ form .input{
 	float:left;
 }
 
+form .input .sbHolder{
+	display: inline-block;
+}
+
+form .checkbox-list{
+	float:left;
+	font-size:11px;
+}
+
+form .checkbox-list label{
+	vertical-align:top;
+	line-height:18px;
+}
+
+form .input .to{
+	display:inline-block;
+	line-height:31px;
+	vertical-align: top;
+}
+
 form input[type="text"]{
 	width:200px;
+}
+
+form textarea{
+	width:500px;
+	height:100px;
+	padding:5px;
 }
 
 /* ==========================================================================

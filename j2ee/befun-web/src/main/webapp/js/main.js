@@ -1,3 +1,9 @@
+$(function(){
+	Main.initClient();
+	Main.initFilter();
+	Search.init();
+});
+
 Main = {
 	root: '/befun-web/',
 	imageRoot: '/',
@@ -12,13 +18,13 @@ Main = {
 		this.isHome = true;
 		this.windowResize();
 		$(window).resize(this.windowResize);
-		this.initFilter();
-		this.initClient();
+		//this.initFilter();
+		//this.initClient();
 		MapMenu.init();
 		PanelPopup.init();
 		FloorplanPopup.init();
 		ComparePanel.init();
-		Search.init();
+		//Search.init();
 		FloorPlanFilter.init();
 		Map.init();
 		//this.showLightbox();
@@ -109,7 +115,7 @@ Main = {
 		});
 		
 		$.ajax({
-			url: Main.root + 'profile/json/viewMineClients.action',
+			url: Main.root + 'profile/json/viewMineClients.action?qc.enabled=true',
 			dataType: "json",
 			type: "GET",
 			success: function(data){
@@ -597,7 +603,7 @@ Search = {
 	saveConditions:function(){
 		this.setConditions();
 		var jsonString = JSON.stringify(Search.conditions);
-		$.cookie("conditions", jsonString,{ expires: 365, path: '/' });
+		$.cookie("conditions", jsonString,{ expires: 1, path: '/' });
 	},
 	setConditions:function(){
 		var conditions = Search.conditions;			
@@ -630,7 +636,8 @@ Search = {
 		if(cookie != null && cookie != ''){
 			Search.conditions = JSON.parse(cookie);
 			var conditions = Search.conditions;
-		
+			Search.clearConditions();
+			
 			var minPriceText = $('#filter select[name="minprice"] option[value="'+ conditions.minPrice + '"]').html();
 			$('#filter select[name="minprice"]').val(conditions.minPrice).selectbox('change', conditions.minPrice, minPriceText);
 			
@@ -677,12 +684,10 @@ Search = {
 			$('#filter select[name="status"]').val(conditions.status).selectbox('change', conditions.status, statusText);
 			
 			Main.updateReminder();
-			
-			this.clearConditions();
 		}
 	},
 	clearConditions:function(){
-		$.removeCookie("conditions");
+		$.cookie("conditions", '',{ expires: -1, path: '/' });
 	},
 	execute: function(){
 		Debug.trace('search execute');
@@ -1715,11 +1720,7 @@ Compare = {
 		}
 		return arr;
 	},
-	init: function(){
-		Main.initFilter();
-		Main.initClient();
-		Search.init();
-		
+	init: function(){		
 		$('div.project-column div, div.label-column div').mouseover(function(){		
 			var row = $(this).data('row');
 			if(row != null){
@@ -1821,31 +1822,48 @@ InterestList = {
 ClientForm = {
 	viewModel : null,
 	init: function(){
-		Main.initClient();
-		Main.initFilter();
-		Search.init();
 		ClientForm.initInterestList();
 		$('#client-tabs').tabs();
 		
-		$('#client-form select').selectbox();
-				
 		ClientForm.viewModel = {
-			title : ko.observable(''),
-			givenName : ko.observable(''),
-			surname : ko.observable(''),
-			preferredName : ko.observable(''),
-			gender: ko.observable(''),
-			status: ko.observable(''),
-			mobileNumber : ko.observable(''),
-			mailAddress: ko.observable(''),
-			homeAddress: ko.observable(''),
-			homePostcode: ko.observable(''),
-			areaList: ['Eastern Sydney', 'Southern Sydney', 'Inner West', 'Western Sydney', 'Northern Sydney', 'City CBD'],
-			selectedAreaList: ko.observableArray(['Eastern Sydney', 'City CBD']),
-			
+			title : ko.observable(),
+			givenName : ko.observable(),
+			surname : ko.observable(),
+			preferredName : ko.observable(),
+			gender: ko.observable(),
+			status: ko.observable(),
+			mobileNumber : ko.observable(),
+			email: ko.observable(),
+			homeAddress: ko.observable(),
+			homePostcode: ko.observable(),
+			requirements: ko.observableArray(),
+			currentRequirement:	ko.observable({
+				minPrice: ko.observable('0'),
+				maxPrice: ko.observable('0'),
+				bedrooms: ko.observableArray(),
+				bathrooms: ko.observableArray(),
+				carspaces: ko.observableArray(),
+				distancetocity: ko.observable(),
+				status: ko.observable(),
+				trainStation: ko.observable(),
+				shoppingCenter: ko.observable(),
+				chineseCommunity: ko.observable(),
+				university: ko.observable(),
+				school: ko.observable(),
+				description: ko.observable('')
+			}),	
+		};
+		
+		ClientForm.viewModel.removeRequirement = function(){
+			if(confirm("Are you sure?")){
+				ClientForm.viewModel.requirements.remove(this);
+			}
 		};
 		
 		ko.applyBindings(ClientForm.viewModel);
+		
+		$('.client select').selectbox();
+		$('.client input:checked').parent('span').addClass('checked');
 		
 		var clientId = Tools.getParameterByName('id');
 		if(clientId != ""){
@@ -1867,9 +1885,22 @@ ClientForm = {
 						ClientForm.viewModel.status(client.status);
 						$('#client-form select[name="status"]').selectbox('change', client.status, client.status);
 						ClientForm.viewModel.mobileNumber(client.mobileNumber);
-						ClientForm.viewModel.mailAddress(client.mailAddress);
+						ClientForm.viewModel.email(client.email);
 						ClientForm.viewModel.homeAddress(client.homeAddress);
 						ClientForm.viewModel.homePostcode(client.homePostcode);
+					}
+				}
+			});
+			
+			$.ajax({
+				type: 'GET',
+				url: Main.root + "profile/json/demandClientRequirement.action?qc.clientId=" + clientId,
+				dataType: "json",
+				success: function(json){
+					if(json.errorMessages.length > 0){
+						alert(json.errorMessages[0]);
+					}else{
+						ClientForm.viewModel.requirements(json.requirements);
 					}
 				}
 			});
@@ -1878,7 +1909,6 @@ ClientForm = {
 		$('#client-form').validate({
 			submitHandler: function(form){
 				var data = {
-					'client.username' : 'samwang',
 					'client.title' : ClientForm.viewModel.title,
 					'client.givenName' : ClientForm.viewModel.givenName,
 					'client.surname' : ClientForm.viewModel.surname,
@@ -1886,7 +1916,7 @@ ClientForm = {
 					'client.gender' : ClientForm.viewModel.gender,
 					'client.status' : ClientForm.viewModel.status,
 					'client.mobileNumber' : ClientForm.viewModel.mobileNumber,
-					'client.mailAddress' : ClientForm.viewModel.mailAddress,
+					'client.email' : ClientForm.viewModel.email,
 					'client.homeAddress' : ClientForm.viewModel.homeAddress,
 					'client.homePostcode' : ClientForm.viewModel.homePostcode
 				};
@@ -1904,6 +1934,70 @@ ClientForm = {
 						Tools.showSuccessMessage('Client has been updated!');
 					}
 				});
+			}
+		});
+		
+		$('#requirement-form').validate({
+			submitHandler: function(form){
+				if(clientId == ''){
+					alert('Please select a client first!');
+					return;
+				}
+				
+				var status = 'null';
+				if(ClientForm.viewModel.currentRequirement().status() == '1'){
+					status = true;
+				}else if(ClientForm.viewModel.currentRequirement().status() == '0'){
+					status = false;
+				}
+				
+				var data = {
+					'model.client.id': clientId,
+					'model.minPrice' : ClientForm.viewModel.currentRequirement().minPrice(),
+					'model.maxPrice' : ClientForm.viewModel.currentRequirement().maxPrice(),
+					'model.bedRoomCountStr' : ClientForm.viewModel.currentRequirement().bedrooms().join(','),
+					'model.bathRoomCountStr' : ClientForm.viewModel.currentRequirement().bathrooms().join(','),
+					'model.carParkingCountStr' : ClientForm.viewModel.currentRequirement().carspaces().join(','),
+					'model.distanceToCity' : ClientForm.viewModel.currentRequirement().distancetocity(),
+					'model.readyHouse':  status,
+					'model.train': ClientForm.viewModel.currentRequirement().trainStation(),
+					'model.shoppingCenter': ClientForm.viewModel.currentRequirement().shoppingCenter(),
+					'model.chineseCommunity' : ClientForm.viewModel.currentRequirement().chineseCommunity(),
+					'model.universities' : ClientForm.viewModel.currentRequirement().university(),
+					'model.schools' : ClientForm.viewModel.currentRequirement().school(),
+					'model.description' : ClientForm.viewModel.currentRequirement().description()
+				};
+				
+				var req = {
+					minPrice : ClientForm.viewModel.currentRequirement().minPrice(),
+					maxPrice : ClientForm.viewModel.currentRequirement().maxPrice(),
+					bedRoomCountStr : ClientForm.viewModel.currentRequirement().bedrooms().join(','),
+					bathRoomCountStr : ClientForm.viewModel.currentRequirement().bathrooms().join(','),
+					carParkingCountStr : ClientForm.viewModel.currentRequirement().carspaces().join(','),
+					distanceToCity : ClientForm.viewModel.currentRequirement().distancetocity(),
+					readyHouse:  status,
+					train: ClientForm.viewModel.currentRequirement().trainStation(),
+					shoppingCenter: ClientForm.viewModel.currentRequirement().shoppingCenter(),
+					chineseCommunity : ClientForm.viewModel.currentRequirement().chineseCommunity(),
+					universities : ClientForm.viewModel.currentRequirement().university(),
+					schools : ClientForm.viewModel.currentRequirement().school(),
+					description : ClientForm.viewModel.currentRequirement().description()
+				};
+				
+				Main.loadingShow();
+				$.ajax({
+					type: 'POST',
+					url: Main.root + "profile/json/createOrUpdateClientRequirement.action",
+					data: data,
+					dataType: "json",
+					success: function(json){
+						Main.loadingHide();
+						Tools.showSuccessMessage('Requirement has been updated.');
+						ClientForm.viewModel.requirements.push(req);
+						ClientForm.viewModel.currentRequirement({});
+					}
+				});
+				
 			}
 		});
 	},
@@ -1932,7 +2026,46 @@ ClientForm = {
 		});
 	}
 	
-}
+};
+
+ClientList = {
+	viewModel: null,
+	init: function(){
+		ClientList.viewModel = {
+			clients : ko.observableArray()
+		}
+		ClientList.viewModel.removeClient = function(){
+			if(confirm("Are you sure?")){
+				var client = this;
+				var id = client.id;
+				Main.loadingShow();
+				$.ajax({
+					url: Main.root + 'profile/json/disableClient.action?clientId=' + id,
+					dataType: "json",
+					type: "GET",
+					success: function(data){
+						Main.loadingHide();
+						if(data.errorMessages.length > 0){
+							alert(data.errorMessages[0]);
+						}else{
+							ClientList.viewModel.clients.remove(client);
+						}
+					}
+				});
+			}
+		}
+		
+		$.ajax({
+			url: Main.root + 'profile/json/viewMineClients.action?qc.enabled=true',
+			dataType: "json",
+			type: "GET",
+			success: function(data){
+				ClientList.viewModel.clients(data.clients);
+				ko.applyBindings(ClientList.viewModel);
+			}
+		});
+	}
+};
 
 Tools = {
 	getCheckboxListValue: function(name){
@@ -1944,6 +2077,7 @@ Tools = {
 			value = value.substr(0,value.length -1);
 		}
 		return value;
+		
 	},
 	getTrueOrFalseIcon: function(num){
 		if(num == 1){
@@ -2016,6 +2150,7 @@ Tools = {
 		return arr.sort(compare);
 	},
 	showSuccessMessage: function(msg){
+		$("html, body").animate({ scrollTop: 0 });
 		var $msg = $('<div class="ui-state-highlight ui-corner-all message"><span class="ui-icon ui-icon-info"></span> ' + msg + '</div>');
 		$('#content').prepend($msg);
 		setTimeout(function() {
