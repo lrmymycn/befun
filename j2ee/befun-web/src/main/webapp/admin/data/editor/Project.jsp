@@ -53,8 +53,8 @@
 		<s:textarea name="view.finishSchema" label="finishSchema" labelposition="left" cols="40"></s:textarea>
 		<sx:datetimepicker name="view.finishDate" label="finishDate" />
 		<s:textfield name="view.distanceToCity" label="distanceToCity"></s:textfield>
-		<s:textfield name="view.longitude" label="longitude"></s:textfield>
 		<s:textfield name="view.latitude" label="latitude"></s:textfield>
+		<s:textfield name="view.longitude" label="longitude"></s:textfield>
 		<tr>
 			<td class="tdLabel">
 			<label>Amenity:</label>

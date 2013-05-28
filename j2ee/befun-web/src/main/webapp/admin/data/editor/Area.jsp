@@ -13,8 +13,8 @@
 		<s:label name="view.id" label="ID"></s:label>
 		<s:label name="view.bid" label="BID"></s:label>
 		<s:textfield name="view.name" label="Name"></s:textfield>
-		<s:textfield name="view.longitude" label="Longitude"></s:textfield>
 		<s:textfield name="view.latitude" label="Latitude"></s:textfield>
+		<s:textfield name="view.longitude" label="Longitude"></s:textfield>
 		<s:textarea name="view.description" label="Description" labelposition="left" cols="40"></s:textarea>
 		<s:textarea name="view.polylinesString" label="Polylines" labelposition="left" cols="40" rows="8"></s:textarea>
 		<tr>

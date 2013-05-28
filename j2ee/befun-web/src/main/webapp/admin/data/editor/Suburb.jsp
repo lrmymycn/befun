@@ -15,8 +15,8 @@
 		<s:select name="view.areaId" label="area" list="qcAreas" listKey="id" listValue="name"/>
 		<s:textfield name="view.name" label="name"></s:textfield>
 		<s:textfield name="view.postCode" label="postCode"></s:textfield>
-		<s:textfield name="view.longitude" label="longitude"></s:textfield>
 		<s:textfield name="view.latitude" label="latitude"></s:textfield>
+		<s:textfield name="view.longitude" label="longitude"></s:textfield>
 		<s:textfield name="view.vacancyRate" label="vacancyRate"></s:textfield>
 		<s:checkbox name="view.universities" label="universities" labelposition="left"></s:checkbox>
 		<s:checkbox name="view.schools" label="schools" labelposition="left"></s:checkbox>
