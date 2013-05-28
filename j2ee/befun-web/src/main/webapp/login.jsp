@@ -39,7 +39,8 @@
 					<input type="password" placeholder="Password" name="j_password" />
 				</div>
 				<div class="button">
-					<a class="btn red" href="javascript:;" onclick="$('#form-login').submit();">Login</a> <span class="or">OR</span> <a href="http://demo.befun.com.au" class="try btn">Try Demo Website</a>
+					<!--<a class="btn red" href="javascript:;" onclick="$('#form-login').submit();">Login</a>-->
+					<input type="submit" class="btn red" value="Login"/> <span class="or">OR</span> <a href="http://demo.befun.com.au" class="try btn">Try Demo Website</a>
 				</div>
 			</form>
 		</div>
