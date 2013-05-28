@@ -1822,7 +1822,6 @@ InterestList = {
 ClientForm = {
 	viewModel : null,
 	init: function(){
-		ClientForm.initInterestList();
 		$('#client-tabs').tabs();
 		
 		ClientForm.viewModel = {
@@ -1837,6 +1836,7 @@ ClientForm = {
 			homeAddress: ko.observable(),
 			homePostcode: ko.observable(),
 			requirements: ko.observableArray(),
+			interestList: ko.observableArray(),
 			currentRequirement:	ko.observable({
 				minPrice: ko.observable('0'),
 				maxPrice: ko.observable('0'),
@@ -1851,13 +1851,68 @@ ClientForm = {
 				university: ko.observable(),
 				school: ko.observable(),
 				description: ko.observable('')
-			}),	
+			})	
 		};
 		
 		ClientForm.viewModel.removeRequirement = function(){
 			if(confirm("Are you sure?")){
-				ClientForm.viewModel.requirements.remove(this);
+				var requirement = this;
+				var id = requirement.id;
+				Main.loadingShow();
+				$.ajax({
+					url: Main.root + 'profile/json/removeClientRequirement.action?id=' + id,
+					dataType: "json",
+					type: "GET",
+					success: function(data){
+						Main.loadingHide();
+						if(data.errorMessages.length > 0){
+							alert(data.errorMessages[0]);
+						}else{
+							ClientForm.viewModel.requirements.remove(requirement);
+						}
+					}
+				});
 			}
+		};
+		
+		ClientForm.viewModel.matchRequirement = function(){
+			var req = this;
+			var conditions = Search.conditions;			
+			conditions.minPrice = req.minPrice;
+			if(conditions.minPrice == null){
+				conditions.minPrice = 0;
+			}
+			conditions.maxPrice = req.maxPrice;
+			if(conditions.maxPrice == null){
+				conditions.maxPrice = 0;
+			}
+		
+			conditions.bedrooms =  req.bedRoomCountStr;
+			conditions.bathrooms = req.bathRoomCountStr;
+			conditions.carspace = req.carParkingCountStr;	
+		
+			conditions.distanceToCity = req.distanceToCity;
+			conditions.trainStation = req.train ? true : 'null';
+			conditions.schools = req.schools ? true : 'null';
+			conditions.universities = req.universities ? true : 'null';
+			conditions.chineseCommunity = req.chineseCommunity ? true : 'null';
+			conditions.shoppingCenter = req.shoppingCenter ? true : 'null';
+			var status = '';
+			if(req.readyHouse === true){
+				status = '1';
+			}else if(req.readyHouse === false){
+				status = '0';
+			}
+			conditions.status = status;
+			
+			var jsonString = JSON.stringify(Search.conditions);
+			$.cookie("conditions", jsonString,{ expires: 1, path: '/' });
+			
+			window.location.href = "/";	
+		};
+		
+		ClientForm.viewModel.getPriceRange = function(minPrice, maxPrice){
+			return Tools.convertPrice(minPrice) + ' to ' + Tools.convertPrice(maxPrice);
 		};
 		
 		ko.applyBindings(ClientForm.viewModel);
@@ -1901,6 +1956,19 @@ ClientForm = {
 						alert(json.errorMessages[0]);
 					}else{
 						ClientForm.viewModel.requirements(json.requirements);
+					}
+				}
+			});
+			
+			$.ajax({
+				type: 'GET',
+				url: Main.root + "profile/json/viewInterestList.action?clientId=" + clientId,
+				dataType: "json",
+				success: function(json){
+					if(json.errorMessages.length > 0){
+						alert(json.errorMessages[0]);
+					}else{
+						ClientForm.viewModel.interestList(json.interestList.apartments);
 					}
 				}
 			});
@@ -2000,32 +2068,7 @@ ClientForm = {
 				
 			}
 		});
-	},
-	initInterestList: function(){
-		if(Main.currentClientId == null || Main.currentClientId == 'null'){
-			return;
-		}
-		
-		$.ajax({
-			type: 'GET',
-			url: Main.root + "profile/json/viewInterestList.action?clientId=" + Main.currentClientId,
-			dataType: "json",
-			success: function(json){
-				var apartments = json.interestList.apartments;
-				if(apartments.length > 0){
-					$('#tab-interest span').hide();
-					
-					for(var i = 0; i < apartments.length; i++){
-						var apartment = apartments[i].apartment;
-						var $li = $('<li><a href="#">' + apartment.projectName + ' ' + apartment.unitNumber + '</a></li>');
-						
-						$('#tab-interest ul').append($li);
-					}
-				}
-			}
-		});
-	}
-	
+	}	
 };
 
 ClientList = {
@@ -2162,6 +2205,24 @@ Tools = {
 		var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
 			results = regex.exec(location.search);
 		return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+	},
+	convertPrice: function(num){
+		switch(num){
+			case 1:
+				return '$450,000';
+			case 2:
+				return '$550,000';
+			case 3:
+				return '$650,000';
+			case 4:
+				return '$750,000';
+			case 5:
+				return '$850,000';
+			case 6:
+				return '$850,000+';
+			default:
+				return 'Any Price';
+		}
 	}
 }
 

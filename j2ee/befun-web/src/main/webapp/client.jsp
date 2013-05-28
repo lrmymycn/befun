@@ -116,7 +116,7 @@
 						<table class="list">
 							<thead>
 								<tr>
-									<th width="120">Price Range</th>
+									<th width="150">Price Range</th>
 									<th width="150">Particulars</th>
 									<th width="150">Features</th>
 									<th>Notes</th>
@@ -125,13 +125,22 @@
 							</thead>
 							<tbody data-bind="foreach: requirements">
 								<tr>
-									<td><span data-bind="text: minPrice"></span> - <span data-bind="text: maxPrice"></span></td>
+									<td><span data-bind="text: $root.getPriceRange($data.minPrice, $data.maxPrice)"></span></td>
 									<td>Bedroom: <span data-bind="text: bedRoomCountStr"></span><br/>
 									Bathroom: <span data-bind="text: bathRoomCountStr"></span><br/>
-									CarSpace: <span data-bind="text: carParkingCountStr"></span><br/></td>
-									<td>AA</td>
+									CarSpace: <span data-bind="text: carParkingCountStr"></span><br/>
+									Distance to City: <span data-bind="text: distanceToCity"></span> km
+									</td>
+									<td><span data-bind="visible: train">Train Stations<br/></span>
+									<span data-bind="visible: shoppingCenter">Shopping Centres<br/></span>
+									<span data-bind="visible: chineseCommunity">Chinese Community<br/></span>
+									<span data-bind="visible: universities">University Zone<br/></span>
+									<span data-bind="visible: schools">School Zone<span></td>
 									<td data-bind="text: description"></td>
-									<td class="action"><a href="#">Match</a> <a href="javascript:;" data-bind="click: $parent.removeRequirement">Delete</a></td>
+									<td class="action">
+										<a href="javascript:;" data-bind="click: $parent.matchRequirement">Match</a>
+										<a href="javascript:;" data-bind="click: $parent.removeRequirement">Delete</a>
+									</td>
 								</tr>
 							</tbody>
 						</table>
@@ -256,10 +265,38 @@
 						</form>
 					</div>
 					<div id="tab-interest">
-						<span>This client doesn't have any interested in properties.</span>
-						<ul>
-						
-						</ul>
+						<table class="list">
+							<thead>
+								<tr>
+									<th>Project</th>
+									<th>Apartment</th>
+									<th>Level</th>
+									<th>Bed</th>
+									<th>Bath</th>
+									<th>Car</th>
+									<th>Study</th>
+									<th>Storage</th>
+									<th>Price</th>
+									<th>Price/sqm</th>
+									<th width="50">Action</th>
+								</tr>
+							</thead>
+							<tbody data-bind="foreach: interestList">
+								<tr>
+									<td data-bind="text: $data.apartment.projectName"></td>
+									<td data-bind="text: $data.apartment.unitNumber"></td>
+									<td data-bind="text: $data.apartment.floorLevel"></td>
+									<td></td>
+									<td></td>
+									<td data-bind="text: $data.apartment.carParkingCount"></td>
+									<td></td>
+									<td data-bind="text: $data.apartment.storageRoomCount"></td>
+									<td>$ <span data-bind="text: $data.apartment.price"></span></td>
+									<td>$ <span data-bind="text: $data.apartment.avgPricePerSQM"></span>m<sup>2</sup></td>
+									<td class="action"><a href="javascript:;">Delete</a></td>
+								</tr>
+							</tbody>
+						</table>
 					</div>
 				</div>
          	</div>
