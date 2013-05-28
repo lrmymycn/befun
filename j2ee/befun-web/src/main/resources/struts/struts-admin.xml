@@ -4,8 +4,8 @@
       "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
     <package name="admin" extends="struts-default" namespace="/admin">
-        <action name="secCacheStatistic" class="SecondCacheStatisticAction" method="statistic">
-            <result name="success">/admin/data/result.jsp</result>
+        <action name="cacheStatistics" class="CacheStatisticAction" method="statistic">
+            <result name="success">/admin/cacheStatistics.jsp</result>
             <result name="error">/admin/data/result.jsp</result>
         </action>
         <action name="impPage" class="ImportAccessAction" method="importIndex">

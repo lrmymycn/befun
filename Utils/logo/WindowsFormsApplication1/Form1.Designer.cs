@@ -71,6 +71,8 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.checkBox_EnableLogo = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_DataGridView)).BeginInit();
             this.tableLayoutPanel_Main.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -106,7 +108,7 @@
             this.tableLayoutPanel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanel_Main.Size = new System.Drawing.Size(484, 447);
+            this.tableLayoutPanel_Main.Size = new System.Drawing.Size(684, 472);
             this.tableLayoutPanel_Main.TabIndex = 1;
             // 
             // tableLayoutPanel2
@@ -115,22 +117,25 @@
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel2.Controls.Add(this.label16, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.textBox_MediaDirectory, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.checkBox_EnableLogo, 1, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(484, 27);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(684, 54);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 7);
-            this.label1.Margin = new System.Windows.Forms.Padding(3, 7, 3, 3);
+            this.label1.Location = new System.Drawing.Point(5, 7);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 7, 3, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(101, 12);
             this.label1.TabIndex = 0;
@@ -138,12 +143,13 @@
             // 
             // textBox_MediaDirectory
             // 
+            this.textBox_MediaDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_MediaDirectory.Location = new System.Drawing.Point(120, 3);
             this.textBox_MediaDirectory.Name = "textBox_MediaDirectory";
             this.textBox_MediaDirectory.ReadOnly = true;
-            this.textBox_MediaDirectory.Size = new System.Drawing.Size(300, 21);
+            this.textBox_MediaDirectory.Size = new System.Drawing.Size(561, 21);
             this.textBox_MediaDirectory.TabIndex = 1;
-            this.textBox_MediaDirectory.Text = "E:\\Personal\\lhl\\input\\img";
             this.textBox_MediaDirectory.DoubleClick += new System.EventHandler(this.textBox_MediaDirectory_Double_Click);
             // 
             // tableLayoutPanel1
@@ -159,19 +165,19 @@
             this.tableLayoutPanel1.Controls.Add(this.button_Close, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.button_Reset, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 417);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 444);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(484, 29);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(684, 27);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // button_Logo
             // 
-            this.button_Logo.Location = new System.Drawing.Point(244, 3);
+            this.button_Logo.Location = new System.Drawing.Point(444, 3);
             this.button_Logo.Name = "button_Logo";
-            this.button_Logo.Size = new System.Drawing.Size(75, 23);
+            this.button_Logo.Size = new System.Drawing.Size(75, 21);
             this.button_Logo.TabIndex = 1;
             this.button_Logo.Text = "Logo";
             this.button_Logo.UseVisualStyleBackColor = true;
@@ -181,7 +187,7 @@
             // 
             this.button_Resize.Location = new System.Drawing.Point(3, 3);
             this.button_Resize.Name = "button_Resize";
-            this.button_Resize.Size = new System.Drawing.Size(75, 23);
+            this.button_Resize.Size = new System.Drawing.Size(75, 21);
             this.button_Resize.TabIndex = 0;
             this.button_Resize.Text = "Resize";
             this.button_Resize.UseVisualStyleBackColor = true;
@@ -190,9 +196,9 @@
             // button_Close
             // 
             this.button_Close.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button_Close.Location = new System.Drawing.Point(406, 3);
+            this.button_Close.Location = new System.Drawing.Point(606, 3);
             this.button_Close.Name = "button_Close";
-            this.button_Close.Size = new System.Drawing.Size(75, 23);
+            this.button_Close.Size = new System.Drawing.Size(75, 21);
             this.button_Close.TabIndex = 2;
             this.button_Close.Text = "&Close";
             this.button_Close.UseVisualStyleBackColor = true;
@@ -200,9 +206,9 @@
             // 
             // button_Reset
             // 
-            this.button_Reset.Location = new System.Drawing.Point(325, 3);
+            this.button_Reset.Location = new System.Drawing.Point(525, 3);
             this.button_Reset.Name = "button_Reset";
-            this.button_Reset.Size = new System.Drawing.Size(75, 23);
+            this.button_Reset.Size = new System.Drawing.Size(75, 21);
             this.button_Reset.TabIndex = 3;
             this.button_Reset.Text = "Reset";
             this.button_Reset.UseVisualStyleBackColor = true;
@@ -213,10 +219,10 @@
             this.groupBox1.AutoSize = true;
             this.groupBox1.Controls.Add(this.tableLayoutPanel3);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(0, 27);
+            this.groupBox1.Location = new System.Drawing.Point(0, 54);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(484, 195);
+            this.groupBox1.Size = new System.Drawing.Size(684, 195);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Floorplan";
@@ -253,27 +259,29 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(478, 175);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(678, 175);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
             // textBox_Floorplan_LargeLogo
             // 
+            this.textBox_Floorplan_LargeLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_Floorplan_LargeLogo.Location = new System.Drawing.Point(120, 53);
             this.textBox_Floorplan_LargeLogo.Name = "textBox_Floorplan_LargeLogo";
             this.textBox_Floorplan_LargeLogo.ReadOnly = true;
-            this.textBox_Floorplan_LargeLogo.Size = new System.Drawing.Size(300, 21);
+            this.textBox_Floorplan_LargeLogo.Size = new System.Drawing.Size(555, 21);
             this.textBox_Floorplan_LargeLogo.TabIndex = 13;
-            this.textBox_Floorplan_LargeLogo.Text = "E:\\Personal\\lhl\\temp\\logo1.png";
             this.textBox_Floorplan_LargeLogo.DoubleClick += new System.EventHandler(this.textBox_Floorplan_LargeLogo_Double_Click);
             // 
             // textBox_Floorplan_MediumLogo
             // 
+            this.textBox_Floorplan_MediumLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_Floorplan_MediumLogo.Location = new System.Drawing.Point(120, 28);
             this.textBox_Floorplan_MediumLogo.Name = "textBox_Floorplan_MediumLogo";
             this.textBox_Floorplan_MediumLogo.ReadOnly = true;
-            this.textBox_Floorplan_MediumLogo.Size = new System.Drawing.Size(300, 21);
+            this.textBox_Floorplan_MediumLogo.Size = new System.Drawing.Size(555, 21);
             this.textBox_Floorplan_MediumLogo.TabIndex = 12;
-            this.textBox_Floorplan_MediumLogo.Text = "E:\\Personal\\lhl\\temp\\logo1.png";
             this.textBox_Floorplan_MediumLogo.DoubleClick += new System.EventHandler(this.textBox_Floorplan_MediumLogo_Double_Click);
             // 
             // label11
@@ -288,12 +296,13 @@
             // 
             // textBox_Floorplan_SmallLogo
             // 
+            this.textBox_Floorplan_SmallLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_Floorplan_SmallLogo.Location = new System.Drawing.Point(120, 3);
             this.textBox_Floorplan_SmallLogo.Name = "textBox_Floorplan_SmallLogo";
             this.textBox_Floorplan_SmallLogo.ReadOnly = true;
-            this.textBox_Floorplan_SmallLogo.Size = new System.Drawing.Size(300, 21);
+            this.textBox_Floorplan_SmallLogo.Size = new System.Drawing.Size(555, 21);
             this.textBox_Floorplan_SmallLogo.TabIndex = 9;
-            this.textBox_Floorplan_SmallLogo.Text = "E:\\Personal\\lhl\\temp\\logo1.png";
             this.textBox_Floorplan_SmallLogo.DoubleClick += new System.EventHandler(this.textBox_Floorplan_SmallLogo_Double_Click);
             // 
             // numericUpDown_Floorplan_MediumHeight
@@ -449,10 +458,10 @@
             this.groupBox2.AutoSize = true;
             this.groupBox2.Controls.Add(this.tableLayoutPanel4);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(0, 222);
+            this.groupBox2.Location = new System.Drawing.Point(0, 249);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(484, 195);
+            this.groupBox2.Size = new System.Drawing.Size(684, 195);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Project Overview";
@@ -489,37 +498,40 @@
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(478, 175);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(678, 175);
             this.tableLayoutPanel4.TabIndex = 0;
             // 
             // textBox_Overview_LargeLogo
             // 
+            this.textBox_Overview_LargeLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_Overview_LargeLogo.Location = new System.Drawing.Point(120, 53);
             this.textBox_Overview_LargeLogo.Name = "textBox_Overview_LargeLogo";
             this.textBox_Overview_LargeLogo.ReadOnly = true;
-            this.textBox_Overview_LargeLogo.Size = new System.Drawing.Size(300, 21);
+            this.textBox_Overview_LargeLogo.Size = new System.Drawing.Size(555, 21);
             this.textBox_Overview_LargeLogo.TabIndex = 13;
-            this.textBox_Overview_LargeLogo.Text = "E:\\Personal\\lhl\\temp\\logo1.png";
             this.textBox_Overview_LargeLogo.DoubleClick += new System.EventHandler(this.textBox_Overview_LargeLogo_Double_Click);
             // 
             // textBox_Overview_MediumLogo
             // 
+            this.textBox_Overview_MediumLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_Overview_MediumLogo.Location = new System.Drawing.Point(120, 28);
             this.textBox_Overview_MediumLogo.Name = "textBox_Overview_MediumLogo";
             this.textBox_Overview_MediumLogo.ReadOnly = true;
-            this.textBox_Overview_MediumLogo.Size = new System.Drawing.Size(300, 21);
+            this.textBox_Overview_MediumLogo.Size = new System.Drawing.Size(555, 21);
             this.textBox_Overview_MediumLogo.TabIndex = 12;
-            this.textBox_Overview_MediumLogo.Text = "E:\\Personal\\lhl\\temp\\logo1.png";
             this.textBox_Overview_MediumLogo.DoubleClick += new System.EventHandler(this.textBox_Overview_MediumLogo_Double_Click);
             // 
             // textBox_Overview_SmallLogo
             // 
+            this.textBox_Overview_SmallLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_Overview_SmallLogo.Location = new System.Drawing.Point(120, 3);
             this.textBox_Overview_SmallLogo.Name = "textBox_Overview_SmallLogo";
             this.textBox_Overview_SmallLogo.ReadOnly = true;
-            this.textBox_Overview_SmallLogo.Size = new System.Drawing.Size(300, 21);
+            this.textBox_Overview_SmallLogo.Size = new System.Drawing.Size(555, 21);
             this.textBox_Overview_SmallLogo.TabIndex = 11;
-            this.textBox_Overview_SmallLogo.Text = "E:\\Personal\\lhl\\temp\\logo1.png";
             this.textBox_Overview_SmallLogo.DoubleClick += new System.EventHandler(this.textBox_Overview_SmallLogo_Double_Click);
             // 
             // numericUpDown_Overview_MediumHeight
@@ -680,15 +692,35 @@
             this.label14.TabIndex = 9;
             this.label14.Text = "Medium Logo:";
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(5, 34);
+            this.label16.Margin = new System.Windows.Forms.Padding(5, 7, 3, 3);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(77, 12);
+            this.label16.TabIndex = 2;
+            this.label16.Text = "Enable Logo:";
+            // 
+            // checkBox_EnableLogo
+            // 
+            this.checkBox_EnableLogo.AutoSize = true;
+            this.checkBox_EnableLogo.Location = new System.Drawing.Point(120, 33);
+            this.checkBox_EnableLogo.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
+            this.checkBox_EnableLogo.Name = "checkBox_EnableLogo";
+            this.checkBox_EnableLogo.Size = new System.Drawing.Size(15, 14);
+            this.checkBox_EnableLogo.TabIndex = 3;
+            this.checkBox_EnableLogo.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.button_Close;
-            this.ClientSize = new System.Drawing.Size(484, 447);
+            this.ClientSize = new System.Drawing.Size(684, 472);
             this.Controls.Add(this.tableLayoutPanel_Main);
             this.Name = "Form1";
-            this.Text = "Main";
+            this.Text = "Logo";
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_DataGridView)).EndInit();
             this.tableLayoutPanel_Main.ResumeLayout(false);
             this.tableLayoutPanel_Main.PerformLayout();
@@ -760,6 +792,8 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.CheckBox checkBox_EnableLogo;
     }
 }
 

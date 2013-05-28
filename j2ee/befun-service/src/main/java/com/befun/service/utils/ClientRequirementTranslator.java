@@ -1,12 +1,12 @@
 package com.befun.service.utils;
 
 import com.befun.domain.profile.ClientRequirement;
-import com.befun.service.query.estate.ApartmentQueryCondition;
+import com.befun.service.query.estate.ProjectQueryCondition;
 
 public class ClientRequirementTranslator {
 
-    public static ApartmentQueryCondition translateToQueryCondition(ClientRequirement requirement) {
-
+    public static ProjectQueryCondition translateToQueryCondition(ClientRequirement requirement) {
+        ProjectQueryCondition rs = new ProjectQueryCondition();
         return null;
     }
 }

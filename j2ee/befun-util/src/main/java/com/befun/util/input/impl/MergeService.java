@@ -211,13 +211,15 @@ public class MergeService {
         }
         rs.setBuilding(building);
 
-        Media publicPicture = commonService.getByBid(Media.class, rs.getPublicPicture().getBid());
-        if (publicPicture == null) {
-            String errMsg = "Can not find publicPicture :" + rs.getPublicPicture().getBid() + " for Floorplan:" + rs.getBid();
-            this.log.error(errMsg);
-            throw new IllegalArgumentException(errMsg);
+        if (rs.getPublicPicture() != null && rs.getPublicPicture().getBid() != null) {
+            Media publicPicture = commonService.getByBid(Media.class, rs.getPublicPicture().getBid());
+            if (publicPicture == null) {
+                String errMsg = "Can not find publicPicture :" + rs.getPublicPicture().getBid() + " for Floorplan:" + rs.getBid();
+                this.log.error(errMsg);
+                throw new IllegalArgumentException(errMsg);
+            }
+            rs.setPublicPicture(publicPicture);
         }
-        rs.setPublicPicture(publicPicture);
 
         Media salePicture = commonService.getByBid(Media.class, rs.getSalePicture().getBid());
         if (salePicture == null) {

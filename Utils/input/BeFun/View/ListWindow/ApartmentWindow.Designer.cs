@@ -62,6 +62,8 @@ namespace BeFun.View
             this.bindingSource_Floorplan = new System.Windows.Forms.BindingSource(this.components);
             this.label5 = new System.Windows.Forms.Label();
             this.textBox_UnitNumber = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.textBox_ID = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel_Main.SuspendLayout();
             this.panel_Grid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
@@ -292,6 +294,8 @@ namespace BeFun.View
             this.tableLayoutPanel2.Controls.Add(this.comboBox_Query_Floorplan, 3, 1);
             this.tableLayoutPanel2.Controls.Add(this.label5, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.textBox_UnitNumber, 1, 2);
+            this.tableLayoutPanel2.Controls.Add(this.label6, 2, 2);
+            this.tableLayoutPanel2.Controls.Add(this.textBox_ID, 3, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -406,6 +410,23 @@ namespace BeFun.View
             this.textBox_UnitNumber.Size = new System.Drawing.Size(200, 21);
             this.textBox_UnitNumber.TabIndex = 8;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(439, 57);
+            this.label6.Margin = new System.Windows.Forms.Padding(3, 7, 0, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(23, 12);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Id:";
+            // 
+            // textBox_ID
+            // 
+            this.textBox_ID.Location = new System.Drawing.Point(554, 53);
+            this.textBox_ID.Name = "textBox_ID";
+            this.textBox_ID.Size = new System.Drawing.Size(200, 21);
+            this.textBox_ID.TabIndex = 10;
+            // 
             // ApartmentWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -471,5 +492,7 @@ namespace BeFun.View
         private System.Windows.Forms.DataGridViewTextBoxColumn column_LotNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn column_price;
         private System.Windows.Forms.DataGridViewTextBoxColumn column_SoldOut;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox textBox_ID;
     }
 }

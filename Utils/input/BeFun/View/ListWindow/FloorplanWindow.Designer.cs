@@ -35,6 +35,17 @@
             this.panel_Grid = new System.Windows.Forms.Panel();
             this.button_Close = new System.Windows.Forms.Button();
             this.dataGridView = new BeFun.View.Component.GirdView.FloorplanDataView();
+            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.project_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.StageName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BuildingNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.is_split = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.is_studio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bedroom_count = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.bathroom_count = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.total_size = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel_Query = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
@@ -49,17 +60,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.comboBox_Query_Project = new System.Windows.Forms.ComboBox();
             this.bindingSource_Project = new System.Windows.Forms.BindingSource(this.components);
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.project_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.StageName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BuildingNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.is_split = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.is_studio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bedroom_count = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bathroom_count = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.total_size = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label4 = new System.Windows.Forms.Label();
+            this.textBox_ID = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel_Main.SuspendLayout();
             this.panel_Grid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
@@ -151,157 +153,14 @@
             this.dataGridView.queryCondition = null;
             this.dataGridView.ReadOnly = true;
             this.dataGridView.RowTemplate.Height = 23;
+            this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView.Size = new System.Drawing.Size(885, 486);
             this.dataGridView.TabIndex = 0;
             this.dataGridView.type = BeFun.View.ListWindow.ListWindowType.View;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.AutoSize = true;
-            this.groupBox1.Controls.Add(this.tableLayoutPanel_Query);
-            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(885, 111);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Query";
-            // 
-            // tableLayoutPanel_Query
-            // 
-            this.tableLayoutPanel_Query.AutoSize = true;
-            this.tableLayoutPanel_Query.ColumnCount = 1;
-            this.tableLayoutPanel_Query.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel_Query.Controls.Add(this.tableLayoutPanel3, 0, 1);
-            this.tableLayoutPanel_Query.Controls.Add(this.tableLayoutPanel1, 0, 0);
-            this.tableLayoutPanel_Query.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel_Query.Location = new System.Drawing.Point(3, 17);
-            this.tableLayoutPanel_Query.Name = "tableLayoutPanel_Query";
-            this.tableLayoutPanel_Query.RowCount = 2;
-            this.tableLayoutPanel_Query.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel_Query.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel_Query.Size = new System.Drawing.Size(879, 91);
-            this.tableLayoutPanel_Query.TabIndex = 0;
-            // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.AutoSize = true;
-            this.tableLayoutPanel3.ColumnCount = 2;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Controls.Add(this.button_Search, 1, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 59);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 1;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(873, 29);
-            this.tableLayoutPanel3.TabIndex = 1;
-            // 
-            // button_Search
-            // 
-            this.button_Search.Location = new System.Drawing.Point(776, 3);
-            this.button_Search.Name = "button_Search";
-            this.button_Search.Size = new System.Drawing.Size(75, 23);
-            this.button_Search.TabIndex = 0;
-            this.button_Search.Text = "&Search";
-            this.button_Search.UseVisualStyleBackColor = true;
-            this.button_Search.Click += new System.EventHandler(this.button_Search_Click);
-            // 
-            // tableLayoutPanel1
-            // 
-            this.tableLayoutPanel1.AutoSize = true;
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 115F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 115F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.comboBox_Query_Building, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.comboBox_Query_Stage, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.comboBox_Query_Project, 1, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(873, 50);
-            this.tableLayoutPanel1.TabIndex = 0;
-            // 
-            // comboBox_Query_Building
-            // 
-            this.comboBox_Query_Building.DataSource = this.bindingSource_Building;
-            this.comboBox_Query_Building.DisplayMember = "building_num";
-            this.comboBox_Query_Building.FormattingEnabled = true;
-            this.comboBox_Query_Building.Location = new System.Drawing.Point(118, 28);
-            this.comboBox_Query_Building.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
-            this.comboBox_Query_Building.Name = "comboBox_Query_Building";
-            this.comboBox_Query_Building.Size = new System.Drawing.Size(200, 20);
-            this.comboBox_Query_Building.TabIndex = 2;
-            this.comboBox_Query_Building.ValueMember = "id";
-            // 
-            // comboBox_Query_Stage
-            // 
-            this.comboBox_Query_Stage.DataSource = this.bindingSource_Stage;
-            this.comboBox_Query_Stage.DisplayMember = "name";
-            this.comboBox_Query_Stage.FormattingEnabled = true;
-            this.comboBox_Query_Stage.Location = new System.Drawing.Point(554, 3);
-            this.comboBox_Query_Stage.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
-            this.comboBox_Query_Stage.Name = "comboBox_Query_Stage";
-            this.comboBox_Query_Stage.Size = new System.Drawing.Size(200, 20);
-            this.comboBox_Query_Stage.TabIndex = 1;
-            this.comboBox_Query_Stage.ValueMember = "id";
-            this.comboBox_Query_Stage.SelectedIndexChanged += new System.EventHandler(this.comboBox_Query_Stage_SelectedIndexChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 7);
-            this.label2.Margin = new System.Windows.Forms.Padding(3, 7, 0, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 12);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Project:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(439, 7);
-            this.label1.Margin = new System.Windows.Forms.Padding(3, 7, 0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 12);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Stage:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 32);
-            this.label3.Margin = new System.Windows.Forms.Padding(3, 7, 0, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(59, 12);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "Building:";
-            // 
-            // comboBox_Query_Project
-            // 
-            this.comboBox_Query_Project.DataSource = this.bindingSource_Project;
-            this.comboBox_Query_Project.DisplayMember = "name";
-            this.comboBox_Query_Project.FormattingEnabled = true;
-            this.comboBox_Query_Project.Location = new System.Drawing.Point(118, 3);
-            this.comboBox_Query_Project.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
-            this.comboBox_Query_Project.Name = "comboBox_Query_Project";
-            this.comboBox_Query_Project.Size = new System.Drawing.Size(200, 20);
-            this.comboBox_Query_Project.TabIndex = 0;
-            this.comboBox_Query_Project.ValueMember = "id";
-            this.comboBox_Query_Project.SelectedIndexChanged += new System.EventHandler(this.comboBox_Query_Project_SelectedIndexChanged);
-            // 
             // id
             // 
+            this.id.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
             this.id.DataPropertyName = "id";
             this.id.HeaderText = "ID";
             this.id.Name = "id";
@@ -397,6 +256,170 @@
             this.total_size.ReadOnly = true;
             this.total_size.Width = 50;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.AutoSize = true;
+            this.groupBox1.Controls.Add(this.tableLayoutPanel_Query);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(885, 111);
+            this.groupBox1.TabIndex = 0;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Query";
+            // 
+            // tableLayoutPanel_Query
+            // 
+            this.tableLayoutPanel_Query.AutoSize = true;
+            this.tableLayoutPanel_Query.ColumnCount = 1;
+            this.tableLayoutPanel_Query.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel_Query.Controls.Add(this.tableLayoutPanel3, 0, 1);
+            this.tableLayoutPanel_Query.Controls.Add(this.tableLayoutPanel1, 0, 0);
+            this.tableLayoutPanel_Query.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel_Query.Location = new System.Drawing.Point(3, 17);
+            this.tableLayoutPanel_Query.Name = "tableLayoutPanel_Query";
+            this.tableLayoutPanel_Query.RowCount = 2;
+            this.tableLayoutPanel_Query.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel_Query.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel_Query.Size = new System.Drawing.Size(879, 91);
+            this.tableLayoutPanel_Query.TabIndex = 0;
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.AutoSize = true;
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.Controls.Add(this.button_Search, 1, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 59);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(873, 29);
+            this.tableLayoutPanel3.TabIndex = 1;
+            // 
+            // button_Search
+            // 
+            this.button_Search.Location = new System.Drawing.Point(776, 3);
+            this.button_Search.Name = "button_Search";
+            this.button_Search.Size = new System.Drawing.Size(75, 23);
+            this.button_Search.TabIndex = 0;
+            this.button_Search.Text = "&Search";
+            this.button_Search.UseVisualStyleBackColor = true;
+            this.button_Search.Click += new System.EventHandler(this.button_Search_Click);
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.AutoSize = true;
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 115F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 115F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.comboBox_Query_Building, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.comboBox_Query_Stage, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.comboBox_Query_Project, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.label4, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.textBox_ID, 3, 1);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 2;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(873, 50);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // comboBox_Query_Building
+            // 
+            this.comboBox_Query_Building.DataSource = this.bindingSource_Building;
+            this.comboBox_Query_Building.DisplayMember = "building_num";
+            this.comboBox_Query_Building.FormattingEnabled = true;
+            this.comboBox_Query_Building.Location = new System.Drawing.Point(118, 28);
+            this.comboBox_Query_Building.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.comboBox_Query_Building.Name = "comboBox_Query_Building";
+            this.comboBox_Query_Building.Size = new System.Drawing.Size(200, 20);
+            this.comboBox_Query_Building.TabIndex = 2;
+            this.comboBox_Query_Building.ValueMember = "id";
+            // 
+            // comboBox_Query_Stage
+            // 
+            this.comboBox_Query_Stage.DataSource = this.bindingSource_Stage;
+            this.comboBox_Query_Stage.DisplayMember = "name";
+            this.comboBox_Query_Stage.FormattingEnabled = true;
+            this.comboBox_Query_Stage.Location = new System.Drawing.Point(554, 3);
+            this.comboBox_Query_Stage.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.comboBox_Query_Stage.Name = "comboBox_Query_Stage";
+            this.comboBox_Query_Stage.Size = new System.Drawing.Size(200, 20);
+            this.comboBox_Query_Stage.TabIndex = 1;
+            this.comboBox_Query_Stage.ValueMember = "id";
+            this.comboBox_Query_Stage.SelectedIndexChanged += new System.EventHandler(this.comboBox_Query_Stage_SelectedIndexChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 7);
+            this.label2.Margin = new System.Windows.Forms.Padding(3, 7, 0, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 12);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Project:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(439, 7);
+            this.label1.Margin = new System.Windows.Forms.Padding(3, 7, 0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Stage:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 32);
+            this.label3.Margin = new System.Windows.Forms.Padding(3, 7, 0, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(59, 12);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Building:";
+            // 
+            // comboBox_Query_Project
+            // 
+            this.comboBox_Query_Project.DataSource = this.bindingSource_Project;
+            this.comboBox_Query_Project.DisplayMember = "name";
+            this.comboBox_Query_Project.FormattingEnabled = true;
+            this.comboBox_Query_Project.Location = new System.Drawing.Point(118, 3);
+            this.comboBox_Query_Project.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
+            this.comboBox_Query_Project.Name = "comboBox_Query_Project";
+            this.comboBox_Query_Project.Size = new System.Drawing.Size(200, 20);
+            this.comboBox_Query_Project.TabIndex = 0;
+            this.comboBox_Query_Project.ValueMember = "id";
+            this.comboBox_Query_Project.SelectedIndexChanged += new System.EventHandler(this.comboBox_Query_Project_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(439, 32);
+            this.label4.Margin = new System.Windows.Forms.Padding(3, 7, 0, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(23, 12);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Id:";
+            // 
+            // textBox_ID
+            // 
+            this.textBox_ID.Location = new System.Drawing.Point(554, 28);
+            this.textBox_ID.Name = "textBox_ID";
+            this.textBox_ID.Size = new System.Drawing.Size(200, 21);
+            this.textBox_ID.TabIndex = 7;
+            // 
             // FloorplanWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -459,5 +482,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn bedroom_count;
         private System.Windows.Forms.DataGridViewTextBoxColumn bathroom_count;
         private System.Windows.Forms.DataGridViewTextBoxColumn total_size;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBox_ID;
     }
 }

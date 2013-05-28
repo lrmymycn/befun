@@ -11,9 +11,11 @@ namespace BeFun.Model.Query
         {
             this.project_id = null;
             this.stage_id = null;
+            this.id = null;
         }
 
         public string project_id { get; set; }
         public string stage_id { get; set; }
+        public string id { get; set; }
     }
 }

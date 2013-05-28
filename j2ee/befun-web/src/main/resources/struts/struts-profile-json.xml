@@ -256,10 +256,10 @@
                     actionMessages.*,
                     errorMessages.*,
                     fieldErrors.*,
-                    requirements\..*,
+                    requirements\[\d+\]\..*,
                 </param>
                 <param name="excludeProperties">
-                    requirements.*client.*,
+                    requirements\[\d+\]\.client.*,
                 </param>
             </result>
         </action>
@@ -279,7 +279,7 @@
                     model\..*,
                 </param>
                 <param name="excludeProperties">
-                    model.*client.*,
+                    model\.client.*,
                 </param>
             </result>
         </action>

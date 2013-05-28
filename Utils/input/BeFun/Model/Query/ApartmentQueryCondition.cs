@@ -14,6 +14,7 @@ namespace BeFun.Model.Query
             this.building_id = null;
             this.floorplan_id = null;
             this.unit_number = null;
+            this.id = null;
         }
 
         public string project_id { get; set; }
@@ -21,5 +22,6 @@ namespace BeFun.Model.Query
         public string building_id { get; set; }
         public string floorplan_id { get; set; }
         public string unit_number { get; set; }
+        public string id { get; set; }
     }
 }

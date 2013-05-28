@@ -52,6 +52,8 @@ namespace BeFun.View
             this.bindingSource_Stage = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.button_Search = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel_Main.SuspendLayout();
             this.panel_Grid.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
@@ -85,9 +87,9 @@ namespace BeFun.View
             this.panel_Grid.Controls.Add(this.button_Close);
             this.panel_Grid.Controls.Add(this.dataGridView);
             this.panel_Grid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel_Grid.Location = new System.Drawing.Point(3, 95);
+            this.panel_Grid.Location = new System.Drawing.Point(3, 120);
             this.panel_Grid.Name = "panel_Grid";
-            this.panel_Grid.Size = new System.Drawing.Size(885, 511);
+            this.panel_Grid.Size = new System.Drawing.Size(885, 486);
             this.panel_Grid.TabIndex = 1;
             // 
             // button_Close
@@ -123,9 +125,10 @@ namespace BeFun.View
             this.dataGridView.queryCondition = null;
             this.dataGridView.ReadOnly = true;
             this.dataGridView.RowTemplate.Height = 23;
-            this.dataGridView.Size = new System.Drawing.Size(885, 511);
+            this.dataGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView.Size = new System.Drawing.Size(885, 486);
             this.dataGridView.TabIndex = 0;
-            this.dataGridView.type = ListWindowType.View;
+            this.dataGridView.type = BeFun.View.ListWindow.ListWindowType.View;
             // 
             // id
             // 
@@ -193,7 +196,7 @@ namespace BeFun.View
             this.groupBox_Query.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox_Query.Location = new System.Drawing.Point(3, 3);
             this.groupBox_Query.Name = "groupBox_Query";
-            this.groupBox_Query.Size = new System.Drawing.Size(885, 86);
+            this.groupBox_Query.Size = new System.Drawing.Size(885, 111);
             this.groupBox_Query.TabIndex = 0;
             this.groupBox_Query.TabStop = false;
             this.groupBox_Query.Text = "Query";
@@ -211,7 +214,7 @@ namespace BeFun.View
             this.tableLayoutPanel_Query.RowCount = 2;
             this.tableLayoutPanel_Query.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel_Query.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel_Query.Size = new System.Drawing.Size(879, 66);
+            this.tableLayoutPanel_Query.Size = new System.Drawing.Size(879, 91);
             this.tableLayoutPanel_Query.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -226,12 +229,15 @@ namespace BeFun.View
             this.tableLayoutPanel2.Controls.Add(this.label2, 2, 0);
             this.tableLayoutPanel2.Controls.Add(this.comboBox_Query_Project, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.comboBox_Query_Stage, 3, 0);
+            this.tableLayoutPanel2.Controls.Add(this.label3, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.textBox1, 1, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(873, 25);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(873, 50);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // label1
@@ -287,7 +293,7 @@ namespace BeFun.View
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel3.Controls.Add(this.button_Search, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 34);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 59);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -304,6 +310,23 @@ namespace BeFun.View
             this.button_Search.Text = "&Search";
             this.button_Search.UseVisualStyleBackColor = true;
             this.button_Search.Click += new System.EventHandler(this.button_Search_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 32);
+            this.label3.Margin = new System.Windows.Forms.Padding(3, 7, 0, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(23, 12);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Id:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(103, 28);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(200, 21);
+            this.textBox1.TabIndex = 5;
             // 
             // BuildingWindow
             // 
@@ -358,5 +381,7 @@ namespace BeFun.View
         private System.Windows.Forms.DataGridViewTextBoxColumn floorCount;
         private System.Windows.Forms.DataGridViewTextBoxColumn description;
         private System.Windows.Forms.Button button_Close;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

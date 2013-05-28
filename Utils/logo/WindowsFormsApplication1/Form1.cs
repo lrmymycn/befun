@@ -14,31 +14,32 @@ namespace WindowsFormsApplication1
 {
     public partial class Form1 : Form
     {
+        const String LOGO_SMALL = "logo-small.png";
+        const String LOGO_MEDIUM = "logo-medium.png";
+        const String LOGO_LARGE = "logo-large.png";
+        
         public Form1()
         {
             InitializeComponent();
-            InitData();
+            InitComponent();
         }
 
-        private void InitData()
+        private void InitComponent()
         {
-            IList<Project> datas = new List<Project>();
-            for (int i = 0; i < 10; i++)
-            {
-                Project project = new Project();
-                project.id =  "id_" + i;
-                project.name =  "name_" + i;
-                project.description =  "description_" + i;
-                datas.Add(project);
-            }
-            this.bindingSource_DataGridView.DataSource = datas;
+            this.textBox_MediaDirectory.Text = this.GetCurrentPath();
+            this.textBox_Floorplan_SmallLogo.Text = this.GetDefaultLogoPath(LOGO_SMALL);
+            this.textBox_Floorplan_MediumLogo.Text = this.GetDefaultLogoPath(LOGO_MEDIUM);
+            this.textBox_Floorplan_LargeLogo.Text = this.GetDefaultLogoPath(LOGO_LARGE);
+            this.textBox_Overview_SmallLogo.Text = this.GetDefaultLogoPath(LOGO_SMALL);
+            this.textBox_Overview_MediumLogo.Text = this.GetDefaultLogoPath(LOGO_MEDIUM);
+            this.textBox_Overview_LargeLogo.Text = this.GetDefaultLogoPath(LOGO_LARGE);
         }
-        
+                
         private void textBox_MediaDirectory_Double_Click(object sender, EventArgs e)
         {
             FolderBrowserDialog folder = new FolderBrowserDialog();
             folder.ShowNewFolderButton = false;
-            folder.SelectedPath = "E:\\Personal\\lhl\\input\\img";
+            folder.SelectedPath = this.textBox_MediaDirectory.Text;
             if (folder.ShowDialog(this) == DialogResult.OK)
             {
                 this.textBox_MediaDirectory.Text = folder.SelectedPath;
@@ -47,69 +48,82 @@ namespace WindowsFormsApplication1
         
         private void textBox_Floorplan_SmallLogo_Double_Click(object sender, EventArgs e)
         {
-            OpenFileDialog file = new OpenFileDialog();
-            file.CheckFileExists = true;
-            file.CheckPathExists = true;
-            file.Multiselect = false;
-            if (file.ShowDialog(this) == DialogResult.OK)
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.CheckFileExists = true;
+            fileDialog.CheckPathExists = true;
+            fileDialog.Multiselect = false;
+            fileDialog.InitialDirectory = this.GetDirectoryPath(this.textBox_Floorplan_SmallLogo.Text);
+            fileDialog.FileName = this.GetFileName(this.textBox_Floorplan_SmallLogo.Text);
+            if (fileDialog.ShowDialog(this) == DialogResult.OK)
             {
-                this.textBox_Floorplan_SmallLogo.Text = file.FileName;
+                this.textBox_Floorplan_SmallLogo.Text = fileDialog.FileName;
             }
         }
+
         private void textBox_Floorplan_MediumLogo_Double_Click(object sender, EventArgs e)
         {
-            OpenFileDialog file = new OpenFileDialog();
-            file.CheckFileExists = true;
-            file.CheckPathExists = true;
-            file.Multiselect = false;
-            if (file.ShowDialog(this) == DialogResult.OK)
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.CheckFileExists = true;
+            fileDialog.CheckPathExists = true;
+            fileDialog.Multiselect = false;
+            fileDialog.InitialDirectory = this.GetDirectoryPath(this.textBox_Floorplan_MediumLogo.Text);
+            fileDialog.FileName = this.GetFileName(this.textBox_Floorplan_MediumLogo.Text);
+            if (fileDialog.ShowDialog(this) == DialogResult.OK)
             {
-                this.textBox_Floorplan_MediumLogo.Text = file.FileName;
+                this.textBox_Floorplan_MediumLogo.Text = fileDialog.FileName;
             }
         }
         private void textBox_Floorplan_LargeLogo_Double_Click(object sender, EventArgs e)
         {
-            OpenFileDialog file = new OpenFileDialog();
-            file.CheckFileExists = true;
-            file.CheckPathExists = true;
-            file.Multiselect = false;
-            if (file.ShowDialog(this) == DialogResult.OK)
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.CheckFileExists = true;
+            fileDialog.CheckPathExists = true;
+            fileDialog.Multiselect = false;
+            fileDialog.InitialDirectory = this.GetDirectoryPath(this.textBox_Floorplan_LargeLogo.Text);
+            fileDialog.FileName = this.GetFileName(this.textBox_Floorplan_LargeLogo.Text);
+            if (fileDialog.ShowDialog(this) == DialogResult.OK)
             {
-                this.textBox_Floorplan_LargeLogo.Text = file.FileName;
+                this.textBox_Floorplan_LargeLogo.Text = fileDialog.FileName;
             }
         }
 
         private void textBox_Overview_SmallLogo_Double_Click(object sender, EventArgs e)
         {
-            OpenFileDialog file = new OpenFileDialog();
-            file.CheckFileExists = true;
-            file.CheckPathExists = true;
-            file.Multiselect = false;
-            if (file.ShowDialog(this) == DialogResult.OK)
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.CheckFileExists = true;
+            fileDialog.CheckPathExists = true;
+            fileDialog.Multiselect = false;
+            fileDialog.InitialDirectory = this.GetDirectoryPath(this.textBox_Overview_SmallLogo.Text);
+            fileDialog.FileName = this.GetFileName(this.textBox_Overview_SmallLogo.Text);
+            if (fileDialog.ShowDialog(this) == DialogResult.OK)
             {
-                this.textBox_Overview_SmallLogo.Text = file.FileName;
+                this.textBox_Overview_SmallLogo.Text = fileDialog.FileName;
             }
         }
         private void textBox_Overview_MediumLogo_Double_Click(object sender, EventArgs e)
         {
-            OpenFileDialog file = new OpenFileDialog();
-            file.CheckFileExists = true;
-            file.CheckPathExists = true;
-            file.Multiselect = false;
-            if (file.ShowDialog(this) == DialogResult.OK)
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.CheckFileExists = true;
+            fileDialog.CheckPathExists = true;
+            fileDialog.Multiselect = false;
+            fileDialog.InitialDirectory = this.GetDirectoryPath(this.textBox_Overview_MediumLogo.Text);
+            fileDialog.FileName = this.GetFileName(this.textBox_Overview_MediumLogo.Text);
+            if (fileDialog.ShowDialog(this) == DialogResult.OK)
             {
-                this.textBox_Overview_MediumLogo.Text = file.FileName;
+                this.textBox_Overview_MediumLogo.Text = fileDialog.FileName;
             }
         }
         private void textBox_Overview_LargeLogo_Double_Click(object sender, EventArgs e)
         {
-            OpenFileDialog file = new OpenFileDialog();
-            file.CheckFileExists = true;
-            file.CheckPathExists = true;
-            file.Multiselect = false;
-            if (file.ShowDialog(this) == DialogResult.OK)
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.CheckFileExists = true;
+            fileDialog.CheckPathExists = true;
+            fileDialog.Multiselect = false;
+            fileDialog.InitialDirectory = this.GetDirectoryPath(this.textBox_Overview_LargeLogo.Text);
+            fileDialog.FileName = this.GetFileName(this.textBox_Overview_LargeLogo.Text);
+            if (fileDialog.ShowDialog(this) == DialogResult.OK)
             {
-                this.textBox_Overview_LargeLogo.Text = file.FileName;
+                this.textBox_Overview_LargeLogo.Text = fileDialog.FileName;
             }
         }
         private void button_Close_Click(object sender, EventArgs e)
@@ -135,37 +149,38 @@ namespace WindowsFormsApplication1
             string overviewSmallLogo = this.textBox_Overview_SmallLogo.Text;
             string overviewMediumLogo = this.textBox_Overview_MediumLogo.Text;
             string overviewLargeLogo = this.textBox_Overview_LargeLogo.Text;
-            this.ResizeFloorplan(mediaDirectory, smallWidth, smallHeight, mediumWidth, mediumHeight, floorplanSmallLogo, floorplanMediumLogo, floorplanLargeLogo);
-            this.ResizeProject(mediaDirectory, overview_smallWidth, overview_smallHeight, overview_mediumWidth, overview_mediumHeight, overviewSmallLogo, overviewMediumLogo, overviewLargeLogo);
+            bool waterMark = this.checkBox_EnableLogo.Checked;
+            this.ResizeFloorplan(mediaDirectory, smallWidth, smallHeight, mediumWidth, mediumHeight, floorplanSmallLogo, floorplanMediumLogo, floorplanLargeLogo, waterMark);
+            this.ResizeProject(mediaDirectory, overview_smallWidth, overview_smallHeight, overview_mediumWidth, overview_mediumHeight, overviewSmallLogo, overviewMediumLogo, overviewLargeLogo, waterMark);
         }
 
-        private void ResizeFloorplan(string mediaDirectory, Int32 smallWidth, Int32 smallHeight, Int32 mediumWidth, Int32 mediumHeight, string smallLogo, string mediumLogo, string largeLogo)
+        private void ResizeFloorplan(string mediaDirectory, Int32 smallWidth, Int32 smallHeight, Int32 mediumWidth, Int32 mediumHeight, string smallLogo, string mediumLogo, string largeLogo, bool waterMark)
         {
             DirectoryInfo dir = new DirectoryInfo(mediaDirectory);
-            this.ResizeProjectSub(dir, "fp", smallWidth, smallHeight, mediumWidth, mediumHeight, smallLogo, mediumLogo, largeLogo);
+            this.ResizeProjectSub(dir, "fp", smallWidth, smallHeight, mediumWidth, mediumHeight, smallLogo, mediumLogo, largeLogo, waterMark);
         }
 
-        private void ResizeProject(string mediaDirectory, Int32 smallWidth, Int32 smallHeight, Int32 mediumWidth, Int32 mediumHeight, string smallLogo, string mediumLogo, string largeLogo)
+        private void ResizeProject(string mediaDirectory, Int32 smallWidth, Int32 smallHeight, Int32 mediumWidth, Int32 mediumHeight, string smallLogo, string mediumLogo, string largeLogo, bool waterMark)
         {
             DirectoryInfo dir = new DirectoryInfo(mediaDirectory);
-            this.ResizeProjectSub(dir, "default", smallWidth, smallHeight, mediumWidth, mediumHeight, smallLogo, mediumLogo, largeLogo);
-            this.ResizeProjectSub(dir, "floorplate", smallWidth, smallHeight, mediumWidth, mediumHeight, smallLogo, mediumLogo, largeLogo);
-            this.ResizeProjectSub(dir, "others", smallWidth, smallHeight, mediumWidth, mediumHeight, smallLogo, mediumLogo, largeLogo);
-            this.ResizeProjectSub(dir, "photograph", smallWidth, smallHeight, mediumWidth, mediumHeight, smallLogo, mediumLogo, largeLogo);
-            this.ResizeProjectSub(dir, "render", smallWidth, smallHeight, mediumWidth, mediumHeight, smallLogo, mediumLogo, largeLogo);
+            this.ResizeProjectSub(dir, "default", smallWidth, smallHeight, mediumWidth, mediumHeight, smallLogo, mediumLogo, largeLogo, waterMark);
+            this.ResizeProjectSub(dir, "floorplate", smallWidth, smallHeight, mediumWidth, mediumHeight, smallLogo, mediumLogo, largeLogo, waterMark);
+            this.ResizeProjectSub(dir, "others", smallWidth, smallHeight, mediumWidth, mediumHeight, smallLogo, mediumLogo, largeLogo, waterMark);
+            this.ResizeProjectSub(dir, "photograph", smallWidth, smallHeight, mediumWidth, mediumHeight, smallLogo, mediumLogo, largeLogo, waterMark);
+            this.ResizeProjectSub(dir, "render", smallWidth, smallHeight, mediumWidth, mediumHeight, smallLogo, mediumLogo, largeLogo, waterMark);
         }
 
-        private void ResizeProjectSub(DirectoryInfo dir,string subName, Int32 smallWidth, Int32 smallHeight, Int32 mediumWidth, Int32 mediumHeight, string smallLogo, string mediumLogo, string largeLogo)
+        private void ResizeProjectSub(DirectoryInfo dir,string subName, Int32 smallWidth, Int32 smallHeight, Int32 mediumWidth, Int32 mediumHeight, string smallLogo, string mediumLogo, string largeLogo, bool waterMark)
         {
             DirectoryInfo[] floorplans = dir.GetDirectories(subName);
             if (floorplans.Length > 0)
             {
                 DirectoryInfo floorplan = floorplans[0];
                 FileInfo[] files = floorplan.GetFiles();
-                Image smallLogoImg = Bitmap.FromFile(smallLogo);
-                Image mediumLogoImg = Bitmap.FromFile(mediumLogo);
-                Image largeLogoImg = Bitmap.FromFile(largeLogo);
-                ResizeTask s = new ResizeTask(subName, files, this, smallWidth, smallHeight, mediumWidth, mediumHeight, smallLogo, mediumLogo, largeLogo);
+                //Image smallLogoImg = Bitmap.FromFile(smallLogo);
+                //Image mediumLogoImg = Bitmap.FromFile(mediumLogo);
+                //Image largeLogoImg = Bitmap.FromFile(largeLogo);
+                ResizeTask s = new ResizeTask(dir, subName, files, this, smallWidth, smallHeight, mediumWidth, mediumHeight, smallLogo, mediumLogo, largeLogo, waterMark);
                 s.t.Start();
                 if (s.pb.ShowDialog(this) == DialogResult.Cancel)
                 {
@@ -180,12 +195,15 @@ namespace WindowsFormsApplication1
             public bool stopflag = false;
             public ProgressBarBox pb;
             public Thread t;
+            DirectoryInfo rootDir;
             Int32 smallWidth ,smallHeight,mediumWidth,mediumHeight;
             string smallLogo, mediumLogo, largeLogo;
+            bool waterMark = false;
             IWin32Window owner;
 
-            public ResizeTask(String title, FileInfo[] files, IWin32Window owner, Int32 smallWidth, Int32 smallHeight, Int32 mediumWidth, Int32 mediumHeight, string smallLogo, string mediumLogo, string largeLogo)
+            public ResizeTask(DirectoryInfo rootDir, String title, FileInfo[] files, IWin32Window owner, Int32 smallWidth, Int32 smallHeight, Int32 mediumWidth, Int32 mediumHeight, string smallLogo, string mediumLogo, string largeLogo, bool waterMark)
             {
+                this.rootDir = rootDir;
                 this.files = files;
                 this.t = new Thread(new ThreadStart(Worker));
                 this.t.IsBackground = true;
@@ -197,6 +215,7 @@ namespace WindowsFormsApplication1
                 this.smallLogo = smallLogo;
                 this.mediumLogo = mediumLogo;
                 this.largeLogo = largeLogo;
+                this.waterMark = waterMark;
                 this.pb = new ProgressBarBox("Resizing " + title + " Media", 1, files.Length, 1);
             }
 
@@ -209,64 +228,77 @@ namespace WindowsFormsApplication1
                     int originalWidth = image.Width;
                     int originalHeight = image.Height;
                     image.Dispose();
+                    Image smallLogoImg = null;
+                    Image mediumLogoImg = null;
+                    Image largeLogoImg = null;
+                    if (smallLogo != null && File.Exists(smallLogo))
+                    {
+                        smallLogoImg = Bitmap.FromFile(smallLogo);
+                    }
+                    if (mediumLogo != null && File.Exists(mediumLogo))
+                    {
+                        mediumLogoImg = Bitmap.FromFile(mediumLogo);
+                    }
+                    if (largeLogo != null && File.Exists(largeLogo))
+                    {
+                        largeLogoImg = Bitmap.FromFile(largeLogo);
+                    }
 
-                    resizePicture(files[i], Bitmap.FromFile(smallLogo), "small", smallWidth, smallHeight);
-                    resizePicture(files[i], Bitmap.FromFile(mediumLogo), "medium", mediumWidth, mediumHeight);
-                    resizePicture(files[i], Bitmap.FromFile(largeLogo), "large", originalWidth, originalHeight);
+                    resizePicture(files[i], waterMark, smallLogoImg, "small", smallWidth, smallHeight);
+                    resizePicture(files[i], waterMark, mediumLogoImg, "medium", mediumWidth, mediumHeight);
+                    resizePicture(files[i], waterMark, largeLogoImg, "large", originalWidth, originalHeight);
                     pb.PerformStep();
                 }
                 pb.Close();
             }
 
-            private void resizePicture(FileInfo file, Image logo, string type, Int32 width, Int32 height)
+            private void resizePicture(FileInfo file, bool waterMark, Image logo, string type, Int32 width, Int32 height)
             {
                 Image image = Bitmap.FromFile(file.FullName);
                 ResizeModel model = new ResizeModel();
                 model.Source = image;
                 model.Position = WatermarkPositions.Center;
-                model.IsWartermarked = true;
-                model.ImageWartermark = logo;
+                model.IsWartermarked = waterMark;
+                if (waterMark && logo != null)
+                {
+                    model.IsWartermarked = true;
+                    model.ImageWartermark = logo;
+                }
                 model.ResizeType = ResizeTypes.Absolute;
                 model.Width = width;
                 model.Height = height;
-                DirectoryInfo destDir = file.Directory.CreateSubdirectory(type);
-                string destPath = destDir.FullName + "\\" + file.Name;
+                //DirectoryInfo destDir = file.Directory.CreateSubdirectory(type);
+                //string destPath = destDir.FullName + "\\" + file.Name;
+                string destPath = GetResizedFilePath(file, type);
+                createParentDir(destPath);
                 if (!File.Exists(destPath))
                 {
                     Image destImage = PictureOperation.Resize(model);
                     PictureOperation.Save(destImage, destPath);
                 }
             }
+
+            private string GetResizedFilePath(FileInfo originalFileInfo, String type)
+            {
+                string imgRootPath = this.rootDir.FullName;
+                int i = originalFileInfo.FullName.IndexOf(imgRootPath);
+                string extFilePath = originalFileInfo.FullName.Substring(i + imgRootPath.Length);
+                i = extFilePath.LastIndexOf("\\");
+
+                string rs = imgRootPath + "\\resized" + extFilePath.Substring(0, i) + "\\" + type + "\\" + originalFileInfo.Name;
+                return rs;
+            }
+
+            private void createParentDir(String filePath)
+            {
+                FileInfo fileInfo = new FileInfo(filePath);
+                if (!fileInfo.Directory.Exists)
+                {
+                    fileInfo.Directory.Create();
+                }
+            }
         }
 
-        void resizePicture()
-        {
-            Int32 smallWidth = (Int32)this.numericUpDown_Floorplan_SmallWidth.Value;
-            Int32 smallHeight = (Int32)this.numericUpDown_Floorplan_SmallHeight.Value;
-            Int32 mediumWidth = (Int32)this.numericUpDown_Floorplan_MediumWidth.Value;
-            Int32 mediumHeight = (Int32)this.numericUpDown_Floorplan_MediumHeight.Value;
-
-            Image image = Bitmap.FromFile("E:\\Personal\\lhl\\temp\\Koala.jpg");
-            ResizeModel model = new ResizeModel();
-            model.Source = image;
-            model.Position = WatermarkPositions.BottomRight;
-            model.IsWartermarked = true;
-            model.ImageWartermark = Bitmap.FromFile("E:\\Personal\\lhl\\temp\\logo_small.png");
-            model.ResizeType = ResizeTypes.Absolute;
-            model.Width = smallWidth;
-            model.Height = smallHeight;
-            Image smallImage = PictureOperation.Resize(model);
-            PictureOperation.Save(smallImage, "E:\\Personal\\lhl\\temp\\small\\Koala.jpg");
-
-            //medium
-            image = Bitmap.FromFile("E:\\Personal\\lhl\\temp\\Koala.jpg");
-            model.Source = image;
-            model.Width = mediumWidth;
-            model.Height = mediumHeight;
-            model.ImageWartermark = Bitmap.FromFile("E:\\Personal\\lhl\\temp\\logo_medium.png");
-            Image mediumImage = PictureOperation.Resize(model);
-            PictureOperation.Save(mediumImage, "E:\\Personal\\lhl\\temp\\medium\\Koala.jpg");
-        }
 
         private void button_Reset_Click(object sender, EventArgs e)
         {
@@ -280,37 +312,99 @@ namespace WindowsFormsApplication1
             this.numericUpDown_Overview_SmallWidth.Value = 84;
         }
 
+        private string GetResizedFilePath(FileInfo originalFileInfo, String type)
+        {
+            string imgRootPath = "E:\\Personal\\lhl\\input\\img";
+            string filePath = originalFileInfo.FullName;
+            int i = filePath.IndexOf(imgRootPath);
+
+            string extFilePath = filePath.Substring(i+imgRootPath.Length);
+            i = extFilePath.LastIndexOf("\\");
+
+            string rs = imgRootPath + "\\resized" + extFilePath.Substring(0, i) + "\\" + type + "\\" + originalFileInfo.Name;
+            return rs;
+        }
+
         private void button_Logo_Click(object sender, EventArgs e)
         {
-            Image image = Bitmap.FromFile("E:\\Personal\\lhl\\temp\\logo.png");
+            /*
+            FileInfo f = new FileInfo("E:\\Personal\\lhl\\input\\img\\default\\Chrysanthemum.jpg");
+            this.label17.Text = this.GetResizedFilePath(f,"large");
+            return;*/
+            string sourceLogo = this.GetDefaultLogoPath("logo.png");
+            Image image = Bitmap.FromFile(sourceLogo);
             ResizeModel model = new ResizeModel();
             model.Source = image;
             model.IsWartermarked = false;
             model.ResizeType = ResizeTypes.Auto;
-            model.Width = 10;
-            model.Height = 12;
+            model.Width = 23;
+            model.Height = 6;
             Image smallImage = PictureOperation.Resize(model);
             Bitmap pbitmap = new Bitmap(smallImage);
             pbitmap.MakeTransparent(Color.White);
-            PictureOperation.Save(pbitmap, "E:\\Personal\\lhl\\temp\\logo_small.png", ImgCodes.PNG, 100);
+            string destLogo = this.GetDefaultLogoPath("logo-small.png");
+            PictureOperation.Save(pbitmap, destLogo, ImgCodes.PNG, 100);
 
-            image = Bitmap.FromFile("E:\\Personal\\lhl\\temp\\logo.png");
+            image = Bitmap.FromFile(sourceLogo);
             model.Source = image;
-            model.Width = 40;
-            model.Height = 49;
+            model.Width = 138;
+            model.Height = 38;
             Image mediumImage = PictureOperation.Resize(model);
             pbitmap = new Bitmap(mediumImage);
             pbitmap.MakeTransparent(Color.White);
-            PictureOperation.Save(pbitmap, "E:\\Personal\\lhl\\temp\\logo_medium.png", ImgCodes.PNG, 100);
+            destLogo = this.GetDefaultLogoPath("logo-medium.png");
+            PictureOperation.Save(pbitmap, destLogo, ImgCodes.PNG, 100);
 
-            image = Bitmap.FromFile("E:\\Personal\\lhl\\temp\\logo.png");
+            image = Bitmap.FromFile(sourceLogo);
             model.Source = image;
-            model.Width = 80;
-            model.Height = 99;
+            model.Width = 414;
+            model.Height = 114;
             Image largeImage = PictureOperation.Resize(model);
-            pbitmap = new Bitmap(mediumImage);
+            pbitmap = new Bitmap(largeImage);
             pbitmap.MakeTransparent(Color.White);
-            PictureOperation.Save(pbitmap, "E:\\Personal\\lhl\\temp\\logo_large.png", ImgCodes.PNG, 100);
+            destLogo = this.GetDefaultLogoPath("logo-large.png");
+            PictureOperation.Save(pbitmap, destLogo, ImgCodes.PNG, 100);
         }
+        
+        private string GetCurrentPath()
+        {
+            return System.Environment.CurrentDirectory;
+        }
+
+        private string GetDefaultLogoPath(String logoName)
+        {
+            if (string.IsNullOrWhiteSpace(logoName))
+            {
+                return GetCurrentPath();
+            }
+            if (logoName.StartsWith("/") || logoName.StartsWith("\\"))
+            {
+                return GetCurrentPath() + logoName;
+            }
+            return GetCurrentPath() + "\\" + logoName;
+        }
+
+        private string GetDirectoryPath(String filePath)
+        {
+            FileInfo sourceFile = new FileInfo(filePath);
+            return sourceFile.DirectoryName;
+        }
+
+        private string GetFileName(String filePath)
+        {
+            FileInfo sourceFile = new FileInfo(filePath);
+            return sourceFile.Name;
+        }
+
+        private void createParentDir(String filePath)
+        {
+            FileInfo fileInfo = new FileInfo(filePath);
+            if (!fileInfo.Directory.Exists)
+            {
+                fileInfo.Directory.Create();
+            }
+        }
+
+
     }
 }

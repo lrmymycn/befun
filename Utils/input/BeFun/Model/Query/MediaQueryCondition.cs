@@ -15,6 +15,7 @@ namespace BeFun.Model.Query
             this.media_type = 222;
             this.content_type = 222;
             this.url = "";
+            this.id = null;
         }
 
         public string project_id { get; set; }
@@ -23,5 +24,6 @@ namespace BeFun.Model.Query
         public Byte media_type { get; set; }
         public Byte content_type { get; set; }
         public string url { get; set; }
+        public string id { get; set; }
     }
 }

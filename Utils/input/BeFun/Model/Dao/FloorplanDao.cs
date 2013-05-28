@@ -16,6 +16,7 @@ namespace BeFun.Model.Dao
             + " LEFT JOIN project p ON s.project_id = p.id ";
         private static string SQL_QUERY_ALL = SQL_QUERY;
         private static string SQL_QUERY_BYID = SQL_QUERY + " WHERE f.id = @id;";
+        private static string SQL_QUERY_BYBID = SQL_QUERY + " WHERE f.bid = @bid;";
         private static string SQL_DELETE = "DELETE FROM floorplan WHERE id IN (";
         private static string SQL_INSERT = "INSERT INTO floorplan (project_id,building_id,picture_id,sale_picture_id,description,type,is_split,is_studio,bedroom_count,bathroom_count,studyroom_count,open_baclony_count,enclosed_baclony_count,courtyard_count,orientation,internal_size,external_size,total_size,land_size,removed,id)"
             + " VALUES (@project_id,@building_id,@picture_id,@sale_picture_id,@description,@type,@is_split,@is_studio,@bedroom_count,@bathroom_count,@studyroom_count,@open_baclony_count,@enclosed_baclony_count,@courtyard_count,@orientation,@internal_size,@external_size,@total_size,@land_size,@removed,@id);";
@@ -81,7 +82,11 @@ namespace BeFun.Model.Dao
         protected override void setQueryParameters(OleDbParameterCollection parameters, QueryCondition queryCondition)
         {
             FloorplanQueryCondition qc = (FloorplanQueryCondition)queryCondition;
-            if (!string.IsNullOrWhiteSpace(qc.building_id))
+            if (!string.IsNullOrWhiteSpace(qc.id))
+            {
+                parameters.Add("@id", OleDbType.VarWChar, 255).Value = qc.id;
+            }
+            else if (!string.IsNullOrWhiteSpace(qc.building_id))
             {
                 parameters.Add("@building_id", OleDbType.VarWChar, 255).Value = qc.building_id;
             }
@@ -209,7 +214,11 @@ namespace BeFun.Model.Dao
             FloorplanQueryCondition qc = (FloorplanQueryCondition)queryCondition;
             string rs = SQL_QUERY;
             string conditions = null;
-            if (!string.IsNullOrWhiteSpace(qc.building_id))
+            if (!string.IsNullOrWhiteSpace(qc.id))
+            {
+                conditions += this.getConditionsPre(conditions, "AND", "f.id = @id");
+            }
+            else if (!string.IsNullOrWhiteSpace(qc.building_id))
             {
                 conditions += this.getConditionsPre(conditions, "AND", "f.building_id = @building_id");
             }

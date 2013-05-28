@@ -33,7 +33,7 @@
         <intercept-url pattern="/admin/user/createClient.action**" access="hasAnyRole('SUPER','DATA_ADMIN','MANAGER','SALE')" requires-channel="http" />
         <intercept-url pattern="/admin/user/changePasswordPage.action**" access="hasAnyRole('SUPER','DATA_ADMIN','MANAGER','SALE')" requires-channel="http" />
         <intercept-url pattern="/admin/user/changePassword.action**" access="hasAnyRole('SUPER','DATA_ADMIN','MANAGER','SALE')" requires-channel="http" />
-        <intercept-url pattern="/admin/secCacheStatistic.action**" access="hasAnyRole('SUPER')" requires-channel="http" />
+        <intercept-url pattern="/admin/cacheStatistics.action**" access="hasAnyRole('SUPER')" requires-channel="http" />
         <intercept-url pattern="/admin/impPage.action**" access="hasAnyRole('SUPER','DATA_ADMIN')" requires-channel="http" />
         <intercept-url pattern="/admin/impAccess.action**" access="hasAnyRole('SUPER','DATA_ADMIN')" requires-channel="http" />
         <intercept-url pattern="/admin/data/*.action**" access="hasAnyRole('SUPER','DATA_ADMIN')" requires-channel="http" />

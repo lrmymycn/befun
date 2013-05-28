@@ -90,6 +90,10 @@ namespace BeFun.View.ListWindow
             {
                 this.comboBox_Query_Building.SelectedValue = this.queryCondition.building_id;
             }
+            if (this.queryCondition != null && !string.IsNullOrWhiteSpace(this.queryCondition.id))
+            {
+                this.textBox_ID.Text = this.queryCondition.id;
+            }
         }
 
         public void RefreshData()
@@ -160,6 +164,7 @@ namespace BeFun.View.ListWindow
             this.queryCondition.project_id = (string)this.comboBox_Query_Project.SelectedValue;
             this.queryCondition.stage_id = (string)this.comboBox_Query_Stage.SelectedValue;
             this.queryCondition.building_id = (string)this.comboBox_Query_Building.SelectedValue;
+            this.queryCondition.id = this.textBox_ID.Text;
             this.RefreshData();
         }
 
