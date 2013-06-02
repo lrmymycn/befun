@@ -961,6 +961,52 @@ footer a{
 	top:-8px;
 }
 
+.tab-block .detailbox .detail{
+	padding: 5px 10px;
+}
+
+.tab-block .detailbox .detail table{
+	width: 100%;
+}
+
+.tab-block .detailbox .detail table tr:nth-child(even){
+	background: #F2F2F2;
+}
+
+.tab-block .detailbox .detail table td{
+	vertical-align: top;
+	padding:5px 0;
+}
+
+.tab-block .detailbox ul.amenity li{
+	float:left;
+	width:120px;
+}
+
+.tab-block .brochure li{
+	float:left;
+	margin:0 10px 10px 0;
+}
+
+.tab-block .brochure li.last{
+	margin-right:0px;
+}
+
+#tab-features {
+	padding:18px 0 18px 18px;
+	height:400px;
+	overflow-y:auto;
+}
+
+.tab-block .brochure li img{
+	width: 159px;
+	border-bottom:2px solid #aad820;
+	border-radius: 3px;
+	-webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.45);
+	-moz-box-shadow:    1px 1px 2px rgba(0, 0, 0, 0.45);
+	box-shadow:         1px 1px 2px rgba(0, 0, 0, 0.45);
+}
+
 #overview-main{
 	width:510px;
 	height:343px;
@@ -1021,16 +1067,12 @@ footer a{
 	left:29px;
 }
 
-#subtab-features .arrow{
-	left:103px;
-}
-
 #subtab-finish .arrow{
-	left:187px;
+	left:116px;
 }
 
 #subtab-amenity .arrow{
-	left:275px;
+	left:203px;
 }
 
 #subtab-data .arrow{

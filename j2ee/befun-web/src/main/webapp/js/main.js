@@ -1005,6 +1005,10 @@ PanelPopup = {
 		$('#floorplan-list2 .scrollable').scrollable();
 		
 		$("#panel select.selectbox").selectbox();
+		
+		$('#panel .brochure a').fancybox({
+			padding : 0
+		});
 	},
 	show:function(){
 		$('#panel .top .tabs a:first-child').click();
@@ -1073,13 +1077,12 @@ PanelPopup = {
 					var project = json.view;
 					if(project != null && project != undefined){
 						$('#project-name').text(project.name);
-						$('#subtab-description .detail').html(project.description);
-						$('#subtab-features .detail').html(project.features);
-						$('#subtab-finish .detail').html(project.finish);
-						$('#subtab-amenity .detail').html(project.amenity);
-						$('#subtab-data').html(project.data);
-						$('#subtab-condition').html(project.condition);
-						$('#subtab-offers').html(project.offers);
+						//$('#subtab-description .detail').html(project.description);
+						//$('#subtab-finish .detail').html(project.finish);
+						//$('#subtab-amenity .detail').html(project.amenity);
+						//$('#subtab-data').html(project.data);
+						//$('#subtab-condition').html(project.condition);
+						//$('#subtab-offers').html(project.offers);
 						
 						var photos = project.medias;
 						$('#overview-main').empty();
