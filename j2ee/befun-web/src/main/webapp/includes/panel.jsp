@@ -11,6 +11,7 @@
 		<div class="tabs">     			
 			<a href="#tab-overview" class="active first">Overview</a>
 			<a href="#tab-details">Details</a>
+			<a href="#tab-features">Features</a>
 			<a href="#tab-floorplans">Floorplans</a>
 			<a href="#tab-sales">Sales Portal</a>
 		</div>
@@ -33,34 +34,128 @@
 		<div id="tab-details" class="hidden tab-block">
 			<div class="tabs">
     			<a href="#subtab-description" class="active">Description</a>
-    			<a href="#subtab-features">Features</a>
     			<a href="#subtab-finish">Finish Scheme</a>
     			<a href="#subtab-amenity">Amenities</a>
 			</div>
 			<div id="subtab-description" class="shown detailbox">
 				<span class="arrow"></span>
 				<div class="detail">
-					
-				</div>
-			</div>
-			<div id="subtab-features" class="hidden detailbox">
-				<span class="arrow"></span>
-				<div class="detail">
-					
+					<table>
+						<tr>
+							<td width="120"><strong>Address</strong></td>
+							<td>661-665 Gardeners Rd Mascot NSW 2020</td>
+						</tr>
+						<tr>
+							<td><strong>Council</strong></td>
+							<td>Mascot</td>
+						</tr>
+						<tr>
+							<td><strong>Distance to City</strong></td>
+							<td>10km</td>
+						</tr>
+						<tr>
+							<td><strong>Developer</strong></td>
+							<td>Meriton</td>
+						</tr>
+						<tr>
+							<td><strong>Builder</strong></td>
+							<td>Meriton</td>
+						</tr>
+						<tr>
+							<td><strong>Launch Date</strong></td>
+							<td>25/05/2013</td>
+						</tr>
+						<tr>
+							<td><strong>Total Stages</strong></td>
+							<td>3</td>
+						</tr>
+						<tr>
+							<td><strong>Total Buildings</strong></td>
+							<td>3</td>
+						</tr>
+					</table>
 				</div>
 			</div>
 			<div id="subtab-finish" class="hidden detailbox">
 				<span class="arrow"></span>
 				<div class="detail">
-					
+					<table>
+						<tr>
+							<td width="120"><strong>Wall</strong></td>
+							<td>Painted Plasterboard</td>
+						</tr>
+						<tr>
+							<td><strong>Floor</strong></td>
+							<td>Carpet / Timber floor</td>
+						</tr>
+						<tr>
+							<td><strong>Kitchen</strong></td>
+							<td>Splashback (stone/nature stone)<br/>
+								Cooktop (brand)<br/>
+								Oven (brand)<br/>
+								Rangehood (brand, ducted/recirculating)<br/>
+								Dishwasher (brand)<br/>
+								Microwave (brand)<br/>
+								Sink (brand or material)
+							</td>
+						</tr>
+						<tr>
+							<td><strong>Bathroom</strong></td>
+							<td>Shower (brand or material)<br/>
+								Tub (brand)<br/>
+								Tile (ceramic tiles)<br/>
+								Bathroom ware (brand)
+							</td>
+						</tr>
+						<tr>
+							<td><strong>Aircon</strong></td>
+							<td>Centralized</td>
+						</tr>
+						<tr>
+							<td><strong>NBN</strong></td>
+							<td>What's this?</td>
+						</tr>
+						<tr>
+							<td><strong>Satellite TV</strong></td>
+							<td>Foxtel</td>
+						</tr>
+					</table>
 				</div>
 			</div>
 			<div id="subtab-amenity" class="hidden detailbox">
 				<span class="arrow"></span>
 				<div class="detail">
-					
+					<ul class="amenity">
+						<li><i class="tick"></i> Reception</li>
+						<li><i class="tick"></i> Swimming Pool</li>
+						<li><i class="tick"></i> Sauna Room</li>
+						<li><i class="tick"></i> Tennis Court</li>
+						<li><i class="tick"></i> Function Room</li>
+						<li><i class="tick"></i> Theatre Cinema</li>
+						<li><i class="tick"></i> Library</li>
+						<li><i class="tick"></i> BBQ Fireplace</li>
+						<li><i class="tick"></i> Landscaping</li>
+						<li><i class="tick"></i> Sky Garden</li>
+						<li><i class="tick"></i> Visitor parking</li>
+						<li><i class="tick"></i> Car wash bay</li>
+						<li><i class="tick"></i> Gym</li>
+						<li><i class="tick"></i> Kids Play Ground</li>
+						<li><i class="tick"></i> Play Room</li>
+						<li><i class="tick"></i> Recreation Place</li>
+						<li><i class="tick"></i> Music Room</li>
+					</ul>
 				</div>
 			</div>
+		</div>
+		<div id="tab-features" class="hidden tab-block">
+			<ul class="brochure">
+				<li><a href="/img/render/medium/vantage.jpg" rel="brochure"><img src="/img/render/medium/vantage.jpg" alt=""/></a></li>
+				<li><a href="/img/render/medium/vantage-rhodes-cbdviews-641x432.jpg" rel="brochure"><img src="/img/render/medium/vantage-rhodes-cbdviews-641x432.jpg" alt=""/></a></li>
+				<li class="last"><a href="/img/render/medium/vantage-rhodes-aerial-641x4321.jpg" rel="brochure"><img src="/img/render/medium/vantage-rhodes-aerial-641x4321.jpg" alt=""/></a></li>
+				<li><a href="/img/render/medium/vantage-rhodes-open-plan-641x432.jpg" rel="brochure"><img src="/img/render/medium/vantage-rhodes-open-plan-641x432.jpg" alt=""/></a></li>
+				<li><a href="/img/render/medium/vantage-rhodes-balcony-641x432.jpg" rel="brochure"><img src="/img/render/medium/vantage-rhodes-balcony-641x432.jpg" alt=""/></a></li>
+				<li class="last"><a href="/img/render/medium/vantage-513_kitchen-web.jpg" rel="brochure"><img src="/img/render/medium/vantage-513_kitchen-web.jpg" alt=""/></a></li>
+			</ul>
 		</div>
 		<div id="tab-floorplans" class="hidden">
 			<div id="floorplan-filter">
