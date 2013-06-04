@@ -10,9 +10,6 @@ namespace BeFun.Common
 {
     public class PictureUtils
     {
-        public static Image EmptyPicture = Bitmap.FromFile(PathUtils.getAbstractPath("/img/null.png"));
-        public static Image NotFoundPicture = Bitmap.FromFile(PathUtils.getAbstractPath("/img/notFound.png"));
-
         public static void DisposePicture(PictureBox pictureBox)
         {
             if (pictureBox != null && pictureBox.Image != null)
@@ -39,7 +36,7 @@ namespace BeFun.Common
 
         public static void RenderPictureFromUrl(PictureBox pictureBox, string url)
         {
-            string fileName = PathUtils.getAbstractPath(url);
+            string fileName = PathUtils.GenerateAbsoluteMediaPath(url);
             RenderPicture(pictureBox, fileName);
         }
 
@@ -47,13 +44,12 @@ namespace BeFun.Common
         {
             if (string.IsNullOrWhiteSpace(fileName))
             {
-                EmptyPicture = Bitmap.FromFile(PathUtils.getAbstractPath("/img/null.png"));
-                return EmptyPicture;
+                return getEmptyPicture();
             }
             if (!File.Exists(fileName))
             {
-                NotFoundPicture = Bitmap.FromFile(PathUtils.getAbstractPath("/img/notFound.png"));
-                return NotFoundPicture;
+                System.Console.WriteLine(fileName);
+                return getNotFoundPicture();
             }
             Bitmap image = new Bitmap(fileName);
             return image;
@@ -61,8 +57,18 @@ namespace BeFun.Common
 
         public static Image GenerateImageFromUrl(string url)
         {
-            string fileName = PathUtils.getAbstractPath(url);
+            string fileName = PathUtils.GenerateAbsoluteMediaPath(url);
             return GenerateImage(fileName);
+        }
+
+        public static Image getEmptyPicture()
+        {
+            return Bitmap.FromFile(PathUtils.GetCurrentAppPath() + "/img/null.png");
+        }
+
+        public static Image getNotFoundPicture()
+        {
+            return Bitmap.FromFile(PathUtils.GetCurrentAppPath() + "/img/notFound.png");
         }
     }
 }

@@ -48,11 +48,8 @@ namespace BeFun.View.Editor
             foreach (string media in mediaList)
             {
                 Media entity = new Media();
-                if (this.comboBox_Project.SelectedValue != null)
-                {
-                    entity.project_id = (string)this.comboBox_Project.SelectedValue;
-                }
-                string destFileName = Utils.GetDestImagePath(media, contentType);
+                entity.project_id = GetProjectId();
+                string destFileName = Utils.GetDestImagePath(GetProjectId(), media, contentType);
                 entity.name = Utils.GetSafeFileNameWithoutExt(media);
                 entity.large_url = PathUtils.GetSiteImgUrl(destFileName);
                 entity.alt = Utils.GetSafeFileNameWithoutExt(media);
@@ -198,7 +195,7 @@ namespace BeFun.View.Editor
             string destFileName = null;
             foreach (string media in mediaList)
             {
-                destFileName = Utils.GetDestImagePath(media, contentType);
+                destFileName = Utils.GetDestImagePath(GetProjectId(), media, contentType);
             }
         }
 
@@ -215,6 +212,15 @@ namespace BeFun.View.Editor
             PathUtils.CreateDirectory(destFileName);
             File.Copy(currentFileName, destFileName);
             Utils.SetWritable(destFileName);
+        }
+
+        private string GetProjectId()
+        {
+            if (this.comboBox_Project.SelectedValue != null)
+            {
+                return (string)this.comboBox_Project.SelectedValue;
+            }
+            return null;
         }
 
         private void DisposePictures()

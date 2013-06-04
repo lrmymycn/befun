@@ -233,6 +233,12 @@
     <Compile Include="View\OutputWindow.Designer.cs">
       <DependentUpon>OutputWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Resize\ResizeForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Resize\ResizeForm.Designer.cs">
+      <DependentUpon>ResizeForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\Test.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -304,6 +310,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\OutputWindow.resx">
       <DependentUpon>OutputWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Resize\ResizeForm.resx">
+      <DependentUpon>ResizeForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Test.resx">
       <DependentUpon>Test.cs</DependentUpon>

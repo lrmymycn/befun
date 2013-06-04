@@ -64,7 +64,7 @@ namespace BeFun.View.Editor
             this.textBox_LargeURL.Text = this.entity.large_url;
             if (!string.IsNullOrWhiteSpace(this.entity.large_url))
             {
-                this.savedFileName_large = PathUtils.getAbstractPath(this.entity.large_url);
+                this.savedFileName_large = PathUtils.GenerateAbsoluteMediaPath(this.entity.large_url);
                 this.currentFileName_large = this.savedFileName_large;
                 this.destFileName_large = this.savedFileName_large;
                 PictureUtils.RenderPicture(this.pictureBox_Large, this.currentFileName_large);
@@ -80,10 +80,8 @@ namespace BeFun.View.Editor
             {
                 this.entity = new Media();
             }
-            if (this.comboBox_Project.SelectedValue != null)
-            {
-                this.entity.project_id = (string)this.comboBox_Project.SelectedValue;
-            }
+            
+            this.entity.project_id = GetProjectId();
             this.entity.name = this.textBox_Name.Text;
             this.entity.large_url = this.textBox_LargeURL.Text;
             this.entity.alt = this.textBox_Alt.Text;
@@ -160,6 +158,11 @@ namespace BeFun.View.Editor
             }
         }
 
+        private void comboBox_Project_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.destFileName_large = this.RefreshUrl(this.currentFileName_large, this.textBox_LargeURL);
+        }
+
         private void comboBox_ContentType_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.destFileName_large = this.RefreshUrl(this.currentFileName_large, this.textBox_LargeURL);
@@ -175,7 +178,7 @@ namespace BeFun.View.Editor
                 return "";
             }
             Byte contentType = (Byte)this.comboBox_ContentType.SelectedValue;
-            string destFileName = Utils.GetDestImagePath(currentFileName, contentType);
+            string destFileName = Utils.GetDestImagePath(GetProjectId(), currentFileName, contentType);
             textBox_URL.Text = PathUtils.GetSiteImgUrl(destFileName);
             return destFileName;
         }
@@ -219,10 +222,20 @@ namespace BeFun.View.Editor
             }
         }
 
+        private string GetProjectId()
+        {
+            if (this.comboBox_Project.SelectedValue != null)
+            {
+                return (string)this.comboBox_Project.SelectedValue;
+            }
+            return null;
+        }
+
         private void DisposePictures()
         {
             PictureUtils.DisposePicture(this.pictureBox_Large);
         }
         #endregion
+
     }
 }

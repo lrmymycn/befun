@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data.OleDb;
+using System.IO;
 
 namespace BeFun.Model
 {
@@ -46,7 +47,14 @@ namespace BeFun.Model
 
         public bool isInited()
         {
-            return this.filePath != null && this.filePath.Length > 0;
+            if (this.filePath != null && this.filePath.Length > 0)
+            {
+                if (this.getConnection() != null)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public OleDbConnection getConnection()
@@ -58,6 +66,18 @@ namespace BeFun.Model
             string connStr = CONN_STRING_ACCESS + this.filePath;
             OleDbConnection conn = new OleDbConnection(connStr);
             return conn;
+        }
+
+        public FileInfo getDataFileInfo()
+        {
+            if(!string.IsNullOrWhiteSpace(this.filePath)){
+                FileInfo rs = new FileInfo(this.filePath);
+                if (rs.Exists)
+                {
+                    return rs;
+                }
+            }
+            return null;
         }
     }
 }

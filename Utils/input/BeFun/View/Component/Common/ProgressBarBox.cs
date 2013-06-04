@@ -12,6 +12,14 @@ namespace BeFun.View.Component.Common
 {
     public partial class ProgressBarBox : Form
     {
+        delegate void PerformStepCallback();
+
+        delegate void CloseCallback();
+
+        private Thread threadSafeThread = null;
+
+        private Thread threadSafeThread2 = null;
+
         public ProgressBarBox()
         {
         }
@@ -31,9 +39,40 @@ namespace BeFun.View.Component.Common
             return box.ShowDialog(owner);
         }
 
-        public void PerformStep()
+        public void ThreadSafePerformStep()
         {
-            this.progressBar.PerformStep();
+            this.PerformStepC();
+        }
+
+        private void PerformStepC()
+        {
+            if (this.progressBar.InvokeRequired)
+            {
+                PerformStepCallback d = new PerformStepCallback(PerformStepC);
+                this.Invoke(d, new object[] { });
+            }
+            else
+            {
+                this.progressBar.PerformStep();
+            }
+        }
+
+        public void ThreadSafeClose()
+        {
+            this.CloseC();
+        }
+
+        private void CloseC()
+        {
+            if (this.InvokeRequired)
+            {
+                CloseCallback d = new CloseCallback(CloseC);
+                this.Invoke(d, new object[] { });
+            }
+            else
+            {
+                this.Close();
+            }
         }
 
         private void button_Cancel_Click(object sender, EventArgs e)

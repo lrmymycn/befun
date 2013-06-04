@@ -6,6 +6,7 @@ using BeFun.Model.Query;
 using BeFun.View.Component.Common;
 using System.Collections.Generic;
 using BeFun.Model.Dao;
+using BeFun.View.Resize;
 
 namespace BeFun.View.ListWindow
 {
@@ -44,6 +45,7 @@ namespace BeFun.View.ListWindow
             {
                 ConnectionPool.getInstance().init(this.filePath);
                 this.toolStripMenuItem_Query.Enabled = true;
+                this.toolStripMenuItem_Watermark.Enabled = true;
             }
         }
 
@@ -149,19 +151,6 @@ namespace BeFun.View.ListWindow
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Console.WriteLine(PathUtils.GetCurrentPath());
-            SaveFileDialog fileDialog = new SaveFileDialog();
-            fileDialog.CreatePrompt = false;
-            fileDialog.OverwritePrompt = true;
-            fileDialog.AddExtension = true;
-            fileDialog.Filter = "Access 文件(*.accdb)|*.accdb|所有文件(*.*)|*.*";
-            if (fileDialog.ShowDialog(this) == DialogResult.OK)
-            {
-            }
-        }
-
-        private void openToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
             OpenFileDialog fileDialog = new OpenFileDialog();
             fileDialog.Filter = "Access 文件(*.accdb)|*.accdb|所有文件(*.*)|*.*";
             if (fileDialog.ShowDialog(this) == DialogResult.OK)
@@ -171,7 +160,7 @@ namespace BeFun.View.ListWindow
                 this.dataGridView.RefreshGrid();
             }
         }
-
+        
         private void toolStripMenuItem_Query_Media_Click(object sender, EventArgs e)
         {
             MediaWindow mediaWindow = new MediaWindow();
@@ -239,6 +228,20 @@ namespace BeFun.View.ListWindow
                 OutputUtils ou = new OutputUtils();
                 ou.Output(fd.SelectedPath);
             }
+        }
+
+        private void watermarkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ResizeForm resizeForm = new ResizeForm();
+            resizeForm.ShowDialog(this);
+        }
+
+        private void testToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string rs = PathUtils.GetSiteImgUrl("d:/img/test.jpg");
+
+            MyMessageBox m = new MyMessageBox(rs, MyConstants.BOX_TYPE_NORMAL);
+            m.ShowDialog(this);
         }
 
     }

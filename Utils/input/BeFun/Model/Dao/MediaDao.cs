@@ -37,9 +37,9 @@ namespace BeFun.Model.Dao
                 m = this.queryById(id);
                 if (m != null)
                 {
-                    Utils.removeOldImg(PathUtils.getAbstractPath(m.small_url));
-                    Utils.removeOldImg(PathUtils.getAbstractPath(m.medium_url));
-                    Utils.removeOldImg(PathUtils.getAbstractPath(m.large_url));
+                    Utils.removeOldImg(PathUtils.GenerateAbsoluteMediaPath(m.small_url));
+                    Utils.removeOldImg(PathUtils.GenerateAbsoluteMediaPath(m.medium_url));
+                    Utils.removeOldImg(PathUtils.GenerateAbsoluteMediaPath(m.large_url));
                 }
             }
             base.remove(ids);

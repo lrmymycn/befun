@@ -42,6 +42,9 @@ namespace BeFun.View.ListWindow
             this.toolStripMenuItem_Query_Apartment = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem_Query_Media = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_Main = new System.Windows.Forms.MenuStrip();
+            this.dataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.outputToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem_Watermark = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel_Main = new System.Windows.Forms.TableLayoutPanel();
             this.panel_Grid = new System.Windows.Forms.Panel();
             this.dataGridView = new BeFun.View.Component.GirdView.ProjectDataView();
@@ -57,8 +60,7 @@ namespace BeFun.View.ListWindow
             this.textBox_BlockOrName = new System.Windows.Forms.TextBox();
             this.button_Search = new System.Windows.Forms.Button();
             this.button_Close = new System.Windows.Forms.Button();
-            this.dataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.outputToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_Main.SuspendLayout();
             this.tableLayoutPanel_Main.SuspendLayout();
             this.panel_Grid.SuspendLayout();
@@ -79,7 +81,7 @@ namespace BeFun.View.ListWindow
             this.toolStripMenuItem_File_Open.Name = "toolStripMenuItem_File_Open";
             this.toolStripMenuItem_File_Open.Size = new System.Drawing.Size(108, 22);
             this.toolStripMenuItem_File_Open.Text = "&Open";
-            this.toolStripMenuItem_File_Open.Click += new System.EventHandler(this.openToolStripMenuItem1_Click);
+            this.toolStripMenuItem_File_Open.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // toolStripMenuItem_Query
             // 
@@ -134,12 +136,38 @@ namespace BeFun.View.ListWindow
             this.menuStrip_Main.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem_File,
             this.toolStripMenuItem_Query,
-            this.dataToolStripMenuItem});
+            this.dataToolStripMenuItem,
+            this.toolStripMenuItem_Watermark,
+            this.testToolStripMenuItem});
             this.menuStrip_Main.Location = new System.Drawing.Point(0, 0);
             this.menuStrip_Main.Name = "menuStrip_Main";
             this.menuStrip_Main.Size = new System.Drawing.Size(891, 25);
             this.menuStrip_Main.TabIndex = 0;
             this.menuStrip_Main.Text = "menuStrip_Main";
+            // 
+            // dataToolStripMenuItem
+            // 
+            this.dataToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.outputToolStripMenuItem});
+            this.dataToolStripMenuItem.Enabled = false;
+            this.dataToolStripMenuItem.Name = "dataToolStripMenuItem";
+            this.dataToolStripMenuItem.Size = new System.Drawing.Size(47, 21);
+            this.dataToolStripMenuItem.Text = "&Data";
+            // 
+            // outputToolStripMenuItem
+            // 
+            this.outputToolStripMenuItem.Name = "outputToolStripMenuItem";
+            this.outputToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.outputToolStripMenuItem.Text = "&Output";
+            this.outputToolStripMenuItem.Click += new System.EventHandler(this.outputToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem_Watermark
+            // 
+            this.toolStripMenuItem_Watermark.Enabled = false;
+            this.toolStripMenuItem_Watermark.Name = "toolStripMenuItem_Watermark";
+            this.toolStripMenuItem_Watermark.Size = new System.Drawing.Size(85, 21);
+            this.toolStripMenuItem_Watermark.Text = "&Watermark";
+            this.toolStripMenuItem_Watermark.Click += new System.EventHandler(this.watermarkToolStripMenuItem_Click);
             // 
             // tableLayoutPanel_Main
             // 
@@ -313,20 +341,12 @@ namespace BeFun.View.ListWindow
             this.button_Close.UseVisualStyleBackColor = true;
             this.button_Close.Click += new System.EventHandler(this.button_Close_Click);
             // 
-            // dataToolStripMenuItem
+            // testToolStripMenuItem
             // 
-            this.dataToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.outputToolStripMenuItem});
-            this.dataToolStripMenuItem.Name = "dataToolStripMenuItem";
-            this.dataToolStripMenuItem.Size = new System.Drawing.Size(47, 21);
-            this.dataToolStripMenuItem.Text = "&Data";
-            // 
-            // outputToolStripMenuItem
-            // 
-            this.outputToolStripMenuItem.Name = "outputToolStripMenuItem";
-            this.outputToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.outputToolStripMenuItem.Text = "&Output";
-            this.outputToolStripMenuItem.Click += new System.EventHandler(this.outputToolStripMenuItem_Click);
+            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(41, 21);
+            this.testToolStripMenuItem.Text = "test";
+            this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
             // 
             // MainWindow
             // 
@@ -384,6 +404,8 @@ namespace BeFun.View.ListWindow
         private System.Windows.Forms.Button button_Close;
         private System.Windows.Forms.ToolStripMenuItem dataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem outputToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_Watermark;
+        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
     }
 }
 

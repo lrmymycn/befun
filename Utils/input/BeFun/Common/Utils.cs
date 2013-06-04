@@ -32,10 +32,11 @@ namespace BeFun.Common
         /// 
         /// 此方法获取原media文件的目标路径（在img下），如果原media文件就在对应的img目录下，返回originalPath
         /// </summary>
+        /// <param name="projectId">所属项目Id</param>
         /// <param name="originalPath">原media文件完整路径</param>
         /// <param name="contentType">media的类型，floorplan,render......</param>
         /// <returns>目标文件路径</returns>
-        public static string GetDestImagePath(string originalPath, Byte contentType)
+        public static string GetDestImagePath(string projectId, string originalPath, Byte contentType)
         {
             FileInfo originalFile = new FileInfo(originalPath);
             if (!originalFile.Exists)
@@ -51,7 +52,7 @@ namespace BeFun.Common
             {
                 noExtName = filename.Substring(0, i);
             }
-            string destPath = PathUtils.GenerateImgPath(filename, contentType);
+            string destPath = PathUtils.GenerateMediaPath(projectId, filename, contentType);
             if (PathUtils.IsSameDirectory(destPath, originalPath))
             {
                 return originalPath;
@@ -61,7 +62,7 @@ namespace BeFun.Common
                 for (int l = 0; l < 10000; l++)
                 {
                     string destNoExtName = noExtName + "_" + l;
-                    destPath = PathUtils.GenerateImgPath(destNoExtName + extName, contentType);
+                    destPath = PathUtils.GenerateMediaPath(projectId, destNoExtName + extName, contentType);
                     if (!File.Exists(destPath))
                     {
                         break;
@@ -189,6 +190,9 @@ namespace BeFun.Common
             contentTypeList.Add(new ComboBoxItem(Media.CONTENT_TYPE_PHOTOGRAPH, "Photograph"));
             contentTypeList.Add(new ComboBoxItem(Media.CONTENT_TYPE_ENV, "Environment"));
             contentTypeList.Add(new ComboBoxItem(Media.CONTENT_TYPE_FLOORPLATE, "Floorplate"));
+            contentTypeList.Add(new ComboBoxItem(Media.CONTENT_TYPE_PROJECT_DESCRIPTION, "Project Description"));
+            contentTypeList.Add(new ComboBoxItem(Media.CONTENT_TYPE_PROJECT_FEATURE, "Project Feature"));
+            contentTypeList.Add(new ComboBoxItem(Media.CONTENT_TYPE_PROJECT_SCHEME, "Project Scheme"));
             contentTypeList.Add(new ComboBoxItem(Media.CONTENT_TYPE_OTHERS, "Other"));
             return contentTypeList;
         }

@@ -141,6 +141,7 @@ namespace BeFun.View.Editor
             this.comboBox_Project.Size = new System.Drawing.Size(200, 20);
             this.comboBox_Project.TabIndex = 3;
             this.comboBox_Project.ValueMember = "id";
+            this.comboBox_Project.SelectedIndexChanged += new System.EventHandler(this.comboBox_Project_SelectedIndexChanged);
             // 
             // label3
             // 

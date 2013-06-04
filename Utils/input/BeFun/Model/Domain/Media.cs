@@ -20,6 +20,9 @@ namespace BeFun.Model.Domain
         public const Byte CONTENT_TYPE_ENV = 4;
         public const Byte CONTENT_TYPE_FLOORPLATE = 5;
         public const Byte CONTENT_TYPE_OTHERS = 6;
+        public const Byte CONTENT_TYPE_PROJECT_DESCRIPTION = 7;
+        public const Byte CONTENT_TYPE_PROJECT_FEATURE = 8;
+        public const Byte CONTENT_TYPE_PROJECT_SCHEME = 9;
 
         public Media()
             : base()
@@ -156,6 +159,15 @@ namespace BeFun.Model.Domain
                         break;
                     case Media.CONTENT_TYPE_RENDER_INTERNAL:
                         rs = "Render(Internal)";
+                        break;
+                    case Media.CONTENT_TYPE_PROJECT_DESCRIPTION:
+                        rs = "Project Description";
+                        break;
+                    case Media.CONTENT_TYPE_PROJECT_FEATURE:
+                        rs = "Project Feature";
+                        break;
+                    case Media.CONTENT_TYPE_PROJECT_SCHEME:
+                        rs = "Project Scheme";
                         break;
                     default:
                         break;
