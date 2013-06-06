@@ -190,6 +190,7 @@ namespace BeFun.Common
             contentTypeList.Add(new ComboBoxItem(Media.CONTENT_TYPE_PHOTOGRAPH, "Photograph"));
             contentTypeList.Add(new ComboBoxItem(Media.CONTENT_TYPE_ENV, "Environment"));
             contentTypeList.Add(new ComboBoxItem(Media.CONTENT_TYPE_FLOORPLATE, "Floorplate"));
+            contentTypeList.Add(new ComboBoxItem(Media.CONTENT_TYPE_PROJECT_OVERVIEW, "Project Overview"));
             contentTypeList.Add(new ComboBoxItem(Media.CONTENT_TYPE_PROJECT_DESCRIPTION, "Project Description"));
             contentTypeList.Add(new ComboBoxItem(Media.CONTENT_TYPE_PROJECT_FEATURE, "Project Feature"));
             contentTypeList.Add(new ComboBoxItem(Media.CONTENT_TYPE_PROJECT_SCHEME, "Project Scheme"));

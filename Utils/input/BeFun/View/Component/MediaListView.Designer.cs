@@ -85,8 +85,8 @@
             // 
             // imageList_Large
             // 
-            this.imageList_Large.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList_Large.ImageSize = new System.Drawing.Size(100, 100);
+            this.imageList_Large.ColorDepth = System.Windows.Forms.ColorDepth.Depth32Bit;
+            this.imageList_Large.ImageSize = new System.Drawing.Size(100, 75);
             this.imageList_Large.TransparentColor = System.Drawing.Color.Transparent;
             // 
             // MediaListView

@@ -94,13 +94,13 @@ namespace BeFun.View.Editor
             MediaQueryCondition queryCondition = new MediaQueryCondition();
             queryCondition.overview_project_id = this.entity.id;
             queryCondition.media_type = Media.MEDIA_TYPE_PIC;
-            this.mediaListView.queryCondition = queryCondition;
+            this.mediaListView_Overview.queryCondition = queryCondition;
 
             MediaQueryCondition chooseQueryCondition = new MediaQueryCondition();
             chooseQueryCondition.project_id = this.entity.id;
             chooseQueryCondition.media_type = Media.MEDIA_TYPE_PIC;
-            this.mediaListView.chooseQueryCondition = chooseQueryCondition;
-            this.mediaListView.InitData();
+            this.mediaListView_Overview.chooseQueryCondition = chooseQueryCondition;
+            this.mediaListView_Overview.InitData();
         }
 
         public override void saveEntity()
@@ -150,9 +150,9 @@ namespace BeFun.View.Editor
             this.dao.save(this.entity);
             this.dao.removeAllOverviewMedias(this.entity.id);
             IList<String> mediaIds = new List<String>();
-            if (this.mediaListView.mediaList.Count > 0)
+            if (this.mediaListView_Overview.mediaList.Count > 0)
             {
-                foreach (Media m in this.mediaListView.mediaList)
+                foreach (Media m in this.mediaListView_Overview.mediaList)
                 {
                     mediaIds.Add(m.id);
                 }
@@ -181,17 +181,17 @@ namespace BeFun.View.Editor
         }
 
         #region event
-        public void button_Save_Click_1(object sender, EventArgs e)
+        public void button_Save_Click(object sender, EventArgs e)
         {
             this.saveButton_click(sender, e);
         }
 
-        public void button_Reset_Click_1(object sender, EventArgs e)
+        public void button_Reset_Click(object sender, EventArgs e)
         {
             this.resetButton_click(sender, e);
         }
 
-        public void button_Cancel_Click_1(object sender, EventArgs e)
+        public void button_Cancel_Click(object sender, EventArgs e)
         {
             this.cancelButton_click(sender, e);
         }
@@ -235,11 +235,25 @@ namespace BeFun.View.Editor
             PictureUtils.RenderPictureFromUrl(this.pictureBox_Logo, this.logo.default_url);
         }
 
+        private void pictureBox_Picture_Double_Click(object sender, EventArgs e)
+        {
+            string image = PathUtils.GenerateAbsoluteMediaPath(this.picture.default_url);
+            ImageView view = new ImageView(image);
+            view.ShowDialog(this);
+        }
+
+        private void pictureBox_Logo_Double_Click(object sender, EventArgs e)
+        {
+            string image = PathUtils.GenerateAbsoluteMediaPath(this.logo.default_url);
+            ImageView view = new ImageView(image);
+            view.ShowDialog(this);
+        }
+
         private void DisposePictures()
         {
             PictureUtils.DisposePicture(this.pictureBox_Picture);
             PictureUtils.DisposePicture(this.pictureBox_Logo);
-            this.mediaListView.DisposePictures();
+            this.mediaListView_Overview.DisposePictures();
         }
     }
 }

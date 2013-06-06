@@ -296,6 +296,20 @@ namespace BeFun.View.Editor
             this.buildingList = this.buildingDao.query(qc);
             this.bindingSource_Building.DataSource = this.buildingList;
         }
+
+        private void pictureBox_Picture_Double_Click(object sender, EventArgs e)
+        {
+            string image = PathUtils.GenerateAbsoluteMediaPath(this.picture.default_url);
+            ImageView view = new ImageView(image);
+            view.ShowDialog(this);
+        }
+
+        private void pictureBox_SalePicture_Double_Click(object sender, EventArgs e)
+        {
+            string image = PathUtils.GenerateAbsoluteMediaPath(this.salePicture.default_url);
+            ImageView view = new ImageView(image);
+            view.ShowDialog(this);
+        }
         #endregion
 
         private void DisposePictures()

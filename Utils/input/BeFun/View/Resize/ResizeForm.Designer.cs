@@ -33,8 +33,6 @@
             this.tableLayoutPanel_Main = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.label16 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox_MediaDirectory = new System.Windows.Forms.TextBox();
             this.checkBox_EnableLogo = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.button_Logo = new System.Windows.Forms.Button();
@@ -43,10 +41,10 @@
             this.button_Reset = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox_Floorplan_LargeLogo = new System.Windows.Forms.TextBox();
-            this.textBox_Floorplan_MediumLogo = new System.Windows.Forms.TextBox();
+            this.textBox_LargeLogo = new System.Windows.Forms.TextBox();
+            this.textBox_MediumLogo = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox_Floorplan_SmallLogo = new System.Windows.Forms.TextBox();
+            this.textBox_SmallLogo = new System.Windows.Forms.TextBox();
             this.numericUpDown_Floorplan_MediumHeight = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_Floorplan_MediumWidth = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_Floorplan_SmallHeight = new System.Windows.Forms.NumericUpDown();
@@ -59,9 +57,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.textBox_Overview_LargeLogo = new System.Windows.Forms.TextBox();
-            this.textBox_Overview_MediumLogo = new System.Windows.Forms.TextBox();
-            this.textBox_Overview_SmallLogo = new System.Windows.Forms.TextBox();
             this.numericUpDown_Overview_MediumHeight = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_Overview_MediumWidth = new System.Windows.Forms.NumericUpDown();
             this.numericUpDown_Overview_SmallHeight = new System.Windows.Forms.NumericUpDown();
@@ -70,9 +65,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.numericUpDown_Overview_SmallWidth = new System.Windows.Forms.NumericUpDown();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_DataGridView)).BeginInit();
             this.tableLayoutPanel_Main.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -108,7 +100,7 @@
             this.tableLayoutPanel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanel_Main.Size = new System.Drawing.Size(684, 472);
+            this.tableLayoutPanel_Main.Size = new System.Drawing.Size(684, 370);
             this.tableLayoutPanel_Main.TabIndex = 1;
             // 
             // tableLayoutPanel2
@@ -118,8 +110,6 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel2.Controls.Add(this.label16, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.textBox_MediaDirectory, 1, 0);
             this.tableLayoutPanel2.Controls.Add(this.checkBox_EnableLogo, 1, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
@@ -128,44 +118,23 @@
             this.tableLayoutPanel2.RowCount = 2;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(684, 54);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(684, 27);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(5, 34);
+            this.label16.Location = new System.Drawing.Point(5, 7);
             this.label16.Margin = new System.Windows.Forms.Padding(5, 7, 3, 3);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(77, 12);
             this.label16.TabIndex = 2;
             this.label16.Text = "Enable Logo:";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 7);
-            this.label1.Margin = new System.Windows.Forms.Padding(5, 7, 3, 3);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Media Directory:";
-            // 
-            // textBox_MediaDirectory
-            // 
-            this.textBox_MediaDirectory.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_MediaDirectory.Location = new System.Drawing.Point(120, 3);
-            this.textBox_MediaDirectory.Name = "textBox_MediaDirectory";
-            this.textBox_MediaDirectory.ReadOnly = true;
-            this.textBox_MediaDirectory.Size = new System.Drawing.Size(561, 21);
-            this.textBox_MediaDirectory.TabIndex = 1;
-            this.textBox_MediaDirectory.DoubleClick += new System.EventHandler(this.textBox_MediaDirectory_Double_Click);
-            // 
             // checkBox_EnableLogo
             // 
             this.checkBox_EnableLogo.AutoSize = true;
-            this.checkBox_EnableLogo.Location = new System.Drawing.Point(120, 33);
+            this.checkBox_EnableLogo.Location = new System.Drawing.Point(120, 6);
             this.checkBox_EnableLogo.Margin = new System.Windows.Forms.Padding(3, 6, 3, 3);
             this.checkBox_EnableLogo.Name = "checkBox_EnableLogo";
             this.checkBox_EnableLogo.Size = new System.Drawing.Size(15, 14);
@@ -185,7 +154,7 @@
             this.tableLayoutPanel1.Controls.Add(this.button_Close, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.button_Reset, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 444);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 342);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
@@ -199,7 +168,7 @@
             this.button_Logo.Name = "button_Logo";
             this.button_Logo.Size = new System.Drawing.Size(75, 21);
             this.button_Logo.TabIndex = 1;
-            this.button_Logo.Text = "Logo";
+            this.button_Logo.Text = "&Save";
             this.button_Logo.UseVisualStyleBackColor = true;
             this.button_Logo.Click += new System.EventHandler(this.button_Logo_Click);
             // 
@@ -209,7 +178,7 @@
             this.button_Resize.Name = "button_Resize";
             this.button_Resize.Size = new System.Drawing.Size(75, 21);
             this.button_Resize.TabIndex = 0;
-            this.button_Resize.Text = "Resize";
+            this.button_Resize.Text = "&Resize";
             this.button_Resize.UseVisualStyleBackColor = true;
             this.button_Resize.Click += new System.EventHandler(this.button_Resize_Click);
             // 
@@ -230,7 +199,7 @@
             this.button_Reset.Name = "button_Reset";
             this.button_Reset.Size = new System.Drawing.Size(75, 21);
             this.button_Reset.TabIndex = 3;
-            this.button_Reset.Text = "Reset";
+            this.button_Reset.Text = "R&eset";
             this.button_Reset.UseVisualStyleBackColor = true;
             this.button_Reset.Click += new System.EventHandler(this.button_Reset_Click);
             // 
@@ -239,7 +208,7 @@
             this.groupBox1.AutoSize = true;
             this.groupBox1.Controls.Add(this.tableLayoutPanel3);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(0, 54);
+            this.groupBox1.Location = new System.Drawing.Point(0, 27);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(684, 195);
@@ -253,10 +222,10 @@
             this.tableLayoutPanel3.ColumnCount = 2;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Controls.Add(this.textBox_Floorplan_LargeLogo, 1, 2);
-            this.tableLayoutPanel3.Controls.Add(this.textBox_Floorplan_MediumLogo, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.textBox_LargeLogo, 1, 2);
+            this.tableLayoutPanel3.Controls.Add(this.textBox_MediumLogo, 1, 1);
             this.tableLayoutPanel3.Controls.Add(this.label11, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.textBox_Floorplan_SmallLogo, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.textBox_SmallLogo, 1, 0);
             this.tableLayoutPanel3.Controls.Add(this.numericUpDown_Floorplan_MediumHeight, 1, 6);
             this.tableLayoutPanel3.Controls.Add(this.numericUpDown_Floorplan_MediumWidth, 1, 5);
             this.tableLayoutPanel3.Controls.Add(this.numericUpDown_Floorplan_SmallHeight, 1, 4);
@@ -282,27 +251,27 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(678, 175);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
-            // textBox_Floorplan_LargeLogo
+            // textBox_LargeLogo
             // 
-            this.textBox_Floorplan_LargeLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBox_LargeLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_Floorplan_LargeLogo.Location = new System.Drawing.Point(120, 53);
-            this.textBox_Floorplan_LargeLogo.Name = "textBox_Floorplan_LargeLogo";
-            this.textBox_Floorplan_LargeLogo.ReadOnly = true;
-            this.textBox_Floorplan_LargeLogo.Size = new System.Drawing.Size(555, 21);
-            this.textBox_Floorplan_LargeLogo.TabIndex = 13;
-            this.textBox_Floorplan_LargeLogo.DoubleClick += new System.EventHandler(this.textBox_Floorplan_LargeLogo_Double_Click);
+            this.textBox_LargeLogo.Location = new System.Drawing.Point(120, 53);
+            this.textBox_LargeLogo.Name = "textBox_LargeLogo";
+            this.textBox_LargeLogo.ReadOnly = true;
+            this.textBox_LargeLogo.Size = new System.Drawing.Size(555, 21);
+            this.textBox_LargeLogo.TabIndex = 13;
+            this.textBox_LargeLogo.DoubleClick += new System.EventHandler(this.textBox_Floorplan_LargeLogo_Double_Click);
             // 
-            // textBox_Floorplan_MediumLogo
+            // textBox_MediumLogo
             // 
-            this.textBox_Floorplan_MediumLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBox_MediumLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_Floorplan_MediumLogo.Location = new System.Drawing.Point(120, 28);
-            this.textBox_Floorplan_MediumLogo.Name = "textBox_Floorplan_MediumLogo";
-            this.textBox_Floorplan_MediumLogo.ReadOnly = true;
-            this.textBox_Floorplan_MediumLogo.Size = new System.Drawing.Size(555, 21);
-            this.textBox_Floorplan_MediumLogo.TabIndex = 12;
-            this.textBox_Floorplan_MediumLogo.DoubleClick += new System.EventHandler(this.textBox_Floorplan_MediumLogo_Double_Click);
+            this.textBox_MediumLogo.Location = new System.Drawing.Point(120, 28);
+            this.textBox_MediumLogo.Name = "textBox_MediumLogo";
+            this.textBox_MediumLogo.ReadOnly = true;
+            this.textBox_MediumLogo.Size = new System.Drawing.Size(555, 21);
+            this.textBox_MediumLogo.TabIndex = 12;
+            this.textBox_MediumLogo.DoubleClick += new System.EventHandler(this.textBox_Floorplan_MediumLogo_Double_Click);
             // 
             // label11
             // 
@@ -314,16 +283,16 @@
             this.label11.TabIndex = 10;
             this.label11.Text = "Medium Logo:";
             // 
-            // textBox_Floorplan_SmallLogo
+            // textBox_SmallLogo
             // 
-            this.textBox_Floorplan_SmallLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.textBox_SmallLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_Floorplan_SmallLogo.Location = new System.Drawing.Point(120, 3);
-            this.textBox_Floorplan_SmallLogo.Name = "textBox_Floorplan_SmallLogo";
-            this.textBox_Floorplan_SmallLogo.ReadOnly = true;
-            this.textBox_Floorplan_SmallLogo.Size = new System.Drawing.Size(555, 21);
-            this.textBox_Floorplan_SmallLogo.TabIndex = 9;
-            this.textBox_Floorplan_SmallLogo.DoubleClick += new System.EventHandler(this.textBox_Floorplan_SmallLogo_Double_Click);
+            this.textBox_SmallLogo.Location = new System.Drawing.Point(120, 3);
+            this.textBox_SmallLogo.Name = "textBox_SmallLogo";
+            this.textBox_SmallLogo.ReadOnly = true;
+            this.textBox_SmallLogo.Size = new System.Drawing.Size(555, 21);
+            this.textBox_SmallLogo.TabIndex = 9;
+            this.textBox_SmallLogo.DoubleClick += new System.EventHandler(this.textBox_Floorplan_SmallLogo_Double_Click);
             // 
             // numericUpDown_Floorplan_MediumHeight
             // 
@@ -478,10 +447,10 @@
             this.groupBox2.AutoSize = true;
             this.groupBox2.Controls.Add(this.tableLayoutPanel4);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(0, 249);
+            this.groupBox2.Location = new System.Drawing.Point(0, 222);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(684, 195);
+            this.groupBox2.Size = new System.Drawing.Size(684, 120);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Project Overview";
@@ -492,71 +461,31 @@
             this.tableLayoutPanel4.ColumnCount = 2;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Controls.Add(this.textBox_Overview_LargeLogo, 1, 2);
-            this.tableLayoutPanel4.Controls.Add(this.textBox_Overview_MediumLogo, 1, 1);
-            this.tableLayoutPanel4.Controls.Add(this.textBox_Overview_SmallLogo, 1, 0);
-            this.tableLayoutPanel4.Controls.Add(this.numericUpDown_Overview_MediumHeight, 1, 6);
-            this.tableLayoutPanel4.Controls.Add(this.numericUpDown_Overview_MediumWidth, 1, 5);
-            this.tableLayoutPanel4.Controls.Add(this.numericUpDown_Overview_SmallHeight, 1, 4);
-            this.tableLayoutPanel4.Controls.Add(this.label6, 0, 3);
-            this.tableLayoutPanel4.Controls.Add(this.label8, 0, 5);
-            this.tableLayoutPanel4.Controls.Add(this.label9, 0, 6);
-            this.tableLayoutPanel4.Controls.Add(this.label7, 0, 4);
-            this.tableLayoutPanel4.Controls.Add(this.numericUpDown_Overview_SmallWidth, 1, 3);
-            this.tableLayoutPanel4.Controls.Add(this.label13, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.label15, 0, 2);
-            this.tableLayoutPanel4.Controls.Add(this.label14, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.numericUpDown_Overview_MediumHeight, 1, 3);
+            this.tableLayoutPanel4.Controls.Add(this.numericUpDown_Overview_MediumWidth, 1, 2);
+            this.tableLayoutPanel4.Controls.Add(this.numericUpDown_Overview_SmallHeight, 1, 1);
+            this.tableLayoutPanel4.Controls.Add(this.label6, 0, 0);
+            this.tableLayoutPanel4.Controls.Add(this.label8, 0, 2);
+            this.tableLayoutPanel4.Controls.Add(this.label9, 0, 3);
+            this.tableLayoutPanel4.Controls.Add(this.label7, 0, 1);
+            this.tableLayoutPanel4.Controls.Add(this.numericUpDown_Overview_SmallWidth, 1, 0);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 17);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 7;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel4.RowCount = 4;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(678, 175);
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(678, 100);
             this.tableLayoutPanel4.TabIndex = 0;
-            // 
-            // textBox_Overview_LargeLogo
-            // 
-            this.textBox_Overview_LargeLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_Overview_LargeLogo.Location = new System.Drawing.Point(120, 53);
-            this.textBox_Overview_LargeLogo.Name = "textBox_Overview_LargeLogo";
-            this.textBox_Overview_LargeLogo.ReadOnly = true;
-            this.textBox_Overview_LargeLogo.Size = new System.Drawing.Size(555, 21);
-            this.textBox_Overview_LargeLogo.TabIndex = 13;
-            this.textBox_Overview_LargeLogo.DoubleClick += new System.EventHandler(this.textBox_Overview_LargeLogo_Double_Click);
-            // 
-            // textBox_Overview_MediumLogo
-            // 
-            this.textBox_Overview_MediumLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_Overview_MediumLogo.Location = new System.Drawing.Point(120, 28);
-            this.textBox_Overview_MediumLogo.Name = "textBox_Overview_MediumLogo";
-            this.textBox_Overview_MediumLogo.ReadOnly = true;
-            this.textBox_Overview_MediumLogo.Size = new System.Drawing.Size(555, 21);
-            this.textBox_Overview_MediumLogo.TabIndex = 12;
-            this.textBox_Overview_MediumLogo.DoubleClick += new System.EventHandler(this.textBox_Overview_MediumLogo_Double_Click);
-            // 
-            // textBox_Overview_SmallLogo
-            // 
-            this.textBox_Overview_SmallLogo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox_Overview_SmallLogo.Location = new System.Drawing.Point(120, 3);
-            this.textBox_Overview_SmallLogo.Name = "textBox_Overview_SmallLogo";
-            this.textBox_Overview_SmallLogo.ReadOnly = true;
-            this.textBox_Overview_SmallLogo.Size = new System.Drawing.Size(555, 21);
-            this.textBox_Overview_SmallLogo.TabIndex = 11;
-            this.textBox_Overview_SmallLogo.DoubleClick += new System.EventHandler(this.textBox_Overview_SmallLogo_Double_Click);
             // 
             // numericUpDown_Overview_MediumHeight
             // 
-            this.numericUpDown_Overview_MediumHeight.Location = new System.Drawing.Point(120, 153);
+            this.numericUpDown_Overview_MediumHeight.Location = new System.Drawing.Point(120, 78);
             this.numericUpDown_Overview_MediumHeight.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -578,7 +507,7 @@
             // 
             // numericUpDown_Overview_MediumWidth
             // 
-            this.numericUpDown_Overview_MediumWidth.Location = new System.Drawing.Point(120, 128);
+            this.numericUpDown_Overview_MediumWidth.Location = new System.Drawing.Point(120, 53);
             this.numericUpDown_Overview_MediumWidth.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -600,7 +529,7 @@
             // 
             // numericUpDown_Overview_SmallHeight
             // 
-            this.numericUpDown_Overview_SmallHeight.Location = new System.Drawing.Point(120, 103);
+            this.numericUpDown_Overview_SmallHeight.Location = new System.Drawing.Point(120, 28);
             this.numericUpDown_Overview_SmallHeight.Maximum = new decimal(new int[] {
             500,
             0,
@@ -623,7 +552,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 82);
+            this.label6.Location = new System.Drawing.Point(3, 7);
             this.label6.Margin = new System.Windows.Forms.Padding(3, 7, 3, 3);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(77, 12);
@@ -633,7 +562,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(3, 132);
+            this.label8.Location = new System.Drawing.Point(3, 57);
             this.label8.Margin = new System.Windows.Forms.Padding(3, 7, 3, 3);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(83, 12);
@@ -643,7 +572,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(3, 157);
+            this.label9.Location = new System.Drawing.Point(3, 82);
             this.label9.Margin = new System.Windows.Forms.Padding(3, 7, 3, 3);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(89, 12);
@@ -653,7 +582,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 107);
+            this.label7.Location = new System.Drawing.Point(3, 32);
             this.label7.Margin = new System.Windows.Forms.Padding(3, 7, 3, 3);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(83, 12);
@@ -662,7 +591,7 @@
             // 
             // numericUpDown_Overview_SmallWidth
             // 
-            this.numericUpDown_Overview_SmallWidth.Location = new System.Drawing.Point(120, 78);
+            this.numericUpDown_Overview_SmallWidth.Location = new System.Drawing.Point(120, 3);
             this.numericUpDown_Overview_SmallWidth.Maximum = new decimal(new int[] {
             500,
             0,
@@ -682,42 +611,12 @@
             0,
             0});
             // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(3, 7);
-            this.label13.Margin = new System.Windows.Forms.Padding(3, 7, 3, 3);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(71, 12);
-            this.label13.TabIndex = 8;
-            this.label13.Text = "Small Logo:";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(3, 57);
-            this.label15.Margin = new System.Windows.Forms.Padding(3, 7, 3, 3);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(71, 12);
-            this.label15.TabIndex = 10;
-            this.label15.Text = "Large Logo:";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(3, 32);
-            this.label14.Margin = new System.Windows.Forms.Padding(3, 7, 3, 3);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(77, 12);
-            this.label14.TabIndex = 9;
-            this.label14.Text = "Medium Logo:";
-            // 
             // ResizeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.button_Close;
-            this.ClientSize = new System.Drawing.Size(684, 472);
+            this.ClientSize = new System.Drawing.Size(684, 370);
             this.Controls.Add(this.tableLayoutPanel_Main);
             this.Name = "ResizeForm";
             this.Text = "Logo";
@@ -753,12 +652,9 @@
         private System.Windows.Forms.BindingSource bindingSource_DataGridView;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_Main;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Button button_Resize;
         private System.Windows.Forms.Button button_Logo;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button button_Close;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox_MediaDirectory;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
@@ -780,20 +676,15 @@
         private System.Windows.Forms.NumericUpDown numericUpDown_Overview_SmallHeight;
         private System.Windows.Forms.NumericUpDown numericUpDown_Overview_SmallWidth;
         private System.Windows.Forms.Button button_Reset;
-        private System.Windows.Forms.TextBox textBox_Floorplan_SmallLogo;
+        private System.Windows.Forms.TextBox textBox_SmallLogo;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox_Floorplan_LargeLogo;
-        private System.Windows.Forms.TextBox textBox_Floorplan_MediumLogo;
+        private System.Windows.Forms.TextBox textBox_LargeLogo;
+        private System.Windows.Forms.TextBox textBox_MediumLogo;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox_Overview_LargeLogo;
-        private System.Windows.Forms.TextBox textBox_Overview_MediumLogo;
-        private System.Windows.Forms.TextBox textBox_Overview_SmallLogo;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.CheckBox checkBox_EnableLogo;
+        private System.Windows.Forms.Button button_Resize;
     }
 }
 

@@ -96,12 +96,9 @@ namespace BeFun.Common
                 case Media.CONTENT_TYPE_RENDER_EXTERNAL:
                     rs = "/render/" + safeFileName;
                     break;
+                case Media.CONTENT_TYPE_PROJECT_OVERVIEW:
                 case Media.CONTENT_TYPE_PROJECT_DESCRIPTION:
-                    rs = "/project/" + safeFileName;
-                    break;
                 case Media.CONTENT_TYPE_PROJECT_FEATURE:
-                    rs = "/project/" + safeFileName;
-                    break;
                 case Media.CONTENT_TYPE_PROJECT_SCHEME:
                     rs = "/project/" + safeFileName;
                     break;
@@ -125,10 +122,25 @@ namespace BeFun.Common
             return GenerateAbsoluteMediaPath(projectId, url);
         }
 
+        public static string GetDirectoryPath(string filePath)
+        {
+            FileInfo sourceFile = new FileInfo(filePath);
+            return sourceFile.DirectoryName;
+        }
+
+        public static string GetFileName(String filePath)
+        {
+            FileInfo sourceFile = new FileInfo(filePath);
+            return sourceFile.Name;
+        }
+
         public static void CreateDirectory(string filePath)
         {
-            FileInfo file = new FileInfo(filePath);
-            Directory.CreateDirectory(file.DirectoryName);
+            FileInfo fileInfo = new FileInfo(filePath);
+            if (!fileInfo.Directory.Exists)
+            {
+                fileInfo.Directory.Create();
+            }
         }
 
         /// <summary>

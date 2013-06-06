@@ -237,5 +237,12 @@ namespace BeFun.View.Editor
         }
         #endregion
 
+        private void pictureBox_Large_Double_Click(object sender, EventArgs e)
+        {
+            string image = this.currentFileName_large;
+            ImageView view = new ImageView(image);
+            view.ShowDialog(this);
+        }
+
     }
 }

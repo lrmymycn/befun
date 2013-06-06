@@ -47,6 +47,12 @@ namespace BeFun.View.ListWindow
             this.toolStripMenuItem_Watermark = new System.Windows.Forms.ToolStripMenuItem();
             this.tableLayoutPanel_Main = new System.Windows.Forms.TableLayoutPanel();
             this.panel_Grid = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox_BlockOrName = new System.Windows.Forms.TextBox();
+            this.button_Search = new System.Windows.Forms.Button();
+            this.button_Close = new System.Windows.Forms.Button();
+            this.sQLToolToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataGridView = new BeFun.View.Component.GirdView.ProjectDataView();
             this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BLOCK = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,17 +61,13 @@ namespace BeFun.View.ListWindow
             this.description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.developer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.address = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBox_BlockOrName = new System.Windows.Forms.TextBox();
-            this.button_Search = new System.Windows.Forms.Button();
-            this.button_Close = new System.Windows.Forms.Button();
-            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.oldVersionTransToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mediaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip_Main.SuspendLayout();
             this.tableLayoutPanel_Main.SuspendLayout();
             this.panel_Grid.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // toolStripMenuItem_File
@@ -138,7 +140,8 @@ namespace BeFun.View.ListWindow
             this.toolStripMenuItem_Query,
             this.dataToolStripMenuItem,
             this.toolStripMenuItem_Watermark,
-            this.testToolStripMenuItem});
+            this.sQLToolToolStripMenuItem,
+            this.oldVersionTransToolStripMenuItem});
             this.menuStrip_Main.Location = new System.Drawing.Point(0, 0);
             this.menuStrip_Main.Name = "menuStrip_Main";
             this.menuStrip_Main.Size = new System.Drawing.Size(891, 25);
@@ -193,6 +196,71 @@ namespace BeFun.View.ListWindow
             this.panel_Grid.Name = "panel_Grid";
             this.panel_Grid.Size = new System.Drawing.Size(885, 543);
             this.panel_Grid.TabIndex = 1;
+            // 
+            // tableLayoutPanel1
+            // 
+            this.tableLayoutPanel1.AutoSize = true;
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.textBox_BlockOrName, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.button_Search, 2, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(885, 29);
+            this.tableLayoutPanel1.TabIndex = 0;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 7);
+            this.label1.Margin = new System.Windows.Forms.Padding(3, 7, 0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(65, 12);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Condition:";
+            // 
+            // textBox_BlockOrName
+            // 
+            this.textBox_BlockOrName.Location = new System.Drawing.Point(103, 3);
+            this.textBox_BlockOrName.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            this.textBox_BlockOrName.Name = "textBox_BlockOrName";
+            this.textBox_BlockOrName.Size = new System.Drawing.Size(200, 21);
+            this.textBox_BlockOrName.TabIndex = 1;
+            // 
+            // button_Search
+            // 
+            this.button_Search.Location = new System.Drawing.Point(309, 3);
+            this.button_Search.Name = "button_Search";
+            this.button_Search.Size = new System.Drawing.Size(75, 23);
+            this.button_Search.TabIndex = 2;
+            this.button_Search.Text = "&Search";
+            this.button_Search.UseVisualStyleBackColor = true;
+            this.button_Search.Click += new System.EventHandler(this.button_Search_Click);
+            // 
+            // button_Close
+            // 
+            this.button_Close.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.button_Close.Location = new System.Drawing.Point(406, 2);
+            this.button_Close.Name = "button_Close";
+            this.button_Close.Size = new System.Drawing.Size(0, 0);
+            this.button_Close.TabIndex = 2;
+            this.button_Close.Text = "Close";
+            this.button_Close.UseVisualStyleBackColor = true;
+            this.button_Close.Click += new System.EventHandler(this.button_Close_Click);
+            // 
+            // sQLToolToolStripMenuItem
+            // 
+            this.sQLToolToolStripMenuItem.Enabled = false;
+            this.sQLToolToolStripMenuItem.Name = "sQLToolToolStripMenuItem";
+            this.sQLToolToolStripMenuItem.Size = new System.Drawing.Size(73, 21);
+            this.sQLToolToolStripMenuItem.Text = "SQL Tool";
+            this.sQLToolToolStripMenuItem.Click += new System.EventHandler(this.sQLToolToolStripMenuItem_Click);
             // 
             // dataGridView
             // 
@@ -284,69 +352,21 @@ namespace BeFun.View.ListWindow
             this.address.ReadOnly = true;
             this.address.Width = 72;
             // 
-            // tableLayoutPanel1
+            // oldVersionTransToolStripMenuItem
             // 
-            this.tableLayoutPanel1.AutoSize = true;
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.textBox_BlockOrName, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.button_Search, 2, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(885, 29);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.oldVersionTransToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mediaToolStripMenuItem});
+            this.oldVersionTransToolStripMenuItem.Enabled = false;
+            this.oldVersionTransToolStripMenuItem.Name = "oldVersionTransToolStripMenuItem";
+            this.oldVersionTransToolStripMenuItem.Size = new System.Drawing.Size(125, 21);
+            this.oldVersionTransToolStripMenuItem.Text = "Old Version Trans";
             // 
-            // label1
+            // mediaToolStripMenuItem
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 7);
-            this.label1.Margin = new System.Windows.Forms.Padding(3, 7, 0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Condition:";
-            // 
-            // textBox_BlockOrName
-            // 
-            this.textBox_BlockOrName.Location = new System.Drawing.Point(103, 3);
-            this.textBox_BlockOrName.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            this.textBox_BlockOrName.Name = "textBox_BlockOrName";
-            this.textBox_BlockOrName.Size = new System.Drawing.Size(200, 21);
-            this.textBox_BlockOrName.TabIndex = 1;
-            // 
-            // button_Search
-            // 
-            this.button_Search.Location = new System.Drawing.Point(309, 3);
-            this.button_Search.Name = "button_Search";
-            this.button_Search.Size = new System.Drawing.Size(75, 23);
-            this.button_Search.TabIndex = 2;
-            this.button_Search.Text = "&Search";
-            this.button_Search.UseVisualStyleBackColor = true;
-            this.button_Search.Click += new System.EventHandler(this.button_Search_Click);
-            // 
-            // button_Close
-            // 
-            this.button_Close.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button_Close.Location = new System.Drawing.Point(406, 2);
-            this.button_Close.Name = "button_Close";
-            this.button_Close.Size = new System.Drawing.Size(0, 0);
-            this.button_Close.TabIndex = 2;
-            this.button_Close.Text = "Close";
-            this.button_Close.UseVisualStyleBackColor = true;
-            this.button_Close.Click += new System.EventHandler(this.button_Close_Click);
-            // 
-            // testToolStripMenuItem
-            // 
-            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(41, 21);
-            this.testToolStripMenuItem.Text = "test";
-            this.testToolStripMenuItem.Click += new System.EventHandler(this.testToolStripMenuItem_Click);
+            this.mediaToolStripMenuItem.Name = "mediaToolStripMenuItem";
+            this.mediaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mediaToolStripMenuItem.Text = "Media";
+            this.mediaToolStripMenuItem.Click += new System.EventHandler(this.mediaToolStripMenuItem_Click);
             // 
             // MainWindow
             // 
@@ -366,9 +386,9 @@ namespace BeFun.View.ListWindow
             this.tableLayoutPanel_Main.ResumeLayout(false);
             this.tableLayoutPanel_Main.PerformLayout();
             this.panel_Grid.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -405,7 +425,9 @@ namespace BeFun.View.ListWindow
         private System.Windows.Forms.ToolStripMenuItem dataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem outputToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem_Watermark;
-        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sQLToolToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem oldVersionTransToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mediaToolStripMenuItem;
     }
 }
 

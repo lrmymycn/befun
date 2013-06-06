@@ -80,7 +80,7 @@ namespace BeFun.View.Editor
             this.tableLayoutPanel_Main.RowCount = 2;
             this.tableLayoutPanel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel_Main.Size = new System.Drawing.Size(684, 286);
+            this.tableLayoutPanel_Main.Size = new System.Drawing.Size(484, 267);
             this.tableLayoutPanel_Main.TabIndex = 0;
             // 
             // groupBox_Properties
@@ -90,7 +90,7 @@ namespace BeFun.View.Editor
             this.groupBox_Properties.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox_Properties.Location = new System.Drawing.Point(3, 3);
             this.groupBox_Properties.Name = "groupBox_Properties";
-            this.groupBox_Properties.Size = new System.Drawing.Size(678, 245);
+            this.groupBox_Properties.Size = new System.Drawing.Size(478, 226);
             this.groupBox_Properties.TabIndex = 0;
             this.groupBox_Properties.TabStop = false;
             this.groupBox_Properties.Text = "Properties";
@@ -126,7 +126,7 @@ namespace BeFun.View.Editor
             this.tableLayoutPanel_Properties.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel_Properties.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel_Properties.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel_Properties.Size = new System.Drawing.Size(672, 225);
+            this.tableLayoutPanel_Properties.Size = new System.Drawing.Size(472, 206);
             this.tableLayoutPanel_Properties.TabIndex = 0;
             // 
             // comboBox_Project
@@ -136,7 +136,7 @@ namespace BeFun.View.Editor
             this.comboBox_Project.DataSource = this.bindingSource_Project;
             this.comboBox_Project.DisplayMember = "name";
             this.comboBox_Project.FormattingEnabled = true;
-            this.comboBox_Project.Location = new System.Drawing.Point(118, 103);
+            this.comboBox_Project.Location = new System.Drawing.Point(118, 84);
             this.comboBox_Project.Name = "comboBox_Project";
             this.comboBox_Project.Size = new System.Drawing.Size(200, 20);
             this.comboBox_Project.TabIndex = 3;
@@ -146,7 +146,7 @@ namespace BeFun.View.Editor
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 106);
+            this.label3.Location = new System.Drawing.Point(3, 87);
             this.label3.Margin = new System.Windows.Forms.Padding(3, 6, 0, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 12);
@@ -165,7 +165,7 @@ namespace BeFun.View.Editor
             // 
             // textBox_Alt
             // 
-            this.textBox_Alt.Location = new System.Drawing.Point(118, 153);
+            this.textBox_Alt.Location = new System.Drawing.Point(118, 134);
             this.textBox_Alt.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.textBox_Alt.Name = "textBox_Alt";
             this.textBox_Alt.Size = new System.Drawing.Size(300, 21);
@@ -173,7 +173,7 @@ namespace BeFun.View.Editor
             // 
             // textBox_Name
             // 
-            this.textBox_Name.Location = new System.Drawing.Point(118, 128);
+            this.textBox_Name.Location = new System.Drawing.Point(118, 109);
             this.textBox_Name.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.textBox_Name.Name = "textBox_Name";
             this.textBox_Name.Size = new System.Drawing.Size(300, 21);
@@ -182,7 +182,7 @@ namespace BeFun.View.Editor
             // label_ALT
             // 
             this.label_ALT.AutoSize = true;
-            this.label_ALT.Location = new System.Drawing.Point(3, 156);
+            this.label_ALT.Location = new System.Drawing.Point(3, 137);
             this.label_ALT.Margin = new System.Windows.Forms.Padding(3, 6, 0, 0);
             this.label_ALT.Name = "label_ALT";
             this.label_ALT.Size = new System.Drawing.Size(29, 12);
@@ -192,7 +192,7 @@ namespace BeFun.View.Editor
             // label_Name
             // 
             this.label_Name.AutoSize = true;
-            this.label_Name.Location = new System.Drawing.Point(3, 131);
+            this.label_Name.Location = new System.Drawing.Point(3, 112);
             this.label_Name.Margin = new System.Windows.Forms.Padding(3, 6, 0, 0);
             this.label_Name.Name = "label_Name";
             this.label_Name.Size = new System.Drawing.Size(35, 12);
@@ -202,7 +202,7 @@ namespace BeFun.View.Editor
             // label_MediaType
             // 
             this.label_MediaType.AutoSize = true;
-            this.label_MediaType.Location = new System.Drawing.Point(3, 181);
+            this.label_MediaType.Location = new System.Drawing.Point(3, 162);
             this.label_MediaType.Margin = new System.Windows.Forms.Padding(3, 6, 0, 0);
             this.label_MediaType.Name = "label_MediaType";
             this.label_MediaType.Size = new System.Drawing.Size(71, 12);
@@ -212,7 +212,7 @@ namespace BeFun.View.Editor
             // label_ContentType
             // 
             this.label_ContentType.AutoSize = true;
-            this.label_ContentType.Location = new System.Drawing.Point(3, 206);
+            this.label_ContentType.Location = new System.Drawing.Point(3, 187);
             this.label_ContentType.Margin = new System.Windows.Forms.Padding(3, 6, 0, 0);
             this.label_ContentType.Name = "label_ContentType";
             this.label_ContentType.Size = new System.Drawing.Size(83, 12);
@@ -226,7 +226,7 @@ namespace BeFun.View.Editor
             this.comboBox_ContentType.DataSource = this.bindingSource_ContentType;
             this.comboBox_ContentType.DisplayMember = "text";
             this.comboBox_ContentType.FormattingEnabled = true;
-            this.comboBox_ContentType.Location = new System.Drawing.Point(118, 203);
+            this.comboBox_ContentType.Location = new System.Drawing.Point(118, 184);
             this.comboBox_ContentType.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.comboBox_ContentType.Name = "comboBox_ContentType";
             this.comboBox_ContentType.Size = new System.Drawing.Size(200, 20);
@@ -236,6 +236,7 @@ namespace BeFun.View.Editor
             // 
             // tableLayoutPanel4
             // 
+            this.tableLayoutPanel4.AutoSize = true;
             this.tableLayoutPanel4.ColumnCount = 2;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -247,16 +248,18 @@ namespace BeFun.View.Editor
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 1;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(557, 100);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(357, 81);
             this.tableLayoutPanel4.TabIndex = 2;
             // 
             // pictureBox_Large
             // 
             this.pictureBox_Large.Location = new System.Drawing.Point(206, 3);
             this.pictureBox_Large.Name = "pictureBox_Large";
-            this.pictureBox_Large.Size = new System.Drawing.Size(100, 94);
+            this.pictureBox_Large.Size = new System.Drawing.Size(100, 75);
+            this.pictureBox_Large.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox_Large.TabIndex = 4;
             this.pictureBox_Large.TabStop = false;
+            this.pictureBox_Large.DoubleClick += new System.EventHandler(this.pictureBox_Large_Double_Click);
             // 
             // textBox_LargeURL
             // 
@@ -275,7 +278,7 @@ namespace BeFun.View.Editor
             this.comboBox_MediaType.DataSource = this.bindingSource_MediaType;
             this.comboBox_MediaType.DisplayMember = "text";
             this.comboBox_MediaType.FormattingEnabled = true;
-            this.comboBox_MediaType.Location = new System.Drawing.Point(118, 178);
+            this.comboBox_MediaType.Location = new System.Drawing.Point(118, 159);
             this.comboBox_MediaType.Margin = new System.Windows.Forms.Padding(3, 3, 0, 0);
             this.comboBox_MediaType.Name = "comboBox_MediaType";
             this.comboBox_MediaType.Size = new System.Drawing.Size(200, 20);
@@ -294,17 +297,17 @@ namespace BeFun.View.Editor
             this.tableLayoutPanel_Button.Controls.Add(this.button_Save, 1, 0);
             this.tableLayoutPanel_Button.Controls.Add(this.button_Cancel, 2, 0);
             this.tableLayoutPanel_Button.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.tableLayoutPanel_Button.Location = new System.Drawing.Point(3, 254);
+            this.tableLayoutPanel_Button.Location = new System.Drawing.Point(3, 235);
             this.tableLayoutPanel_Button.Name = "tableLayoutPanel_Button";
             this.tableLayoutPanel_Button.RowCount = 1;
             this.tableLayoutPanel_Button.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel_Button.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel_Button.Size = new System.Drawing.Size(678, 29);
+            this.tableLayoutPanel_Button.Size = new System.Drawing.Size(478, 29);
             this.tableLayoutPanel_Button.TabIndex = 1;
             // 
             // button_Reset
             // 
-            this.button_Reset.Location = new System.Drawing.Point(601, 3);
+            this.button_Reset.Location = new System.Drawing.Point(401, 3);
             this.button_Reset.Name = "button_Reset";
             this.button_Reset.Size = new System.Drawing.Size(74, 23);
             this.button_Reset.TabIndex = 2;
@@ -314,7 +317,7 @@ namespace BeFun.View.Editor
             // 
             // button_Save
             // 
-            this.button_Save.Location = new System.Drawing.Point(441, 3);
+            this.button_Save.Location = new System.Drawing.Point(241, 3);
             this.button_Save.Name = "button_Save";
             this.button_Save.Size = new System.Drawing.Size(74, 23);
             this.button_Save.TabIndex = 0;
@@ -325,7 +328,7 @@ namespace BeFun.View.Editor
             // button_Cancel
             // 
             this.button_Cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.button_Cancel.Location = new System.Drawing.Point(521, 3);
+            this.button_Cancel.Location = new System.Drawing.Point(321, 3);
             this.button_Cancel.Name = "button_Cancel";
             this.button_Cancel.Size = new System.Drawing.Size(74, 23);
             this.button_Cancel.TabIndex = 1;
@@ -337,9 +340,9 @@ namespace BeFun.View.Editor
             // 
             this.AutoScroll = true;
             this.CancelButton = this.button_Cancel;
-            this.ClientSize = new System.Drawing.Size(684, 292);
+            this.ClientSize = new System.Drawing.Size(484, 270);
             this.Controls.Add(this.tableLayoutPanel_Main);
-            this.MinimumSize = new System.Drawing.Size(700, 330);
+            this.MinimumSize = new System.Drawing.Size(500, 308);
             this.Name = "MediaEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "MediaEditor";

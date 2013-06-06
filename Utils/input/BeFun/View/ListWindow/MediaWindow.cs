@@ -11,6 +11,9 @@ using BeFun.Common;
 using BeFun.Model.Query;
 using BeFun.Model.Dao;
 using BeFun.View.Editor;
+using System.IO;
+using BeFun.Model.Resize;
+using BeFun.Model;
 
 namespace BeFun.View.ListWindow
 {
@@ -118,17 +121,45 @@ namespace BeFun.View.ListWindow
         private void ConfigDataGridView()
         {
             IList<System.Windows.Forms.ToolStripMenuItem> extendedItems = new List<System.Windows.Forms.ToolStripMenuItem>();
-            //stage
-            System.Windows.Forms.ToolStripMenuItem queryStageItem = new System.Windows.Forms.ToolStripMenuItem();
-            queryStageItem.Name = "toolStripMenuItem_AddMultiMedias";
-            queryStageItem.Size = new System.Drawing.Size(152, 22);
-            queryStageItem.Text = "Add Multi Medias";
-            queryStageItem.Click += new System.EventHandler(this.toolStripMenuItem_AddMultiMedias_Click);
-            extendedItems.Add(queryStageItem);
+            //add multi medias
+            System.Windows.Forms.ToolStripMenuItem addMultiMediasItem = new System.Windows.Forms.ToolStripMenuItem();
+            addMultiMediasItem.Name = "toolStripMenuItem_AddMultiMedias";
+            addMultiMediasItem.Size = new System.Drawing.Size(152, 22);
+            addMultiMediasItem.Text = "Add Multi Medias";
+            addMultiMediasItem.Click += new System.EventHandler(this.toolStripMenuItem_AddMultiMedias_Click);
+            extendedItems.Add(addMultiMediasItem);
+
+            //resize
+            System.Windows.Forms.ToolStripMenuItem resizeItem = new System.Windows.Forms.ToolStripMenuItem();
+            resizeItem.Name = "toolStripMenuItem_ResizeMedias";
+            resizeItem.Size = new System.Drawing.Size(152, 22);
+            resizeItem.Text = "Resize";
+            resizeItem.Click += new System.EventHandler(this.toolStripMenuItem_Resize_Click);
+            extendedItems.Add(resizeItem);
 
             this.dataGridView.alwaysExtendedToolStripMenuItems = extendedItems;
             this.dataGridView.ConfigContextMenu();
             this.dataGridView.RefreshGrid();
+        }
+
+        private void toolStripMenuItem_Resize_Click(object sender, EventArgs e)
+        {
+            IList<Media> selectedMedias = this.dataGridView.SelectedObjects();
+            if (selectedMedias.Count > 0)
+            {
+                DirectoryInfo imgRootDir = new DirectoryInfo(PathUtils.GetImgRootPath());
+                string title = "selected";
+                ResizeTask task = new ResizeTask(imgRootDir, title, selectedMedias, this, ResizeConfig.getInstance());
+                task.t.Start();
+                if (task.pb.ShowDialog(this) == DialogResult.Cancel)
+                {
+                    task.stopflag = true;
+                }
+            }
+            else
+            {
+                return;
+            }
         }
 
         private void toolStripMenuItem_AddMultiMedias_Click(object sender, EventArgs e)
