@@ -114,16 +114,16 @@ namespace BeFun.Model.Resize
                 model.IsWartermarked = true;
                 model.ImageWartermark = logo;
             }
-            model.ResizeType = ResizeTypes.Absolute;
+            model.ResizeType = ResizeTypes.Auto;
             model.Width = width;
             model.Height = height;
             string destPath = GetResizedFilePath(file, type);
             PathUtils.CreateDirectory(destPath);
-            if (!File.Exists(destPath))
-            {
+            //if (!File.Exists(destPath))
+            //{
                 Image destImage = PictureOperation.Resize(model);
                 PictureOperation.Save(destImage, destPath);
-            }
+            //}
         }
 
         private string GetResizedFilePath(FileInfo originalFileInfo, String type)

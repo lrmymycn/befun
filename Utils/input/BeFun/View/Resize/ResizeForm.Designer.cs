@@ -298,7 +298,7 @@
             // 
             this.numericUpDown_Floorplan_MediumHeight.Location = new System.Drawing.Point(120, 153);
             this.numericUpDown_Floorplan_MediumHeight.Maximum = new decimal(new int[] {
-            1000,
+            10000,
             0,
             0,
             0});
@@ -320,7 +320,7 @@
             // 
             this.numericUpDown_Floorplan_MediumWidth.Location = new System.Drawing.Point(120, 128);
             this.numericUpDown_Floorplan_MediumWidth.Maximum = new decimal(new int[] {
-            1000,
+            10000,
             0,
             0,
             0});
@@ -487,7 +487,7 @@
             // 
             this.numericUpDown_Overview_MediumHeight.Location = new System.Drawing.Point(120, 78);
             this.numericUpDown_Overview_MediumHeight.Maximum = new decimal(new int[] {
-            1000,
+            10000,
             0,
             0,
             0});
@@ -509,7 +509,7 @@
             // 
             this.numericUpDown_Overview_MediumWidth.Location = new System.Drawing.Point(120, 53);
             this.numericUpDown_Overview_MediumWidth.Maximum = new decimal(new int[] {
-            1000,
+            10000,
             0,
             0,
             0});

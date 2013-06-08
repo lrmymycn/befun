@@ -99,16 +99,18 @@ namespace BeFun.Common
 
             using (var g = Graphics.FromImage(imgResult))
             {
-                g.Clear(Color.White);
+                //g.Clear(Color.White);
                 g.InterpolationMode = InterpolationMode.HighQualityBicubic;
                 g.SmoothingMode = SmoothingMode.HighQuality;
                 //g.PixelOffsetMode = PixelOffsetMode.HighQuality;
                 g.CompositingQuality = CompositingQuality.HighQuality;
 
-                Rectangle destRect = new Rectangle(0, 0, destWidth, destHeight);
-                Rectangle srcRect = new Rectangle(x, y, cutWidth, cutHeight);
+                //Rectangle destRect = new Rectangle(0, 0, destWidth, destHeight);
+                //Rectangle srcRect = new Rectangle(x, y, cutWidth, cutHeight);
 
-                g.DrawImage(model.Source, destRect, srcRect, GraphicsUnit.Pixel);
+                g.FillRectangle(Brushes.White, 0, 0, destWidth, destHeight);
+                g.DrawImage(model.Source, 0, 0, destWidth, destHeight);
+                //g.DrawImage(model.Source, destRect, srcRect, GraphicsUnit.Pixel);
 
                 if (model.IsWartermarked)//是否加水印
                 {

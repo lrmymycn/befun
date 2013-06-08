@@ -37,6 +37,15 @@ namespace BeFun.View.Resize
             this.textBox_SmallLogo.Text = this.config.smallLogo;
             this.textBox_MediumLogo.Text = this.config.mediumLogo;
             this.textBox_LargeLogo.Text = this.config.largeLogo;
+            this.numericUpDown_Floorplan_MediumHeight.Value = this.config.floorplan_mediumHeight;
+            this.numericUpDown_Floorplan_MediumWidth.Value = this.config.floorplan_mediumWidth;
+            this.numericUpDown_Floorplan_SmallHeight.Value = this.config.floorplan_smallHeight;
+            this.numericUpDown_Floorplan_SmallWidth.Value = this.config.floorplan_smallWidth;
+            this.numericUpDown_Overview_MediumHeight.Value = this.config.overview_mediumHeight;
+            this.numericUpDown_Overview_MediumWidth.Value = this.config.overview_mediumWidth;
+            this.numericUpDown_Overview_SmallHeight.Value = this.config.overview_smallHeight;
+            this.numericUpDown_Overview_SmallWidth.Value = this.config.overview_smallWidth;
+            this.checkBox_EnableLogo.Checked = this.config.enableLogo;
         }
         
         private void textBox_Floorplan_SmallLogo_Double_Click(object sender, EventArgs e)
