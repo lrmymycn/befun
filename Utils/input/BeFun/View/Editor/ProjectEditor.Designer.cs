@@ -100,17 +100,14 @@ namespace BeFun.View.Editor
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.richTextBox_Description = new System.Windows.Forms.RichTextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.mediaListView_Description = new BeFun.View.Component.MediaListView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.richTextBox_Features = new System.Windows.Forms.RichTextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.mediaListView_Feature = new BeFun.View.Component.MediaListView();
             this.tabPage5 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.richTextBox_FinishScheme = new System.Windows.Forms.RichTextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.mediaListView_Scheme = new BeFun.View.Component.MediaListView();
             this.contextMenuStrip_Medias.SuspendLayout();
             this.tableLayoutPanel_Main.SuspendLayout();
             this.tableLayoutPanel_Button.SuspendLayout();
@@ -1010,7 +1007,6 @@ namespace BeFun.View.Editor
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel4.Controls.Add(this.richTextBox_Description, 1, 0);
             this.tableLayoutPanel4.Controls.Add(this.label9, 0, 0);
-            this.tableLayoutPanel4.Controls.Add(this.mediaListView_Description, 0, 1);
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
@@ -1038,16 +1034,6 @@ namespace BeFun.View.Editor
             this.label9.TabIndex = 7;
             this.label9.Text = "Description:";
             // 
-            // mediaListView_Description
-            // 
-            this.mediaListView_Description.AutoScroll = true;
-            this.tableLayoutPanel4.SetColumnSpan(this.mediaListView_Description, 2);
-            this.mediaListView_Description.Dock = System.Windows.Forms.DockStyle.Top;
-            this.mediaListView_Description.Location = new System.Drawing.Point(3, 103);
-            this.mediaListView_Description.Name = "mediaListView_Description";
-            this.mediaListView_Description.Size = new System.Drawing.Size(752, 350);
-            this.mediaListView_Description.TabIndex = 9;
-            // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.tableLayoutPanel5);
@@ -1067,7 +1053,6 @@ namespace BeFun.View.Editor
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel5.Controls.Add(this.richTextBox_Features, 1, 0);
             this.tableLayoutPanel5.Controls.Add(this.label10, 0, 0);
-            this.tableLayoutPanel5.Controls.Add(this.mediaListView_Feature, 0, 1);
             this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 2;
@@ -1095,16 +1080,6 @@ namespace BeFun.View.Editor
             this.label10.TabIndex = 7;
             this.label10.Text = "Feature:";
             // 
-            // mediaListView_Feature
-            // 
-            this.mediaListView_Feature.AutoScroll = true;
-            this.tableLayoutPanel5.SetColumnSpan(this.mediaListView_Feature, 2);
-            this.mediaListView_Feature.Dock = System.Windows.Forms.DockStyle.Top;
-            this.mediaListView_Feature.Location = new System.Drawing.Point(3, 103);
-            this.mediaListView_Feature.Name = "mediaListView_Feature";
-            this.mediaListView_Feature.Size = new System.Drawing.Size(752, 350);
-            this.mediaListView_Feature.TabIndex = 9;
-            // 
             // tabPage5
             // 
             this.tabPage5.Controls.Add(this.tableLayoutPanel6);
@@ -1124,7 +1099,6 @@ namespace BeFun.View.Editor
             this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel6.Controls.Add(this.richTextBox_FinishScheme, 1, 0);
             this.tableLayoutPanel6.Controls.Add(this.label11, 0, 0);
-            this.tableLayoutPanel6.Controls.Add(this.mediaListView_Scheme, 0, 1);
             this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 3);
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 2;
@@ -1151,16 +1125,6 @@ namespace BeFun.View.Editor
             this.label11.Size = new System.Drawing.Size(47, 12);
             this.label11.TabIndex = 7;
             this.label11.Text = "Scheme:";
-            // 
-            // mediaListView_Scheme
-            // 
-            this.mediaListView_Scheme.AutoScroll = true;
-            this.tableLayoutPanel6.SetColumnSpan(this.mediaListView_Scheme, 2);
-            this.mediaListView_Scheme.Dock = System.Windows.Forms.DockStyle.Top;
-            this.mediaListView_Scheme.Location = new System.Drawing.Point(3, 103);
-            this.mediaListView_Scheme.Name = "mediaListView_Scheme";
-            this.mediaListView_Scheme.Size = new System.Drawing.Size(752, 350);
-            this.mediaListView_Scheme.TabIndex = 9;
             // 
             // ProjectEditor
             // 
@@ -1244,17 +1208,14 @@ namespace BeFun.View.Editor
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.RichTextBox richTextBox_Description;
         private System.Windows.Forms.Label label9;
-        private MediaListView mediaListView_Description;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.RichTextBox richTextBox_Features;
         private System.Windows.Forms.Label label10;
-        private MediaListView mediaListView_Feature;
         private System.Windows.Forms.TabPage tabPage5;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
         private System.Windows.Forms.RichTextBox richTextBox_FinishScheme;
         private System.Windows.Forms.Label label11;
-        private MediaListView mediaListView_Scheme;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_Button;
         private System.Windows.Forms.Button button_Reset;
         private System.Windows.Forms.Button button_Save;
