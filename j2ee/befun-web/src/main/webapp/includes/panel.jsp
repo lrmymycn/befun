@@ -9,11 +9,13 @@
 			<span id="project-name"></span>
 		</div>      			
 		<div class="tabs">     			
-			<a href="#tab-overview" class="active first">Overview</a>
-			<a href="#tab-details">Details</a>
-			<a href="#tab-features">Features</a>
-			<a href="#tab-floorplans">Floorplans</a>
-			<a href="#tab-sales">Sales Portal</a>
+			<a href="#tab-overview" class="active first">项目图集</a>
+			<a href="#tab-details">项目信息</a>
+			<a href="#tab-features">项目特色</a>
+			<a href="#tab-floorplans">户型检索</a>
+			<a href="#tab-sales">区域分析</a>
+			<a href="#tab-sales">精彩周边</a>
+			<a href="#tab-sales">联系我们</a>
 		</div>
 	</div>     		
 	<div class="content">
@@ -33,9 +35,9 @@
 		</div>	
 		<div id="tab-details" class="hidden tab-block">
 			<div class="tabs">
-    			<a href="#subtab-description" class="active">Description</a>
-    			<a href="#subtab-finish">Finish Scheme</a>
-    			<a href="#subtab-amenity">Amenities</a>
+    			<a href="#subtab-description" class="active">基本信息</a>
+    			<a href="#subtab-finish">内饰品牌</a>
+    			<a href="#subtab-amenity">项目设施</a>
 			</div>
 			<div id="subtab-description" class="shown detailbox">
 				<span class="arrow"></span>

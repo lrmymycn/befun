@@ -147,7 +147,20 @@ Main = {
 			if(i == Search.projects.length - 1){
 				cls = 'item last';
 			}
-			var $div = $('<div class="' + cls +'" data-id="' + project.id + '" data-lat="' + project.latitude + '" data-lng="' + project.longitude + '"><img src="' + project.logo.largeUrl + '" alt="' + project.name + '" height="70" width="170" /></div>');
+			var html = '<div class="' + cls +'" data-id="' + project.id + '" data-lat="' + project.latitude + '" data-lng="' + project.longitude + '">'
+					    + '<div class="clearfix">'
+							+ '<img src="' + project.picture.mediumUrl + '" alt="' + project.name + '" width="140" height="94"/>'
+							+ '<div class="info">'
+								+ '<label>类型:</label><span>公寓</span><br/>'
+								+ '<label>价格:</label><span>60万 - 80万</span><br/>'
+								+ '<label>区域:</label>' + project.suburbName + '<br/>'
+								+ '<label>房型:</label><span>2房，3房</span><br/>'
+								+ '<label>开发商:</label><span>' + Tools.refineDeveloperName(project.developer) + '</span><br/>'
+					 		+ '</div>'
+					 	+ '</div>'
+					    + '<div class="intro">简介: 高尚社区，宽带入户。英国管家，倍有面子。开个日本车你都不好意思和邻居打招呼。</div>'
+					 + '</div>';
+			var $div = $(html);
 			
 			$div.click(function(){
 				var lat = $(this).data('lat');
@@ -1245,92 +1258,62 @@ FloorplanPopup = {
 											'<table>' +
 												'<tr>' +
 													'<td width="25"></td>' +
-													'<td width="100">Building No.</td>' +
+													'<td width="100">栋</td>' +
 													'<td>{building}</td>' +
 												'</tr>' +
 												'<tr>' +
-													'<td></td>' +
-													'<td>Lot No.</td>' +
-													'<td>{lot}</td>' +
-												'</tr>' +
-												'<tr>' +
-													'<td></td>' +
-													'<td>Split Level</td>' +
-													'<td>{split}</td>' +
-												'</tr>' +
-												'<tr>' +
-													'<td></td>' +
-													'<td>Stage</td>' +
-													'<td>{stage}</td>' +
-												'</tr>' +
-												'<tr>' +
 													'<td></td>' + 
-													'<td>Level</td>' +
+													'<td>楼层</td>' +
 													'<td>{level}</td>' + 
 												'</tr>' +
 												'<tr>' +
-													'<td></td>' + 
-													'<td>Color Schema</td>' +
-													'<td>{color}</td>' +
-												'</tr>' +
-												'<tr>' +
 													'<td></td>' +
-													'<td>Bedroom</td>' +
+													'<td>卧室</td>' +
 													'<td>{bedrooms}</td>' +
 												'</tr>' +
 												'<tr>' +
 													'<td></td>' +
-													'<td>Bathroom</td>' +
+													'<td>卫生间</td>' +
 													'<td>{bathrooms}</td>' +
 												'</tr>' +
 												'<tr>' +
+													'<td></td>' + 
+													'<td>书房</td>' +
+													'<td>{study}</td>' + 
+												'</tr>' +
+												'<tr>' +
 													'<td></td>' +
-													'<td>Car Space</td>' +
+													'<td>车位</td>' +
 													'<td>{carspace}</td>' +
 												'</tr>' +
 												'<tr>' +
 													'<td></td>' + 
-													'<td>Study</td>' +
-													'<td>{study}</td>' + 
-												'</tr>' +
-												'<tr>' +
-													'<td></td>' + 
-													'<td>Aspect</td>' +
+													'<td>朝向</td>' +
 													'<td>{aspect}</td>' +
 												'</tr>' +
 												'<tr>' +
-													'<td></td>' +
-													'<td>Open Balcony</td>' +
-													'<td>{openbaclony}</td>' +
-												'</tr>' +
-												'<tr>' +
-													'<td></td>' +
-													'<td>Enclosed Balcony</td>' +
-													'<td>{enclosedbaclony}</td>' +
-												'</tr>' +
-												'<tr>' +
 													'<td></td>' + 
-													'<td>Internal Size</td>' +
+													'<td>内部面积</td>' +
 													'<td>{internalsize}</td>' + 
 												'</tr>' +
 												'<tr>' +
 													'<td></td>' + 
-													'<td>External Size</td>' +
+													'<td>外部面积</td>' +
 													'<td>{externalsize}</td>' +
 												'</tr>' +
 												'<tr>' +
 													'<td></td>' +
-													'<td>Total Size</td>' +
+													'<td>总面积</td>' +
 													'<td>{totalsize}</td>' +
 												'</tr>' +
 												'<tr>' +
 													'<td></td>' +
-													'<td>Price</td>' +
+													'<td>价格</td>' +
 													'<td>{price}</td>' +
 												'</tr>' +
 												'<tr>' +
 													'<td></td>' +
-													'<td>Price/m<sup>2</sup></td>' +
+													'<td>平方单价</td>' +
 													'<td>{pricepersquare}</td>' +
 												'</tr>' +
 											'</table>';
@@ -1339,18 +1322,12 @@ FloorplanPopup = {
 									cls = 'shown';
 								}
 								div = div.replace('{id}', apartment.id).replace('{cls}', cls)
-									.replace('{split}', Tools.getTrueOrFalseIcon(floorplan.split))
 									.replace('{level}', apartment.floorLevel)
-									.replace('{lot}', apartment.lotNumber)
-									.replace('{stage}', apartment.stageName)
 									.replace('{building}', apartment.buildingNum)
-									.replace('{color}', apartment.colorScheme)
 									.replace('{aspect}', Tools.getAspect(floorplan.orientationEast,floorplan.orientationNorth, floorplan.orientationSouth, floorplan.orientationWest))
 									.replace('{bedrooms}', floorplan.bedRoomCount)
 									.replace('{bathrooms}', floorplan.bathroomCount)
 									.replace('{study}', Tools.getTrueOrFalseIcon(floorplan.studyroomCount))
-									.replace('{openbaclony}', Tools.getTrueOrFalseIcon(floorplan.openBaclonyCount))
-									.replace('{enclosedbaclony}', Tools.getTrueOrFalseIcon(floorplan.enclosedBaclonyCount))
 									.replace('{internalsize}', floorplan.internalSize + ' m<sup>2</sup>')
 									.replace('{externalsize}', floorplan.externalSize + ' m<sup>2</sup>')
 									.replace('{totalsize}', floorplan.totalSize + ' m<sup>2</sup>')
@@ -2135,16 +2112,16 @@ Tools = {
 	getAspect: function(orientationEast, orientationNorth, orientationSouth, orientationWest){
 		var orientation = '';
 		if(orientationEast){
-			orientation += 'E';
+			orientation += '东';
 		}
 		if(orientationSouth){
-			orientation += 'S';
+			orientation += '南';
 		}
 		if(orientationWest){
-			orientation += 'W';
+			orientation += '西';
 		}
 		if(orientationNorth){
-			orientation += 'N';
+			orientation += '北';
 		}
 		
 		return orientation;
@@ -2226,8 +2203,21 @@ Tools = {
 			default:
 				return 'Any Price';
 		}
+	},
+	refineDeveloperName: function(name){
+		if(name.length > 10){
+			name = name.substring(0, 8) + '...';
+		}
+		
+		return name.capitalize();
 	}
 }
+
+String.prototype.capitalize = function () {
+    return this.replace(/^./, function (char) {
+        return char.toUpperCase();
+    });
+};
 
 /* ClusterOverlay Class */
 function ClusterOverlay(cluster, map){
@@ -2265,7 +2255,7 @@ ClusterOverlay.prototype = new google.maps.OverlayView();
 ClusterOverlay.prototype.onAdd = function(){
 	this._div = document.createElement("DIV");
 	this._div.className = "cluster";
-	this._div.innerHTML = this._count;
+	this._div.innerHTML = "<div class='top'><div class='name'>"+ this._name + "</div></div><div class='bottom'>" + this._count +"</div>";
 	
 	this._statusDiv = document.createElement("DIV");
 	this._statusDiv.className = "clusterStatus";
@@ -2277,14 +2267,14 @@ ClusterOverlay.prototype.onAdd = function(){
 	});
 	
 	if(this._shape != null){
-		this._overlay = new ClusterPolygon(this, this._shape, this._map);
+		//this._overlay = new ClusterPolygon(this, this._shape, this._map);
 	}else{
 		$(this._div).mouseover(function(){
-			thisCluster.showStatus();
+			//thisCluster.showStatus();
 		});
 		
 		$(this._div).mouseout(function(){
-			thisCluster.hideStatus();
+			//thisCluster.hideStatus();
 		});
 	}
 	
@@ -2295,22 +2285,13 @@ ClusterOverlay.prototype.draw = function(){
 	var path =  Main.imageRoot + "img/maps/";
 	var image = null;
 	var width = null;
-	var height = null;
-	if(this._count > 25){
-		image = path + "cluster-x3.png";
-		width = height = 68;
-	}else if(this._count > 15){
-		image = path + "cluster-x2.png";
-		width = height = 56;
-	}else{
-		image = path + "cluster-x1.png";
-		width = height = 28;
-	}
+	var height = null;	
+	image = path + "cluster.png";
+	width = height = 90;
 
 	this._div.style.backgroundImage = "url('" + image + "')";
-	this._div.style.width = width + "px";
-	this._div.style.height = height + "px";
-	this._div.style.lineHeight = height + "px";
+	//this._div.style.width = width + "px";
+	//this._div.style.height = height + "px";
 	
 	this._imageCenter = this.getProjection().fromLatLngToDivPixel(this._markerCenter);
 	this._div.style.left = (this._imageCenter.x - (width / 2)) + "px";
@@ -2356,12 +2337,12 @@ function ClusterPolygon(clusterOverlay, shape, map){
 	
 	google.maps.event.addListener(this, 'mouseover', function(){
 		this.setOptions(this._optionsHover);
-		this._clusterOverlay.showStatus();
+		//this._clusterOverlay.showStatus();
 	});
 	
 	google.maps.event.addListener(this, 'mouseout', function(){
 		this.setOptions(this._options);
-		this._clusterOverlay.hideStatus();
+		//this._clusterOverlay.hideStatus();
 	})
 	
 	google.maps.event.addListener(this, 'click', function(){
@@ -2374,7 +2355,7 @@ ClusterPolygon.prototype = new google.maps.Polygon();
 function ProjectOverlay(project, map){
 	this._map = map;
 	this._div = null;
-	this._logo = project.logo.largeUrl;
+	this._logo = project.picture.mediumUrl;
 	this._markerCenter = new google.maps.LatLng(project.latitude, project.longitude);
 	this._imageCenter = null;
 	this._projectId = project.id;
@@ -2385,7 +2366,7 @@ ProjectOverlay.prototype = new google.maps.OverlayView();
 ProjectOverlay.prototype.onAdd = function(){
 	this._div = document.createElement("DIV");
 	this._div.className = "project";
-	this._div.innerHTML = "<img src='" + this._logo + "' width='100' height='42'/>";
+	this._div.innerHTML = "<img src='" + this._logo + "' width='140' height='94'/>";
 	
 	var center = this._markerCenter;
 	var projectId = this._projectId;
