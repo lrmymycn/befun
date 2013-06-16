@@ -154,8 +154,6 @@ Main = {
 								+ '<label>类型:</label><span>公寓</span><br/>'
 								+ '<label>价格:</label><span>60万 - 80万</span><br/>'
 								+ '<label>区域:</label>' + project.suburbName + '<br/>'
-								+ '<label>房型:</label><span>2房，3房</span><br/>'
-								+ '<label>开发商:</label><span>' + Tools.refineDeveloperName(project.developer) + '</span><br/>'
 					 		+ '</div>'
 					 	+ '</div>'
 					    + '<div class="intro">简介: 高尚社区，宽带入户。英国管家，倍有面子。开个日本车你都不好意思和邻居打招呼。</div>'
@@ -981,6 +979,7 @@ PanelPopup = {
 			}
 		});
 		
+		/*
 		$('#overview-list .items a').live('click', function(e){
 			e.preventDefault();
 			if($(this).hasClass('active')){
@@ -1002,7 +1001,8 @@ PanelPopup = {
 			
 			return false;
 		});
-		
+		$("#overview-list .scrollable").scrollable();
+		*/
 		$('#floorplan-list .item').live('click', function(){
 			FloorplanPopup.load($(this).data('id'));
 		});
@@ -1012,16 +1012,13 @@ PanelPopup = {
 			$('#floorplan-list2 .item').removeClass('active');
 			$(this).addClass('active');
 		})
-		
-		$("#overview-list .scrollable").scrollable();
+
 		$("#floorplan-list .scrollable").scrollable({vertical: true});
 		$('#floorplan-list2 .scrollable').scrollable();
 		
 		$("#panel select.selectbox").selectbox();
 		
-		$('#panel .brochure a').fancybox({
-			padding : 0
-		});
+		$('#tab-contactus form').validate();
 	},
 	show:function(){
 		$('#panel .top .tabs a:first-child').click();
@@ -1090,6 +1087,8 @@ PanelPopup = {
 					var project = json.view;
 					if(project != null && project != undefined){
 						$('#project-name').text(project.name);
+						$('#tab-contactus .project').text(project.name);
+						$('#hfproject').val(project.name);
 						//$('#subtab-description .detail').html(project.description);
 						//$('#subtab-finish .detail').html(project.finish);
 						//$('#subtab-amenity .detail').html(project.amenity);
@@ -1098,6 +1097,19 @@ PanelPopup = {
 						//$('#subtab-offers').html(project.offers);
 						
 						var photos = project.medias;
+						$('#tab-overview .brochure').empty();
+						for(var i = 0; i < photos.length; i++){
+							var cls = '';
+							if((i + 1) % 3 == 0){
+								cls = 'last';
+							}
+							var $li = '<li class="' + cls + '"><a href="' + photos[i].mediumUrl + '" rel="brochure"><img src="' + photos[i].mediumUrl + '" alt=""/></a></li>';
+							$('#tab-overview .brochure').append($li);
+						}
+						$('#tab-overview .brochure a').fancybox({
+							padding : 0
+						});
+						/*
 						$('#overview-main').empty();
 						if(photos.length > 0){
 							$('#overview-main').append('<img src="' + photos[0].mediumUrl + '" width="510" height="343" alt=""/>');
@@ -1118,7 +1130,7 @@ PanelPopup = {
 							}
 							$div.append($item);
 						}
-
+						*/
 						FloorPlanFilter.currentFloorPlans = project.floorplans;
 						FloorPlanFilter.updateList();
 						
@@ -1228,9 +1240,20 @@ FloorplanPopup = {
 				success: function(json){
 					var floorplan = json.view;
 					if(floorplan != null && floorplan != undefined){
-						var img = '<img src="' + floorplan.salePicture.mediumUrl + '" alt=""/>';
+						var picture = null;
+						if(floorplan.salePicture != null){
+							picture = floorplan.salePicture;
+						}
+						if(floorplan.publicPicture != null){
+							picture = floorplan.publicPicture;
+						}
+						if(picture == null){
+							return;
+						}
+						
+						var img = '<img src="' + picture.mediumUrl + '" alt=""/>';
 						$('#lightbox .floorplan .image').html(img);
-						$('#lightbox .floorplan .zoom').attr('href', floorplan.salePicture.largeUrl);
+						$('#lightbox .floorplan .zoom').attr('href', picture.largeUrl);
 						$('#units .items').empty();
 						$('#apartments').empty();
 						
@@ -1336,6 +1359,60 @@ FloorplanPopup = {
 									.replace('{price}', '$' + Tools.numberWithCommas(apartment.price));
 								$('#apartments').append($(div));
 							}
+						}else{
+							var div = '<div>' +
+											'<table>' +
+												'<tr>' +
+													'<td width="25"></td>' +
+													'<td width="70">卧室</td>' +
+													'<td>{bedrooms}</td>' +
+													'<td width="70">卫生间</td>' +
+													'<td>{bathrooms}</td>' +
+												'</tr>' +
+												'<tr>' +
+													'<td></td>' + 
+													'<td>书房</td>' +
+													'<td>{study}</td>' + 
+													'<td>朝向</td>' +
+													'<td>{aspect}</td>' +
+												'</tr>' +
+												'<tr>' +
+													'<td></td>' + 
+													'<td>内部面积</td>' +
+													'<td>{internalsize}</td>' + 
+													'<td>外部面积</td>' +
+													'<td>{externalsize}</td>' +
+												'</tr>' +
+												'<tr>' +
+													'<td></td>' +
+													'<td>总面积</td>' +
+													'<td>{totalsize}</td>' +
+													'<td></td>' +
+													'<td></td>' +
+												'</tr>' +
+												'<tr>' +
+													'<td></td>' +
+													'<td>价格范围</td>' +
+													'<td colspan="3">{price}</td>' +
+												'</tr>' +
+											'</table>';
+							
+							var price = '';
+							if(floorplan.minPrice == null && floorplan.minPrice == undefined){
+								price = '敬请期待';
+							}else{
+								price = '$' + Tools.numberWithCommas(floorplan.minPrice) + ' - ' + '$' + Tools.numberWithCommas(floorplan.maxPrice);
+							}
+							
+							div = div.replace('{aspect}', Tools.getAspect(floorplan.orientationEast,floorplan.orientationNorth, floorplan.orientationSouth, floorplan.orientationWest))
+									.replace('{bedrooms}', floorplan.bedRoomCount)
+									.replace('{bathrooms}', floorplan.bathroomCount)
+									.replace('{study}', Tools.getTrueOrFalseIcon(floorplan.studyroomCount))
+									.replace('{internalsize}', floorplan.internalSize + ' m<sup>2</sup>')
+									.replace('{externalsize}', floorplan.externalSize + ' m<sup>2</sup>')
+									.replace('{totalsize}', floorplan.totalSize + ' m<sup>2</sup>')
+									.replace('{price}', price);
+								$('#apartments').append($(div));
 						}
 						
 						//$("#units .scrollable").scrollable({ vertical: true});
@@ -1453,7 +1530,19 @@ FloorPlanFilter = {
 		}
 		
 		for(var i = 0; i < floorplans.length; i++){
-			var $item = $('<a href="javascript:;" class="item" data-id="' + floorplans[i].id + '"><img src="' + floorplans[i].salePicture.smallUrl + '" alt="" /></a>');				
+			var picture = null;
+			if(floorplans[i].salePicture != null){
+				picture = floorplans[i].salePicture;
+			}
+			if(floorplans[i].publicPicture != null){
+				picture = floorplans[i].publicPicture;
+			}
+			
+			if(picture == null){
+				continue;
+			}
+			
+			var $item = $('<a href="javascript:;" class="item" data-id="' + floorplans[i].id + '"><img src="' + picture.smallUrl + '" alt="" /></a>');				
 			var $item2 = $item.clone();
 			
 			var index = Math.floor(i / 4);	
@@ -2104,9 +2193,9 @@ Tools = {
 	},
 	getTrueOrFalseIcon: function(num){
 		if(num == 1){
-			return '<i class="tick"></i>';
+			return '有';
 		}else{
-			return '<i class="cross"></i>';
+			return '无';
 		}
 	},
 	getAspect: function(orientationEast, orientationNorth, orientationSouth, orientationWest){
@@ -2203,13 +2292,6 @@ Tools = {
 			default:
 				return 'Any Price';
 		}
-	},
-	refineDeveloperName: function(name){
-		if(name.length > 10){
-			name = name.substring(0, 8) + '...';
-		}
-		
-		return name.capitalize();
 	}
 }
 
@@ -2406,8 +2488,8 @@ ProjectOverlay.prototype.draw = function(){
 	var top = this._imageCenter.y;
 	
 	img.onload = function() {
-		div.style.left = (left - (100 / 2) - 3) + "px";
-		div.style.top = (top - (42 / 2) - 13) + "px";
+		div.style.left = (left - (140 / 2) - 3) + "px";
+		div.style.top = (top - (94 / 2) - 13) + "px";
 	}
 	img.src = this._logo;
 }

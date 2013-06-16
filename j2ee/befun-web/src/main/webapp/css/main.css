@@ -303,7 +303,8 @@ span.close{
 
 input[type="text"],
 input[type="email"],
-input[type="password"]{
+input[type="password"],
+textarea{
 	display: inline-block;
 	vertical-align: middle;
 	-webkit-box-shadow: inset 1px 2px 3px rgba(0, 0, 0, 0.2);
@@ -315,6 +316,10 @@ input[type="password"]{
 	font-size:13px;
 	line-height:25px;
 	padding:2px 8px;
+}
+
+textarea{
+	line-height:20px;
 }
 
 span.checkbox{
@@ -834,17 +839,19 @@ header .menu #view-client{
 #projectlist .item .info{
 	float:left;
 	width:140px;
-	padding:5px 10px;
+	padding:0 10px;
+	font-size:13px;
 }
 
 #projectlist .item .info label{
-	width: 50px;
+	width: 40px;
 	display: inline-block;
 	cursor:pointer;
 }
 
 #projectlist .item .intro{
 	padding-top:5px;
+	font-size:13px;
 }
 
 .home footer {
@@ -855,7 +862,7 @@ header .menu #view-client{
 	bottom:0px;
 	margin-left:10px;
 	padding-left:10px;
-	width:300px;
+	width:328px;
 	background:#ffffff;
 	color:#666666;
 }
@@ -918,8 +925,7 @@ footer a{
 #panel .top .tabs a{
 	float:left;
 	text-align:center;
-	padding:0 10px;
-	padding-top:2px;
+	padding:2px 18px 0;
 	line-height:34px;
 	color:#222222;
 	border-left:1px solid #c0c0c0;
@@ -947,7 +953,6 @@ footer a{
 	display:inline-block;
 	height:24px;
 	line-height:24px;
-	font-size:11px;
 	padding:0 10px;
 	border:1px solid #dfdfdf;
 	color:#97B833;
@@ -971,6 +976,15 @@ footer a{
 	position:relative;
 }
 
+.tab-block .box{
+	background:#ffffff;
+	border:1px solid #dfdfdf;
+	width:480px;
+	height:420px;
+	padding:0 10px;
+	overflow-y:auto;
+}
+
 .tab-block .detailbox .arrow{
 	width:21px;
 	height:8px;
@@ -981,6 +995,37 @@ footer a{
 
 .tab-block .detailbox .detail{
 	padding: 5px 10px;
+	height:369px;
+	overflow-y:auto;
+}
+
+.tab-block ol{
+	padding-left:30px;
+	margin:0px;
+}
+
+.tab-block ol li{
+	list-style-type:decimal;
+	font-size: 25px;
+	font-weight: bold;
+	font-style: italic;
+	padding:10px 0;
+	color:#cccccc;
+	border-bottom:1px solid #cccccc;
+}
+
+.tab-block ol li:last-child{
+	border:none;
+}
+
+.tab-block ol li p{
+	font-size:12px;
+	font-weight:normal;
+	font-style:normal;
+	margin:0px;
+	color:#333333;
+	display: inline-block;
+	vertical-align: text-top;
 }
 
 .tab-block .detailbox .detail table{
@@ -993,7 +1038,7 @@ footer a{
 
 .tab-block .detailbox .detail table td{
 	vertical-align: top;
-	padding:5px 0;
+	padding:5px;
 }
 
 .tab-block .detailbox ul.amenity li{
@@ -1010,7 +1055,7 @@ footer a{
 	margin-right:0px;
 }
 
-#tab-features {
+#tab-overview {
 	padding:18px 0 18px 18px;
 	height:400px;
 	overflow-y:auto;
@@ -1018,6 +1063,7 @@ footer a{
 
 .tab-block .brochure li img{
 	width: 159px;
+	height: 107px;
 	border-bottom:2px solid #aad820;
 	border-radius: 3px;
 	-webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.45);
@@ -1082,15 +1128,19 @@ footer a{
 }
 
 #subtab-description .arrow{
-	left:29px;
+	left:24px;
+}
+
+#subtab-feature .arrow{
+	left:99px;
 }
 
 #subtab-finish .arrow{
-	left:116px;
+	left:172px;
 }
 
 #subtab-amenity .arrow{
-	left:203px;
+	left:233px;
 }
 
 #subtab-data .arrow{
@@ -1256,6 +1306,29 @@ footer a{
 	float:left;
 }
 
+#tab-contactus form .title{
+	width:80px;
+	font-size:13px;
+}
+
+#tab-contactus form textarea{
+	width:385px;
+}
+
+#tab-contactus form .project{
+	height:31px;
+	line-height:31px;
+	font-weight:bold;
+}
+
+#tab-contactus form .buttons .btn{
+	font-size:14px;
+	height:30px;
+	line-height:30px;
+	margin-left:80px;
+	padding:0 20px;
+}
+
 #lightbox {
 	position:absolute;
 	z-index:550;
@@ -1339,6 +1412,10 @@ footer a{
 	top:0;
 }
 
+#lightbox.public .content .floorplan{
+	left:346px;
+}
+
 #lightbox .content .floorplan .zoom{
 	width:50px;
 	height:50px;
@@ -1357,13 +1434,20 @@ footer a{
 	width:585px;
 }
 
-#lightbox #apartments{
-	position:relative;
+#lightbox .left{
 	float:left;
 	width:245px;
 	height:522px;
-	background:url('/img/floorplan-bg.png') repeat-y;
+	background:url('/img/floorplan-bg.png') repeat-y top right;
 	z-index:551;
+}
+
+#lightbox.public .left{
+	width:356px;
+}
+
+#lightbox #apartments{
+	position:relative;
 }
 
 #apartments .name{
@@ -1381,12 +1465,44 @@ footer a{
 	margin-top:10px;
 }
 
+#lightbox.public table{
+	width:346px;
+}
+
 #apartments table tr{
-	height:28px;
+	height:31px;
 }
 
 #apartments table tr:nth-child(even){
 	background:#eaeaea;
+}
+
+#lightbox .contactus{
+	padding:10px 28px 0;
+	background:#eaeaea;
+	width:290px;
+	height:357px;
+}
+
+#lightbox form .row{
+	margin-bottom:5px;
+}
+
+#lightbox form .title{
+	width:72px;
+	
+}
+
+#lightbox form .project{
+	line-height:31px;
+}
+
+#lightbox form textarea{
+	width:205px;
+}
+
+#lightbox form .buttons{
+	padding-left:72px;
 }
 
 #units{
@@ -1584,14 +1700,14 @@ footer a{
 	text-align:left;
 	width:130px;
 }
-.project {
+#map .project {
 	position:absolute;
 	cursor:pointer;
 	border: 3px solid #ffffff;
 	border-radius: 2px 2px 2px 2px;
 	box-shadow: 0 3px 16px rgba(0, 0, 0, 0.7);
 }
-.project:after, .project:before {
+#map .project:after, .project:before {
 	top: 100%;
 	border: solid transparent;
 	content: " ";
@@ -1600,14 +1716,14 @@ footer a{
 	position: absolute;
 	pointer-events: none;
 }
-.project:after {
+#map .project:after {
 	border-color: rgba(255, 255, 255, 0);
 	border-top-color: #ffffff;
 	border-width: 7px;
 	left: 50%;
 	margin-left: -7px;
 }
-.project:before {
+#map .project:before {
 	border-color: rgba(255, 255, 255, 0);
 	border-top-color: #ffffff;
 	border-width: 11px;
@@ -2125,12 +2241,22 @@ form .input .to{
 	vertical-align: top;
 }
 
-form input[type="text"]{
+form input[type="text"],
+form input[type="email"]{
 	width:200px;
 }
 
+form input.error{
+	border:1px solid #ff0000;
+}
+
+form label.error{
+	color:#ff0000;
+	padding-left:10px;
+}
+
 form textarea{
-	width:500px;
+	width:400px;
 	height:100px;
 	padding:5px;
 }

@@ -20,8 +20,7 @@
 					<div class="menu">
 						<ul>
 							<li><a href="mailto:info@befun.com.au">Join us</a></li>
-							<li><a href="http://demo.befun.com.au">Try demo website</a></li>
-							<li class="phone"><i class="phone"></i> 02-1234-5678</li>
+							<li class="phone"><i class="phone"></i> 02-7902-0866</li>
 						</ul>
 					</div>
 				</div>
@@ -40,7 +39,7 @@
 				</div>
 				<div class="button">
 					<!--<a class="btn red" href="javascript:;" onclick="$('#form-login').submit();">Login</a>-->
-					<input type="submit" class="btn red" value="Login"/> <span class="or">OR</span> <a href="http://demo.befun.com.au" class="try btn">Try Demo Website</a>
+					<input type="submit" class="btn red" value="Login"/>
 				</div>
 			</form>
 		</div>

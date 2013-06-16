@@ -11,27 +11,35 @@
 		<a href="javascript:;" id="btn-search"></a>
 	</div>
 	<div class="menu">
-		<ul><%
-				Long currentClientId = null; 
-				try{
-				    Object obj = session.getAttribute("befunContainer");
-				    if(obj != null && obj instanceof SessionContainer){
-						SessionContainer sc =(SessionContainer)obj;
-						currentClientId = (Long)sc.getProperty("currentClient");
-				    }
-				}catch(Exception ex){
-				    
-				}
-			%>
-			<sec:authentication property="principal" var="authentication" />
-			<li><a href="javascript:;" id="change-client">Hi ${authentication.username} <span id="clientname" data-id="<%= currentClientId %>"></span></a> <a href="client.jsp" id="view-client">(view)</a></li>
-			<li class="more"><a href="javascript:;">More<i class="arrow-down-grap"></i></a>
-				<ul>
-					<li><a href="clientlist.jsp">Clients</a></li>
-					<li><a href="#">Cases</a></li>
-					<li><a href="<c:url value='/j_spring_security_logout' />">Log out</a></li>
-				</ul>
-			</li>
+		<ul>
+			<sec:authorize access="isAuthenticated()">
+				<%
+					Long currentClientId = null; 
+					try{
+						Object obj = session.getAttribute("befunContainer");
+						if(obj != null && obj instanceof SessionContainer){
+							SessionContainer sc =(SessionContainer)obj;
+							currentClientId = (Long)sc.getProperty("currentClient");
+						}
+					}catch(Exception ex){
+					
+					}
+				%>
+				<sec:authentication property="principal" var="authentication" />
+				<li><a href="javascript:;" id="change-client">Hi ${authentication.username} <span id="clientname" data-id="<%= currentClientId %>"></span></a> <a href="client.jsp" id="view-client">(view)</a></li>
+					<li class="more"><a href="javascript:;">More<i class="arrow-down-grap"></i></a>
+					<ul>
+						<li><a href="clientlist.jsp">Clients</a></li>
+						<li><a href="#">Cases</a></li>
+						<li><a href="<c:url value='/j_spring_security_logout' />">Log out</a></li>
+					</ul>
+				</li>
+			</sec:authorize>
+			<sec:authorize access="isAnonymous()">
+				<li><a href="login.jsp">Login</a></li>
+				<li><a href="mailto:info@befun.com.au">Join us</a></li>
+				<li class="phone"><i class="phone"></i> 02-7902-0866</li>
+			</sec:authorize>
 		</ul>
 	</div>
 	<div id="client" class="popover">
