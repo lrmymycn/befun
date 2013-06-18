@@ -6,105 +6,118 @@ import com.befun.domain.estate.MediaType;
 
 public class MediaView extends BaseEasteView<Media> {
 
-    private static final long serialVersionUID = -1484346576753677173L;
+	private static final long serialVersionUID = -1484346576753677173L;
 
-    private Long projectId;
+	private Long projectId;
 
-    private String name;
+	private String projectBid;
 
-    private String smallUrl;
+	private String name;
 
-    private String mediumUrl;
+	private String smallUrl;
 
-    private String largeUrl;
+	private String mediumUrl;
 
-    private String alt;
+	private String largeUrl;
 
-    private MediaType mediaType;
+	private String alt;
 
-    private ContentType contentType;
+	private MediaType mediaType;
 
-    public MediaView() {
-        super();
-    }
+	private ContentType contentType;
 
-    public MediaView(Media model) {
-        super(model);
-    }
+	public MediaView() {
+		super();
+	}
 
-    @Override
-    public Media getModel() {
-        return this.model;
-    }
+	public MediaView(Media model) {
+		super(model);
+	}
 
-    public Long getProjectId() {
-        return projectId;
-    }
+	@Override
+	public Media getModel() {
+		return this.model;
+	}
 
-    public void setProjectId(Long projectId) {
-        this.projectId = projectId;
-    }
+	public Long getProjectId() {
+		return projectId;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setProjectId(Long projectId) {
+		this.projectId = projectId;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getProjectBid() {
+		return projectBid;
+	}
 
-    public String getSmallUrl() {
-        return smallUrl;
-    }
+	public void setProjectBid(String projectBid) {
+		this.projectBid = projectBid;
+	}
 
-    public void setSmallUrl(String smallUrl) {
-        this.smallUrl = smallUrl;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getMediumUrl() {
-        return mediumUrl;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setMediumUrl(String mediumUrl) {
-        this.mediumUrl = mediumUrl;
-    }
+	public String getSmallUrl() {
+		return smallUrl;
+	}
 
-    public String getLargeUrl() {
-        return largeUrl;
-    }
+	public void setSmallUrl(String smallUrl) {
+		this.smallUrl = smallUrl;
+	}
 
-    public void setLargeUrl(String largeUrl) {
-        this.largeUrl = largeUrl;
-    }
+	public String getMediumUrl() {
+		return mediumUrl;
+	}
 
-    public String getAlt() {
-        return alt;
-    }
+	public void setMediumUrl(String mediumUrl) {
+		this.mediumUrl = mediumUrl;
+	}
 
-    public void setAlt(String alt) {
-        this.alt = alt;
-    }
+	public String getLargeUrl() {
+		return largeUrl;
+	}
 
-    public MediaType getMediaType() {
-        return mediaType;
-    }
+	public void setLargeUrl(String largeUrl) {
+		this.largeUrl = largeUrl;
+	}
 
-    public void setMediaType(MediaType mediaType) {
-        this.mediaType = mediaType;
-    }
+	public String getAlt() {
+		return alt;
+	}
 
-    public ContentType getContentType() {
-        return contentType;
-    }
+	public void setAlt(String alt) {
+		this.alt = alt;
+	}
 
-    public void setContentType(ContentType contentType) {
-        this.contentType = contentType;
-    }
+	public MediaType getMediaType() {
+		return mediaType;
+	}
 
-    @Override
-    public String toString() {
-        return "MediaView [name=" + name + ", smallUrl=" + smallUrl + ", mediumUrl=" + mediumUrl + ", largeUrl=" + largeUrl + ", alt=" + alt + ", mediaType="
-               + mediaType + ", contentType=" + contentType + ", toString()=" + super.toString() + "]";
-    }
+	public void setMediaType(MediaType mediaType) {
+		this.mediaType = mediaType;
+	}
+
+	public ContentType getContentType() {
+		return contentType;
+	}
+
+	public void setContentType(ContentType contentType) {
+		this.contentType = contentType;
+	}
+
+	@Override
+	public String toString() {
+		return "MediaView [name=" + name + ", smallUrl=" + smallUrl
+				+ ", mediumUrl=" + mediumUrl + ", largeUrl=" + largeUrl
+				+ ", alt=" + alt + ", mediaType=" + mediaType
+				+ ", contentType=" + contentType + ", toString()="
+				+ super.toString() + "]";
+	}
 
 }

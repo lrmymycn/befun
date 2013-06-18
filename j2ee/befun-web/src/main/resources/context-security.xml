@@ -19,16 +19,16 @@
     <http pattern="/jquery-ui/**" security="none" />
     <http pattern="/struts/**" security="none" />
     <http use-expressions="true" auto-config="true">
-        <intercept-url pattern="/" access="hasAnyRole('SUPER','DATA_ADMIN','MANAGER','SALE')" requires-channel="http" />
-        <intercept-url pattern="/index.jsp**" access="hasAnyRole('SUPER','DATA_ADMIN','MANAGER','SALE')" requires-channel="http" />
+        <intercept-url pattern="/" access="permitAll" requires-channel="http" />
+        <intercept-url pattern="/index.jsp**" access="permitAll" requires-channel="http" />
         <intercept-url pattern="/compare.jsp**" access="hasAnyRole('SUPER','DATA_ADMIN','MANAGER','SALE')" requires-channel="http" />
         <intercept-url pattern="/clientlist.jsp**" access="hasAnyRole('SUPER','DATA_ADMIN','MANAGER','SALE')" requires-channel="http" />
-        <intercept-url pattern="/index.action**" access="hasAnyRole('SUPER','DATA_ADMIN','MANAGER','SALE')" requires-channel="http" />
+        <intercept-url pattern="/index.action**" access="permitAll" requires-channel="http" />
         <intercept-url pattern="/login.jsp**" access="permitAll" requires-channel="http" />
         <intercept-url pattern="/j_spring_security_check" access="isAnonymous()" requires-channel="http" />
         <intercept-url pattern="/j_spring_security_logout" access="isAuthenticated()" requires-channel="http" />
         <intercept-url pattern="/estate/json/demandProjectAggregated.action**" access="permitAll" requires-channel="http" />
-        <intercept-url pattern="/estate/json/*.action**" access="hasAnyRole('SUPER','DATA_ADMIN','MANAGER','SALE')" requires-channel="http" />
+        <intercept-url pattern="/estate/json/*.action**" access="permitAll" requires-channel="http" />
         <intercept-url pattern="/admin/user/createClientPage.action**" access="hasAnyRole('SUPER','DATA_ADMIN','MANAGER','SALE')" requires-channel="http" />
         <intercept-url pattern="/admin/user/createClient.action**" access="hasAnyRole('SUPER','DATA_ADMIN','MANAGER','SALE')" requires-channel="http" />
         <intercept-url pattern="/admin/user/changePasswordPage.action**" access="hasAnyRole('SUPER','DATA_ADMIN','MANAGER','SALE')" requires-channel="http" />
@@ -36,6 +36,8 @@
         <intercept-url pattern="/admin/cacheStatistics.action**" access="hasAnyRole('SUPER')" requires-channel="http" />
         <intercept-url pattern="/admin/impPage.action**" access="hasAnyRole('SUPER','DATA_ADMIN')" requires-channel="http" />
         <intercept-url pattern="/admin/impAccess.action**" access="hasAnyRole('SUPER','DATA_ADMIN')" requires-channel="http" />
+        <intercept-url pattern="/admin/updateMediaUrl.action**" access="hasAnyRole('SUPER','DATA_ADMIN')" requires-channel="http" />
+        <intercept-url pattern="/admin/testUpdateMediaUrl.action**" access="hasAnyRole('SUPER','DATA_ADMIN')" requires-channel="http" />
         <intercept-url pattern="/admin/data/*.action**" access="hasAnyRole('SUPER','DATA_ADMIN')" requires-channel="http" />
         <intercept-url pattern="/admin/data/json/*.action**" access="hasAnyRole('SUPER','DATA_ADMIN')" requires-channel="http" />
         <intercept-url pattern="/admin/profile/*.action**" access="hasAnyRole('SUPER')" requires-channel="http" />
@@ -62,7 +64,8 @@
         <intercept-url pattern="/profile/json/createOrUpdateClientRequirement.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
         <intercept-url pattern="/client.jsp**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
 
-        <intercept-url pattern="/**" access="denyAll" requires-channel="any" />
+        <intercept-url pattern="/**" access="permitAll" requires-channel="any" />
+        <!--intercept-url pattern="/**" access="denyAll" requires-channel="any" /-->
         <form-login login-page="/login.jsp" authentication-failure-url="/login.jsp" />
         <logout logout-success-url="/" />
         <session-management invalid-session-url="/login.jsp" session-fixation-protection="newSession">

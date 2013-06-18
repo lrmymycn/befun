@@ -117,8 +117,8 @@ public class ApartmentQueryCondition extends EstateQueryCondition {
             tmp = Restrictions.le(QCUtils.generatePropertyName(this.getSelfAlias(), "price"), realMaxPrice);
             rs.add(tmp);
         }
-        tmp = Restrictions.gt(QCUtils.generatePropertyName(this.getSelfAlias(), "price"), 0);
-        rs.add(tmp);
+//        tmp = Restrictions.gt(QCUtils.generatePropertyName(this.getSelfAlias(), "price"), 0);
+//        rs.add(tmp);
 
         if (this.soldOut != null) {
             tmp = Restrictions.eq(QCUtils.generatePropertyName(this.getSelfAlias(), "soldOut"), soldOut);

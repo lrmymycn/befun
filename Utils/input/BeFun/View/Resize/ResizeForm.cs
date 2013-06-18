@@ -32,8 +32,55 @@ namespace BeFun.View.Resize
 
         private void InitComponent()
         {
-            this.config = ResizeConfig.getInstance();
             this.mediaDao = new MediaDao();
+            this.renderDefault();
+        }
+
+        private void renderDefault()
+        {
+            this.config = ResizeConfig.getInstance();
+            this.checkBox_EnableLogo.Checked = this.config.enableLogo;
+            foreach (Byte contentType in this.config.enableLogoTypes)
+            {
+                switch (contentType)
+                {
+                    case Media.CONTENT_TYPE_FLOORPLAN:
+                        this.checkBox_Enable_Floorplan.Checked = true;
+                        break;
+                    case Media.CONTENT_TYPE_RENDER_INTERNAL:
+                        this.checkBox_Enable_RenderInternal.Checked = true;
+                        break;
+                    case Media.CONTENT_TYPE_RENDER_EXTERNAL:
+                        this.checkBox_Enable_RenderExternal.Checked = true;
+                        break;
+                    case Media.CONTENT_TYPE_PHOTOGRAPH:
+                        this.checkBox_Enable_Photo.Checked = true;
+                        break;
+                    case Media.CONTENT_TYPE_ENV:
+                        this.checkBox_Enable_Env.Checked = true;
+                        break;
+                    case Media.CONTENT_TYPE_FLOORPLATE:
+                        this.checkBox_Enable_Floorplate.Checked = true;
+                        break;
+                    case Media.CONTENT_TYPE_OTHERS:
+                        this.checkBox_Enable_Others.Checked = true;
+                        break;
+                    case Media.CONTENT_TYPE_PROJECT_OVERVIEW:
+                        this.checkBox_Enable_ProjectOveriew.Checked = true;
+                        break;
+                    case Media.CONTENT_TYPE_PROJECT_DESCRIPTION:
+                        this.checkBox_Enable_ProjectDesc.Checked = true;
+                        break;
+                    case Media.CONTENT_TYPE_PROJECT_FEATURE:
+                        this.checkBox_Enable_ProjectFeature.Checked = true;
+                        break;
+                    case Media.CONTENT_TYPE_PROJECT_SCHEME:
+                        this.checkBox_Enable_ProjectScheme.Checked = true;
+                        break;
+                    default:
+                        break;
+                }
+            }
             this.textBox_SmallLogo.Text = this.config.smallLogo;
             this.textBox_MediumLogo.Text = this.config.mediumLogo;
             this.textBox_LargeLogo.Text = this.config.largeLogo;
@@ -45,9 +92,8 @@ namespace BeFun.View.Resize
             this.numericUpDown_Overview_MediumWidth.Value = this.config.overview_mediumWidth;
             this.numericUpDown_Overview_SmallHeight.Value = this.config.overview_smallHeight;
             this.numericUpDown_Overview_SmallWidth.Value = this.config.overview_smallWidth;
-            this.checkBox_EnableLogo.Checked = this.config.enableLogo;
         }
-        
+
         private void textBox_Floorplan_SmallLogo_Double_Click(object sender, EventArgs e)
         {
             OpenFileDialog fileDialog = new OpenFileDialog();
@@ -97,6 +143,7 @@ namespace BeFun.View.Resize
 
         private void button_Resize_Click(object sender, EventArgs e)
         {
+            this.saveConfig();
             IList<Media> medias = mediaDao.queryAll();
             DirectoryInfo imgRootDir = new DirectoryInfo(PathUtils.GetImgRootPath());
             string title = "all";
@@ -110,19 +157,13 @@ namespace BeFun.View.Resize
 
         private void button_Reset_Click(object sender, EventArgs e)
         {
-            this.numericUpDown_Floorplan_MediumHeight.Value = 510;
-            this.numericUpDown_Floorplan_MediumWidth.Value = 680;
-            this.numericUpDown_Floorplan_SmallHeight.Value = 90;
-            this.numericUpDown_Floorplan_SmallWidth.Value = 120;
-            this.numericUpDown_Overview_MediumHeight.Value = 343;
-            this.numericUpDown_Overview_MediumWidth.Value = 510;
-            this.numericUpDown_Overview_SmallHeight.Value = 56;
-            this.numericUpDown_Overview_SmallWidth.Value = 84;
+            this.renderDefault();
         }
 
-        private void button_Logo_Click(object sender, EventArgs e)
+        private void button_Save_Click(object sender, EventArgs e)
         {
             this.saveConfig();
+            MyMessageBox.ShowBox(this, "Watermark config saved!");
         }
 
         private void saveConfig()
@@ -143,6 +184,51 @@ namespace BeFun.View.Resize
             Int32 overview_mediumHeight = (Int32)this.numericUpDown_Overview_MediumHeight.Value;
 
             cfg.enableLogo = enableLogo;
+            cfg.enableLogoTypes.Clear();
+            if (this.checkBox_Enable_Floorplan.Checked)
+            {
+                cfg.enableLogoTypes.Add(Media.CONTENT_TYPE_FLOORPLAN);
+            }
+            if (this.checkBox_Enable_RenderInternal.Checked)
+            {
+                cfg.enableLogoTypes.Add(Media.CONTENT_TYPE_RENDER_INTERNAL);
+            }
+            if (this.checkBox_Enable_RenderExternal.Checked)
+            {
+                cfg.enableLogoTypes.Add(Media.CONTENT_TYPE_RENDER_EXTERNAL);
+            }
+            if (this.checkBox_Enable_Photo.Checked)
+            {
+                cfg.enableLogoTypes.Add(Media.CONTENT_TYPE_PHOTOGRAPH);
+            }
+            if (this.checkBox_Enable_Env.Checked)
+            {
+                cfg.enableLogoTypes.Add(Media.CONTENT_TYPE_ENV);
+            }
+            if (this.checkBox_Enable_Floorplate.Checked)
+            {
+                cfg.enableLogoTypes.Add(Media.CONTENT_TYPE_FLOORPLATE);
+            }
+            if (this.checkBox_Enable_Others.Checked)
+            {
+                cfg.enableLogoTypes.Add(Media.CONTENT_TYPE_OTHERS);
+            }
+            if (this.checkBox_Enable_ProjectOveriew.Checked)
+            {
+                cfg.enableLogoTypes.Add(Media.CONTENT_TYPE_PROJECT_OVERVIEW);
+            }
+            if (this.checkBox_Enable_ProjectDesc.Checked)
+            {
+                cfg.enableLogoTypes.Add(Media.CONTENT_TYPE_PROJECT_DESCRIPTION);
+            }
+            if (this.checkBox_Enable_ProjectFeature.Checked)
+            {
+                cfg.enableLogoTypes.Add(Media.CONTENT_TYPE_PROJECT_FEATURE);
+            }
+            if (this.checkBox_Enable_ProjectScheme.Checked)
+            {
+                cfg.enableLogoTypes.Add(Media.CONTENT_TYPE_PROJECT_SCHEME);
+            }
             cfg.floorplan_smallWidth = floorplan_smallWidth;
             cfg.floorplan_smallHeight = floorplan_smallHeight;
             cfg.floorplan_mediumWidth = floorplan_mediumWidth;

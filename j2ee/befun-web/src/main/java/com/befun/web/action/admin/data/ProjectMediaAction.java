@@ -3,9 +3,6 @@ package com.befun.web.action.admin.data;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Resource;
-
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -15,7 +12,6 @@ import com.befun.domain.estate.Project;
 import com.befun.domain.estate.ProjectMedia;
 import com.befun.domain.estate.Suburb;
 import com.befun.service.IBaseService;
-import com.befun.service.estate.ProjectMediaService;
 import com.befun.service.query.estate.AreaQueryCondition;
 import com.befun.service.query.estate.ProjectMediaQueryCondition;
 import com.befun.service.query.estate.ProjectQueryCondition;
@@ -45,10 +41,6 @@ public class ProjectMediaAction<T extends ProjectMedia, V extends ProjectMediaVi
     private List<SuburbView> qcSuburbs = new ArrayList<SuburbView>();
 
     private List<ProjectView> qcProjects = new ArrayList<ProjectView>();
-
-    @Resource
-    @Qualifier("ProjectMediaService")
-    private ProjectMediaService service;
     
     public ProjectMediaAction(){
         this.view = new ProjectMediaView();
@@ -149,7 +141,7 @@ public class ProjectMediaAction<T extends ProjectMedia, V extends ProjectMediaVi
 
     @Override
     public IBaseService<ProjectMedia, Long> getService() {
-        return service;
+        return this.projectMediaService;
     }
 
 }

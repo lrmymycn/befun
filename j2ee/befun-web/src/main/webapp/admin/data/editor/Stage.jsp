@@ -6,6 +6,13 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Edit Stage ID:${view.id},LN:${view.name}</title>
+<script>
+	function initPage(){
+		$( "#areaCombobox" ).combobox();
+		$( "#suburbCombobox" ).combobox();
+		$( "#projectCombobox" ).combobox();
+	}
+</script>
 </head>
 <body>
 	<s:form action="saveStage.action" method="post">
@@ -13,7 +20,33 @@
 		<s:hidden name="view.bid"></s:hidden>
 		<s:label name="view.id" label="ID"></s:label>
 		<s:label name="view.bid" label="BID"></s:label>
-		<s:textfield name="view.projectId" label="projectId"></s:textfield>
+		<tr><td class="tdLabel">
+			<label>Area: </label></td>
+			<td>
+			<select id="areaCombobox" name="paramAreaId" onChange="getSuburbByArea($('#areaCombobox'), $('#suburbCombobox'));">
+				<c:forEach items="${qcAreas }" var="a">
+					<option value="${a.id }" <c:if test="${paramAreaId eq a.id}">selected="selected"</c:if>>${a.name }</option>
+				</c:forEach>
+			</select></td>
+		</tr>
+		<tr><td class="tdLabel">
+			<label>Suburb: </label></td>
+			<td>
+			<select id="suburbCombobox" name="paramAreaId" onChange="getProjectBySuburb($('#suburbCombobox'), $('#projectCombobox'));">
+				<c:forEach items="${qcSuburbs }" var="s">
+					<option value="${s.id }" <c:if test="${paramAreaId eq s.id}">selected="selected"</c:if>>${s.name }</option>
+				</c:forEach>
+			</select></td>
+		</tr>
+		<tr><td class="tdLabel">
+			<label>Project: </label></td>
+			<td>
+			<select id="projectCombobox" name="view.projectId">
+				<c:forEach items="${qcProjects }" var="p">
+					<option value="${p.id }" <c:if test="${view.projectId eq p.id}">selected="selected"</c:if>>${p.name }</option>
+				</c:forEach>
+			</select></td>
+		</tr>
 		<s:textfield name="view.name" label="name"></s:textfield>
 		<s:textfield name="view.finishDate" label="finishDate"></s:textfield>
 		<s:textfield name="view.sold" label="sold"></s:textfield>

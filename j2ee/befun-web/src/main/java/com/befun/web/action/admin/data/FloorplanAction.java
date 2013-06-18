@@ -3,9 +3,6 @@ package com.befun.web.action.admin.data;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Resource;
-
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -18,7 +15,6 @@ import com.befun.domain.estate.Project;
 import com.befun.domain.estate.Stage;
 import com.befun.domain.estate.Suburb;
 import com.befun.service.IBaseService;
-import com.befun.service.estate.FloorplanService;
 import com.befun.service.query.estate.AreaQueryCondition;
 import com.befun.service.query.estate.BuildingQueryCondition;
 import com.befun.service.query.estate.FloorplanQueryCondition;
@@ -64,10 +60,6 @@ public class FloorplanAction<T extends Floorplan, V extends FloorplanView> exten
             floorplanTypes.add(FloorplanType.TOWN_HOUSE);
         }
     }
-
-    @Resource
-    @Qualifier("FloorplanService")
-    private FloorplanService service;
     
     public FloorplanAction(){
         this.view = new FloorplanView();
@@ -182,7 +174,7 @@ public class FloorplanAction<T extends Floorplan, V extends FloorplanView> exten
 
     @Override
     public IBaseService<Floorplan, Long> getService() {
-        return service;
+        return this.floorplanService;
     }
 
 }

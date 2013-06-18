@@ -22,7 +22,7 @@ import com.befun.domain.BaseEstateModel;
 @Table(name = "PROJECT_MEDIA")
 @TableGenerator(name = "projectMediaGenerator", table = "ID_GENERATOR", pkColumnName = "gen_name", valueColumnName = "gen_value", pkColumnValue = "projectMedia", allocationSize = 1)
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region="projectMedia")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "projectMedia")
 public class ProjectMedia implements BaseEstateModel<Long> {
 
     private static final long serialVersionUID = -5085346163844201100L;
@@ -39,6 +39,9 @@ public class ProjectMedia implements BaseEstateModel<Long> {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(referencedColumnName = "id", name = "MEDIA_ID")
     private Media media;
+
+    @Column(name = "seq_num")
+    private Integer seqNum;
 
     @Embedded
     private ModelModification modelModification;
@@ -65,6 +68,14 @@ public class ProjectMedia implements BaseEstateModel<Long> {
 
     public void setMedia(Media media) {
         this.media = media;
+    }
+
+    public Integer getSeqNum() {
+        return seqNum;
+    }
+
+    public void setSeqNum(Integer seqNum) {
+        this.seqNum = seqNum;
     }
 
     public ModelModification getModelModification() {

@@ -64,9 +64,9 @@ public class SuburbAction<T extends Suburb, V extends SuburbView> extends AdminA
     }
 
     private void prepareEditorList() {
-        AreaQueryCondition queryCondition = new AreaQueryCondition();
-        queryCondition.setEnabled(null);
-        List<Area> areas = this.areaService.query(queryCondition);
+        AreaQueryCondition areaQc = new AreaQueryCondition();
+        areaQc.setEnabled(null);
+        List<Area> areas = this.areaService.query(areaQc);
         AreaView av = null;
         for (Area a : areas) {
             av = areaConverter.convertToView(a);
@@ -89,9 +89,9 @@ public class SuburbAction<T extends Suburb, V extends SuburbView> extends AdminA
     }
 
     protected void prepareQueryList() {
-        AreaQueryCondition queryCondition = new AreaQueryCondition();
-        queryCondition.setEnabled(null);
-        List<Area> areas = this.areaService.query(queryCondition);
+        AreaQueryCondition areaQc = new AreaQueryCondition();
+        areaQc.setEnabled(null);
+        List<Area> areas = this.areaService.query(areaQc);
         AreaView av = null;
         for (Area a : areas) {
             av = areaConverter.convertToView(a);

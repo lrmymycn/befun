@@ -55,23 +55,23 @@ public class ProjectAction<T extends Project, V extends ProjectView> extends Adm
     }
 
     private void prepareEditorList() {
-        AreaQueryCondition queryCondition = new AreaQueryCondition();
-        queryCondition.setEnabled(null);
-        List<Area> areas = this.areaService.query(queryCondition);
+        AreaQueryCondition areaQc = new AreaQueryCondition();
+        areaQc.setEnabled(null);
+        List<Area> areas = this.areaService.query(areaQc);
         AreaView av = null;
         for (Area a : areas) {
             av = areaConverter.convertToView(a);
             qcAreas.add(av);
         }
-        SuburbQueryCondition sQC = new SuburbQueryCondition();
-        sQC.setEnabled(null);
+        SuburbQueryCondition suburbQc = new SuburbQueryCondition();
+        suburbQc.setEnabled(null);
         if (this.view != null && this.view.getAreaId() != null) {
-            sQC.setAreaId(this.view.getAreaId());
+            suburbQc.setAreaId(this.view.getAreaId());
         } else if (qcAreas.size() > 0) {
             av = qcAreas.get(0);
-            sQC.setAreaId(av.getId());
+            suburbQc.setAreaId(av.getId());
         }
-        List<Suburb> suburbs = this.suburbService.query(sQC);
+        List<Suburb> suburbs = this.suburbService.query(suburbQc);
         SuburbView sv = null;
         for (Suburb s : suburbs) {
             sv = suburbConverter.convertToView(s);
@@ -80,18 +80,18 @@ public class ProjectAction<T extends Project, V extends ProjectView> extends Adm
     }
 
     protected void prepareQueryList() {
-        AreaQueryCondition queryCondition = new AreaQueryCondition();
-        queryCondition.setEnabled(null);
-        List<Area> areas = this.areaService.query(queryCondition);
+        AreaQueryCondition areaQc = new AreaQueryCondition();
+        areaQc.setEnabled(null);
+        List<Area> areas = this.areaService.query(areaQc);
         AreaView av = null;
         for (Area a : areas) {
             av = areaConverter.convertToView(a);
             qcAreas.add(av);
         }
         if (this.qc != null && this.qc.getSuburbQC() != null) {
-            SuburbQueryCondition sQC = this.qc.getSuburbQC();
-            sQC.setEnabled(null);
-            List<Suburb> suburbs = this.suburbService.query(sQC);
+            SuburbQueryCondition suburbQc = this.qc.getSuburbQC();
+            suburbQc.setEnabled(null);
+            List<Suburb> suburbs = this.suburbService.query(suburbQc);
             SuburbView sv = null;
             for (Suburb s : suburbs) {
                 sv = suburbConverter.convertToView(s);

@@ -770,6 +770,7 @@ CREATE TABLE IF NOT EXISTS `project_media` (
   `id` bigint(20) NOT NULL,
   `project_id` bigint(20) NOT NULL,
   `media_id` bigint(20) NOT NULL,
+  `seq_num` int(11) DEFAULT NULL,
   `removed` tinyint(1) DEFAULT 0,
   `creation_date` datetime DEFAULT NULL,
   `last_modified_date` datetime DEFAULT NULL,

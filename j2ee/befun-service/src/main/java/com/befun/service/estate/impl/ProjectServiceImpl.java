@@ -3,12 +3,15 @@ package com.befun.service.estate.impl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import com.befun.dao.IBaseDao;
 import com.befun.dao.estate.AreaDao;
@@ -74,6 +77,15 @@ public class ProjectServiceImpl extends BaseEstateServiceImpl<Project, Long> imp
         return result;
     }
 
+    @Override
+    public Long save(Project model) {
+        Assert.notNull(model, "model should be not null!");
+        if (StringUtils.isBlank(model.getBid())) {
+            model.setBid("pro_" + UUID.randomUUID().toString());
+        }
+        return super.save(model);
+    }
+    
     @Resource
     public void setDao(@Qualifier("ProjectDao") IBaseDao<Project, Long> dao) {
         this.dao = dao;

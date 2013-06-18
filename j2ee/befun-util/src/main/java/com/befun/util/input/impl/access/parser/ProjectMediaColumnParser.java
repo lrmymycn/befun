@@ -33,6 +33,8 @@ public class ProjectMediaColumnParser implements ColumnParser<ProjectMedia> {
         } else {
             throw new IllegalArgumentException("media_id should be not null for ProjectMedia");
         }
+        
+        rs.setSeqNum(AccessUtil.getInteger(col, "seq_num"));
 
         ModelModification modelModification = ModelModification.createDefault();
         rs.setModelModification(modelModification);

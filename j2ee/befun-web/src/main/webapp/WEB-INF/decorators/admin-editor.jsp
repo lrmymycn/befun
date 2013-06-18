@@ -160,7 +160,7 @@ function getSuburbByArea(area, suburb){
     $.ajax({   
         type: "POST",   
         url: "<c:url value='/admin/data/json/demandAllSuburb.action'/>",   
-        data: "qc.areaId=" + area.val() + "&qc.enabled=null",   
+        data: "qc.areaId=" + area.val() + "&qc.enabled=null",
         dataType:"json",
         async: false,     //如果设置为false，则表示异步提交，否则表示同步提交
          timeout: 10000,
@@ -188,7 +188,7 @@ function getProjectBySuburb(suburb, project){
     $.ajax({   
         type: "POST",   
         url: "<c:url value='/admin/data/json/demandAllProject.action'/>",   
-        data: "qc.suburbId=" + suburb.val(),   
+        data: "qc.suburbId=" + suburb.val() + "&qc.enabled=null",
         dataType:"json",
         async: false,     //如果设置为false，则表示异步提交，否则表示同步提交
          timeout: 10000,
@@ -216,7 +216,7 @@ function getStageByProject(project, stage){
     $.ajax({   
         type: "POST",   
         url: "<c:url value='/admin/data/json/demandAllStage.action'/>",   
-        data: "qc.projectId=" + project.val(),   
+        data: "qc.projectId=" + project.val() + "&qc.enabled=null",
         dataType:"json",
         async: false,     //如果设置为false，则表示异步提交，否则表示同步提交
          timeout: 10000,
@@ -244,7 +244,7 @@ function getBuildingByStage(stage, building){
     $.ajax({   
         type: "POST",   
         url: "<c:url value='/admin/data/json/demandAllBuilding.action'/>",   
-        data: "qc.stageId=" + stage.val(),   
+        data: "qc.stageId=" + stage.val() + "&qc.enabled=null",
         dataType:"json",
         async: false,     //如果设置为false，则表示异步提交，否则表示同步提交
          timeout: 10000,
@@ -272,7 +272,7 @@ function getFloorplanByBuilding(building, floorplan){
     $.ajax({   
         type: "POST",   
         url: "<c:url value='/admin/data/json/demandAllFloorplan.action'/>",   
-        data: "qc.buildingId=" + building.val(),   
+        data: "qc.buildingId=" + building.val() + "&qc.enabled=null",
         dataType:"json",
         async: false,     //如果设置为false，则表示异步提交，否则表示同步提交
          timeout: 10000,

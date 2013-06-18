@@ -94,7 +94,9 @@ namespace BeFun.View.Editor
             MediaQueryCondition queryCondition = new MediaQueryCondition();
             queryCondition.overview_project_id = this.entity.id;
             queryCondition.media_type = Media.MEDIA_TYPE_PIC;
-            this.mediaListView_Overview.queryCondition = queryCondition;
+            IList<Media> overviewMedias = this.MediaDao.query(queryCondition);
+            this.mediaListView_Overview.mediaList = overviewMedias;
+            //this.mediaListView_Overview.queryCondition = queryCondition;
 
             MediaQueryCondition chooseQueryCondition = new MediaQueryCondition();
             chooseQueryCondition.project_id = this.entity.id;
@@ -150,7 +152,7 @@ namespace BeFun.View.Editor
             this.dao.save(this.entity);
             this.dao.removeAllOverviewMedias(this.entity.id);
             IList<String> mediaIds = new List<String>();
-            if (this.mediaListView_Overview.mediaList.Count > 0)
+            if (this.mediaListView_Overview.getMediaList().Count > 0)
             {
                 foreach (Media m in this.mediaListView_Overview.mediaList)
                 {

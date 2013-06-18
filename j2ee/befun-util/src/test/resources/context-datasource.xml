@@ -15,7 +15,12 @@
 	<!--Jdbc Description -->
 	<bean
 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="locations" value="classpath:datasource.properties" />
+        <property name="locations">
+            <list>
+                <value>classpath:datasource.properties</value>
+                <value>classpath:mediaConfig.properties</value>
+            </list>
+        </property>
 	</bean>
 
   	<bean id="dataSource" class="org.logicalcobwebs.proxool.ProxoolDataSource">
@@ -68,4 +73,14 @@
 	</bean>
 	
   	<tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
+  	
+    <bean id="BefunPasswordEncoder" class="org.springframework.security.crypto.password.StandardPasswordEncoder">
+        <constructor-arg index="0">
+            <value>befun.estate</value>
+        </constructor-arg>
+    </bean>
+    
+    <bean name="MediaConfig" class="com.befun.config.MediaConfig">
+        <property name="imgRootPath" value="${imgRootPath}"></property>
+    </bean>
 </beans>

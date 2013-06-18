@@ -11,7 +11,9 @@ namespace BeFun.Model.Dao
 {
     public class MediaDao : AccessDao<Media>
     {
-        private static string SQL_QUERY = "SELECT m.*,p.name1 AS project_name FROM media m LEFT JOIN project p ON m.project_id = p.id ";
+        private static string SQL_QUERY = "SELECT m.*,p.name1 AS project_name"
+            + " FROM (media m LEFT JOIN project p ON m.project_id = p.id) "
+            + " LEFT JOIN project_media pm ON m.id = pm.media_id ";
         private static string SQL_QUERY_ALL = SQL_QUERY;
         private static string SQL_QUERY_BYID = SQL_QUERY + " WHERE m.id = @id;";
         private static string SQL_DELETE = "DELETE FROM media WHERE id IN (";
@@ -163,7 +165,7 @@ namespace BeFun.Model.Dao
             } 
             if (!string.IsNullOrWhiteSpace(qc.overview_project_id))
             {
-                conditions += this.getConditionsPre(conditions, "AND", "m.id IN (SELECT pm.media_id FROM project_media pm WHERE pm.project_id = @overview_project_id)");
+                conditions += this.getConditionsPre(conditions, "AND", "pm.project_id = @overview_project_id");
             }
             if (qc.media_type != 222)
             {
@@ -174,6 +176,7 @@ namespace BeFun.Model.Dao
                 conditions += this.getConditionsPre(conditions, "AND", "m.content_type = @content_type");
             }
             rs += conditions;
+            rs += " ORDER BY pm.seq_num ASC";
             return rs;
         }
 

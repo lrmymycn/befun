@@ -9,9 +9,13 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
        ">
     <bean name="AdminMediaAction" class="com.befun.web.action.admin.data.MediaAction" scope="prototype">
-        <property name="imgRootPath" value="${imgRootPath}"></property>
+        <property name="mediaConfig" ref="MediaConfig"></property>
         <property name="service" ref="MediaService"></property>
         <property name="projectService" ref="ProjectService"></property>
+    </bean>
+    
+    <bean name="MediaConfig" class="com.befun.config.MediaConfig">
+        <property name="imgRootPath" value="${imgRootPath}"></property>
     </bean>
 
 </beans>

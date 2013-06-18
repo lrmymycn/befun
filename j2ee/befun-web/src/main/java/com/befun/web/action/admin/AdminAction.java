@@ -17,9 +17,12 @@ import com.befun.domain.estate.Floorplan;
 import com.befun.domain.estate.Project;
 import com.befun.domain.estate.Stage;
 import com.befun.domain.estate.Suburb;
+import com.befun.service.estate.ApartmentService;
 import com.befun.service.estate.AreaService;
 import com.befun.service.estate.BuildingService;
 import com.befun.service.estate.FloorplanService;
+import com.befun.service.estate.MediaService;
+import com.befun.service.estate.ProjectMediaService;
 import com.befun.service.estate.ProjectService;
 import com.befun.service.estate.StageService;
 import com.befun.service.estate.SuburbService;
@@ -78,7 +81,19 @@ public abstract class AdminAction<M extends BaseModel<Long>, V extends BaseEaste
     @Resource
     @Qualifier("FloorplanService")
     protected FloorplanService floorplanService;
+    
+    @Resource
+    @Qualifier("ApartmentService")
+    protected ApartmentService apartmentService;
 
+    @Resource
+    @Qualifier("MediaService")
+    protected MediaService mediaService;
+
+    @Resource
+    @Qualifier("ProjectMediaService")
+    protected ProjectMediaService projectMediaService;
+    
     public AdminAction() {
         super();
         this.pgb = new PaginationBean<V>();

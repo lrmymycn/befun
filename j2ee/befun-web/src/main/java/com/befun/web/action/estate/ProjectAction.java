@@ -164,6 +164,7 @@ public class ProjectAction extends CRUDAction<Project, ProjectView> {
         List<Floorplan> floorplans = this.apartmentService.queryFloorplans(apQC);
         for (Floorplan f : floorplans) {
             FloorplanView v = floorplanConverter.convertToView(f);
+            FloorplanViewFilter.filter(this.isAnonymous(), v);
             this.view.getFloorplans().add(v);
         }
         

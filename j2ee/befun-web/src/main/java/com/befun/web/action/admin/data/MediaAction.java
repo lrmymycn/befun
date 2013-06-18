@@ -4,10 +4,12 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.dispatcher.multipart.MultiPartRequestWrapper;
 import org.hibernate.criterion.Order;
 
+import com.befun.config.MediaConfig;
 import com.befun.domain.estate.ContentType;
 import com.befun.domain.estate.Media;
 import com.befun.domain.estate.MediaType;
@@ -23,23 +25,23 @@ import com.befun.web.view.converter.ViewConverter;
 
 public class MediaAction<T extends Media, V extends MediaView> extends AdminAction<Media, MediaView> {
 
-    private static final long serialVersionUID = 1423434908904040130L;
+    private static final long        serialVersionUID = 1423434908904040130L;
 
-    private MediaQueryCondition qc = new MediaQueryCondition();
+    private MediaQueryCondition      qc               = new MediaQueryCondition();
 
-    private File largeFile;
+    private File                     largeFile;
 
-    private File mediumFile;
+    private File                     mediumFile;
 
-    private File smallFile;
+    private File                     smallFile;
 
-    private static List<MediaType> mediaTypes = new ArrayList<MediaType>();
+    private static List<MediaType>   mediaTypes       = new ArrayList<MediaType>();
 
-    private static List<ContentType> contentTypes = new ArrayList<ContentType>();
+    private static List<ContentType> contentTypes     = new ArrayList<ContentType>();
 
-    private List<ProjectView> qcProjects = new ArrayList<ProjectView>();
+    private List<ProjectView>        qcProjects       = new ArrayList<ProjectView>();
 
-    private String imgRootPath = "/befun/img";
+    private MediaConfig              mediaConfig;
 
     static {
         if (mediaTypes.size() < 1) {
@@ -55,10 +57,12 @@ public class MediaAction<T extends Media, V extends MediaView> extends AdminActi
             contentTypes.add(ContentType.RENDER_EXTERNAL);
             contentTypes.add(ContentType.RENDER_INTERNAL);
             contentTypes.add(ContentType.OTHER);
+            contentTypes.add(ContentType.PROJECT_OVERVIEW);
+            contentTypes.add(ContentType.PROJECT_DESCRIPTION);
+            contentTypes.add(ContentType.PROJECT_FEATURES);
+            contentTypes.add(ContentType.PROJECT_SCHEME);
         }
     }
-
-    private MediaService service;
 
     public MediaAction() {
         this.view = new MediaView();
@@ -82,6 +86,8 @@ public class MediaAction<T extends Media, V extends MediaView> extends AdminActi
     }
 
     private void processImgFile() {
+        Project proj = this.projectService.get(this.view.getProjectId());
+        this.view.setProjectBid(proj.getBid());
         String url = null;
         File destFile = null;
         String originalFileName = null;
@@ -116,7 +122,12 @@ public class MediaAction<T extends Media, V extends MediaView> extends AdminActi
 
     private String getUrl(File file, MediaView v, String size) {
         String typePath = this.getTypePath(v);
-        return "/img/" + typePath + "/" + size + "/" + file.getName();
+        StringBuilder sb = new StringBuilder("/img/");
+        if (!StringUtils.isBlank(v.getProjectBid())) {
+            sb.append(v.getProjectBid()).append("/");
+        }
+        sb.append(typePath).append("/").append(size).append("/").append(file.getName());
+        return sb.toString();
     }
 
     private File mvToDestDir(File originalFile, String originalFileName, MediaView v, String size) {
@@ -132,11 +143,16 @@ public class MediaAction<T extends Media, V extends MediaView> extends AdminActi
 
     private String generateDestDir(MediaView v, String size) {
         String typePath = getTypePath(v);
-        return this.getImgRootPath() + "/" + typePath + "/" + size;
+        StringBuilder sb = new StringBuilder(this.mediaConfig.getImgRootPath()).append("/");
+        if (!StringUtils.isBlank(v.getProjectBid())) {
+            sb.append(v.getProjectBid()).append("/");
+        }
+        sb.append(typePath).append("/").append(size);
+        return sb.toString();
     }
 
     private String getTypePath(MediaView v) {
-        String typePath = "others";
+        String typePath = "default";
         switch (v.getContentType()) {
         case ENVIRONMENT:
             typePath = "default";
@@ -159,6 +175,12 @@ public class MediaAction<T extends Media, V extends MediaView> extends AdminActi
         case RENDER_INTERNAL:
             typePath = "render";
             break;
+        case PROJECT_OVERVIEW:
+        case PROJECT_DESCRIPTION:
+        case PROJECT_FEATURES:
+        case PROJECT_SCHEME:
+            typePath = "project";
+            break;
         default:
             break;
         }
@@ -167,9 +189,11 @@ public class MediaAction<T extends Media, V extends MediaView> extends AdminActi
 
     private File generateDestFile(File originalFile, String destDir, String destFileName) {
         File destFile = new File(destDir, destFileName);
+        String destFileNameWithoutExt = destFileName.substring(0, destFileName.lastIndexOf("."));
+        String extName = destFileName.substring(destFileName.lastIndexOf(".") + 1);
         if (destFile.exists()) {
             for (int i = 0; i < 1000; i++) {
-                destFile = new File(destDir, destFileName + "(" + i + ")");
+                destFile = new File(destDir, destFileNameWithoutExt + "(" + i + ")." + extName);
                 if (!destFile.exists()) {
                     break;
                 }
@@ -251,14 +275,6 @@ public class MediaAction<T extends Media, V extends MediaView> extends AdminActi
         return qcProjects;
     }
 
-    public String getImgRootPath() {
-        return imgRootPath;
-    }
-
-    public void setImgRootPath(String imgRootPath) {
-        this.imgRootPath = imgRootPath;
-    }
-
     @Override
     public MediaQueryCondition getQc() {
         return qc;
@@ -279,11 +295,15 @@ public class MediaAction<T extends Media, V extends MediaView> extends AdminActi
 
     @Override
     public MediaService getService() {
-        return this.service;
+        return this.mediaService;
     }
 
-    public void setService(MediaService service) {
-        this.service = service;
+    public MediaConfig getMediaConfig() {
+        return mediaConfig;
+    }
+
+    public void setMediaConfig(MediaConfig mediaConfig) {
+        this.mediaConfig = mediaConfig;
     }
 
 }

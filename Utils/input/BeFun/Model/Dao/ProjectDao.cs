@@ -18,7 +18,7 @@ namespace BeFun.Model.Dao
             + " VALUES (@block,@name,@picture_id,@logo_id,@site_url,@description,@features,@finish_schema,@developer,@address,@postcode,@swimming_pool,@gym,sauna,@tennis_court,@play_room,@func_room,@theatre_cinema,@music_room,@library,@bbq,@receiption,@visitor_parking,@kids_play_ground,@sky_garden,@land_scaping,@recreation_place,@car_wash_bay,@others,@finish_date,@distancetocity,@longitude,@latitude,@removed,@id);";
         private static string SQL_UPDATE = "UPDATE project SET block=@block, name1 = @name,picture_id = @picture_id,logo_id = @logo_id,site_url = @site_url,description = @description,features = @features,finish_schema = @finish_schema,developer = @developer,address = @address,postcode = @postcode,swimming_pool = @swimming_pool,gym = @gym,sauna = @sauna,tennis_court = @tennis_court,play_room = @play_room,func_room = @func_room, "
             + "theatre_cinema = @theatre_cinema,music_room = @music_room,library = @library,bbq = @bbq,receiption = @receiption,visitor_parking = @visitor_parking,kids_play_ground = @kids_play_ground,sky_garden = @sky_garden,land_scaping = @land_scaping,recreation_place = @recreation_place,car_wash_bay = @car_wash_bay,others = @others,finish_date = @finish_date,distancetocity = @distancetocity,longitude = @longitude,latitude = @latitude,removed = @removed WHERE id = @id;";
-        private static string SQL_INSERT_MEDIA = "INSERT INTO project_media (project_id, media_id) VALUES (@project_id, @media_id);";
+        private static string SQL_INSERT_MEDIA = "INSERT INTO project_media (project_id, media_id, seq_num) VALUES (@project_id, @media_id, @seq_num);";
         private static string SQL_DELETE_MEDIA = "DELETE FROM project_media WHERE project_id = @project_id AND media_id = @media_id;";
         private static string SQL_DELETE_ALL_MEDIA = "DELETE FROM project_media WHERE project_id = @project_id;";
 
@@ -177,6 +177,7 @@ namespace BeFun.Model.Dao
             OleDbCommand cmd = new OleDbCommand(SQL_INSERT_MEDIA, conn);
             cmd.Parameters.Add("@project_id", OleDbType.VarWChar, 255).Value = projectId;
             cmd.Parameters.Add("@media_id", OleDbType.VarWChar, 255);
+            cmd.Parameters.Add("@seq_num", OleDbType.Integer);
 
             OleDbTransaction tx = null;
             bool success = false;
@@ -185,10 +186,13 @@ namespace BeFun.Model.Dao
                 conn.Open();
                 tx = conn.BeginTransaction();
                 cmd.Transaction = tx;
+                int i = 0;
                 foreach (string mediaId in medias)
                 {
                     cmd.Parameters["@media_id"].Value = mediaId;
+                    cmd.Parameters["@seq_num"].Value = i;
                     cmd.ExecuteNonQuery();
+                    i++;
                 }
                 success = true;
             }
@@ -197,30 +201,7 @@ namespace BeFun.Model.Dao
                 this.closeConn(conn, tx, success);
             }
         }
-
-        public void addMedia(string projectId, string mediaId)
-        {
-            OleDbConnection conn = this.connPool.getConnection();
-            OleDbCommand cmd = new OleDbCommand(SQL_INSERT_MEDIA, conn);
-            cmd.Parameters.Add("@project_id", OleDbType.VarWChar, 255).Value = projectId;
-            cmd.Parameters.Add("@media_id", OleDbType.VarWChar, 255).Value = mediaId;
-
-            OleDbTransaction tx = null;
-            bool success = false;
-            try
-            {
-                conn.Open();
-                tx = conn.BeginTransaction();
-                cmd.Transaction = tx;
-                cmd.ExecuteNonQuery();
-                success = true;
-            }
-            finally
-            {
-                this.closeConn(conn, tx, success);
-            }
-        }
-
+        
         public void removeAllOverviewMedias(string projectId)
         {
             OleDbConnection conn = this.connPool.getConnection();

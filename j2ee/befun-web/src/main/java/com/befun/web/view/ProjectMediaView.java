@@ -13,10 +13,12 @@ public class ProjectMediaView extends BaseEasteView<ProjectMedia> {
 
     private Media media;
 
+    private Integer seqNum;
+
     public ProjectMediaView() {
         super();
     }
-    
+
     public ProjectMediaView(ProjectMedia model) {
         super(model);
     }
@@ -43,6 +45,14 @@ public class ProjectMediaView extends BaseEasteView<ProjectMedia> {
 
     public void setMedia(Media media) {
         this.media = media;
+    }
+
+    public Integer getSeqNum() {
+        return seqNum;
+    }
+
+    public void setSeqNum(Integer seqNum) {
+        this.seqNum = seqNum;
     }
 
     @Override

@@ -1,5 +1,6 @@
 ﻿using System;
 using BeFun.Common;
+using System.Collections.Generic;
 
 namespace BeFun.Model
 {
@@ -9,6 +10,7 @@ namespace BeFun.Model
         const String LOGO_MEDIUM = "logo-medium.png";
         const String LOGO_LARGE = "logo-large.png";
         public Boolean enableLogo { get; set; }
+        public IList<Byte> enableLogoTypes { get; set; }
         public Int32 floorplan_smallWidth { get; set; }
         public Int32 floorplan_smallHeight { get; set; }
         public Int32 floorplan_mediumWidth { get; set; }
@@ -26,7 +28,9 @@ namespace BeFun.Model
 
         private ResizeConfig()
         {
-            enableLogo = false;
+            enableLogo = true;
+            enableLogoTypes = new List<Byte>(1);
+            enableLogoTypes.Add(0);
             floorplan_smallWidth = 120;
             floorplan_smallHeight = 90;
             floorplan_mediumWidth = 680;

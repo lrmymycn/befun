@@ -12,6 +12,7 @@ using System.IO;
 using BeFun.Model.Resize;
 using BeFun.View.SQL;
 using BeFun.Controller.OldVersionTrans;
+using BeFun.Controller.Patch;
 
 namespace BeFun.View.ListWindow
 {
@@ -25,6 +26,7 @@ namespace BeFun.View.ListWindow
         private BuildingDao buildingDao = new BuildingDao();
         private FloorplanDao floorplanDao = new FloorplanDao();
         private MediaDao mediaDao = new MediaDao();
+        private PatchService patchService = new PatchService();
 
         public MainWindow()
         {
@@ -208,6 +210,7 @@ namespace BeFun.View.ListWindow
             {
                 this.filePath = fileDialog.FileName;
                 this.initConnection();
+                this.patchService.doPatch();
                 this.dataGridView.RefreshGrid();
             }
         }

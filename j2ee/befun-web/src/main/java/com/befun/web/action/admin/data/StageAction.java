@@ -3,9 +3,6 @@ package com.befun.web.action.admin.data;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Resource;
-
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -15,7 +12,6 @@ import com.befun.domain.estate.Project;
 import com.befun.domain.estate.Stage;
 import com.befun.domain.estate.Suburb;
 import com.befun.service.IBaseService;
-import com.befun.service.estate.StageService;
 import com.befun.service.query.estate.AreaQueryCondition;
 import com.befun.service.query.estate.ProjectQueryCondition;
 import com.befun.service.query.estate.StageQueryCondition;
@@ -34,6 +30,10 @@ public class StageAction<T extends Stage, V extends StageView> extends AdminActi
 
     private static final long serialVersionUID = -5402712598405256802L;
 
+    private Long paramAreaId = null;
+
+    private Long paramSuburbId = null;
+
     private StageQueryCondition qc = new StageQueryCondition();
 
     private Long qcAreaId;
@@ -46,43 +46,109 @@ public class StageAction<T extends Stage, V extends StageView> extends AdminActi
 
     private List<ProjectView> qcProjects = new ArrayList<ProjectView>();
 
-    @Resource
-    @Qualifier("StageService")
-    private StageService service;
-    
-    public StageAction(){
+    public StageAction() {
         this.view = new StageView();
     }
 
+    public String createPage() {
+        this.prepareEditorList();
+        return super.createPage();
+    }
+
+    @Override
+    public String demandById() {
+        String rs = super.demandById();
+        this.prepareEditorList();
+        return rs;
+    }
+
     protected void prepareQueryList() {
-        AreaQueryCondition queryCondition = new AreaQueryCondition();
-        // queryCondition.setEnabled(null);
-        List<Area> areas = this.areaService.query(queryCondition);
+        AreaQueryCondition areaQc = new AreaQueryCondition();
+        areaQc.setEnabled(null);
+        List<Area> areas = this.areaService.query(areaQc);
         AreaView av = null;
         for (Area a : areas) {
             av = areaConverter.convertToView(a);
             qcAreas.add(av);
         }
-        ProjectQueryCondition pQC = new ProjectQueryCondition();
+        ProjectQueryCondition projectQc = new ProjectQueryCondition();
         if (this.qcAreaId != null) {
-            SuburbQueryCondition sQC = new SuburbQueryCondition();
-            sQC.setAreaId(this.qcAreaId);
-            pQC.setSuburbQC(sQC);
-            // sQC.setEnabled(null);
-            List<Suburb> suburbs = this.suburbService.query(sQC);
+            SuburbQueryCondition suburbQc = new SuburbQueryCondition();
+            suburbQc.setAreaId(this.qcAreaId);
+            projectQc.setSuburbQC(suburbQc);
+            suburbQc.setEnabled(null);
+            List<Suburb> suburbs = this.suburbService.query(suburbQc);
             SuburbView sv = null;
             for (Suburb s : suburbs) {
                 sv = suburbConverter.convertToView(s);
                 qcSuburbs.add(sv);
             }
         }
-        pQC.setSuburbId(this.qcSuburbId);
-        List<Project> projects = this.projectService.query(pQC);
+        projectQc.setSuburbId(this.qcSuburbId);
+        projectQc.setEnabled(null);
+        List<Project> projects = this.projectService.query(projectQc);
         ProjectView psv = null;
         for (Project s : projects) {
             psv = projectConverter.convertToView(s);
             qcProjects.add(psv);
         }
+    }
+
+    private void prepareEditorList() {
+        AreaQueryCondition areaQc = new AreaQueryCondition();
+        areaQc.setEnabled(null);
+        List<Area> areas = this.areaService.query(areaQc);
+        AreaView av = null;
+        for (Area a : areas) {
+            av = areaConverter.convertToView(a);
+            qcAreas.add(av);
+        }
+        Long projectId = this.view.getProjectId();
+        if (projectId != null) {
+            Project pro = this.projectService.get(projectId);
+            this.paramSuburbId = pro.getSuburb().getId();
+            this.paramAreaId = pro.getSuburb().getArea().getId();
+        }
+        SuburbQueryCondition suburbQc = new SuburbQueryCondition();
+        suburbQc.setEnabled(null);
+        if (this.paramAreaId != null) {
+            suburbQc.setAreaId(this.paramAreaId);
+        } else if (qcAreas.size() > 0) {
+            av = qcAreas.get(0);
+            suburbQc.setAreaId(av.getId());
+        }
+        List<Suburb> suburbs = this.suburbService.query(suburbQc);
+        SuburbView sv = null;
+        for (Suburb s : suburbs) {
+            sv = suburbConverter.convertToView(s);
+            qcSuburbs.add(sv);
+        }
+
+        ProjectQueryCondition projectQc = new ProjectQueryCondition();
+        projectQc.setSuburbId(this.paramSuburbId);
+        projectQc.setEnabled(null);
+        List<Project> projects = this.projectService.query(projectQc);
+        ProjectView psv = null;
+        for (Project s : projects) {
+            psv = projectConverter.convertToView(s);
+            qcProjects.add(psv);
+        }
+    }
+
+    public Long getParamAreaId() {
+        return paramAreaId;
+    }
+
+    public void setParamAreaId(Long paramAreaId) {
+        this.paramAreaId = paramAreaId;
+    }
+
+    public Long getParamSuburbId() {
+        return paramSuburbId;
+    }
+
+    public void setParamSuburbId(Long paramSuburbId) {
+        this.paramSuburbId = paramSuburbId;
     }
 
     public void setQc(StageQueryCondition qc) {
@@ -137,6 +203,6 @@ public class StageAction<T extends Stage, V extends StageView> extends AdminActi
 
     @Override
     public IBaseService<Stage, Long> getService() {
-        return service;
+        return this.stageService;
     }
 }

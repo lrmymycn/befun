@@ -3,9 +3,6 @@ package com.befun.web.action.admin.data;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.Resource;
-
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -18,7 +15,6 @@ import com.befun.domain.estate.Project;
 import com.befun.domain.estate.Stage;
 import com.befun.domain.estate.Suburb;
 import com.befun.service.IBaseService;
-import com.befun.service.estate.ApartmentService;
 import com.befun.service.query.estate.ApartmentQueryCondition;
 import com.befun.service.query.estate.AreaQueryCondition;
 import com.befun.service.query.estate.BuildingQueryCondition;
@@ -56,10 +52,6 @@ public class ApartmentAction<T extends Apartment, V extends ApartmentView> exten
     private List<BuildingView> qcBuildings = new ArrayList<BuildingView>();
 
     private List<FloorplanView> qcFloorplans = new ArrayList<FloorplanView>();
-
-    @Resource
-    @Qualifier("ApartmentService")
-    private ApartmentService service;
     
     public ApartmentAction(){
         this.view = new ApartmentView();
@@ -209,7 +201,7 @@ public class ApartmentAction<T extends Apartment, V extends ApartmentView> exten
 
     public String markSoldOut(){
         try {
-            this.service.markSoldOut(this.id);
+            this.apartmentService.markSoldOut(this.id);
             this.addActionMessage("Mark soldout successfully! ID:" + this.id);
         } catch (Exception ex) {
             String errMsg = "Mark failure! Object:" + this.view;
@@ -219,7 +211,23 @@ public class ApartmentAction<T extends Apartment, V extends ApartmentView> exten
         }
         return SUCCESS;
     }
-    
+
+	@Override
+	public String create() {
+		if (this.view.getPrice() <= 0) {
+			this.view.setEnabled(false);
+		}
+		return super.create();
+	}
+
+	@Override
+	public String update() {
+		if (this.view.getPrice() <= 0) {
+			this.view.setEnabled(false);
+		}
+		return super.update();
+	}
+	
     public void setQc(ApartmentQueryCondition qc) {
         this.qc = qc;
     }
@@ -268,7 +276,7 @@ public class ApartmentAction<T extends Apartment, V extends ApartmentView> exten
 
     @Override
     public IBaseService<Apartment, Long> getService() {
-        return service;
+        return this.apartmentService;
     }
 
 }

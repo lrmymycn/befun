@@ -46,20 +46,24 @@ public class FloorplanAction extends CRUDAction<Floorplan, FloorplanView> {
 
     public String demandById() {
         try {
-//            Floorplan obj = this.service.getWithAveragePrice(this.getId());
-            Floorplan obj = this.service.get(this.getId());
-            this.view = this.getConverter().convertToView(obj);
-            if(this.apQC == null){
-                this.apQC = new ApartmentQueryCondition();
-            }
-            this.apQC.setFloorplanId(this.getId());
-            List<Apartment> apartmentObjs = this.apartmentService.query(this.apQC);
-            List<ApartmentView> apartments = new ArrayList<ApartmentView>();
-            for (Apartment a : apartmentObjs) {
-                ApartmentView av = apConverter.convertToView(a);
-                apartments.add(av);
-            }
-            this.view.setApartments(apartments);
+			// Floorplan obj = this.service.getWithAveragePrice(this.getId());
+			Floorplan obj = this.service.get(this.getId());
+			this.view = this.getConverter().convertToView(obj);
+            FloorplanViewFilter.filter(this.isAnonymous(), this.view);
+			if (!this.isAnonymous()) {
+				if (this.apQC == null) {
+					this.apQC = new ApartmentQueryCondition();
+				}
+				this.apQC.setFloorplanId(this.getId());
+				List<Apartment> apartmentObjs = this.apartmentService
+						.query(this.apQC);
+				List<ApartmentView> apartments = new ArrayList<ApartmentView>();
+				for (Apartment a : apartmentObjs) {
+					ApartmentView av = apConverter.convertToView(a);
+					apartments.add(av);
+				}
+				this.view.setApartments(apartments);
+			}
         } catch (Exception ex) {
             String errMsg = "Query failure!";
             this.log.warn(errMsg, ex);

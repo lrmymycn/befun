@@ -61,11 +61,26 @@ public class MediaColumnParser implements ColumnParser<Media> {
         String regex = "^(/[^/]+/[^/]+/)(.+)";
         Pattern p = Pattern.compile(regex);
         Matcher m = p.matcher(oriUrl);
+        StringBuilder sb = new StringBuilder("/img");
         if (m.find()) {
             String head = m.group(1);
             String fileName = m.group(2);
-            return head + size + "/" + fileName;
+            sb.append(head).append(size).append("/").append(fileName);
+            return sb.toString();
         }
-        return oriUrl;
+        sb.append(oriUrl);
+        return sb.toString();
     }
+    
+//    @Test
+//    public void test1(){
+//    	String durl = getDestUrl("/pro_b7ddd784-c878-49c7-a08d-112a12a3d453/fp/botanic.jpg", "large");
+//    	System.out.println(durl);
+//    }
+//    
+//    @Test
+//    public void test2(){
+//    	String durl = getDestUrl("/img/pro_b7ddd784-c878-49c7-a08d-112a12a3d453/fp/botanic.jpg", "large");
+//    	System.out.println(durl);
+//    }
 }

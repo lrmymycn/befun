@@ -94,9 +94,10 @@ namespace BeFun.Model.Resize
                         mediumHeight = this.resizeConfig.overview_mediumHeight;
                         break;
                 }
-                resizePicture(fileInfo, this.resizeConfig.enableLogo, smallLogoImg, "small", smallWidth, smallHeight);
-                resizePicture(fileInfo, this.resizeConfig.enableLogo, mediumLogoImg, "medium", mediumWidth, mediumHeight);
-                resizePicture(fileInfo, this.resizeConfig.enableLogo, largeLogoImg, "large", originalWidth, originalHeight);
+                bool enableLogo = this.resizeConfig.enableLogo && this.resizeConfig.enableLogoTypes.Contains(contentType);
+                resizePicture(fileInfo, enableLogo, smallLogoImg, "small", smallWidth, smallHeight);
+                resizePicture(fileInfo, enableLogo, mediumLogoImg, "medium", mediumWidth, mediumHeight);
+                resizePicture(fileInfo, enableLogo, largeLogoImg, "large", originalWidth, originalHeight);
                 pb.ThreadSafePerformStep();
             }
             pb.ThreadSafeClose();

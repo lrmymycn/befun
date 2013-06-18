@@ -32,10 +32,23 @@
             this.bindingSource_DataGridView = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel_Main = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.checkBox_EnableLogo = new System.Windows.Forms.CheckBox();
+            this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
+            this.checkBox_Enable_ProjectFeature = new System.Windows.Forms.CheckBox();
+            this.checkBox_Enable_ProjectDesc = new System.Windows.Forms.CheckBox();
+            this.checkBox_Enable_ProjectScheme = new System.Windows.Forms.CheckBox();
+            this.checkBox_Enable_Env = new System.Windows.Forms.CheckBox();
+            this.checkBox_Enable_Floorplate = new System.Windows.Forms.CheckBox();
+            this.checkBox_Enable_Others = new System.Windows.Forms.CheckBox();
+            this.checkBox_Enable_ProjectOveriew = new System.Windows.Forms.CheckBox();
+            this.checkBox_Enable_Photo = new System.Windows.Forms.CheckBox();
+            this.checkBox_Enable_RenderExternal = new System.Windows.Forms.CheckBox();
+            this.checkBox_Enable_RenderInternal = new System.Windows.Forms.CheckBox();
+            this.checkBox_Enable_Floorplan = new System.Windows.Forms.CheckBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.button_Logo = new System.Windows.Forms.Button();
+            this.button_Save = new System.Windows.Forms.Button();
             this.button_Resize = new System.Windows.Forms.Button();
             this.button_Close = new System.Windows.Forms.Button();
             this.button_Reset = new System.Windows.Forms.Button();
@@ -68,6 +81,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource_DataGridView)).BeginInit();
             this.tableLayoutPanel_Main.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
+            this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -100,7 +114,7 @@
             this.tableLayoutPanel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanel_Main.Size = new System.Drawing.Size(684, 370);
+            this.tableLayoutPanel_Main.Size = new System.Drawing.Size(684, 436);
             this.tableLayoutPanel_Main.TabIndex = 1;
             // 
             // tableLayoutPanel2
@@ -109,17 +123,29 @@
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 117F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel2.Controls.Add(this.label16, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.checkBox_EnableLogo, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.label1, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.label16, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.checkBox_EnableLogo, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.tableLayoutPanel5, 1, 1);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 2;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 27F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(684, 27);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(684, 93);
             this.tableLayoutPanel2.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(5, 34);
+            this.label1.Margin = new System.Windows.Forms.Padding(5, 7, 3, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(83, 12);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Enable Types:";
             // 
             // label16
             // 
@@ -141,6 +167,146 @@
             this.checkBox_EnableLogo.TabIndex = 3;
             this.checkBox_EnableLogo.UseVisualStyleBackColor = true;
             // 
+            // tableLayoutPanel5
+            // 
+            this.tableLayoutPanel5.AutoSize = true;
+            this.tableLayoutPanel5.ColumnCount = 4;
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tableLayoutPanel5.Controls.Add(this.checkBox_Enable_ProjectFeature, 1, 2);
+            this.tableLayoutPanel5.Controls.Add(this.checkBox_Enable_ProjectDesc, 0, 2);
+            this.tableLayoutPanel5.Controls.Add(this.checkBox_Enable_ProjectScheme, 2, 2);
+            this.tableLayoutPanel5.Controls.Add(this.checkBox_Enable_Env, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.checkBox_Enable_Floorplate, 1, 1);
+            this.tableLayoutPanel5.Controls.Add(this.checkBox_Enable_Others, 2, 1);
+            this.tableLayoutPanel5.Controls.Add(this.checkBox_Enable_ProjectOveriew, 3, 1);
+            this.tableLayoutPanel5.Controls.Add(this.checkBox_Enable_Photo, 3, 0);
+            this.tableLayoutPanel5.Controls.Add(this.checkBox_Enable_RenderExternal, 2, 0);
+            this.tableLayoutPanel5.Controls.Add(this.checkBox_Enable_RenderInternal, 1, 0);
+            this.tableLayoutPanel5.Controls.Add(this.checkBox_Enable_Floorplan, 0, 0);
+            this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(117, 27);
+            this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
+            this.tableLayoutPanel5.Name = "tableLayoutPanel5";
+            this.tableLayoutPanel5.RowCount = 3;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(567, 66);
+            this.tableLayoutPanel5.TabIndex = 5;
+            // 
+            // checkBox_Enable_ProjectFeature
+            // 
+            this.checkBox_Enable_ProjectFeature.AutoSize = true;
+            this.checkBox_Enable_ProjectFeature.Location = new System.Drawing.Point(147, 47);
+            this.checkBox_Enable_ProjectFeature.Name = "checkBox_Enable_ProjectFeature";
+            this.checkBox_Enable_ProjectFeature.Size = new System.Drawing.Size(114, 16);
+            this.checkBox_Enable_ProjectFeature.TabIndex = 11;
+            this.checkBox_Enable_ProjectFeature.Text = "Project Feature";
+            this.checkBox_Enable_ProjectFeature.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_Enable_ProjectDesc
+            // 
+            this.checkBox_Enable_ProjectDesc.AutoSize = true;
+            this.checkBox_Enable_ProjectDesc.Location = new System.Drawing.Point(3, 47);
+            this.checkBox_Enable_ProjectDesc.Name = "checkBox_Enable_ProjectDesc";
+            this.checkBox_Enable_ProjectDesc.Size = new System.Drawing.Size(138, 16);
+            this.checkBox_Enable_ProjectDesc.TabIndex = 10;
+            this.checkBox_Enable_ProjectDesc.Text = "Project Description";
+            this.checkBox_Enable_ProjectDesc.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_Enable_ProjectScheme
+            // 
+            this.checkBox_Enable_ProjectScheme.AutoSize = true;
+            this.checkBox_Enable_ProjectScheme.Location = new System.Drawing.Point(267, 47);
+            this.checkBox_Enable_ProjectScheme.Name = "checkBox_Enable_ProjectScheme";
+            this.checkBox_Enable_ProjectScheme.Size = new System.Drawing.Size(108, 16);
+            this.checkBox_Enable_ProjectScheme.TabIndex = 9;
+            this.checkBox_Enable_ProjectScheme.Text = "Project Scheme";
+            this.checkBox_Enable_ProjectScheme.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_Enable_Env
+            // 
+            this.checkBox_Enable_Env.AutoSize = true;
+            this.checkBox_Enable_Env.Location = new System.Drawing.Point(3, 25);
+            this.checkBox_Enable_Env.Name = "checkBox_Enable_Env";
+            this.checkBox_Enable_Env.Size = new System.Drawing.Size(42, 16);
+            this.checkBox_Enable_Env.TabIndex = 7;
+            this.checkBox_Enable_Env.Text = "Env";
+            this.checkBox_Enable_Env.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_Enable_Floorplate
+            // 
+            this.checkBox_Enable_Floorplate.AutoSize = true;
+            this.checkBox_Enable_Floorplate.Location = new System.Drawing.Point(147, 25);
+            this.checkBox_Enable_Floorplate.Name = "checkBox_Enable_Floorplate";
+            this.checkBox_Enable_Floorplate.Size = new System.Drawing.Size(84, 16);
+            this.checkBox_Enable_Floorplate.TabIndex = 6;
+            this.checkBox_Enable_Floorplate.Text = "Floorplate";
+            this.checkBox_Enable_Floorplate.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_Enable_Others
+            // 
+            this.checkBox_Enable_Others.AutoSize = true;
+            this.checkBox_Enable_Others.Location = new System.Drawing.Point(267, 25);
+            this.checkBox_Enable_Others.Name = "checkBox_Enable_Others";
+            this.checkBox_Enable_Others.Size = new System.Drawing.Size(60, 16);
+            this.checkBox_Enable_Others.TabIndex = 5;
+            this.checkBox_Enable_Others.Text = "Others";
+            this.checkBox_Enable_Others.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_Enable_ProjectOveriew
+            // 
+            this.checkBox_Enable_ProjectOveriew.AutoSize = true;
+            this.checkBox_Enable_ProjectOveriew.Location = new System.Drawing.Point(387, 25);
+            this.checkBox_Enable_ProjectOveriew.Name = "checkBox_Enable_ProjectOveriew";
+            this.checkBox_Enable_ProjectOveriew.Size = new System.Drawing.Size(120, 16);
+            this.checkBox_Enable_ProjectOveriew.TabIndex = 4;
+            this.checkBox_Enable_ProjectOveriew.Text = "Project Overview";
+            this.checkBox_Enable_ProjectOveriew.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_Enable_Photo
+            // 
+            this.checkBox_Enable_Photo.AutoSize = true;
+            this.checkBox_Enable_Photo.Location = new System.Drawing.Point(387, 3);
+            this.checkBox_Enable_Photo.Name = "checkBox_Enable_Photo";
+            this.checkBox_Enable_Photo.Size = new System.Drawing.Size(54, 16);
+            this.checkBox_Enable_Photo.TabIndex = 3;
+            this.checkBox_Enable_Photo.Text = "Photo";
+            this.checkBox_Enable_Photo.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_Enable_RenderExternal
+            // 
+            this.checkBox_Enable_RenderExternal.AutoSize = true;
+            this.checkBox_Enable_RenderExternal.Location = new System.Drawing.Point(267, 3);
+            this.checkBox_Enable_RenderExternal.Name = "checkBox_Enable_RenderExternal";
+            this.checkBox_Enable_RenderExternal.Size = new System.Drawing.Size(114, 16);
+            this.checkBox_Enable_RenderExternal.TabIndex = 2;
+            this.checkBox_Enable_RenderExternal.Text = "Render External";
+            this.checkBox_Enable_RenderExternal.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_Enable_RenderInternal
+            // 
+            this.checkBox_Enable_RenderInternal.AutoSize = true;
+            this.checkBox_Enable_RenderInternal.Location = new System.Drawing.Point(147, 3);
+            this.checkBox_Enable_RenderInternal.Name = "checkBox_Enable_RenderInternal";
+            this.checkBox_Enable_RenderInternal.Size = new System.Drawing.Size(114, 16);
+            this.checkBox_Enable_RenderInternal.TabIndex = 1;
+            this.checkBox_Enable_RenderInternal.Text = "Render Internal";
+            this.checkBox_Enable_RenderInternal.UseVisualStyleBackColor = true;
+            // 
+            // checkBox_Enable_Floorplan
+            // 
+            this.checkBox_Enable_Floorplan.AutoSize = true;
+            this.checkBox_Enable_Floorplan.Location = new System.Drawing.Point(3, 3);
+            this.checkBox_Enable_Floorplan.Name = "checkBox_Enable_Floorplan";
+            this.checkBox_Enable_Floorplan.Size = new System.Drawing.Size(78, 16);
+            this.checkBox_Enable_Floorplan.TabIndex = 0;
+            this.checkBox_Enable_Floorplan.Text = "Floorplan";
+            this.checkBox_Enable_Floorplan.UseVisualStyleBackColor = true;
+            // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.AutoSize = true;
@@ -149,12 +315,12 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
-            this.tableLayoutPanel1.Controls.Add(this.button_Logo, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.button_Save, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.button_Resize, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.button_Close, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.button_Reset, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 342);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 408);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
@@ -162,15 +328,15 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(684, 27);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
-            // button_Logo
+            // button_Save
             // 
-            this.button_Logo.Location = new System.Drawing.Point(444, 3);
-            this.button_Logo.Name = "button_Logo";
-            this.button_Logo.Size = new System.Drawing.Size(75, 21);
-            this.button_Logo.TabIndex = 1;
-            this.button_Logo.Text = "&Save";
-            this.button_Logo.UseVisualStyleBackColor = true;
-            this.button_Logo.Click += new System.EventHandler(this.button_Logo_Click);
+            this.button_Save.Location = new System.Drawing.Point(444, 3);
+            this.button_Save.Name = "button_Save";
+            this.button_Save.Size = new System.Drawing.Size(75, 21);
+            this.button_Save.TabIndex = 1;
+            this.button_Save.Text = "&Save";
+            this.button_Save.UseVisualStyleBackColor = true;
+            this.button_Save.Click += new System.EventHandler(this.button_Save_Click);
             // 
             // button_Resize
             // 
@@ -208,7 +374,7 @@
             this.groupBox1.AutoSize = true;
             this.groupBox1.Controls.Add(this.tableLayoutPanel3);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(0, 27);
+            this.groupBox1.Location = new System.Drawing.Point(0, 93);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(684, 195);
@@ -447,7 +613,7 @@
             this.groupBox2.AutoSize = true;
             this.groupBox2.Controls.Add(this.tableLayoutPanel4);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox2.Location = new System.Drawing.Point(0, 222);
+            this.groupBox2.Location = new System.Drawing.Point(0, 288);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(0);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(684, 120);
@@ -616,7 +782,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.button_Close;
-            this.ClientSize = new System.Drawing.Size(684, 370);
+            this.ClientSize = new System.Drawing.Size(684, 436);
             this.Controls.Add(this.tableLayoutPanel_Main);
             this.Name = "ResizeForm";
             this.Text = "Logo";
@@ -625,6 +791,8 @@
             this.tableLayoutPanel_Main.PerformLayout();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
+            this.tableLayoutPanel5.ResumeLayout(false);
+            this.tableLayoutPanel5.PerformLayout();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -652,7 +820,7 @@
         private System.Windows.Forms.BindingSource bindingSource_DataGridView;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel_Main;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Button button_Logo;
+        private System.Windows.Forms.Button button_Save;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button button_Close;
         private System.Windows.Forms.GroupBox groupBox1;
@@ -685,6 +853,19 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.CheckBox checkBox_EnableLogo;
         private System.Windows.Forms.Button button_Resize;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
+        private System.Windows.Forms.CheckBox checkBox_Enable_Floorplan;
+        private System.Windows.Forms.CheckBox checkBox_Enable_RenderInternal;
+        private System.Windows.Forms.CheckBox checkBox_Enable_Photo;
+        private System.Windows.Forms.CheckBox checkBox_Enable_RenderExternal;
+        private System.Windows.Forms.CheckBox checkBox_Enable_Env;
+        private System.Windows.Forms.CheckBox checkBox_Enable_Floorplate;
+        private System.Windows.Forms.CheckBox checkBox_Enable_Others;
+        private System.Windows.Forms.CheckBox checkBox_Enable_ProjectOveriew;
+        private System.Windows.Forms.CheckBox checkBox_Enable_ProjectFeature;
+        private System.Windows.Forms.CheckBox checkBox_Enable_ProjectDesc;
+        private System.Windows.Forms.CheckBox checkBox_Enable_ProjectScheme;
     }
 }
 

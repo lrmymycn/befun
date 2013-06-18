@@ -8,6 +8,14 @@
             <result name="success">/admin/cacheStatistics.jsp</result>
             <result name="error">/admin/data/result.jsp</result>
         </action>
+        <action name="updateMediaUrl" class="UpdateMediaUrlBaseAction" method="updateUrl">
+            <result name="success">/admin/data/result.jsp</result>
+            <result name="error">/admin/data/result.jsp</result>
+        </action>
+        <action name="testUpdateMediaUrl" class="UpdateMediaUrlBaseAction" method="testUpdateUrl">
+            <result name="success">/admin/data/result.jsp</result>
+            <result name="error">/admin/data/result.jsp</result>
+        </action>
         <action name="impPage" class="ImportAccessAction" method="importIndex">
             <result name="success">/admin/importAccess.jsp</result>
             <result name="error"></result>
