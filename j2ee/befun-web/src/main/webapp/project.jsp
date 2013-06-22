@@ -30,7 +30,7 @@
 								<div class="scrollable">
 									<div class="items">
 										<c:forEach items="${view.medias }" var="m" varStatus="stat">
-											<c:if test="${stat.index > 0 && (stat.index mod 6) eq 0 }">
+											<c:if test="${stat.last || (stat.index > 0 && (stat.index mod 6) eq 0) }">
 												</div>
 											</c:if>
 											<c:if test="${(stat.index mod 6) eq 0 }">
