@@ -13,7 +13,7 @@
 	<body>
 		<div class="standard">
 	        <header>
-	        	<div class="inner">
+	        	<div id="1" class="inner">
 	        		<jsp:include page="includes/search.jsp" />
 	        	</div>
 	        </header>
@@ -30,12 +30,9 @@
 								<div class="scrollable">
 									<div class="items">
 										<div>
-											<a href="/img/render/medium/oceanvale.jpg" class="active"><img src="/img/render/medium/vsq-north.jpg" width="89" height="59" /></a>
-											<a href="/img/render/medium/web_oceanvale_ext_4.jpg" class=""><img src="/img/render/medium/web_oceanvale_ext_4.jpg" width="89" height="59" /></a>
-											<a href="/img/render/medium/web_oceanvale_ext_3.jpg" class=""><img src="/img/render/medium/web_oceanvale_ext_3.jpg" width="89" height="59" /></a>
-											<a href="/img/render/medium/web_oceanvale_ext_2.jpg" class=""><img src="/img/render/medium/web_oceanvale_ext_2.jpg" width="89" height="59" /></a>
-											<a href="/img/render/medium/oceanvale-warriewood-cycling-641x432.jpg" class=""><img src="/img/render/medium/oceanvale-warriewood-cycling-641x432.jpg" width="89" height="59" /></a>
-											<a href="/img/render/medium/oceanvale-warriewood-beach-641x432.jpg" class=""><img src="/img/render/medium/oceanvale-warriewood-beach-641x432.jpg" width="89" height="59" /></a>
+											<c:forEach items="${view.medias }" var="m">
+												<a href="${m.largeUrl }" class="active"><img src="${m.mediumUrl }" width="89" height="59" /></a>
+											</c:forEach>
 										</div>
 										<div>
 											<a href="/img/render/medium/oceanvalepool-641x432.jpg" class=""><img src="/img/render/medium/oceanvalepool-641x432.jpg" width="89" height="59" /></a>
@@ -64,7 +61,7 @@
 						<table>
 							<tr>
 								<td width="100"><strong>地址</strong></td>
-								<td>661-665 Gardeners Rd Mascot NSW 2020</td>
+								<td><s:label name="view.address" theme="simple" /></td>
 							</tr>
 							<tr>
 								<td><strong>市政厅</strong></td>

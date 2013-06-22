@@ -18,7 +18,7 @@
 		<s:textfield name="view.lotNumber" label="Lot Number"></s:textfield>
 		<s:textfield name="view.floorLevel" label="Floor Level"></s:textfield>
 		<s:textfield name="view.price" label="Price"></s:textfield>
-		<s:textfield name="view.unitEntitlement" label="UnitEntitlement"></s:textfield>
+		<s:textfield name="view.unitEntitlement" label="UnitEntitlement" ></s:textfield>
 		<s:textfield name="view.colorScheme" label="ColorScheme"></s:textfield>
 		<s:textfield name="view.carParkingCount" label="CarParking Count"></s:textfield>
 		<s:textfield name="view.storageRoomCount" label="StorageRoom Count"></s:textfield>
