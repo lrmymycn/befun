@@ -15,6 +15,7 @@
 		<s:label name="view.projectName" label="projectName"></s:label>
 		<s:textfield name="view.media.id" label="mediaId"></s:textfield>
 		<s:label name="view.media.smallUrl" label="mediaSmallUrl"></s:label>
+		<s:textfield name="view.seqNum" label="seq"/>
 		<tr>
 			<td colspan="2"><div align="right">
 				<s:if test="editable">

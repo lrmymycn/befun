@@ -145,8 +145,12 @@
 	});
 })( jQuery );
 
+function isNull(value) {
+	return (value == '' || value == "" || value == null);
+}
+
 function getSuburbByArea(area, suburb){
-	if(area.val() == "") {
+	if(isNull(area.val())) {
 	    suburb.empty();
 	    suburb.append("<option value=''>Select Suburb</option>");
 		return;
@@ -176,7 +180,7 @@ function getSuburbByArea(area, suburb){
 }
 
 function getProjectBySuburb(suburb, project){
-	if(suburb.val() == "") {
+	if(isNull(suburb.val())) {
         project.empty();
         project.append("<option value=''>Select Project</option>");
 		return;
@@ -206,7 +210,7 @@ function getProjectBySuburb(suburb, project){
 }
 
 function getStageByProject(project, stage){
-	if(project.val() == "") {
+	if(isNull(project.val())) {
 		stage.empty();
 		stage.append("<option value=''>Select Stage</option>");
 		return;
@@ -236,7 +240,7 @@ function getStageByProject(project, stage){
 }
 
 function getBuildingByStage(stage, building){
-	if(stage.val() == "") {
+	if(isNull(stage.val())) {
 		building.empty();
 		building.append("<option value=''>Select Building</option>");
 		return;
@@ -266,7 +270,7 @@ function getBuildingByStage(stage, building){
 }
 
 function getFloorplanByBuilding(building, floorplan){
-	if(building.val() == "") {
+	if(isNull(building.val())) {
 		floorplan.empty();
 		floorplan.append("<option value=''>Select Floorplan</option>");
 		return;

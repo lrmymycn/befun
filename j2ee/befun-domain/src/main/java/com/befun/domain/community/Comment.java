@@ -20,12 +20,11 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import com.befun.domain.BaseModel;
 import com.befun.domain.profile.Profile;
 
-
 @Entity
 @Table(name = "COMMENT_REC")
 @TableGenerator(name = "commentGenerator", table = "ID_GENERATOR", pkColumnName = "gen_name", valueColumnName = "gen_value", pkColumnValue = "comment", allocationSize = 1)
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region="comment")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "comment")
 public class Comment implements BaseModel<Long> {
 
     private static final long serialVersionUID = -8513720307562351486L;
@@ -33,27 +32,27 @@ public class Comment implements BaseModel<Long> {
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "commentGenerator")
-    private Long              id;
+    private Long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(referencedColumnName = "id", name = "PROFILE_ID")
-    private Profile           profile;
+    private Profile profile;
 
     @Column(name = "content")
-    private String            content;
+    private String content;
 
     @Column(name = "CREATION_DATE")
-    private Date              creationDate;
+    private Date creationDate;
 
     @Column(name = "ENABLED")
-    private boolean           enabled;
+    private boolean enabled;
 
     @Column(name = "ENABLED_DATE")
-    private Date              enabledDate;
+    private Date enabledDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(referencedColumnName = "id", name = "ENABLED_BY")
-    private Profile           enabledBy;
+    private Profile enabledBy;
 
     public Long getId() {
         return id;

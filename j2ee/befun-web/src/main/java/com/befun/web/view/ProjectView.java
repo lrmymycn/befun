@@ -28,6 +28,12 @@ public class ProjectView extends BaseEasteView<Project> {
 
     private Media logo;
 
+    private String shortDescription;
+
+    private String type;
+
+    private String priceRange;
+
     private String name;
 
     private String block;
@@ -126,6 +132,30 @@ public class ProjectView extends BaseEasteView<Project> {
 
     public void setLogo(Media logo) {
         this.logo = logo;
+    }
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getPriceRange() {
+        return priceRange;
+    }
+
+    public void setPriceRange(String priceRange) {
+        this.priceRange = priceRange;
     }
 
     public void setAreaId(Long areaId) {

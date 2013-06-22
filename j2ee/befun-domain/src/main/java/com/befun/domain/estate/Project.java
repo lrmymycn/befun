@@ -26,7 +26,7 @@ import com.befun.domain.BaseEstateModel;
 @Table(name = "PROJECT")
 @TableGenerator(name = "projectGenerator", table = "ID_GENERATOR", pkColumnName = "gen_name", valueColumnName = "gen_value", pkColumnValue = "project", allocationSize = 1)
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region="project")
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE, region = "project")
 public class Project implements BaseEstateModel<Long> {
 
     private static final long serialVersionUID = 7873456988953911225L;
@@ -56,6 +56,15 @@ public class Project implements BaseEstateModel<Long> {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(referencedColumnName = "id", name = "LOGO_ID")
     private Media logo;
+
+    @Column(name = "SHORT_DESCRIPTION")
+    private String shortDescription;
+
+    @Column(name = "TYPE")
+    private String type;
+
+    @Column(name = "PRICE_RANGE")
+    private String priceRange;
 
     @Column(name = "SITE_URL", length = 500)
     private String siteUrl;
@@ -207,6 +216,30 @@ public class Project implements BaseEstateModel<Long> {
 
     public void setLogo(Media logo) {
         this.logo = logo;
+    }
+
+    public String getShortDescription() {
+        return shortDescription;
+    }
+
+    public void setShortDescription(String shortDescription) {
+        this.shortDescription = shortDescription;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getPriceRange() {
+        return priceRange;
+    }
+
+    public void setPriceRange(String priceRange) {
+        this.priceRange = priceRange;
     }
 
     public String getSiteUrl() {

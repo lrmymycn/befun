@@ -1,1 +1,1 @@
-ALTER TABLE `client` ADD COLUMN `seq_num` int(11) DEFAULT NULL;
+ALTER TABLE `project_media` ADD COLUMN `seq_num` int(11) DEFAULT NULL;

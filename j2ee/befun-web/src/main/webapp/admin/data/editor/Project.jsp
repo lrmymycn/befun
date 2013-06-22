@@ -43,6 +43,9 @@
 		<s:textfield name="view.suburbId" label="suburbId"></s:textfield> -->
 		<s:textfield name="view.pictureId" label="pictureId"></s:textfield>
 		<s:textfield name="view.logoId" label="logoId"></s:textfield>
+		<s:textfield name="view.type" label="type"></s:textfield>
+		<s:textfield name="view.priceRange" label="priceRange"></s:textfield>
+		<s:textfield name="view.shortDescription" label="shortDescription"></s:textfield>
 		<s:textfield name="view.name" label="name"></s:textfield>
 		<s:textfield name="view.block" label="block"></s:textfield>
 		<s:textfield name="view.siteUrl" label="siteUrl"></s:textfield>
