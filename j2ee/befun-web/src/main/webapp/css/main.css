@@ -1189,7 +1189,10 @@ footer a{
 #floorplan-filter{
 	width:386px;
 	float:left;
-	height:450px;
+}
+
+.tile #floorplan-filter{
+	width:458px;
 }
 
 #floorplan-filter .title{
@@ -1200,7 +1203,7 @@ footer a{
 }
 
 #floorplan-filter table{
-	width:386px;
+	width:100%;
 }
 
 #floorplan-filter table tr{
@@ -1247,9 +1250,14 @@ footer a{
 	border:1px solid #cccccc;
 }
 
+.tile #floorplan-filter .feature{
+	margin:0px;
+	padding:4px 14px 11px 14px;
+}
+
 #floorplan-filter .feature .list li{
 	float:left;
-	width:90px;
+	width:106px;
 }
 
 #floorplan-filter .feature .label{
@@ -1273,11 +1281,13 @@ footer a{
 	height:453px;
 }
 
-#floorplans .title{
-	height:40px;
-	line-height:40px;
-	padding-top:5px;
-	padding-left:15px;
+.tile #floorplans{
+	width:170px;
+	margin-top:-50px;
+}
+
+.tile #floorplan-filter .title{
+	display:none;
 }
 
 #floorplans .nav{
@@ -1285,6 +1295,10 @@ footer a{
 	width:79px;
 	height:26px;
 	margin:0 0 12px 35px;
+}
+
+.tile #floorplans .nav{
+	margin-left:54px;
 }
 
 #floorplans .prev{
@@ -1301,24 +1315,28 @@ footer a{
 	position:relative;
   	overflow:hidden;
   	height:354px;
-  	width:122px;
   	margin-left:22px;
 }
 
-#floorplans .scrollable .items {
+#floorplans .items {
   	position:absolute;
   	height:20000em;
 }
 
-#floorplans .scrollable .items .item{
+#floorplans .item{
 	display:block;
 	border:1px solid #cccccc;
 	margin-bottom:10px;
 }
 
-#floorplans .scrollable .items .item img{
+#floorplans img{
 	width:105px;
 	height:79px;
+}
+
+.tile #floorplans img{
+	width:145px;
+	height:109px;
 }
 
 #tab-floorplans .floorplan img{

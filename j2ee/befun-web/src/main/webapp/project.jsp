@@ -46,9 +46,21 @@
 					</div>
 					
 					<div class="tile">
-						<h3>户型检索</h3>
+						<h3>检索当前项目户型</h3>
 						<div class="floorplans clearfix">
 							<jsp:include page="includes/floorplan_filter.jsp" />
+							<div id="floorplans">
+								<!--<div class="title">Search Results:</div>-->
+								<div id="floorplan-list">
+									<a href="javascript:;" class="prev nav"></a>
+									<div class="scrollable">
+										<div class="items">
+											<div data-id="0"><a data-id="412" class="item" href="javascript:;"><img alt="" src="/img/fp/small/F-P-G58.jpg"></a><a data-id="373" class="item" href="javascript:;"><img alt="" src="/img/fp/small/D-P-G25.jpg"></a><a data-id="421" class="item" href="javascript:;"><img alt="" src="/img/fp/small/G-P-173,273,372.jpg"></a></div>
+										</div>
+									</div>
+									<a href="javascript:;" class="next nav"></a>
+								</div>
+							</div>
 						</div>
 					</div>
 					
