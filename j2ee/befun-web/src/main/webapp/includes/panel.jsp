@@ -161,164 +161,7 @@
 			</div>
 		</div>
 		<div id="tab-floorplans" class="hidden">
-			<div id="floorplan-filter">
-				<div class="title">Search current project</div>
-				<table>
-					<tr class="odd">
-						<td class="label">Price range:</td>
-						<td>
-							<div class="pricerange">
-		        				<select name="minprice" class="selectbox">
-				        			<option value="0" selected="true">Any Price</option>
-				        			<option value="1">$450,000</option>
-				        			<option value="2">$550,000</option>
-				        			<option value="3">$650,000</option>
-				        			<option value="4">$750,000</option>
-				        			<option value="5">$850,000</option>
-				        		</select>
-			        		</div>
-			        		<div class="pricerangeto">
-			        			to
-			        		</div>
-			        		<div class="pricerange">
-				        		<select name="maxprice" class="selectbox">
-				        			<option value="0" selected="true">Any Price</option>
-				        			<option value="1">$450,000</option>
-				        			<option value="2">$550,000</option>
-				        			<option value="3">$650,000</option>
-				        			<option value="4">$750,000</option>
-				        			<option value="5">$850,000</option>
-				        			<option value="6">$850,000+</option>
-				        		</select>
-			        		</div>
-        				</td>
-					</tr>
-					<tr>
-						<td class="label">Bedrooms:</td>
-						<td>
-							<span class="checkbox">
-		        				<input type="checkbox" value="1" name="floorplan-bedrooms" id="floorplan-bedroom-1"/> 
-		        			</span>
-		        			<label for="floorplan-bedroom-1">1</label>
-		        			<span class="checkbox">
-			        			<input type="checkbox" value="2" name="floorplan-bedrooms" id="floorplan-bedroom-2">
-			        		</span>
-			        		<label for="floorplan-bedroom-2">2</label>
-			        		<span class="checkbox">
-			        			<input type="checkbox" value="3" name="floorplan-bedrooms" id="floorplan-bedroom-3"/>
-							</span>	
-							<label for="floorplan-bedroom-3">3</label>
-							<span class="checkbox">        		
-			        			<input type="checkbox" value="3+" name="floorplan-bedrooms" id="floorplan-bedroom-3plus"/>
-			        		</span>
-			        		<label form="floorplan-bedroom-3plus">3+</label>
-        				</td>
-					</tr>
-					<tr class="odd">
-						<td class="label">Bathrooms:</td>
-						<td>
-							<span class="checkbox">
-		        				<input type="checkbox" value="1" name="floorplan-bathrooms" id="floorplan-bathroom-1"/> 
-		        			</span>
-		        			<label for="floorplan-bathroom-1">1</label>
-		        			<span class="checkbox">
-			        			<input type="checkbox" value="2" name="floorplan-bathrooms" id="floorplan-bathroom-2">
-			        		</span>
-			        		<label for="floorplan-bathroom-2">2</label>
-			        		<span class="checkbox">
-			        			<input type="checkbox" value="3" name="floorplan-bathrooms" id="floorplan-bathroom-2plus"/>
-							</span>	
-							<label for="floorplan-bathroom-2plus">2+</label>
-						</td>
-					</tr>
-					<tr>
-						<td class="label">Carspace:</td>
-						<td>
-							<span class="checkbox">
-		        				<input type="checkbox" value="1" name="floorplan-carspace" id="floorplan-carspace-1"/> 
-		        			</span>
-		        			<label for="floorplan-carspace-1">1</label>
-		        			<span class="checkbox">
-			        			<input type="checkbox" value="2" name="floorplan-carspace" id="floorplan-carspace-2">
-			        		</span>
-			        		<label for="floorplan-carspace-2">2</label>
-			        		<span class="checkbox">
-			        			<input type="checkbox" value="3" name="floorplan-carspace" id="floorplan-carspace-2plus"/>
-							</span>	
-							<label for="floorplan-carspace-2plus">2+</label>
-						</td>
-					</tr>
-				</table>
-				<div class="feature">
-					<ul class="list clearfix">
-    					<li>
-    						<span class="checkbox">
-								<input type="checkbox" value="Y" name="splitlevel"/>
-							</span>
-							<label>Split level</label>
-    					</li>
-    					<li style="width:115px;">
-							<span class="checkbox">
-								<input type="checkbox" value="Y" name="storage"/>
-							</span>
-							<label>Storage room</label>
-    					</li>
-    					<li>
-    						<span class="checkbox">
-								<input type="checkbox" value="Y" name="courtyard"/>
-							</span>
-							<label>Courtyard</label>
-    					</li>
-    					<li>
-							<span class="checkbox">
-    							<input type="checkbox" value="Y" name="study"/>
-    						</span>
-    						<label>Study</label>
-    					</li>   					
-    					<li style="width:115px;">
-							<span class="checkbox">
-								<input type="checkbox" value="Y" name="penthouse"/>
-							</span>
-							<label>Penthouse</label>
-    					</li>
-    					<li style="width:140px;">
-							<span class="checkbox">
-								<input type="checkbox" value="Y" name="wintergarden"/>
-							</span>
-							<label>Enclosed Balcony</label>
-    					</li>
-					</ul>
-					<div class="clearfix">
-						<span class="label">Aspect:</span>
-						<div class="aspect">
-							<select name="aspect" class="selectbox">
-			        			<option value="">Select</option>
-			        			<option value="N">North</option>
-			        			<option value="E">East</option>
-			        			<option value="W">West</option>
-			        			<option value="S">South</option>
-			        		</select>
-						</div>
-					</div>
-					
-				</div>
-				<div class="buttons">
-					<a href="javascript:;" id="btn-search3"></a>
-				</div>
-        		
-			</div>
-			<div id="floorplans">
-				<!--<div class="title">Search Results:</div>-->
-				<div id="floorplan-list">
-					<a href="javascript:;" class="prev nav"></a>
-					<div class="scrollable">
-						<div class="items">
-							
-						</div>
-					</div>
-					<a href="javascript:;" class="next nav"></a>
-				</div>
-			</div>
+			<jsp:include page="floorplan_filter.jsp" />
 		</div>
 		<div id="tab-sales" class="hidden tab-block">
 			<div class="box">
@@ -350,7 +193,25 @@
 		</div>
 		<div id="tab-comments" class="hidden tab-block">
 			<div class="box">
-			
+				<div id="add-comment">
+					<a href="#">+ 发表我的看法</a>
+				</div>
+				<ul>
+					<li>
+						<div class="name">Sam <span class="date">Jun 20, 2013</span></div>
+						<div class="comment"><p>附近住个奇怪的大叔喜欢穿着风衣吓人。好可怕。</p></div>
+					</li>
+					<li>
+						<div class="name">Ryan <span class="date">Jun 20, 2013</span></div>
+						<div class="comment"><p>那一天，人類終於回想起了，曾經一度支配他們的恐懼，還有被囚禁於鳥籠中的屈辱。</p></div>
+					</li>
+					<li>
+						<div class="name">Bourne <span class="date">May 19, 2013</span></div>
+						<div class="comment"><p>杰森·伯恩在意大利被人从海上救起，他失去了记忆，除了臀部的瑞士银行帐号之外，他完全没有办法证明自己的身份。</p>
+<p>杰森从瑞士银行找到了大量的现金，六本护照，一把枪，同时他发现自己格斗、枪械、和语言等方面的能力，他开始追查自己的身份，并且把陌生女子玛丽也卷了进来。两人从瑞士到巴黎，一路上受到神秘杀手组织的追杀，危机重重。</p>
+<p>杰森能否化险为夷，找到自己的真实身份？他是否有勇气面对真相？</p></div>
+					</li>
+				</ul>
 			</div>
 		</div>
 		<div id="tab-contactus" class="hidden tab-block">

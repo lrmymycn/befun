@@ -16,7 +16,7 @@
 	        	<div class="inner">
 	        		<jsp:include page="includes/search.jsp" />
 		        	<div id="reminder">
-	        			<em>Search Conditions: </em><div id="reminder-nodes"></div> <a href="/" class="reset">Reset</a>
+	        			<em>搜索条件: </em><div id="reminder-nodes"></div> <a href="/" class="reset">Reset</a>
 	        		</div>
 	        	</div>
 	        </header>

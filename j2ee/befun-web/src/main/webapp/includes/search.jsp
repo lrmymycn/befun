@@ -4,7 +4,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <div class="top">
-	<a href="/"><h1 class="logo">BeFun Property</h1></a>
+	<a href="/"><h1 class="logo"><img src="/img/logo.png" width="165" height="63" alt="Befun Property"/></h1></a>
 	<div class="search">
 		<input type="text" name="suburb" id="search-suburb" placeholder="Enter a suburb or a postcode"/>
 		<a href="javascript:;" id="btn-filter">Filter</a>
@@ -36,13 +36,14 @@
 				</li>
 			</sec:authorize>
 			<sec:authorize access="isAnonymous()">
-				<li><a href="login.jsp">Login</a></li>
-				<li><a href="mailto:info@befun.com.au">Join us</a></li>
-				<li class="phone"><i class="phone"></i> 02-7902-0866</li>
+				<li><a href="javascript:;" id="login-link">登陆</a></li>
+				<li><a href="mailto:info@befun.com.au">加入我们</a></li>
+				<li class="phone"><i class="phone"></i> 02 7902 0866</li>
 			</sec:authorize>
 		</ul>
 	</div>
-	<div id="client" class="popover">
+	<jsp:include page="login.jsp" />
+	<div id="client-panel" class="popover">
 		<div class="arrow"></div>
 		<div class="inner">
 			<span class="title">Change client</span>

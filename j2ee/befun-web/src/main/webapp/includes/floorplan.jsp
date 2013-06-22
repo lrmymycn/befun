@@ -68,12 +68,11 @@
 			
 				</div>
 				<div class="contactus">
-					<strong>如果您想了解更多，我们会第一时间给答复给您：</strong>
 					<form action="" method="post">
 						<div class="row clearfix">
-							<span class="title">项目:</span>
+							<span class="title">户型:</span>
 							<div class="input">
-								<span class="project">Oceanvale</span>
+								<span class="project">OCE-111</span>
 							</div>
 						</div>
 						<div class="row clearfix">

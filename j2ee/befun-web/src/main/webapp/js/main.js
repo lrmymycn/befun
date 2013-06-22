@@ -1,5 +1,5 @@
 $(function(){
-	Main.initClient();
+	Main.initMenu();
 	Main.initFilter();
 	Search.init();
 });
@@ -52,7 +52,7 @@ Main = {
 			PanelPopup.hide();
 			$('#filter').toggle();
 			
-			if(!$('#client').is(':visible')){	
+			if(!$('#client-panel').is(':visible')){	
 				$('#filter-overlay').toggle();
 			}
 			
@@ -79,18 +79,18 @@ Main = {
 			Main.hideFilter();
 		});
 	},
-	initClient: function(){
-		Main.currentClientId = $('#clientname').data('id');
-		
+	initMenu: function(){
+		Main.currentClientId = $('#clientname').data('id');	
+
 		$('#change-client').click(function(){
-			$('#client').toggle();
-			
+			$('#client-panel').toggle();
+		
 			if(!$('#filter').is(':visible')){	
 				$('#filter-overlay').toggle();
 			}
 		});
-		
-		$('#client select[name="client"]').change(function(){
+	
+		$('#client-panel select[name="client"]').change(function(){
 			var $this = $(this);
 			var id = $this.val();
 			if(id == ''){
@@ -113,7 +113,7 @@ Main = {
 				}
 			});
 		});
-		
+	
 		$.ajax({
 			url: Main.root + 'profile/json/viewMineClients.action?qc.enabled=true',
 			dataType: "json",
@@ -123,20 +123,30 @@ Main = {
 				for(var i = 0; i < clients.length; i++){
 					var client = clients[i];
 					var option = $('<option value="' + client.id + '">' + client.givenName +  ' ' + client.surname + '</option>');
-					$('#client select').append(option);
+					$('#client-panel select').append(option);
 					if(Main.currentClientId == client.id){
 						$('#clientname').text('and ' + client.givenName + ' ' + client.surname);
 						$('#view-client').attr('href','client.jsp?id=' + Main.currentClientId).show();
 					}
 				}
-				
-				$("#client select.selectbox").selectbox();
+			
+				$("#client-panel select.selectbox").selectbox();
 			}
 		});
+
+		$('#login-link').click(function(){
+			$('#login-panel').toggle();
+		
+			if(!$('#filter').is(':visible')){	
+				$('#filter-overlay').toggle();
+			}
+		});
+
 	},
 	hideFilter:function(){
 		$('#filter').hide();
-		$('#client').hide();
+		$('#client-panel').hide();
+		$('#login-panel').hide();
 		$('#filter-overlay').hide();
 	},
 	loadProjectList:function(){
@@ -2178,6 +2188,58 @@ ClientList = {
 		});
 	}
 };
+
+ProjectPage = {
+	map: null,
+	init: function(){
+		$('div.scrollable').scrollable();
+		
+		$('#gallery-list .items a').click(function(e){
+			e.preventDefault();
+			if($(this).hasClass('active')){
+				return false;
+			}
+			
+			var url = $(this).attr('href');
+			$('#gallery-main').fadeTo("medium", 0.5);
+			var img = new Image();
+ 
+			img.onload = function() {		 
+				$('#gallery-main').fadeTo("fast", 1);
+				$('#gallery-main').find("img").attr("src", url);		 
+			};
+			img.src = url;
+			
+			$('#gallery-list .items a').removeClass('active');
+			$(this).addClass('active');
+			
+			return false;
+		});
+		
+		var latLng = new google.maps.LatLng(-34.007509, 151.101848);
+		var mapOptions = {
+    		zoom: 15,
+    		minZoom: 11,
+    		maxZoom: 20,
+    		center: latLng,
+    		mapTypeId: google.maps.MapTypeId.ROADMAP,
+    		mapTypeControl: false,
+    		streetViewControl: false,
+    		panControl: false,
+    		zoomControlOptions: {
+    			position: google.maps.ControlPosition.LEFT_CENTER
+    		}
+  		}
+  		this.map = new google.maps.Map(document.getElementById("googlemap"), mapOptions);
+  		
+  		var marker = new google.maps.Marker({
+			position: latLng,
+			map: ProjectPage.map
+		});
+		
+		$("select.selectbox").selectbox();
+	}
+}
 
 Tools = {
 	getCheckboxListValue: function(name){
