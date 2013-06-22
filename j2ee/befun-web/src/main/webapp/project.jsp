@@ -29,14 +29,15 @@
 								<a href="javascript:;" class="prev"></a>
 								<div class="scrollable">
 									<div class="items">
-										<div>
-											<c:forEach items="${view.medias }" var="m">
-												<a href="${m.largeUrl }" class="active"><img src="${m.mediumUrl }" width="89" height="59" /></a>
-											</c:forEach>
-										</div>
-										<div>
-											<a href="/img/render/medium/oceanvalepool-641x432.jpg" class=""><img src="/img/render/medium/oceanvalepool-641x432.jpg" width="89" height="59" /></a>
-										</div>
+										<c:forEach items="${view.medias }" var="m" varStatus="stat">
+											<c:if test="${stat.index > 0 && (stat.index mod 6) eq 0 }">
+												</div>
+											</c:if>
+											<c:if test="${(stat.index mod 6) eq 0 }">
+												<div id="${stat.index }">
+											</c:if>
+												<a href="${m.largeUrl }" <c:if test="${stat.index eq 0 }">class="active"</c:if>><img src="${m.mediumUrl }" width="89" height="59" /></a>
+										</c:forEach>
 									</div>
 								</div>
 								<a href="javascript:;" class="next"></a>
