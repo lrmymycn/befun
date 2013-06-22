@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div id="floorplan-filter">
-	<div class="title">Search current project</div>
+	<div class="title">检索当前项目户型</div>
 	<table>
 		<tr class="odd">
 			<td class="label">价格:</td>
@@ -95,7 +95,7 @@
 				</span>
 				<label>复式</label>
 			</li>
-			<li style="width:115px;">
+			<li>
 				<span class="checkbox">
 					<input type="checkbox" value="Y" name="storage"/>
 				</span>
@@ -113,13 +113,13 @@
 				</span>
 				<label>书房</label>
 			</li>   					
-			<li style="width:115px;">
+			<li>
 				<span class="checkbox">
 					<input type="checkbox" value="Y" name="penthouse"/>
 				</span>
 				<label>阁楼</label>
 			</li>
-			<li style="width:140px;">
+			<li>
 				<span class="checkbox">
 					<input type="checkbox" value="Y" name="wintergarden"/>
 				</span>
@@ -144,16 +144,4 @@
 		<a href="javascript:;" id="btn-search3"></a>
 	</div>
 	
-</div>
-<div id="floorplans">
-	<!--<div class="title">Search Results:</div>-->
-	<div id="floorplan-list">
-		<a href="javascript:;" class="prev nav"></a>
-		<div class="scrollable">
-			<div class="items">
-				<div data-id="0"><a data-id="412" class="item" href="javascript:;"><img alt="" src="/img/fp/small/F-P-G58.jpg"></a><a data-id="373" class="item" href="javascript:;"><img alt="" src="/img/fp/small/D-P-G25.jpg"></a><a data-id="421" class="item" href="javascript:;"><img alt="" src="/img/fp/small/G-P-173,273,372.jpg"></a><a data-id="389" class="item" href="javascript:;"><img alt="" src="/img/fp/small/F-P-151,251,348.jpg"></a></div>
-			</div>
-		</div>
-		<a href="javascript:;" class="next nav"></a>
-	</div>
 </div>

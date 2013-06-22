@@ -162,6 +162,18 @@
 		</div>
 		<div id="tab-floorplans" class="hidden">
 			<jsp:include page="floorplan_filter.jsp" />
+			<div id="floorplans">
+				<!--<div class="title">Search Results:</div>-->
+				<div id="floorplan-list">
+					<a href="javascript:;" class="prev nav"></a>
+					<div class="scrollable">
+						<div class="items">
+							
+						</div>
+					</div>
+					<a href="javascript:;" class="next nav"></a>
+				</div>
+			</div>
 		</div>
 		<div id="tab-sales" class="hidden tab-block">
 			<div class="box">
