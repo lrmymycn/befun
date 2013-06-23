@@ -18,13 +18,13 @@
     <http pattern="/jmesa/**" security="none" />
     <http pattern="/jquery-ui/**" security="none" />
     <http pattern="/struts/**" security="none" />
-    <http use-expressions="true" auto-config="true">
+    <http use-expressions="true" auto-config="true" entry-point-ref="">
         <intercept-url pattern="/" access="permitAll" requires-channel="http" />
         <intercept-url pattern="/index.jsp**" access="permitAll" requires-channel="http" />
         <intercept-url pattern="/compare.jsp**" access="hasAnyRole('SUPER','DATA_ADMIN','MANAGER','SALE')" requires-channel="http" />
         <intercept-url pattern="/clientlist.jsp**" access="hasAnyRole('SUPER','DATA_ADMIN','MANAGER','SALE')" requires-channel="http" />
         <intercept-url pattern="/index.action**" access="permitAll" requires-channel="http" />
-        <intercept-url pattern="/login.jsp**" access="permitAll" requires-channel="http" />
+        <intercept-url pattern="/search.jsp**" access="permitAll" requires-channel="http" />
         <intercept-url pattern="/j_spring_security_check" access="isAnonymous()" requires-channel="http" />
         <intercept-url pattern="/j_spring_security_logout" access="isAuthenticated()" requires-channel="http" />
         <intercept-url pattern="/estate/json/demandProjectAggregated.action**" access="permitAll" requires-channel="http" />
@@ -66,9 +66,9 @@
 
         <intercept-url pattern="/**" access="permitAll" requires-channel="any" />
         <!--intercept-url pattern="/**" access="denyAll" requires-channel="any" /-->
-        <form-login login-page="/login.jsp" authentication-failure-url="/login.jsp" />
+        <form-login login-page="/index.jsp" default-target-url="/search.jsp" always-use-default-target="true" authentication-failure-url="/index.jsp" />
         <logout logout-success-url="/" />
-        <session-management invalid-session-url="/login.jsp" session-fixation-protection="newSession">
+        <session-management invalid-session-url="/index.jsp" session-fixation-protection="newSession">
             <concurrency-control max-sessions="1" />
         </session-management>
         <!-- 如果为非标准端口，可在此指定 -->
