@@ -702,7 +702,8 @@ header .menu #view-client{
 	border-radius:0 0 5px 5px;
 }
 
-#btn-search2{
+#btn-search2,
+#btn-search4{
 	width:70px;
 	height:31px;
 	display:block;
@@ -713,11 +714,13 @@ header .menu #view-client{
 	background:url('/img/search-btn-long-bg.png') no-repeat;	
 }
 
-#btn-search2:hover{
+#btn-search2:hover,
+#btn-search4:hover{
 	background-position:0 -31px;
 }
 
-#btn-search2:active{
+#btn-search2:active,
+#btn-search4:active{
 	background-position:0 -62px;
 }
 
@@ -2369,6 +2372,7 @@ img.bg-login{
 .tile .tabs{
 	top:0px;
 	left:0px;
+	width:670px;
 }
 
 .tabs a{
@@ -2391,6 +2395,11 @@ img.bg-login{
 
 .tile .tabs a.active{
 	background:#ffffff;
+	border-bottom:1px solid #FFFFFF;
+}
+
+.tile .tab-contents{
+	margin-top:36px;
 }
 
 /* ==========================================================================

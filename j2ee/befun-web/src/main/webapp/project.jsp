@@ -36,7 +36,7 @@
 											<c:if test="${(stat.index mod 6) eq 0 }">
 												<div id="${stat.index }">
 											</c:if>
-												<a href="${m.largeUrl }" <c:if test="${stat.index eq 0 }">class="active"</c:if>><img src="${m.mediumUrl }" width="89" height="59" /></a>
+												<a href="${m.mediumUrl }" <c:if test="${stat.index eq 0 }">class="active"</c:if>><img src="${m.mediumUrl }" width="89" height="59" /></a>
 										</c:forEach>
 									</div>
 								</div>
@@ -50,7 +50,6 @@
 						<div class="floorplans clearfix">
 							<jsp:include page="includes/floorplan_filter.jsp" />
 							<div id="floorplans">
-								<!--<div class="title">Search Results:</div>-->
 								<div id="floorplan-list">
 									<a href="javascript:;" class="prev nav"></a>
 									<div class="scrollable">
@@ -66,111 +65,116 @@
 					
 					<div class="tile">
 						<div class="tabs">     			
-							<a class="active first" href="#tab-overview">项目信息</a>
+							<a class="active first" href="#tab-project-overview">项目信息</a>
 							<a href="#tab-sales">项目特色</a>
 							<a href="#tab-sales">内饰品牌</a>
 							<a href="#tab-sales">区域分析</a>
 						</div>
-						<table>
-							<tr>
-								<td width="100"><strong>地址</strong></td>
-								<td><s:label name="view.address" theme="simple" /></td>
-							</tr>
-							<tr>
-								<td><strong>市政厅</strong></td>
-								<td>Mascot</td>
-							</tr>
-							<tr>
-								<td><strong>市中心距离</strong></td>
-								<td>10km</td>
-							</tr>
-							<tr>
-								<td><strong>开发商</strong></td>
-								<td>Meriton</td>
-							</tr>
-							<tr>
-								<td><strong>建筑商</strong></td>
-								<td>Meriton</td>
-							</tr>
-							<tr>
-								<td><strong>发布日期</strong></td>
-								<td>25/05/2013</td>
-							</tr>
-							<tr>
-								<td><strong>总期数</strong></td>
-								<td>3</td>
-							</tr>
-							<tr>
-								<td><strong>总栋数</strong></td>
-								<td>3</td>
-							</tr>
-							<tr>
-								<td><strong>项目设施</strong></td>
-								<td>
-									<ul class="amenity">
-										<li><i class="tick"></i> Reception</li>
-										<li><i class="tick"></i> Swimming Pool</li>
-										<li><i class="tick"></i> Sauna Room</li>
-										<li><i class="tick"></i> Tennis Court</li>
-										<li><i class="tick"></i> Function Room</li>
-										<li><i class="tick"></i> Theatre Cinema</li>
-										<li><i class="tick"></i> Library</li>
-										<li><i class="tick"></i> BBQ Fireplace</li>
-										<li><i class="tick"></i> Landscaping</li>
-										<li><i class="tick"></i> Sky Garden</li>
-										<li><i class="tick"></i> Visitor parking</li>
-										<li><i class="tick"></i> Car wash bay</li>
-										<li><i class="tick"></i> Gym</li>
-										<li><i class="tick"></i> Kids Play Ground</li>
-										<li><i class="tick"></i> Play Room</li>
-										<li><i class="tick"></i> Recreation Place</li>
-										<li><i class="tick"></i> Music Room</li>
-									</ul>
-								</td>
-							</tr>
-						</table>
-						
-						<table>
-							<tr>
-								<td width="100"><strong>Wall</strong></td>
-								<td>Painted Plasterboard</td>
-							</tr>
-							<tr>
-								<td><strong>Floor</strong></td>
-								<td>Carpet / Timber floor</td>
-							</tr>
-							<tr>
-								<td><strong>Kitchen</strong></td>
-								<td>Splashback (stone/nature stone)<br/>
-									Cooktop (brand)<br/>
-									Oven (brand)<br/>
-									Rangehood (brand, ducted/recirculating)<br/>
-									Dishwasher (brand)<br/>
-									Microwave (brand)<br/>
-									Sink (brand or material)
-								</td>
-							</tr>
-							<tr>
-								<td><strong>Bathroom</strong></td>
-								<td>Shower (brand or material)<br/>
-									Tub (brand)<br/>
-									Tile (ceramic tiles)<br/>
-									Bathroom ware (brand)
-								</td>
-							</tr>
-							<tr>
-								<td><strong>Aircon</strong></td>
-								<td>Centralized</td>
-							</tr>
-							<tr>
-								<td><strong>NBN</strong></td>
-								<td>What's this?</td>
-							</tr>
-							<tr>
-								<td><strong>Satellite TV</strong></td>
-								<td>Foxtel</td>
-							</tr>
-						</table>
+						<div class="tab-contents">
+							<div id="tab-project-overview">
+								<table>
+									<tr>
+										<td width="100"><strong>地址</strong></td>
+										<td><s:label name="view.address" theme="simple" /></td>
+									</tr>
+									<tr>
+										<td><strong>市政厅</strong></td>
+										<td>Mascot</td>
+									</tr>
+									<tr>
+										<td><strong>市中心距离</strong></td>
+										<td>10km</td>
+									</tr>
+									<tr>
+										<td><strong>开发商</strong></td>
+										<td>Meriton</td>
+									</tr>
+									<tr>
+										<td><strong>建筑商</strong></td>
+										<td>Meriton</td>
+									</tr>
+									<tr>
+										<td><strong>发布日期</strong></td>
+										<td>25/05/2013</td>
+									</tr>
+									<tr>
+										<td><strong>总期数</strong></td>
+										<td>3</td>
+									</tr>
+									<tr>
+										<td><strong>总栋数</strong></td>
+										<td>3</td>
+									</tr>
+									<tr>
+										<td><strong>项目设施</strong></td>
+										<td>
+											<ul class="amenity">
+												<li><i class="tick"></i> Reception</li>
+												<li><i class="tick"></i> Swimming Pool</li>
+												<li><i class="tick"></i> Sauna Room</li>
+												<li><i class="tick"></i> Tennis Court</li>
+												<li><i class="tick"></i> Function Room</li>
+												<li><i class="tick"></i> Theatre Cinema</li>
+												<li><i class="tick"></i> Library</li>
+												<li><i class="tick"></i> BBQ Fireplace</li>
+												<li><i class="tick"></i> Landscaping</li>
+												<li><i class="tick"></i> Sky Garden</li>
+												<li><i class="tick"></i> Visitor parking</li>
+												<li><i class="tick"></i> Car wash bay</li>
+												<li><i class="tick"></i> Gym</li>
+												<li><i class="tick"></i> Kids Play Ground</li>
+												<li><i class="tick"></i> Play Room</li>
+												<li><i class="tick"></i> Recreation Place</li>
+												<li><i class="tick"></i> Music Room</li>
+											</ul>
+										</td>
+									</tr>
+								</table>
+							</div>
+							<div id="tab-project-finish" style="display:none">
+								<table>
+									<tr>
+										<td width="100"><strong>Wall</strong></td>
+										<td>Painted Plasterboard</td>
+									</tr>
+									<tr>
+										<td><strong>Floor</strong></td>
+										<td>Carpet / Timber floor</td>
+									</tr>
+									<tr>
+										<td><strong>Kitchen</strong></td>
+										<td>Splashback (stone/nature stone)<br/>
+											Cooktop (brand)<br/>
+											Oven (brand)<br/>
+											Rangehood (brand, ducted/recirculating)<br/>
+											Dishwasher (brand)<br/>
+											Microwave (brand)<br/>
+											Sink (brand or material)
+										</td>
+									</tr>
+									<tr>
+										<td><strong>Bathroom</strong></td>
+										<td>Shower (brand or material)<br/>
+											Tub (brand)<br/>
+											Tile (ceramic tiles)<br/>
+											Bathroom ware (brand)
+										</td>
+									</tr>
+									<tr>
+										<td><strong>Aircon</strong></td>
+										<td>Centralized</td>
+									</tr>
+									<tr>
+										<td><strong>NBN</strong></td>
+										<td>What's this?</td>
+									</tr>
+									<tr>
+										<td><strong>Satellite TV</strong></td>
+										<td>Foxtel</td>
+									</tr>
+								</table>
+							</div>
+						</div>						
 					</div>
 					
 					<div class="tile">

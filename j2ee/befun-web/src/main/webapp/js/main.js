@@ -8,7 +8,7 @@ Main = {
 	root: '/befun-web/',
 	imageRoot: '/',
 	isLoading:false,
-	isHome:false,
+	isHome:false, //home is search.jsp
 	currentProjectId:null,
 	currentFloorplanId:null,
 	currentApartmentId:null,
@@ -114,25 +114,27 @@ Main = {
 			});
 		});
 	
-		$.ajax({
-			url: Main.root + 'profile/json/viewMineClients.action?qc.enabled=true',
-			dataType: "json",
-			type: "GET",
-			success: function(data){
-				var clients = data.clients;
-				for(var i = 0; i < clients.length; i++){
-					var client = clients[i];
-					var option = $('<option value="' + client.id + '">' + client.givenName +  ' ' + client.surname + '</option>');
-					$('#client-panel select').append(option);
-					if(Main.currentClientId == client.id){
-						$('#clientname').text('and ' + client.givenName + ' ' + client.surname);
-						$('#view-client').attr('href','client.jsp?id=' + Main.currentClientId).show();
+		if($('#change-client').length > 0){
+			$.ajax({
+				url: Main.root + 'profile/json/viewMineClients.action?qc.enabled=true',
+				dataType: "json",
+				type: "GET",
+				success: function(data){
+					var clients = data.clients;
+					for(var i = 0; i < clients.length; i++){
+						var client = clients[i];
+						var option = $('<option value="' + client.id + '">' + client.givenName +  ' ' + client.surname + '</option>');
+						$('#client-panel select').append(option);
+						if(Main.currentClientId == client.id){
+							$('#clientname').text('and ' + client.givenName + ' ' + client.surname);
+							$('#view-client').attr('href','client.jsp?id=' + Main.currentClientId).show();
+						}
 					}
-				}
 			
-				$("#client-panel select.selectbox").selectbox();
-			}
-		});
+					$("#client-panel select.selectbox").selectbox();
+				}
+			});
+		}
 
 		$('#login-link').click(function(){
 			$('#login-panel').toggle();
@@ -617,8 +619,13 @@ Search = {
 				Search.execute();
 			}else{
 				Search.saveConditions();
-				window.location.href = "/";	
+				window.location.href = Main.root + "search.jsp";
 			}
+		});
+		
+		$('#btn-search4').click(function(){
+			Search.setLandingConditions();
+			window.location.href = Main.root + "search.jsp";
 		});
 	},
 	saveConditions:function(){
@@ -652,11 +659,29 @@ Search = {
 		
 		Search.conditions = conditions;
 	},
+	setLandingConditions:function(){
+		var conditions = Search.conditions;
+		conditions.minPrice = $('#home-filter select[name="minprice"]').val();
+		if(conditions.minPrice == null){
+			conditions.minPrice = 0;
+		}
+		conditions.maxPrice = $('#home-filter select[name="maxprice"]').val();
+		if(conditions.maxPrice == null){
+			conditions.maxPrice = 0;
+		}
+		conditions.bedrooms = $('#home-filter select[name="bedrooms"]').val();
+		conditions.bathrooms = $('#home-filter select[name="bathrooms"]').val();
+		conditions.carspace = $('#home-filter select[name="carspace"]').val();
+		
+		Search.conditions = conditions;
+	},
 	loadConditions: function(){
+		console.log('load');
 		var cookie = $.cookie("conditions");
 		if(cookie != null && cookie != ''){
 			Search.conditions = JSON.parse(cookie);
 			var conditions = Search.conditions;
+			console.log(conditions);
 			Search.clearConditions();
 			
 			var minPriceText = $('#filter select[name="minprice"] option[value="'+ conditions.minPrice + '"]').html();
