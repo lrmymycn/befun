@@ -5,3 +5,5 @@
 <script src="<c:url value="/jquery-ui/ui/jquery.ui.datepicker.js"/>"></script>
 <script src="<c:url value="/jquery-ui/ui/jquery.ui.position.js"/>"></script>
 <script src="<c:url value="/jquery-ui/ui/jquery.ui.menu.js"/>"></script>
+<script src="<c:url value="/jquery-ui/ui/jquery.ui.tabs.js"/>"></script>
+<script src="<c:url value="/js/tinymce/tinymce.min.js"/>"></script>

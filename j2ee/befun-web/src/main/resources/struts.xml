@@ -22,7 +22,7 @@
 
     <package name="index" extends="struts-default">
         <action name="index" class="IndexAction">
-            <result name="success">/index.jsp</result>
+            <result name="success">/login.jsp</result>
         </action>
     </package>
 </struts>  

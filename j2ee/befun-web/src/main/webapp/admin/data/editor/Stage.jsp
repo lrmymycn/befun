@@ -6,13 +6,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Edit Stage ID:${view.id},LN:${view.name}</title>
-<script>
-	function initPage(){
-		$( "#areaCombobox" ).combobox();
-		$( "#suburbCombobox" ).combobox();
-		$( "#projectCombobox" ).combobox();
-	}
-</script>
 </head>
 <body>
 	<s:form action="saveStage.action" method="post">

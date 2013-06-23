@@ -447,6 +447,8 @@ CREATE TABLE IF NOT EXISTS `project` (
   `short_description` varchar(500) DEFAULT NULL,
   `type` varchar(500) DEFAULT NULL,
   `price_range` varchar(500) DEFAULT NULL,
+  `stage_count` int(11) DEFAULT 1,
+  `building_count` int(11) DEFAULT 1,
   `site_url` varchar(500) DEFAULT NULL,
   `description` text DEFAULT NULL,
   `features` text DEFAULT NULL,

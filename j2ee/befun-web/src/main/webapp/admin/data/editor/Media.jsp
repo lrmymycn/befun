@@ -6,11 +6,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Edit Media ID:${view.id},LN:${view.name}</title>
-<script>
-	function initPage(){
-		$( "#projectCombobox" ).combobox();
-	}
-</script>
 </head>
 <body>
 	<s:form action="saveMedia.action" method="post" enctype="multipart/form-data">

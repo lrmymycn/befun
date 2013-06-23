@@ -34,6 +34,10 @@ public class ProjectView extends BaseEasteView<Project> {
 
     private String priceRange;
 
+    private Integer stageCount;
+
+    private Integer buildingCount;
+
     private String name;
 
     private String block;
@@ -156,6 +160,22 @@ public class ProjectView extends BaseEasteView<Project> {
 
     public void setPriceRange(String priceRange) {
         this.priceRange = priceRange;
+    }
+
+    public Integer getStageCount() {
+        return stageCount;
+    }
+
+    public void setStageCount(Integer stageCount) {
+        this.stageCount = stageCount;
+    }
+
+    public Integer getBuildingCount() {
+        return buildingCount;
+    }
+
+    public void setBuildingCount(Integer buildingCount) {
+        this.buildingCount = buildingCount;
     }
 
     public void setAreaId(Long areaId) {

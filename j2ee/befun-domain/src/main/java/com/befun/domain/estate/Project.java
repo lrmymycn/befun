@@ -66,6 +66,12 @@ public class Project implements BaseEstateModel<Long> {
     @Column(name = "PRICE_RANGE")
     private String priceRange;
 
+    @Column(name = "STAGE_COUNT")
+    private Integer stageCount;
+
+    @Column(name = "BUILDING_COUNT")
+    private Integer buildingCount;
+
     @Column(name = "SITE_URL", length = 500)
     private String siteUrl;
 
@@ -240,6 +246,22 @@ public class Project implements BaseEstateModel<Long> {
 
     public void setPriceRange(String priceRange) {
         this.priceRange = priceRange;
+    }
+
+    public Integer getStageCount() {
+        return stageCount;
+    }
+
+    public void setStageCount(Integer stageCount) {
+        this.stageCount = stageCount;
+    }
+
+    public Integer getBuildingCount() {
+        return buildingCount;
+    }
+
+    public void setBuildingCount(Integer buildingCount) {
+        this.buildingCount = buildingCount;
     }
 
     public String getSiteUrl() {
