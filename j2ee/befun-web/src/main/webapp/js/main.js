@@ -624,7 +624,7 @@ Search = {
 		});
 		
 		$('#btn-search4').click(function(){
-			Search.setLandingConditions();
+			Search.saveLandingConditions();
 			window.location.href = Main.root + "search.jsp";
 		});
 	},
@@ -659,29 +659,40 @@ Search = {
 		
 		Search.conditions = conditions;
 	},
+	saveLandingConditions:function(){
+		this.setLandingConditions();
+		var jsonString = JSON.stringify(Search.conditions);
+		$.cookie("conditions", jsonString,{ expires: 1, path: '/' });
+	},
 	setLandingConditions:function(){
 		var conditions = Search.conditions;
-		conditions.minPrice = $('#home-filter select[name="minprice"]').val();
-		if(conditions.minPrice == null){
-			conditions.minPrice = 0;
-		}
-		conditions.maxPrice = $('#home-filter select[name="maxprice"]').val();
-		if(conditions.maxPrice == null){
-			conditions.maxPrice = 0;
-		}
-		conditions.bedrooms = $('#home-filter select[name="bedrooms"]').val();
-		conditions.bathrooms = $('#home-filter select[name="bathrooms"]').val();
-		conditions.carspace = $('#home-filter select[name="carspace"]').val();
 		
+		if(conditions.suburbId == null){
+			conditions.minPrice = $('#home-filter select[name="minprice"]').val();
+			if(conditions.minPrice == null){
+				conditions.minPrice = 0;
+			}
+			conditions.maxPrice = $('#home-filter select[name="maxprice"]').val();
+			if(conditions.maxPrice == null){
+				conditions.maxPrice = 0;
+			}
+			conditions.bedrooms = $('#home-filter select[name="bedrooms"]').val();
+			conditions.bathrooms = $('#home-filter select[name="bathrooms"]').val();
+			conditions.carspace = $('#home-filter select[name="carspace"]').val();
+		}else{
+			conditions.minPrice = 0;
+			conditions.maxPrice = 0;
+			conditions.bedrooms = '';
+			conditions.bathrooms = '';
+			conditions.carspace = '';
+		}
 		Search.conditions = conditions;
 	},
 	loadConditions: function(){
-		console.log('load');
 		var cookie = $.cookie("conditions");
 		if(cookie != null && cookie != ''){
 			Search.conditions = JSON.parse(cookie);
 			var conditions = Search.conditions;
-			console.log(conditions);
 			Search.clearConditions();
 			
 			var minPriceText = $('#filter select[name="minprice"] option[value="'+ conditions.minPrice + '"]').html();

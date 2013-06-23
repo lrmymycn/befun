@@ -63,11 +63,11 @@
 		<div class="inner">
 			<h3>Search Filters</h3>
 			<div class="filter-group pricerange-group clearfix">
-    			<span class="label">Price Range:</span>
+    			<span class="label">价格:</span>
     			<div class="field">
     				<div class="pricerange">
         				<select name="minprice" class="selectbox">
-		        			<option value="0" selected="true">Any Price</option>
+		        			<option value="0" selected="true">不限</option>
 		        			<option value="1">$450,000</option>
 		        			<option value="2">$550,000</option>
 		        			<option value="3">$650,000</option>
@@ -80,7 +80,7 @@
 	        		</div>
 	        		<div class="pricerange">
 		        		<select name="maxprice" class="selectbox">
-		        			<option value="0">Any Price</option>
+		        			<option value="0">不限</option>
 		        			<option value="1">$450,000</option>
 		        			<option value="2">$550,000</option>
 		        			<option value="3">$650,000</option>

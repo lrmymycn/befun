@@ -7,9 +7,6 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
-		<sec:authorize access="isAuthenticated()" >
-			<% response.sendRedirect(""); %>
-    	</sec:authorize>
         <jsp:include page="includes/head.jsp" />
     </head>
 	<body class="standard">
@@ -101,12 +98,12 @@
 				</div>
 				
 				<div class="hotspots">
-					<a href="#" class="city">Sydney</a><br/>
-					<ul class="clearfix">
-						<li><a href="#">Zetland</a></li>
-						<li><a href="#">Wolli Creak</a></li>
-						<li><a href="#">Macquarie Park</a></li>
-						<li><a href="#">Rhodes</a></li>
+					<a href="<c:url value="/search.jsp"/>" class="city">Sydney</a><br/>
+					<ul class="suburbs clearfix">
+						<li><a href="javascript:;" data-id="-2">Zetland</a></li>
+						<li><a href="javascript:;" data-id="2">Wolli Creak</a></li>
+						<li><a href="javascript:;" data-id="-4">Macquarie Park</a></li>
+						<li><a href="javascript:;" data-id="-3">Rhodes</a></li>
 					</ul>
 				</div>
 			</div>
@@ -118,13 +115,21 @@
 		<script>
 			$(function(){
 				$('img.bg-login').height($(window).height() - 66);
+				$('.selectbox').selectbox();
+
+				$('ul.suburbs a').click(function(){
+					var id = $(this).data('id');
+					Search.conditions.suburbId = id;
+					Search.saveLandingConditions();
+					window.location.href = Main.root + "search.jsp";
+				});
 			})
 			
 			$(window).resize(function(){
 				$('img.bg-login').height($(window).height() - 66);
 			});
 			
-			$('.selectbox').selectbox();
+			
 		</script>
 	</body>
 </html>
