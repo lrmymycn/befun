@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 
 import javax.annotation.Resource;
 
+import org.hibernate.criterion.Order;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -26,6 +27,7 @@ import com.befun.service.estate.ApartmentService;
 import com.befun.service.estate.FloorplanService;
 import com.befun.service.estate.ProjectMediaService;
 import com.befun.service.estate.ProjectService;
+import com.befun.service.query.QCUtils;
 import com.befun.service.query.estate.ApartmentQueryCondition;
 import com.befun.service.query.estate.BuildingQueryCondition;
 import com.befun.service.query.estate.FloorplanQueryCondition;
@@ -170,6 +172,7 @@ public class ProjectAction extends CRUDAction<Project, ProjectView> {
         
         ProjectMediaQueryCondition pmQC = new ProjectMediaQueryCondition();
         pmQC.setProjectId(this.id);
+        pmQC.getOrderBy().add(Order.asc(QCUtils.generatePropertyName(pmQC.getSelfAlias(), "seqNum")));
         List<ProjectMedia> projectMedias = this.projectMediaService.query(pmQC);
         List<Media> medias = new ArrayList<Media>();
         for(ProjectMedia pm: projectMedias){

@@ -81,7 +81,7 @@ public abstract class AdminAction<M extends BaseModel<Long>, V extends BaseEaste
     @Resource
     @Qualifier("FloorplanService")
     protected FloorplanService floorplanService;
-    
+
     @Resource
     @Qualifier("ApartmentService")
     protected ApartmentService apartmentService;
@@ -93,7 +93,7 @@ public abstract class AdminAction<M extends BaseModel<Long>, V extends BaseEaste
     @Resource
     @Qualifier("ProjectMediaService")
     protected ProjectMediaService projectMediaService;
-    
+
     public AdminAction() {
         super();
         this.pgb = new PaginationBean<V>();
@@ -159,7 +159,7 @@ public abstract class AdminAction<M extends BaseModel<Long>, V extends BaseEaste
     public List<V> getViews() {
         return views;
     }
-    
+
     protected void prepareQueryList() {
     }
 
@@ -209,6 +209,30 @@ public abstract class AdminAction<M extends BaseModel<Long>, V extends BaseEaste
 
     public void setFloorplanService(FloorplanService floorplanService) {
         this.floorplanService = floorplanService;
+    }
+
+    public ApartmentService getApartmentService() {
+        return apartmentService;
+    }
+
+    public void setApartmentService(ApartmentService apartmentService) {
+        this.apartmentService = apartmentService;
+    }
+
+    public MediaService getMediaService() {
+        return mediaService;
+    }
+
+    public void setMediaService(MediaService mediaService) {
+        this.mediaService = mediaService;
+    }
+
+    public ProjectMediaService getProjectMediaService() {
+        return projectMediaService;
+    }
+
+    public void setProjectMediaService(ProjectMediaService projectMediaService) {
+        this.projectMediaService = projectMediaService;
     }
 
 }

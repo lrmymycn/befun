@@ -10,7 +10,7 @@
        ">
     <bean name="AdminMediaAction" class="com.befun.web.action.admin.data.MediaAction" scope="prototype">
         <property name="mediaConfig" ref="MediaConfig"></property>
-        <property name="service" ref="MediaService"></property>
+        <property name="mediaService" ref="MediaService"></property>
         <property name="projectService" ref="ProjectService"></property>
     </bean>
     
