@@ -33,6 +33,10 @@ namespace BeFun.Model.Service
                     switch (type)
                     {
                         case SQLType.SELECT:
+                            DataSet ds = new DataSet();
+                            OleDbDataAdapter da = new OleDbDataAdapter(sql, conn);
+                            da.Fill(ds);
+                            sb.AppendLine("statement " + i + " return records " + ds.Tables[0].Rows.Count);
                             break;
                         case SQLType.EXECUTE:
                             cmd = new OleDbCommand(sql, conn);

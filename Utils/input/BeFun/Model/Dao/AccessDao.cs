@@ -32,11 +32,13 @@ namespace BeFun.Model.Dao
                 {
                     OleDbDataAdapter da = new OleDbDataAdapter(this.getQuerySQL(queryCondition), conn);
                     setQueryParameters(da.SelectCommand.Parameters, queryCondition);
+                    Console.WriteLine(da.SelectCommand.CommandText);
                     foreach (OleDbParameter p in da.SelectCommand.Parameters)
                     {
                         Console.WriteLine(p.ParameterName + " : " + p.Value);
                     }
                     da.Fill(ds);
+                    Console.WriteLine(ds.Tables[0].Rows.Count);
                 }
                 IList<T> rs = this.parseEntities(ds.Tables[0], true);
                 return rs;

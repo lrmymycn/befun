@@ -12,7 +12,7 @@ namespace BeFun.Model.Dao
     public class MediaDao : AccessDao<Media>
     {
         private static string SQL_QUERY = "SELECT m.*,p.name1 AS project_name"
-            + " FROM (media m LEFT JOIN project p ON m.project_id = p.id) "
+            + " FROM (media m LEFT JOIN project p ON p.id = m.project_id) "
             + " LEFT JOIN project_media pm ON m.id = pm.media_id ";
         private static string SQL_QUERY_ALL = SQL_QUERY;
         private static string SQL_QUERY_BYID = SQL_QUERY + " WHERE m.id = @id;";
@@ -72,9 +72,6 @@ namespace BeFun.Model.Dao
                 
             if (!string.IsNullOrWhiteSpace(qc.url))
             {
-                parameters.Add("@url", OleDbType.VarWChar, 255).Value = "%" + qc.url + "%";
-                parameters.Add("@url", OleDbType.VarWChar, 255).Value = "%" + qc.url + "%";
-                parameters.Add("@url", OleDbType.VarWChar, 255).Value = "%" + qc.url + "%";
                 parameters.Add("@url", OleDbType.VarWChar, 255).Value = "%" + qc.url + "%";
             }
             if (!string.IsNullOrWhiteSpace(qc.floorplan_id))
@@ -146,7 +143,7 @@ namespace BeFun.Model.Dao
             MediaQueryCondition qc = (MediaQueryCondition)queryCondition;
             if (!string.IsNullOrWhiteSpace(qc.url))
             {
-                conditions += this.getConditionsPre(conditions, "AND", "(m.small_url LIKE @url OR medium_url LIKE @url OR large_url LIKE @url OR m.name1 LIKE @url)");
+                conditions += this.getConditionsPre(conditions, "AND", "(m.small_url LIKE @url OR m.medium_url LIKE @url OR m.large_url LIKE @url OR m.name1 LIKE @url)");
             }
             if (!string.IsNullOrWhiteSpace(qc.floorplan_id))
             {
@@ -176,7 +173,7 @@ namespace BeFun.Model.Dao
                 conditions += this.getConditionsPre(conditions, "AND", "m.content_type = @content_type");
             }
             rs += conditions;
-            rs += " ORDER BY pm.seq_num ASC";
+            rs += " ORDER BY pm.seq_num ASC;";
             return rs;
         }
 
