@@ -92,7 +92,7 @@
     			</div>
     		</div>
     		<div class="filter-group clearfix">
-        		<span class="label">Bedrooms:</span>
+        		<span class="label">卧室:</span>
         		<div class="field">
         			<span class="checkbox">
         				<input type="checkbox" value="1" name="bedrooms" id="bedroom-1"/> 
@@ -113,7 +113,7 @@
         		</div>
 	       	</div>
 	       	<div class="filter-group clearfix">	
-        		<span class="label">Bathrooms:</span>
+        		<span class="label">浴室:</span>
         		<div class="field">
         			<span class="checkbox">
         				<input type="checkbox" value="1" name="bathrooms" id="bathroom-1"/> 
@@ -130,7 +130,7 @@
         		</div>
 	        </div>
 	        <div class="filter-group clearfix">
-        		<span class="label">Carspace:</span>
+        		<span class="label">车位:</span>
         		<div class="field">
         			<span class="checkbox">
         				<input type="checkbox" value="1" name="carspace" id="carspace-1"/> 
@@ -147,7 +147,7 @@
         		</div>
     		</div>
     		<div class="filter-group clearfix">
-    			<span class="label">Distance to City:</span>
+    			<span class="label">市区距离:</span>
     			<div class="field">
 	        		<select name="distancetocity" class="selectbox">
 	        			<option value="">Select</option>
@@ -166,43 +166,43 @@
         				<span class="checkbox">
 	        				<input type="checkbox" value="1" name="train" id="train"/>
 	        			</span>
-	        			<label for="train">Train Stations</label>
+	        			<label for="train">火车站</label>
         			</li>
         			<li>
 	        			<span class="checkbox">
 	        				<input type="checkbox" value="1" name="shpppingcenter" id="shoppingcenter"/>
 	        			</span>
-	        			<label for="shoppingcenter">Shopping Centres</label>
+	        			<label for="shoppingcenter">购物中心</label>
         			</li>
         			<li class="last">			        			
 	        			<span class="checkbox">
 	        				<input type="checkbox" value="1" name="chinese" id="chinese"/>
 	        			</span>
-	        			<label for="chinese">Chinese Community</label>
+	        			<label for="chinese">华人社区</label>
         			</li>
     				<li class="first">
     					<span class="checkbox">
 	        				<input type="checkbox" value="1" name="universities" id="university"/>
 	        			</span>
-	        			<label for="university">University Zone</label>
+	        			<label for="university">学区房(大学)</label>
     				</li>
     				<li>
     					<span class="checkbox">
 	        				<input type="checkbox" value="1" name="schools" id="school"/>
 	        			</span>
-	        			<label for="school">School Zone</label>
+	        			<label for="school">学区房(中小学)</label>
     				</li>
         			<li class="last">
         				
         			</li>			        			
     			</ul>
     			<div class="clearfix">
-    				<span class="label">Status:</span>
+    				<span class="label">状态:</span>
         			<div class="status">
         				<select name="status" class="selectbox">
-	        				<option value="">Select</option>
-	        				<option value="0">Offplan</option>
-	        				<option value="1">Existing</option>
+	        				<option value="">选择</option>
+	        				<option value="0">楼花</option>
+	        				<option value="1">现房</option>
 	        			</select>
         			</div>
     			</div>
