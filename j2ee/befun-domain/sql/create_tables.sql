@@ -334,16 +334,20 @@ CREATE TABLE IF NOT EXISTS `media` (
 
 CREATE TABLE IF NOT EXISTS `comment_rec` (
   `id` bigint(20) NOT NULL,
-  `profile_id` bigint(20) NOT NULL,
+  `parent_id` bigint(20) DEFAULT NULL,
+  `profile_id` bigint(20) DEFAULT NULL,
+  `guest_name` varchar(255) DEFAULT NULL,
   `content` TEXT DEFAULT NULL,
   `creation_date` datetime DEFAULT NULL,
   `enabled` tinyint(1) DEFAULT 0,
   `enabled_date` datetime DEFAULT NULL,
   `enabled_by` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`id`),
+  KEY `idx_parent_id` (`parent_id`),
   KEY `idx_profile_id` (`profile_id`),
   KEY `idx_enabled` (`enabled`) USING BTREE,
-  KEY `idx_enabled_by` (`enabled_by`)
+  KEY `idx_enabled_by` (`enabled_by`),
+  CONSTRAINT `fk_pcomment_parent_id` FOREIGN KEY (`parent_id`) REFERENCES `comment_rec` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `area` (

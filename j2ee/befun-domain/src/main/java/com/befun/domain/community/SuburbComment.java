@@ -1,6 +1,7 @@
 package com.befun.domain.community;
 
 import javax.persistence.Cacheable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -36,7 +37,7 @@ public class SuburbComment implements BaseModel<Long> {
     @JoinColumn(referencedColumnName = "id", name = "SUBURB_ID")
     private Suburb suburb;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
     @JoinColumn(referencedColumnName = "id", name = "COMMENT_ID")
     private Comment comment;
 
