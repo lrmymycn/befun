@@ -207,44 +207,45 @@ Main = {
 		var maxPriceText = $('#filter select[name="maxprice"] option:selected').text();
 		var priceText = minPriceText + ' to ' + maxPriceText;
 		if(minPriceText == maxPriceText){
-			priceText = minPriceText;
-		}
-		if(priceText == ''){
-			priceText = 'Any Price';
+			if($('#filter select[name="minprice"]').val() == '0'){
+				priceText = '不限价格';
+			}else{
+				priceText = minPriceText;
+			}
 		}
 		
 		$('#reminder-nodes').append('<div class="filterNode"><span>' + priceText + '</span></div>');
 		
-		var bedroomText = "Any Beds";
+		var bedroomText = "不限卧室";
 		var num = '';
 		$('#filter input[name="bedrooms"]:checked').each(function(){
 			num = num + $(this).val() + ',';
 		});
 		if(num != ''){
 			num = num.substr(0, num.length - 1);
-			bedroomText = num + ' Beds';
+			bedroomText = num + ' 卧室';
 		}
 		$('#reminder-nodes').append('<div class="filterNode"><span>' + bedroomText + '</span></div>');
 		
-		var bathroomText = "Any Baths";
+		var bathroomText = "不限浴室";
 		num = '';
 		$('#filter input[name="bathrooms"]:checked').each(function(){
 			num = num + $(this).val() + ',';
 		});
 		if(num != ''){
 			num = num.substr(0, num.length - 1);
-			bathroomText = num + ' Baths';
+			bathroomText = num + ' 浴室';
 		}
 		$('#reminder-nodes').append('<div class="filterNode"><span>' + bathroomText + '</span></div>');
 		
-		var carspaceText = "Any Carspace";
+		var carspaceText = "不限车位";
 		num = '';
 		$('#filter input[name="carspace"]:checked').each(function(){
 			num = num + $(this).val() + ',';
 		});
 		if(num != ''){
 			num = num.substr(0, num.length - 1);
-			carspaceText = num + ' Carspace';
+			carspaceText = num + ' 车位';
 		}
 		$('#reminder-nodes').append('<div class="filterNode"><span>' + carspaceText + '</span></div>');
 
@@ -253,29 +254,29 @@ Main = {
 		if(conditions.distanceToCity != ""){
 			var distanceText = $('#filter select[name="distancetocity"] option:selected').text();
 			if(distanceText != 'CBD'){
-				distanceText += " to City";
+				distanceText = "距离市区" + distanceText;
 			}
 			$('#reminder-nodes').append('<div class="filterNode"><span>' + distanceText + '</span></div>');
 		}
 		
 		if(conditions.trainStation && conditions.trainStation != 'null'){
-			$('#reminder-nodes').append('<div class="filterNode"><span>Train Station</span></div>');
+			$('#reminder-nodes').append('<div class="filterNode"><span>火车站</span></div>');
 		}
 		
 		if(conditions.shoppingCenter && conditions.shoppingCenter != 'null'){
-			$('#reminder-nodes').append('<div class="filterNode"><span>Shopping Centres</span></div>');
+			$('#reminder-nodes').append('<div class="filterNode"><span>购物中心</span></div>');
 		}
 	
 		if(conditions.chineseCommunity && conditions.chineseCommunity != 'null'){
-			$('#reminder-nodes').append('<div class="filterNode"><span>Chinese Community</span></div>');
+			$('#reminder-nodes').append('<div class="filterNode"><span>华人社区</span></div>');
 		}
 		
 		if(conditions.universities && conditions.universities != 'null'){
-			$('#reminder-nodes').append('<div class="filterNode"><span>University Zone</span></div>');
+			$('#reminder-nodes').append('<div class="filterNode"><span>学区房(大学)</span></div>');
 		}
 		
 		if(conditions.schools && conditions.schools != 'null'){
-			$('#reminder-nodes').append('<div class="filterNode"><span>School Zone</span></div>');
+			$('#reminder-nodes').append('<div class="filterNode"><span>学区房(中小学)</span></div>');
 		}
 		
 		var statusText = $('#filter select[name="status"] option:selected').text();
@@ -1013,7 +1014,7 @@ PanelPopup = {
 			PanelPopup.hide();
 		});
 		
-		$('#panel .tabs a').click(function(e){
+		$('#panel .tabs a, #panel .sub-tabs a').click(function(e){
 			e.preventDefault();
 			var target = $(this).attr('href');
 			if($(target).hasClass('hidden')){
@@ -1149,7 +1150,7 @@ PanelPopup = {
 							if((i + 1) % 3 == 0){
 								cls = 'last';
 							}
-							var $li = '<li class="' + cls + '"><a href="' + photos[i].mediumUrl + '" rel="brochure"><img src="' + photos[i].mediumUrl + '" alt=""/></a></li>';
+							var $li = '<li class="' + cls + '"><a href="' + photos[i].mediumUrl + '" rel="brochure"><img src="' + photos[i].smallUrl + '" alt=""/></a></li>';
 							$('#tab-overview .brochure').append($li);
 						}
 						$('#tab-overview .brochure a').fancybox({
@@ -1289,8 +1290,7 @@ FloorplanPopup = {
 						var picture = null;
 						if(floorplan.salePicture != null){
 							picture = floorplan.salePicture;
-						}
-						if(floorplan.publicPicture != null){
+						}else if(floorplan.publicPicture != null){
 							picture = floorplan.publicPicture;
 						}
 						if(picture == null){

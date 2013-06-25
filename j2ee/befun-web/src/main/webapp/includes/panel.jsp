@@ -24,7 +24,7 @@
 			</ul>
 		</div>	
 		<div id="tab-details" class="hidden tab-block">
-			<div class="tabs">
+			<div class="sub-tabs">
     			<a href="#subtab-description" class="active">基本信息</a>
     			<a href="#subtab-feature">项目特色</a>
     			<a href="#subtab-finish">内饰品牌</a>
@@ -65,31 +65,28 @@
 							<td><strong>总栋数</strong></td>
 							<td>3</td>
 						</tr>
-						<tr>
-							<td>项目设施</td>
-							<td>
-								<ul class="amenity">
-									<li><i class="tick"></i> Reception</li>
-									<li><i class="tick"></i> Swimming Pool</li>
-									<li><i class="tick"></i> Sauna Room</li>
-									<li><i class="tick"></i> Tennis Court</li>
-									<li><i class="tick"></i> Function Room</li>
-									<li><i class="tick"></i> Theatre Cinema</li>
-									<li><i class="tick"></i> Library</li>
-									<li><i class="tick"></i> BBQ Fireplace</li>
-									<li><i class="tick"></i> Landscaping</li>
-									<li><i class="tick"></i> Sky Garden</li>
-									<li><i class="tick"></i> Visitor parking</li>
-									<li><i class="tick"></i> Car wash bay</li>
-									<li><i class="tick"></i> Gym</li>
-									<li><i class="tick"></i> Kids Play Ground</li>
-									<li><i class="tick"></i> Play Room</li>
-									<li><i class="tick"></i> Recreation Place</li>
-									<li><i class="tick"></i> Music Room</li>
-								</ul>
-							</td>
-						</tr>
 					</table>
+					<!--
+					<ul class="amenity">
+						<li><i class="tick"></i> Reception</li>
+						<li><i class="tick"></i> Swimming Pool</li>
+						<li><i class="tick"></i> Sauna Room</li>
+						<li><i class="tick"></i> Tennis Court</li>
+						<li><i class="tick"></i> Function Room</li>
+						<li><i class="tick"></i> Theatre Cinema</li>
+						<li><i class="tick"></i> Library</li>
+						<li><i class="tick"></i> BBQ Fireplace</li>
+						<li><i class="tick"></i> Landscaping</li>
+						<li><i class="tick"></i> Sky Garden</li>
+						<li><i class="tick"></i> Visitor parking</li>
+						<li><i class="tick"></i> Car wash bay</li>
+						<li><i class="tick"></i> Gym</li>
+						<li><i class="tick"></i> Kids Play Ground</li>
+						<li><i class="tick"></i> Play Room</li>
+						<li><i class="tick"></i> Recreation Place</li>
+						<li><i class="tick"></i> Music Room</li>
+					</ul>
+					-->
 				</div>
 			</div>
 			<div id="subtab-feature" class="hidden detailbox">

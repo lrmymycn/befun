@@ -969,13 +969,14 @@ footer a{
 #panel .content{
 	height:454px;
 	background:#F2F2F2;
+	font-size:12px;
 }
 
 .tab-block {
 	padding:18px;
 }
 
-.tab-block .tabs a{
+.tab-block .sub-tabs a{
 	display:inline-block;
 	height:24px;
 	line-height:24px;
@@ -987,7 +988,7 @@ footer a{
 	margin-right:1px;
 }
 
-.tab-block .tabs a.active{
+.tab-block .sub-tabs a.active{
 	background:#dfdfdf;
 	color:#000000;
 	border:1px solid #cccccc;
@@ -2445,8 +2446,8 @@ form input[type="email"]{
 	width:200px;
 }
 
-.contactus form input[type="text"],
-.contactus form input[type="email"]{
+.widget form input[type="text"],
+.widget form input[type="email"]{
 	width:230px;
 }
 
