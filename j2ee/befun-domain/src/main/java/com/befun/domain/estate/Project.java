@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Cacheable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -162,7 +163,7 @@ public class Project implements BaseEstateModel<Long> {
     @Column(name = "LATITUDE")
     private Double latitude;
 
-    @OneToMany(mappedBy = "project", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "project", fetch = FetchType.LAZY, cascade = { CascadeType.REMOVE })
     private Set<Stage> stages;
 
     @Embedded

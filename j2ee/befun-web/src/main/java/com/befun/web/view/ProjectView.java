@@ -19,6 +19,8 @@ public class ProjectView extends BaseEasteView<Project> {
 
     private String suburbName;
 
+    private String suburbDescription;
+
     private Long pictureId;
 
     private Long logoId;
@@ -476,6 +478,14 @@ public class ProjectView extends BaseEasteView<Project> {
 
     public void setSuburbName(String suburbName) {
         this.suburbName = suburbName;
+    }
+
+    public String getSuburbDescription() {
+        return suburbDescription;
+    }
+
+    public void setSuburbDescription(String suburbDescription) {
+        this.suburbDescription = suburbDescription;
     }
 
 }

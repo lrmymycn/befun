@@ -59,18 +59,18 @@ public class ProjectServiceImpl extends BaseEstateServiceImpl<Project, Long> imp
     public Map<Suburb, Long> queryGroupBySuburb(ProjectQueryCondition qc) {
         EstateQueryCondition sQc = new EstateQueryCondition();
         List<Suburb> allSuburbs = this.suburbDao.query(sQc);
-        
+
         qc.setGroupByArea(false);
         qc.setGroupBySuburb(true);
         List<Object[]> queryRs = this.dao.queryGroup(qc);
         Map<Suburb, Long> result = new HashMap<Suburb, Long>();
-        
+
         for (Suburb s : allSuburbs) {
             s.getPolylines().size();
             s.getArea().getPolylines().size();
             result.put(s, 0l);
         }
-        
+
         for (Object[] st : queryRs) {
             result.put((Suburb) st[0], (Long) st[1]);
         }
@@ -85,9 +85,20 @@ public class ProjectServiceImpl extends BaseEstateServiceImpl<Project, Long> imp
         }
         return super.save(model);
     }
-    
+
+    @Override
+    public void deleteDeep(long id) {
+        Project project = this.get(id);
+        if(project == null){
+            return;
+        }
+        
+        this.delete(id);
+    }
+
     @Resource
     public void setDao(@Qualifier("ProjectDao") IBaseDao<Project, Long> dao) {
         this.dao = dao;
     }
+
 }

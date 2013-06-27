@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.Set;
 
 import javax.persistence.Cacheable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -76,7 +77,7 @@ public class Building implements BaseEstateModel<Long> {
     @Column(name = "SOLD_OUT")
     private boolean soldOut;
 
-    @OneToMany(mappedBy = "building", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "building", fetch = FetchType.LAZY, cascade = { CascadeType.REMOVE })
     private Set<Floorplan> floorplans;
 
     @Embedded
