@@ -161,14 +161,15 @@ Main = {
 			}
 			var html = '<div class="' + cls +'" data-id="' + project.id + '" data-lat="' + project.latitude + '" data-lng="' + project.longitude + '">'
 					    + '<div class="clearfix">'
-							+ '<img src="' + project.picture.mediumUrl + '" alt="' + project.name + '" width="140" height="94"/>'
+							+ '<img src="' + project.picture.smallUrl + '" alt="' + project.name + '" width="140" height="94"/>'
 							+ '<div class="info">'
-								+ '<label>类型:</label><span>公寓</span><br/>'
-								+ '<label>价格:</label><span>60万 - 80万</span><br/>'
+								+ '<label>类型:</label><span>' + project.type +'</span><br/>'
+								+ '<label>价格:</label><span>' + project.priceRange + '</span><br/>'
+								+ '<label>方位:</label>' + project.areaId + '<br/>'
 								+ '<label>区域:</label>' + project.suburbName + '<br/>'
 					 		+ '</div>'
 					 	+ '</div>'
-					    + '<div class="intro">简介: 高尚社区，宽带入户。英国管家，倍有面子。开个日本车你都不好意思和邻居打招呼。</div>'
+					    + '<div class="intro">简介: ' + project.shortDescription + '</div>'
 					 + '</div>';
 			var $div = $(html);
 			
@@ -193,8 +194,7 @@ Main = {
 				if(Map.map.getZoom() != 15){
 					Map.map.setZoom(15);
 				}
-				
-				PanelPopup.hide();
+				PanelPopup.load(projectId);
 			});
 			
 			$div.appendTo($('#projectlist'));
@@ -1136,10 +1136,10 @@ PanelPopup = {
 						$('#project-name').text(project.name);
 						$('#tab-contactus .project').text(project.name);
 						$('#hfproject').val(project.name);
-						//$('#subtab-description .detail').html(project.description);
-						//$('#subtab-finish .detail').html(project.finish);
-						//$('#subtab-amenity .detail').html(project.amenity);
-						//$('#subtab-data').html(project.data);
+						$('#subtab-description .detail').html(project.description);
+						$('#subtab-finish .detail').html(project.finishSchema);
+						$('#subtab-feature .detail').html(project.features);
+						$('#tab-sales .box').html(project.data);
 						//$('#subtab-condition').html(project.condition);
 						//$('#subtab-offers').html(project.offers);
 						
@@ -1153,7 +1153,7 @@ PanelPopup = {
 							var $li = '<li class="' + cls + '"><a href="' + photos[i].mediumUrl + '" rel="brochure"><img src="' + photos[i].smallUrl + '" alt=""/></a></li>';
 							$('#tab-overview .brochure').append($li);
 						}
-						$('#tab-overview .brochure a').fancybox({
+						$('#panel a[rel]').fancybox({
 							padding : 0
 						});
 						/*
@@ -2535,7 +2535,7 @@ ClusterPolygon.prototype = new google.maps.Polygon();
 function ProjectOverlay(project, map){
 	this._map = map;
 	this._div = null;
-	this._logo = project.picture.mediumUrl;
+	this._logo = project.picture.smallUrl;
 	this._markerCenter = new google.maps.LatLng(project.latitude, project.longitude);
 	this._imageCenter = null;
 	this._projectId = project.id;
@@ -2554,6 +2554,7 @@ ProjectOverlay.prototype.onAdd = function(){
 		Map.center = center;
 		Map.map.setCenter(Map.center);
 		
+		/*
 		if(Main.currentProjectId == projectId){
 			PanelPopup.load(projectId);
 		}else{
@@ -2563,7 +2564,14 @@ ProjectOverlay.prototype.onAdd = function(){
 				Main.currentRadiusWidget = new RadiusWidget();
 			}
 			MapMenu.resetMenu();
-		}		
+		}*/	
+		Main.currentProjectId = projectId
+		if(Main.currentRadiusWidget != null){
+			Main.currentRadiusWidget.destroy();
+			Main.currentRadiusWidget = new RadiusWidget();
+		}
+		MapMenu.resetMenu();	
+		PanelPopup.load(projectId);
 	});
 	
 	$(this._div).mouseover(function(){

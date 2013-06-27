@@ -969,7 +969,6 @@ footer a{
 #panel .content{
 	height:454px;
 	background:#F2F2F2;
-	font-size:12px;
 }
 
 .tab-block {
@@ -986,6 +985,7 @@ footer a{
 	background:#ffffff;
 	border-radius: 5px;
 	margin-right:1px;
+	font-size:12px;
 }
 
 .tab-block .sub-tabs a.active{
@@ -2366,7 +2366,7 @@ img.bg-login{
 	bottom:0;
 	height:36px;
 	background:#e3e3e3;
-	font-size:13px;
+	font-size:14px;
 	border-bottom:1px solid #c0c0c0;
 }
 
@@ -2383,6 +2383,7 @@ img.bg-login{
 	line-height:34px;
 	color:#222222;
 	border-left:1px solid #c0c0c0;
+	font-size:12px;
 }
 
 .tabs a.first{
