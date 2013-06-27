@@ -10,7 +10,14 @@
 <script>
 	tinymce.init({
 		selector : "textarea",
-		plugins : "image",
+		plugins : "image code table advlist autolink lists link",
+		extended_valid_elements: "a[href|rel|target]",
+		toolbar: "undo redo | styleselect fontsizeselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+		rel_list: [
+			{title: 'Description', value: 'description'},
+			{title: 'Feature', value: 'feature'},
+			{title: 'Finish', value: 'finish'}
+		],
 		height : 400
 	});
 

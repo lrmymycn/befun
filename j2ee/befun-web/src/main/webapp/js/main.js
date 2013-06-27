@@ -161,14 +161,15 @@ Main = {
 			}
 			var html = '<div class="' + cls +'" data-id="' + project.id + '" data-lat="' + project.latitude + '" data-lng="' + project.longitude + '">'
 					    + '<div class="clearfix">'
-							+ '<img src="' + project.picture.mediumUrl + '" alt="' + project.name + '" width="140" height="94"/>'
+							+ '<img src="' + project.picture.smallUrl + '" alt="' + project.name + '" width="140" height="94"/>'
 							+ '<div class="info">'
-								+ '<label>类型:</label><span>公寓</span><br/>'
-								+ '<label>价格:</label><span>60万 - 80万</span><br/>'
+								+ '<label>类型:</label><span>' + project.type +'</span><br/>'
+								+ '<label>价格:</label><span>' + project.priceRange + '</span><br/>'
+								+ '<label>方位:</label>' + project.areaId + '<br/>'
 								+ '<label>区域:</label>' + project.suburbName + '<br/>'
 					 		+ '</div>'
 					 	+ '</div>'
-					    + '<div class="intro">简介: 高尚社区，宽带入户。英国管家，倍有面子。开个日本车你都不好意思和邻居打招呼。</div>'
+					    + '<div class="intro">简介: ' + project.shortDescription + '</div>'
 					 + '</div>';
 			var $div = $(html);
 			
@@ -193,8 +194,7 @@ Main = {
 				if(Map.map.getZoom() != 15){
 					Map.map.setZoom(15);
 				}
-				
-				PanelPopup.hide();
+				PanelPopup.load(projectId);
 			});
 			
 			$div.appendTo($('#projectlist'));
@@ -207,44 +207,45 @@ Main = {
 		var maxPriceText = $('#filter select[name="maxprice"] option:selected').text();
 		var priceText = minPriceText + ' to ' + maxPriceText;
 		if(minPriceText == maxPriceText){
-			priceText = minPriceText;
-		}
-		if(priceText == ''){
-			priceText = 'Any Price';
+			if($('#filter select[name="minprice"]').val() == '0'){
+				priceText = '不限价格';
+			}else{
+				priceText = minPriceText;
+			}
 		}
 		
 		$('#reminder-nodes').append('<div class="filterNode"><span>' + priceText + '</span></div>');
 		
-		var bedroomText = "Any Beds";
+		var bedroomText = "不限卧室";
 		var num = '';
 		$('#filter input[name="bedrooms"]:checked').each(function(){
 			num = num + $(this).val() + ',';
 		});
 		if(num != ''){
 			num = num.substr(0, num.length - 1);
-			bedroomText = num + ' Beds';
+			bedroomText = num + ' 卧室';
 		}
 		$('#reminder-nodes').append('<div class="filterNode"><span>' + bedroomText + '</span></div>');
 		
-		var bathroomText = "Any Baths";
+		var bathroomText = "不限浴室";
 		num = '';
 		$('#filter input[name="bathrooms"]:checked').each(function(){
 			num = num + $(this).val() + ',';
 		});
 		if(num != ''){
 			num = num.substr(0, num.length - 1);
-			bathroomText = num + ' Baths';
+			bathroomText = num + ' 浴室';
 		}
 		$('#reminder-nodes').append('<div class="filterNode"><span>' + bathroomText + '</span></div>');
 		
-		var carspaceText = "Any Carspace";
+		var carspaceText = "不限车位";
 		num = '';
 		$('#filter input[name="carspace"]:checked').each(function(){
 			num = num + $(this).val() + ',';
 		});
 		if(num != ''){
 			num = num.substr(0, num.length - 1);
-			carspaceText = num + ' Carspace';
+			carspaceText = num + ' 车位';
 		}
 		$('#reminder-nodes').append('<div class="filterNode"><span>' + carspaceText + '</span></div>');
 
@@ -253,29 +254,29 @@ Main = {
 		if(conditions.distanceToCity != ""){
 			var distanceText = $('#filter select[name="distancetocity"] option:selected').text();
 			if(distanceText != 'CBD'){
-				distanceText += " to City";
+				distanceText = "距离市区" + distanceText;
 			}
 			$('#reminder-nodes').append('<div class="filterNode"><span>' + distanceText + '</span></div>');
 		}
 		
 		if(conditions.trainStation && conditions.trainStation != 'null'){
-			$('#reminder-nodes').append('<div class="filterNode"><span>Train Station</span></div>');
+			$('#reminder-nodes').append('<div class="filterNode"><span>火车站</span></div>');
 		}
 		
 		if(conditions.shoppingCenter && conditions.shoppingCenter != 'null'){
-			$('#reminder-nodes').append('<div class="filterNode"><span>Shopping Centres</span></div>');
+			$('#reminder-nodes').append('<div class="filterNode"><span>购物中心</span></div>');
 		}
 	
 		if(conditions.chineseCommunity && conditions.chineseCommunity != 'null'){
-			$('#reminder-nodes').append('<div class="filterNode"><span>Chinese Community</span></div>');
+			$('#reminder-nodes').append('<div class="filterNode"><span>华人社区</span></div>');
 		}
 		
 		if(conditions.universities && conditions.universities != 'null'){
-			$('#reminder-nodes').append('<div class="filterNode"><span>University Zone</span></div>');
+			$('#reminder-nodes').append('<div class="filterNode"><span>学区房(大学)</span></div>');
 		}
 		
 		if(conditions.schools && conditions.schools != 'null'){
-			$('#reminder-nodes').append('<div class="filterNode"><span>School Zone</span></div>');
+			$('#reminder-nodes').append('<div class="filterNode"><span>学区房(中小学)</span></div>');
 		}
 		
 		var statusText = $('#filter select[name="status"] option:selected').text();
@@ -1013,7 +1014,7 @@ PanelPopup = {
 			PanelPopup.hide();
 		});
 		
-		$('#panel .tabs a').click(function(e){
+		$('#panel .tabs a, #panel .sub-tabs a').click(function(e){
 			e.preventDefault();
 			var target = $(this).attr('href');
 			if($(target).hasClass('hidden')){
@@ -1135,10 +1136,10 @@ PanelPopup = {
 						$('#project-name').text(project.name);
 						$('#tab-contactus .project').text(project.name);
 						$('#hfproject').val(project.name);
-						//$('#subtab-description .detail').html(project.description);
-						//$('#subtab-finish .detail').html(project.finish);
-						//$('#subtab-amenity .detail').html(project.amenity);
-						//$('#subtab-data').html(project.data);
+						$('#subtab-description .detail').html(project.description);
+						$('#subtab-finish .detail').html(project.finishSchema);
+						$('#subtab-feature .detail').html(project.features);
+						$('#tab-sales .box').html(project.data);
 						//$('#subtab-condition').html(project.condition);
 						//$('#subtab-offers').html(project.offers);
 						
@@ -1149,10 +1150,10 @@ PanelPopup = {
 							if((i + 1) % 3 == 0){
 								cls = 'last';
 							}
-							var $li = '<li class="' + cls + '"><a href="' + photos[i].mediumUrl + '" rel="brochure"><img src="' + photos[i].mediumUrl + '" alt=""/></a></li>';
+							var $li = '<li class="' + cls + '"><a href="' + photos[i].mediumUrl + '" rel="brochure"><img src="' + photos[i].smallUrl + '" alt=""/></a></li>';
 							$('#tab-overview .brochure').append($li);
 						}
-						$('#tab-overview .brochure a').fancybox({
+						$('#panel a[rel]').fancybox({
 							padding : 0
 						});
 						/*
@@ -1289,8 +1290,7 @@ FloorplanPopup = {
 						var picture = null;
 						if(floorplan.salePicture != null){
 							picture = floorplan.salePicture;
-						}
-						if(floorplan.publicPicture != null){
+						}else if(floorplan.publicPicture != null){
 							picture = floorplan.publicPicture;
 						}
 						if(picture == null){
@@ -2535,7 +2535,7 @@ ClusterPolygon.prototype = new google.maps.Polygon();
 function ProjectOverlay(project, map){
 	this._map = map;
 	this._div = null;
-	this._logo = project.picture.mediumUrl;
+	this._logo = project.picture.smallUrl;
 	this._markerCenter = new google.maps.LatLng(project.latitude, project.longitude);
 	this._imageCenter = null;
 	this._projectId = project.id;
@@ -2554,6 +2554,7 @@ ProjectOverlay.prototype.onAdd = function(){
 		Map.center = center;
 		Map.map.setCenter(Map.center);
 		
+		/*
 		if(Main.currentProjectId == projectId){
 			PanelPopup.load(projectId);
 		}else{
@@ -2563,7 +2564,14 @@ ProjectOverlay.prototype.onAdd = function(){
 				Main.currentRadiusWidget = new RadiusWidget();
 			}
 			MapMenu.resetMenu();
-		}		
+		}*/	
+		Main.currentProjectId = projectId
+		if(Main.currentRadiusWidget != null){
+			Main.currentRadiusWidget.destroy();
+			Main.currentRadiusWidget = new RadiusWidget();
+		}
+		MapMenu.resetMenu();	
+		PanelPopup.load(projectId);
 	});
 	
 	$(this._div).mouseover(function(){

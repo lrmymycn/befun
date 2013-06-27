@@ -7,7 +7,7 @@
 	<a href="/"><h1 class="logo"><img src="/img/logo.png" width="165" height="63" alt="Befun Property"/></h1></a>
 	<div class="search">
 		<input type="text" name="suburb" id="search-suburb" placeholder="Enter a suburb or a postcode"/>
-		<a href="javascript:;" id="btn-filter">Filter</a>
+		<a href="javascript:;" id="btn-filter">高级</a>
 		<a href="javascript:;" id="btn-search"></a>
 	</div>
 	<div class="menu">
@@ -150,7 +150,7 @@
     			<span class="label">市区距离:</span>
     			<div class="field">
 	        		<select name="distancetocity" class="selectbox">
-	        			<option value="">Select</option>
+	        			<option value="">不限</option>
 	        			<option value="0">CBD</option>
 	        			<option value="5">5km</option>
 	        			<option value="10">10km</option>
@@ -200,7 +200,7 @@
     				<span class="label">状态:</span>
         			<div class="status">
         				<select name="status" class="selectbox">
-	        				<option value="">选择</option>
+	        				<option value="">不限</option>
 	        				<option value="0">楼花</option>
 	        				<option value="1">现房</option>
 	        			</select>
@@ -211,7 +211,7 @@
     		</div>
 		</div>
 		<div class="buttons">
-			<a href="javascript:;" id="btn-search2">SEARCH</a>
+			<a href="javascript:;" id="btn-search2">搜索</a>
 		</div>	        		
 	</div>
 </div>

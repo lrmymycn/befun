@@ -975,7 +975,7 @@ footer a{
 	padding:18px;
 }
 
-.tab-block .tabs a{
+.tab-block .sub-tabs a{
 	display:inline-block;
 	height:24px;
 	line-height:24px;
@@ -985,9 +985,10 @@ footer a{
 	background:#ffffff;
 	border-radius: 5px;
 	margin-right:1px;
+	font-size:12px;
 }
 
-.tab-block .tabs a.active{
+.tab-block .sub-tabs a.active{
 	background:#dfdfdf;
 	color:#000000;
 	border:1px solid #cccccc;
@@ -2365,7 +2366,7 @@ img.bg-login{
 	bottom:0;
 	height:36px;
 	background:#e3e3e3;
-	font-size:13px;
+	font-size:14px;
 	border-bottom:1px solid #c0c0c0;
 }
 
@@ -2382,6 +2383,7 @@ img.bg-login{
 	line-height:34px;
 	color:#222222;
 	border-left:1px solid #c0c0c0;
+	font-size:12px;
 }
 
 .tabs a.first{
@@ -2445,8 +2447,8 @@ form input[type="email"]{
 	width:200px;
 }
 
-.contactus form input[type="text"],
-.contactus form input[type="email"]{
+.widget form input[type="text"],
+.widget form input[type="email"]{
 	width:230px;
 }
 

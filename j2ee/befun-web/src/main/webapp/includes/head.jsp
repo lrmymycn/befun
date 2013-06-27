@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="<c:url value="/css/normalize.css"/>" />
 <link rel="stylesheet" href="<c:url value="/css/ui-lightness/jquery-ui-1.9.2.custom.css"/>" />
 <link rel="stylesheet" href="<c:url value="/css/jquery.selectbox.css"/>" />
-<link rel="stylesheet" href="<c:url value="/css/jquery.fancybox.css"/>" />
+<link rel="stylesheet" href="<c:url value="/css/jquery.fancybox.3.0.css"/>" />
 <link rel="stylesheet" href="<c:url value="/css/main.css"/>" >
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&sensor=true"></script>
 <script src="<c:url value="/js/vendor/modernizr-2.6.2.min.js"/>"></script>

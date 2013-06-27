@@ -9,7 +9,8 @@
 <script>
 	tinymce.init({
 		selector : "textarea.tiny",
-		plugins : "image",
+		plugins : "image code table advlist autolink lists link",
+		toolbar: "undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
 		height : 400
 	});
 

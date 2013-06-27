@@ -130,11 +130,11 @@
 			<span class="label">朝向:</span>
 			<div class="aspect">
 				<select name="aspect" class="selectbox">
-					<option value="">Select</option>
-					<option value="N">North</option>
-					<option value="E">East</option>
-					<option value="W">West</option>
-					<option value="S">South</option>
+					<option value="">不限</option>
+					<option value="N">北</option>
+					<option value="E">东</option>
+					<option value="W">西</option>
+					<option value="S">南</option>
 				</select>
 			</div>
 		</div>

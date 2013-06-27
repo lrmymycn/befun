@@ -15,7 +15,7 @@
 <script src="<c:url value="/js/jquery.selectbox-0.2.js"/>"></script>
 <script src="<c:url value="/js/jquery.tools.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.validate.min.js"/>"></script>
-<script src="<c:url value="/js/jquery.fancybox.pack.js"/>"></script>
+<script src="<c:url value="/js/jquery.fancybox.js"/>"></script>
 <script src="<c:url value="/js/jquery.cookie.js"/>"></script>
 <script src="<c:url value="/js/main.js"/>"></script>
 <script>

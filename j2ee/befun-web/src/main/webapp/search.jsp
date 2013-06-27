@@ -16,7 +16,7 @@
 	        	<div class="inner">
 	        		<jsp:include page="includes/search.jsp" />
 		        	<div id="reminder">
-	        			<em>搜索条件: </em><div id="reminder-nodes"></div> <a href="<c:url value="/search.jsp"/>" class="reset">Reset</a>
+	        			<em>搜索条件: </em><div id="reminder-nodes"></div> <a href="<c:url value="/search.jsp"/>" class="reset">显示全部 Sydney 项目</a>
 	        		</div>
 	        	</div>
 	        </header>
