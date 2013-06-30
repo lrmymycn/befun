@@ -3,6 +3,7 @@ package com.befun.service.estate.impl;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -16,11 +17,23 @@ import org.springframework.util.Assert;
 import com.befun.dao.IBaseDao;
 import com.befun.dao.estate.AreaDao;
 import com.befun.dao.estate.SuburbDao;
+import com.befun.domain.community.ProjectComment;
 import com.befun.domain.estate.Area;
+import com.befun.domain.estate.Media;
 import com.befun.domain.estate.Project;
+import com.befun.domain.estate.ProjectMedia;
+import com.befun.domain.estate.Stage;
 import com.befun.domain.estate.Suburb;
+import com.befun.service.estate.FloorplanService;
+import com.befun.service.estate.MediaService;
+import com.befun.service.estate.ProjectCommentService;
+import com.befun.service.estate.ProjectMediaService;
 import com.befun.service.estate.ProjectService;
+import com.befun.service.estate.StageService;
 import com.befun.service.query.estate.EstateQueryCondition;
+import com.befun.service.query.estate.MediaQueryCondition;
+import com.befun.service.query.estate.ProjectCommentQueryCondition;
+import com.befun.service.query.estate.ProjectMediaQueryCondition;
 import com.befun.service.query.estate.ProjectQueryCondition;
 
 @Service("ProjectService")
@@ -34,6 +47,26 @@ public class ProjectServiceImpl extends BaseEstateServiceImpl<Project, Long> imp
     @Resource
     @Qualifier("SuburbDao")
     private SuburbDao suburbDao;
+
+    @Resource
+    @Qualifier("ProjectMediaService")
+    private ProjectMediaService projectMediaService;
+
+    @Resource
+    @Qualifier("ProjectCommentService")
+    private ProjectCommentService projectCommentService;
+
+    @Resource
+    @Qualifier("StageService")
+    private StageService stageService;
+
+    @Resource
+    @Qualifier("FloorplanService")
+    private FloorplanService floorplanService;
+
+    @Resource
+    @Qualifier("MediaService")
+    private MediaService mediaService;
 
     @Transactional(readOnly = true)
     public Map<Area, Long> queryGroupByArea(ProjectQueryCondition qc) {
@@ -87,12 +120,41 @@ public class ProjectServiceImpl extends BaseEstateServiceImpl<Project, Long> imp
     }
 
     @Override
-    public void deleteDeep(long id) {
+    public void deleteDependency(Long id) {
+        Assert.notNull(id, "id should be not null!");
         Project project = this.get(id);
-        if(project == null){
+        if (project == null) {
             return;
         }
+        project.setPicture(null);
+        project.setLogo(null);
         
+        ProjectCommentQueryCondition pcQC = new ProjectCommentQueryCondition();
+        pcQC.setEnabled(null);
+        pcQC.setProjectId(id);
+        List<ProjectComment> comments = this.projectCommentService.query(pcQC);
+        this.projectCommentService.deleteObject(comments);
+
+        ProjectMediaQueryCondition pmQC = new ProjectMediaQueryCondition();
+        pmQC.setEnabled(null);
+        pmQC.setRemoved(null);
+        pcQC.setProjectId(id);
+        List<ProjectMedia> projectMedias = this.projectMediaService.query(pmQC);
+        this.projectMediaService.deleteObject(projectMedias);
+        
+        Set<Stage> stages = project.getStages();
+        project.setStages(null);
+        for (Stage stage : stages) {
+            this.stageService.deleteDependency(stage.getId());
+        }
+
+        MediaQueryCondition mQC = new MediaQueryCondition();
+        mQC.setEnabled(null);
+        mQC.setRemoved(null);
+        mQC.setProjectId(id);
+        List<Media> medias = this.mediaService.query(mQC);
+        this.mediaService.deleteObject(medias);
+
         this.delete(id);
     }
 

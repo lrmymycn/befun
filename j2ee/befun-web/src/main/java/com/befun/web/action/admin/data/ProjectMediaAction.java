@@ -48,7 +48,7 @@ public class ProjectMediaAction<T extends ProjectMedia, V extends ProjectMediaVi
 
     protected void prepareQueryList() {
         AreaQueryCondition queryCondition = new AreaQueryCondition();
-        // queryCondition.setEnabled(null);
+        queryCondition.setEnabled(null);
         List<Area> areas = this.areaService.query(queryCondition);
         AreaView av = null;
         for (Area a : areas) {
@@ -60,7 +60,7 @@ public class ProjectMediaAction<T extends ProjectMedia, V extends ProjectMediaVi
             SuburbQueryCondition sQC = new SuburbQueryCondition();
             sQC.setAreaId(this.qcAreaId);
             pQC.setSuburbQC(sQC);
-            // sQC.setEnabled(null);
+            sQC.setEnabled(null);
             List<Suburb> suburbs = this.suburbService.query(sQC);
             SuburbView sv = null;
             for (Suburb s : suburbs) {
@@ -69,6 +69,8 @@ public class ProjectMediaAction<T extends ProjectMedia, V extends ProjectMediaVi
             }
         }
         pQC.setSuburbId(this.qcSuburbId);
+        pQC.setEnabled(null);
+        pQC.getSuburbQC().setEnabled(null);
         List<Project> projects = this.projectService.query(pQC);
         ProjectView psv = null;
         for (Project s : projects) {

@@ -53,7 +53,7 @@ public abstract class CRUDAction<M extends BaseModel<Long>, V extends BaseEasteV
             this.getService().delete(this.id);
             this.addActionMessage("Remove successfully! ID:" + this.id);
         } catch (Exception ex) {
-            String errMsg = "Delete failure! Id:" + id;
+            String errMsg = "Remove failure! Id:" + id;
             this.log.error(errMsg, ex);
             this.addActionError(errMsg + "\nCause:" + ex.getMessage());
             return ERROR;
@@ -61,6 +61,10 @@ public abstract class CRUDAction<M extends BaseModel<Long>, V extends BaseEasteV
         return SUCCESS;
     }
 
+    public String removeDependency() {
+        return SUCCESS;
+    }
+    
     public String update() {
         try {
             M model = this.getConverter().convertToModel(this.view);

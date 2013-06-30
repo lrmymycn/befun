@@ -9,6 +9,7 @@ import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import com.befun.dao.IBaseDao;
 import com.befun.domain.PaginationBean;
@@ -51,11 +52,16 @@ public class ApartmentServiceImpl extends BaseEstateServiceImpl<Apartment, Long>
     @Override
     public void markSoldOut(Long id) {
         Apartment model = this.get(id);
-        if(model == null){
+        if (model == null) {
             return;
         }
         model.setSoldOut(true);
         this.update(model);
     }
 
+    @Override
+    public void deleteDependency(Long id) {
+        Assert.notNull(id, "id should be not null!");
+        this.delete(id);
+    }
 }

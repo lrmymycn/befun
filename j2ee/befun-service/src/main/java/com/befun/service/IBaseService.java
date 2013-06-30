@@ -1,6 +1,7 @@
 package com.befun.service;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 import com.befun.dao.common.IQueryCondition;
@@ -25,9 +26,13 @@ public interface IBaseService<M extends BaseModel<PK>, PK extends Serializable> 
 
     void delete(PK... ids);
 
+    void delete(Collection<PK> ids);
+
     void deleteObject(M model);
 
     void deleteObject(M... models);
+    
+    void deleteObject(Collection<M> models);
 
     M get(PK id);
 

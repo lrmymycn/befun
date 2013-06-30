@@ -12,12 +12,26 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import com.befun.dao.IBaseDao;
+import com.befun.domain.community.FloorplanComment;
+import com.befun.domain.estate.Apartment;
 import com.befun.domain.estate.Floorplan;
+import com.befun.service.estate.ApartmentService;
+import com.befun.service.estate.FloorplanCommentService;
 import com.befun.service.estate.FloorplanService;
+import com.befun.service.query.estate.ApartmentQueryCondition;
+import com.befun.service.query.estate.FloorplanCommentQueryCondition;
 
 @Service("FloorplanService")
 @Transactional(rollbackFor = Exception.class)
 public class FloorplanServiceImpl extends BaseEstateServiceImpl<Floorplan, Long> implements FloorplanService {
+
+    @Resource
+    @Qualifier("FloorplanCommentService")
+    private FloorplanCommentService floorplanCommentService;
+
+    @Resource
+    @Qualifier("ApartmentService")
+    private ApartmentService apartmentService;
 
     @Override
     @Resource
@@ -77,4 +91,28 @@ public class FloorplanServiceImpl extends BaseEstateServiceImpl<Floorplan, Long>
         return rs;
     }
 
+    @Override
+    public void deleteDependency(Long id) {
+        Assert.notNull(id, "id should be not null!");
+        Floorplan floorplan = this.get(id);
+        if (floorplan == null) {
+            return;
+        }
+        FloorplanCommentQueryCondition fcQC = new FloorplanCommentQueryCondition();
+        fcQC.setEnabled(null);
+        
+        fcQC.setFloorplanId(id);
+        List<FloorplanComment> comments = this.floorplanCommentService.query(fcQC);
+        this.floorplanCommentService.deleteObject(comments);
+
+        ApartmentQueryCondition apQC = new ApartmentQueryCondition();
+        apQC.setEnabled(null);
+        apQC.setSoldOut(null);
+        apQC.setRemoved(null);
+        apQC.setFloorplanId(id);
+        List<Apartment> apartments = this.apartmentService.query(apQC );
+        this.apartmentService.deleteObject(apartments);
+        
+        this.delete(id);
+    }
 }

@@ -14,4 +14,6 @@ public interface ApartmentService extends BaseEstateService<Apartment, Long> {
     PaginationBean<Floorplan> queryFloorplans(ApartmentQueryCondition apQC, long pageNumber, int pageSize);
     
     void markSoldOut(Long id);
+
+    void deleteDependency(Long id);
 }

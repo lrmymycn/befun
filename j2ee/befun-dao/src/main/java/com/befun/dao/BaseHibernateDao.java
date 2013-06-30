@@ -88,7 +88,11 @@ public class BaseHibernateDao<M extends Serializable, PK extends Serializable> i
 
     @Override
     public void delete(PK id) {
-        getSession().delete(this.get(id));
+        M model = this.get(id);
+        if (model == null) {
+            return;
+        }
+        getSession().delete(model);
     }
 
     @Override
@@ -133,7 +137,7 @@ public class BaseHibernateDao<M extends Serializable, PK extends Serializable> i
     public <T> List<T> query(String hql, Map<String, Object> paramMap) {
         Query query = this.getSession().createQuery(hql);
         this.setParameters(query, paramMap);
-        return (List<T>)query.list();
+        return (List<T>) query.list();
     }
 
     @Override

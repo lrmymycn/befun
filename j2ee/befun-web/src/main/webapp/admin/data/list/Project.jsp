@@ -3,6 +3,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="jmesa" uri="http://code.google.com/p/jmesa"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
 <title>Projects</title>
@@ -96,6 +97,12 @@
 						</s:url>
 						<input type="button" value="Disable" onclick="showModalDialog('${r}')" />
 						</c:if>
+						<sec:authorize url="/admin/data/removeProject.action">
+						<s:url var="r" action="admin/data/removeProject.action" namespace="/">
+							<s:param name="id">${bean.id}</s:param>
+						</s:url>
+						<input type="button" value="Remove" onclick="showModalDialog('${r}')" />
+						</sec:authorize>
 					</jmesa:htmlColumn>
 				</jmesa:htmlRow>
 			</jmesa:htmlTable>

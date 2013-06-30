@@ -53,24 +53,36 @@ public class BuildingAction<T extends Building, V extends BuildingView> extends 
         this.view = new BuildingView();
     }
 
+    @Override
+    public String removeDependency() {
+        try {
+            this.buildingService.deleteDependency(this.id);
+            this.addActionMessage("Remove successfully! ID:" + this.id);
+        } catch (Exception ex) {
+            String errMsg = "Remove failure! Id:" + id;
+            this.log.error(errMsg, ex);
+            this.addActionError(errMsg + "\nCause:" + ex.getMessage());
+            return ERROR;
+        }
+        return SUCCESS;
+    }
+
     public String createPage() {
         this.prepareEditorList();
         return super.createPage();
     }
 
     public String demand() {
-        this.qc.getProQC().setEnabled(null);
-        this.qc.getProQC().getSuburbQC().setEnabled(null);
-        return super.demand();        
+        return super.demand();
     }
-    
+
     @Override
     public String demandById() {
         String rs = super.demandById();
         this.prepareEditorList();
         return rs;
     }
-    
+
     protected void prepareQueryList() {
         AreaQueryCondition queryCondition = new AreaQueryCondition();
         queryCondition.setEnabled(null);
@@ -99,6 +111,7 @@ public class BuildingAction<T extends Building, V extends BuildingView> extends 
             pQC = new ProjectQueryCondition();
         }
         pQC.setEnabled(null);
+        pQC.getSuburbQC().setEnabled(null);
         List<Project> projects = this.projectService.query(pQC);
         ProjectView psv = null;
         for (Project s : projects) {
@@ -169,7 +182,7 @@ public class BuildingAction<T extends Building, V extends BuildingView> extends 
             }
         }
     }
-    
+
     public Long getParamAreaId() {
         return paramAreaId;
     }

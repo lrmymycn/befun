@@ -91,7 +91,7 @@
             <result name="success">/admin/data/result.jsp</result>
             <result name="error">/admin/data/result.jsp</result>
         </action>
-        <action name="remove*" class="Admin{1}Action" method="remove">
+        <action name="remove*" class="Admin{1}Action" method="removeDependency">
             <result name="success">/admin/data/result.jsp</result>
             <result name="error">/admin/data/result.jsp</result>
         </action>

@@ -16,7 +16,7 @@ import com.befun.web.view.ApartmentView;
 import com.befun.web.view.converter.ConverterFactory;
 import com.befun.web.view.converter.ViewConverter;
 
-@Controller("ApartmentAction")
+@Controller("CommentAction")
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class CommentAction extends CRUDAction<Apartment, ApartmentView> {
 

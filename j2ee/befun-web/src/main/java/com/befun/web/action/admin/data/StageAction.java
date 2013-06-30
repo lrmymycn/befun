@@ -50,6 +50,20 @@ public class StageAction<T extends Stage, V extends StageView> extends AdminActi
         this.view = new StageView();
     }
 
+    @Override
+    public String removeDependency() {
+        try {
+            this.stageService.deleteDependency(this.id);
+            this.addActionMessage("Remove successfully! ID:" + this.id);
+        } catch (Exception ex) {
+            String errMsg = "Remove failure! Id:" + id;
+            this.log.error(errMsg, ex);
+            this.addActionError(errMsg + "\nCause:" + ex.getMessage());
+            return ERROR;
+        }
+        return SUCCESS;
+    }
+    
     public String createPage() {
         this.prepareEditorList();
         return super.createPage();
@@ -86,6 +100,7 @@ public class StageAction<T extends Stage, V extends StageView> extends AdminActi
         }
         projectQc.setSuburbId(this.qcSuburbId);
         projectQc.setEnabled(null);
+        projectQc.getSuburbQC().setEnabled(null);
         List<Project> projects = this.projectService.query(projectQc);
         ProjectView psv = null;
         for (Project s : projects) {
@@ -127,6 +142,7 @@ public class StageAction<T extends Stage, V extends StageView> extends AdminActi
         ProjectQueryCondition projectQc = new ProjectQueryCondition();
         projectQc.setSuburbId(this.paramSuburbId);
         projectQc.setEnabled(null);
+        projectQc.getSuburbQC().setEnabled(null);
         List<Project> projects = this.projectService.query(projectQc);
         ProjectView psv = null;
         for (Project s : projects) {

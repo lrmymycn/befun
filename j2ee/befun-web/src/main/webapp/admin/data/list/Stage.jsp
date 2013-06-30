@@ -96,6 +96,12 @@
 						</s:url>
 						<input type="button" value="Disable" onclick="showModalDialog('${r}')" />
 						</c:if>
+						<sec:authorize url="/admin/data/removeStage.action">
+						<s:url var="r" action="admin/data/removeStage.action" namespace="/">
+							<s:param name="id">${bean.id}</s:param>
+						</s:url>
+						<input type="button" value="Remove" onclick="showModalDialog('${r}')" />
+						</sec:authorize>
 					</jmesa:htmlColumn>
 				</jmesa:htmlRow>
 			</jmesa:htmlTable>

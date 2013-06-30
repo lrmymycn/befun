@@ -60,14 +60,28 @@ public class FloorplanAction<T extends Floorplan, V extends FloorplanView> exten
             floorplanTypes.add(FloorplanType.TOWN_HOUSE);
         }
     }
-    
-    public FloorplanAction(){
+
+    public FloorplanAction() {
         this.view = new FloorplanView();
+    }
+
+    @Override
+    public String removeDependency() {
+        try {
+            this.floorplanService.deleteDependency(this.id);
+            this.addActionMessage("Remove successfully! ID:" + this.id);
+        } catch (Exception ex) {
+            String errMsg = "Remove failure! Id:" + id;
+            this.log.error(errMsg, ex);
+            this.addActionError(errMsg + "\nCause:" + ex.getMessage());
+            return ERROR;
+        }
+        return SUCCESS;
     }
 
     protected void prepareQueryList() {
         AreaQueryCondition queryCondition = new AreaQueryCondition();
-        // queryCondition.setEnabled(null);
+        queryCondition.setEnabled(null);
         List<Area> areas = this.areaService.query(queryCondition);
         AreaView av = null;
         for (Area a : areas) {
@@ -77,7 +91,7 @@ public class FloorplanAction<T extends Floorplan, V extends FloorplanView> exten
         if (this.qc != null && this.qc.getBdQC() != null && this.qc.getBdQC().getProQC() != null && this.qc.getBdQC().getProQC().getSuburbQC() != null
             && this.qc.getBdQC().getProQC().getSuburbQC().getAreaId() != null) {
             SuburbQueryCondition sQC = this.qc.getBdQC().getProQC().getSuburbQC();
-            // sQC.setEnabled(null);
+            sQC.setEnabled(null);
             List<Suburb> suburbs = this.suburbService.query(sQC);
             SuburbView sv = null;
             for (Suburb s : suburbs) {
@@ -91,6 +105,8 @@ public class FloorplanAction<T extends Floorplan, V extends FloorplanView> exten
         } else {
             pQC = new ProjectQueryCondition();
         }
+        pQC.setEnabled(null);
+        pQC.getSuburbQC().setEnabled(null);
         List<Project> projects = this.projectService.query(pQC);
         ProjectView psv = null;
         for (Project s : projects) {
@@ -101,7 +117,7 @@ public class FloorplanAction<T extends Floorplan, V extends FloorplanView> exten
         if (this.qc != null && this.qc.getBdQC() != null && this.qc.getBdQC().getProjectId() != null) {
             StageQueryCondition stQC = new StageQueryCondition();
             stQC.setProjectId(this.qc.getBdQC().getProjectId());
-            // sQC.setEnabled(null);
+            stQC.setEnabled(null);
             List<Stage> stages = this.stageService.query(stQC);
             StageView sv = null;
             for (Stage s : stages) {
@@ -111,7 +127,7 @@ public class FloorplanAction<T extends Floorplan, V extends FloorplanView> exten
         }
         if (this.qc != null && this.qc.getBdQC() != null && this.qc.getBdQC().getStageId() != null) {
             BuildingQueryCondition bQC = this.qc.getBdQC();
-            // sQC.setEnabled(null);
+            bQC.setEnabled(null);
             List<Building> buildings = this.buildingService.query(bQC);
             BuildingView sv = null;
             for (Building s : buildings) {

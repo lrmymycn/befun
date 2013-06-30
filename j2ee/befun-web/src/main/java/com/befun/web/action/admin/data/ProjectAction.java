@@ -37,6 +37,20 @@ public class ProjectAction<T extends Project, V extends ProjectView> extends Adm
         this.view = new ProjectView();
     }
 
+    @Override
+    public String removeDependency() {
+        try {
+            this.projectService.deleteDependency(this.id);
+            this.addActionMessage("Remove successfully! ID:" + this.id);
+        } catch (Exception ex) {
+            String errMsg = "Remove failure! Id:" + id;
+            this.log.error(errMsg, ex);
+            this.addActionError(errMsg + "\nCause:" + ex.getMessage());
+            return ERROR;
+        }
+        return SUCCESS;
+    }
+    
     public String createPage() {
         this.prepareEditorList();
         return super.createPage();

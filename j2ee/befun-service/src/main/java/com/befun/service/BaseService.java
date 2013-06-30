@@ -1,6 +1,7 @@
 package com.befun.service;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -18,15 +19,15 @@ import com.befun.domain.PaginationBean;
 public abstract class BaseService<M extends BaseModel<PK>, PK extends Serializable> implements IBaseService<M, PK> {
 
     protected Log log = LogFactory.getLog(this.getClass());
-    
+
     protected IBaseDao<M, PK> dao;
 
     public abstract void setDao(IBaseDao<M, PK> dao);
 
-    public String[] getUpdatingIgnoreProps(){
+    public String[] getUpdatingIgnoreProps() {
         return null;
     }
-    
+
     @Override
     public PK save(M model) {
         Assert.notNull(model, "model should be not null!");
@@ -95,8 +96,22 @@ public abstract class BaseService<M extends BaseModel<PK>, PK extends Serializab
     }
 
     @Override
+    public void delete(Collection<PK> ids) {
+        for (PK id : ids) {
+            dao.delete(id);
+        }
+    }
+
+    @Override
     public void deleteObject(M... models) {
         dao.deleteObject(models);
+    }
+
+    @Override
+    public void deleteObject(Collection<M> models) {
+        for (M model : models) {
+            dao.deleteObject(model);
+        }
     }
 
     @Override
@@ -139,5 +154,5 @@ public abstract class BaseService<M extends BaseModel<PK>, PK extends Serializab
     public boolean exists(PK id) {
         Assert.notNull(id, "id should be not null!");
         return this.dao.exists(id);
-    }    
+    }
 }

@@ -217,6 +217,8 @@ public class MediaAction<T extends Media, V extends MediaView> extends AdminActi
 
     private void prepareEditorList() {
         ProjectQueryCondition pQC = new ProjectQueryCondition();
+        pQC.setEnabled(null);
+        pQC.getSuburbQC().setEnabled(null);
         List<Project> projects = this.projectService.query(pQC);
         ProjectView psv = null;
         for (Project s : projects) {
@@ -227,6 +229,8 @@ public class MediaAction<T extends Media, V extends MediaView> extends AdminActi
 
     protected void prepareQueryList() {
         ProjectQueryCondition pQC = new ProjectQueryCondition();
+        pQC.setEnabled(null);
+        pQC.getSuburbQC().setEnabled(null);
         List<Project> projects = this.projectService.query(pQC);
         ProjectView psv = null;
         for (Project s : projects) {

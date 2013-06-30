@@ -13,5 +13,5 @@ public interface ProjectService extends BaseEstateService<Project, Long> {
 
     Map<Suburb, Long> queryGroupBySuburb(ProjectQueryCondition qc);
 
-    void deleteDeep(long id);
+    void deleteDependency(Long id);
 }

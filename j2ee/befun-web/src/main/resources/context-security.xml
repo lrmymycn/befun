@@ -38,6 +38,7 @@
         <intercept-url pattern="/admin/impAccess.action**" access="hasAnyRole('SUPER','DATA_ADMIN')" requires-channel="http" />
         <intercept-url pattern="/admin/updateMediaUrl.action**" access="hasAnyRole('SUPER','DATA_ADMIN')" requires-channel="http" />
         <intercept-url pattern="/admin/testUpdateMediaUrl.action**" access="hasAnyRole('SUPER','DATA_ADMIN')" requires-channel="http" />
+        <intercept-url pattern="/admin/data/remove*.action**" access="hasAnyRole('SUPER')" requires-channel="http" />
         <intercept-url pattern="/admin/data/*.action**" access="hasAnyRole('SUPER','DATA_ADMIN')" requires-channel="http" />
         <intercept-url pattern="/admin/data/json/*.action**" access="hasAnyRole('SUPER','DATA_ADMIN')" requires-channel="http" />
         <intercept-url pattern="/admin/profile/*.action**" access="hasAnyRole('SUPER')" requires-channel="http" />

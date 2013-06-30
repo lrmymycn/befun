@@ -157,6 +157,12 @@
 						</s:url>
 						<input type="button" value="SoldOut" onclick="showModalDialog('${r}')" />
 						</c:if>
+						<sec:authorize url="/admin/data/removeApartment.action">
+						<s:url var="r" action="admin/data/removeApartment.action" namespace="/">
+							<s:param name="id">${bean.id}</s:param>
+						</s:url>
+						<input type="button" value="Remove" onclick="showModalDialog('${r}')" />
+						</sec:authorize>
 					</jmesa:htmlColumn>
 				</jmesa:htmlRow>
 			</jmesa:htmlTable>
