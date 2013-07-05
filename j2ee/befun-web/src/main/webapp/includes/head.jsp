@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>Befun Property</title>
 <meta name="description" content="">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <link rel="icon" type="image/x-icon" href="<c:url value="/favicon.ico"/>" />

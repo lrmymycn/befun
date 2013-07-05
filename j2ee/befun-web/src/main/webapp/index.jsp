@@ -7,6 +7,9 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
+    	<title>比房网 | 澳洲期房,楼花,现房</title>
+    	<meta name="Description" content="比房网是一个智能的一站式置业网站，在这里你可以搜索，对比，直接购买澳洲最新上市的澳洲期房和现房。"/>
+    	<meta name="Keywords" content="澳洲楼花,澳洲期房,澳洲现房,悉尼楼花,悉尼现房,悉尼期房,悉尼房产,悉尼,楼花,现房,期房,雪梨,楼花价格,期房价格"/>
         <jsp:include page="includes/head.jsp" />
     </head>
 	<body class="standard">

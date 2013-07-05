@@ -12,9 +12,10 @@
 			<a href="#tab-overview" class="active first">项目图集</a>
 			<a href="#tab-details">项目信息</a>
 			<a href="#tab-floorplans">户型筛选</a>
-			<a href="#tab-sales">区域分析</a>
+			<!--<a href="#tab-suburb">区域分析</a>
 			<a href="#tab-comments">住户交流</a>
-			<a href="#tab-contactus">联系我们</a>
+			<a href="#tab-contactus">联系我们</a>-->
+			<a href="#" target="_blank" id="view-project">更多项目详情</a>
 		</div>
 	</div>     		
 	<div class="content">
@@ -84,7 +85,7 @@
 				</div>
 			</div>
 		</div>
-		<div id="tab-sales" class="hidden tab-block">
+		<div id="tab-suburb" class="hidden tab-block">
 			<div class="box">
 				
 			</div>
@@ -114,7 +115,7 @@
 		</div>
 		<div id="tab-contactus" class="hidden tab-block">
 			<div class="box">
-				<p><strong>价格? 数据? 走势? 楼盘对比? 如果您想了解更多，我们会第一时间给答复给您：</strong></p>
+				<p>如果您想了解更多，我们会第一时间给给您答复：</p>
 				<form action="" method="post">
 					<div class="row clearfix">
 						<span class="title">项目:</span>

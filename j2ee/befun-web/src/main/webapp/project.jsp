@@ -8,22 +8,23 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
+    	<title>比房网 | ${view.name}</title>
         <jsp:include page="includes/head.jsp" />
     </head>
 	<body>
 		<div class="standard">
 	        <header>
-	        	<div id="1" class="inner">
+	        	<div class="inner">
 	        		<jsp:include page="includes/search.jsp" />
 	        	</div>
 	        </header>
-	        <div id="content" class="project clearfix">		
+	        <div id="content" class="project clearfix">
 	        	<div id="left">
+	        		<h2><c:out value="${view.name}" /> <span><c:out value="${view.suburbName}" /> / <c:out value="${view.priceRange}" /></span></h2>
 	        		<div class="tile">
-						<h2>Project Name</h2>	
 						<div class="gallery">
 							<div id="gallery-main">
-								<img src="/img/render/medium/vsq-north.jpg" width="630" height="423" alt=""/>
+								<img src="${view.medias[0].mediumUrl}" width="630" height="423" alt=""/>
 							</div>
 							<div id="gallery-list">
 								<a href="javascript:;" class="prev"></a>
@@ -54,7 +55,18 @@
 									<a href="javascript:;" class="prev nav"></a>
 									<div class="scrollable">
 										<div class="items">
+											<!--
 											<div data-id="0"><a data-id="412" class="item" href="javascript:;"><img alt="" src="/img/fp/small/F-P-G58.jpg"></a><a data-id="373" class="item" href="javascript:;"><img alt="" src="/img/fp/small/D-P-G25.jpg"></a><a data-id="421" class="item" href="javascript:;"><img alt="" src="/img/fp/small/G-P-173,273,372.jpg"></a></div>
+											-->
+											<c:forEach items="${view.floorplans }" var="f" varStatus="stat">
+												<c:if test="${stat.last || (stat.index > 0 && (stat.index mod 3) eq 0) }">
+													</div>
+												</c:if>
+												<c:if test="${(stat.index mod 3) eq 0 }">
+													<div id="${stat.index }">
+												</c:if>
+													<a data-id="${f.id }" class="item" href="${f.publicPicture.largeUrl}" target="_blank"><img alt="" src="${f.publicPicture.smallUrl}"></a>
+											</c:forEach>
 										</div>
 									</div>
 									<a href="javascript:;" class="next nav"></a>
@@ -66,113 +78,19 @@
 					<div class="tile">
 						<div class="tabs">     			
 							<a class="active first" href="#tab-project-overview">项目信息</a>
-							<a href="#tab-sales">项目特色</a>
-							<a href="#tab-sales">内饰品牌</a>
-							<a href="#tab-sales">区域分析</a>
+							<a href="#tab-project-feature">项目特色</a>
+							<a href="#tab-project-finish">内饰品牌</a>
+							<!--<a href="#tab-sales">区域分析</a>-->
 						</div>
 						<div class="tab-contents">
 							<div id="tab-project-overview">
-								<table>
-									<tr>
-										<td width="100"><strong>地址</strong></td>
-										<td><s:label name="view.address" theme="simple" /></td>
-									</tr>
-									<tr>
-										<td><strong>市政厅</strong></td>
-										<td>Mascot</td>
-									</tr>
-									<tr>
-										<td><strong>市中心距离</strong></td>
-										<td>10km</td>
-									</tr>
-									<tr>
-										<td><strong>开发商</strong></td>
-										<td>Meriton</td>
-									</tr>
-									<tr>
-										<td><strong>建筑商</strong></td>
-										<td>Meriton</td>
-									</tr>
-									<tr>
-										<td><strong>发布日期</strong></td>
-										<td>25/05/2013</td>
-									</tr>
-									<tr>
-										<td><strong>总期数</strong></td>
-										<td>3</td>
-									</tr>
-									<tr>
-										<td><strong>总栋数</strong></td>
-										<td>3</td>
-									</tr>
-									<tr>
-										<td><strong>项目设施</strong></td>
-										<td>
-											<ul class="amenity">
-												<li><i class="tick"></i> Reception</li>
-												<li><i class="tick"></i> Swimming Pool</li>
-												<li><i class="tick"></i> Sauna Room</li>
-												<li><i class="tick"></i> Tennis Court</li>
-												<li><i class="tick"></i> Function Room</li>
-												<li><i class="tick"></i> Theatre Cinema</li>
-												<li><i class="tick"></i> Library</li>
-												<li><i class="tick"></i> BBQ Fireplace</li>
-												<li><i class="tick"></i> Landscaping</li>
-												<li><i class="tick"></i> Sky Garden</li>
-												<li><i class="tick"></i> Visitor parking</li>
-												<li><i class="tick"></i> Car wash bay</li>
-												<li><i class="tick"></i> Gym</li>
-												<li><i class="tick"></i> Kids Play Ground</li>
-												<li><i class="tick"></i> Play Room</li>
-												<li><i class="tick"></i> Recreation Place</li>
-												<li><i class="tick"></i> Music Room</li>
-											</ul>
-										</td>
-									</tr>
-								</table>
+								<c:out value="${view.description}" escapeXml="false"/>
+							</div>
+							<div id="tab-project-feature" style="display:none">
+								<c:out value="${view.features}" escapeXml="false"/>
 							</div>
 							<div id="tab-project-finish" style="display:none">
-								<table>
-									<tr>
-										<td width="100"><strong>Wall</strong></td>
-										<td>Painted Plasterboard</td>
-									</tr>
-									<tr>
-										<td><strong>Floor</strong></td>
-										<td>Carpet / Timber floor</td>
-									</tr>
-									<tr>
-										<td><strong>Kitchen</strong></td>
-										<td>Splashback (stone/nature stone)<br/>
-											Cooktop (brand)<br/>
-											Oven (brand)<br/>
-											Rangehood (brand, ducted/recirculating)<br/>
-											Dishwasher (brand)<br/>
-											Microwave (brand)<br/>
-											Sink (brand or material)
-										</td>
-									</tr>
-									<tr>
-										<td><strong>Bathroom</strong></td>
-										<td>Shower (brand or material)<br/>
-											Tub (brand)<br/>
-											Tile (ceramic tiles)<br/>
-											Bathroom ware (brand)
-										</td>
-									</tr>
-									<tr>
-										<td><strong>Aircon</strong></td>
-										<td>Centralized</td>
-									</tr>
-									<tr>
-										<td><strong>NBN</strong></td>
-										<td>What's this?</td>
-									</tr>
-									<tr>
-										<td><strong>Satellite TV</strong></td>
-										<td>Foxtel</td>
-									</tr>
-								</table>
+								<c:out value="${view.finishSchema}" escapeXml="false"/>
 							</div>
 						</div>						
 					</div>
@@ -185,34 +103,59 @@
 					</div>
 				</div>
 				<div id="right">
-					<div class="contactus widget">
-						<h3>联系我们</h3>
-						<form action="" method="post">
-							<div class="row clearfix">
-								<div class="input">
-									<input type="text" name="name" value="" class="required" placeholder="姓名"/>
+					<div class="affix">
+						<div class="social">
+							<span>分享这个项目: </span>
+							<!-- JiaThis Button BEGIN -->
+							<div class="jiathis_style_24x24">
+							<a class="jiathis_button_tsina"></a>
+							<a class="jiathis_button_weixin"></a>
+							<a class="jiathis_button_renren"></a>
+							<a class="jiathis_button_qzone"></a>
+							<a class="jiathis_button_fb"></a>
+							<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+							</div>
+							<script type="text/javascript" >
+							var jiathis_config={
+								summary:"",
+								pic:"http://www.befun.com.au${view.medias[0].mediumUrl}",
+								hideMore:false
+							}
+							</script>
+							<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+							<!-- JiaThis Button END -->
+						</div>
+						<div class="contactus widget" style="margin-top:0px;">
+							<h3>免费咨询</h3>
+							<form action="" method="post">
+								<div class="row clearfix">
+									<div class="input">
+										<input type="text" name="name" value="" class="required" placeholder="姓名(必填)"/>
+									</div>
 								</div>
-							</div>
-							<div class="row clearfix">
-								<div class="input">
-									<input type="email" name="email" value="" class="required" placeholder="Email"/>
+								<div class="row clearfix">
+									<div class="input">
+										<input type="email" name="email" value="" class="required" placeholder="Email(必填)"/>
+									</div>
 								</div>
-							</div>
-							<div class="row clearfix">
-								<div class="input">
-									<input type="text" name="mobile" value="" placeholder="手机"/>
+								<div class="row clearfix">
+									<div class="input">
+										<input type="text" name="mobile" value="" placeholder="手机(选填)"/>
+									</div>
 								</div>
-							</div>
-							<div class="row clearfix">
-								<div class="input">
-									<textarea placeholder="例如：关于这个项目，我想了解更多。"></textarea>
+								<div class="row clearfix">
+									<div class="input">
+										<textarea placeholder="例如：关于这个项目，我想了解更多。"></textarea>
+									</div>
 								</div>
-							</div>
-							<div class="buttons">
-								<input type="submit" class="btn red" value="提交"></a>
-							</div>
-						</form>
+								<div class="buttons">
+									<input type="submit" class="btn red" value="提 交"></a>
+								</div>
+							</form>
+						</div>
 					</div>
+					
+					<!--
 					<div class="comments widget">
 						<h3>精彩周边</h3>
 						<ul>
@@ -232,6 +175,7 @@
 							</li>
 						</ul>
 					</div>
+					-->
 				</div>
          	</div>
          	<footer>
@@ -241,7 +185,10 @@
 		<jsp:include page="includes/script.jsp" />
         <script>
         	$(function(){
+        		Main.currentProjectId = <c:out value="${view.id}" />
 				ProjectPage.init();
+				ProjectPage.initGoogleMap(<c:out value="${view.latitude}" />, <c:out value="${view.longitude}" />);
+				FloorPlanFilter.init(true);
 			})
         </script>
 	</body>

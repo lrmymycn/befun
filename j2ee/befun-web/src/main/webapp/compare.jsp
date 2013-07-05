@@ -4,6 +4,7 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
+    	<title>比房网 | 对比户型</title>
         <jsp:include page="includes/head.jsp" />
     </head>
 	<body>
@@ -14,7 +15,7 @@
 	        	</div>
 	        </header>
 	        <div id="content" class="compare">	         	        	
-				<h2>Compare</h2>
+				<h2>对比户型</h2>
 				<div class="compare-table">
          		<div class="label-column">
          			<div class="name">Project name</div>

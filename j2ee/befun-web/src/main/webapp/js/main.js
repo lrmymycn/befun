@@ -1015,6 +1015,9 @@ PanelPopup = {
 		});
 		
 		$('#panel .tabs a, #panel .sub-tabs a').click(function(e){
+			if($(this).attr('target') == '_blank'){
+				return true;
+			}
 			e.preventDefault();
 			var target = $(this).attr('href');
 			if($(target).hasClass('hidden')){
@@ -1139,7 +1142,8 @@ PanelPopup = {
 						$('#subtab-description .detail').html(project.description);
 						$('#subtab-finish .detail').html(project.finishSchema);
 						$('#subtab-feature .detail').html(project.features);
-						$('#tab-sales .box').html(project.data);
+						$('#view-project').attr('href', Main.root + 'estate/demandProjectDetail.action?id=' + project.id);
+						//$('#tab-suburb .box').html(project.suburbDescription);
 						//$('#subtab-condition').html(project.condition);
 						//$('#subtab-offers').html(project.offers);
 						
@@ -1150,10 +1154,10 @@ PanelPopup = {
 							if((i + 1) % 3 == 0){
 								cls = 'last';
 							}
-							var $li = '<li class="' + cls + '"><a href="' + photos[i].mediumUrl + '" rel="brochure"><img src="' + photos[i].smallUrl + '" alt=""/></a></li>';
+							var $li = '<li class="' + cls + '"><a href="' + photos[i].mediumUrl + '" rel="brochure" title="描述在此，一行显示"><img src="' + photos[i].smallUrl + '" alt=""/></a></li>';
 							$('#tab-overview .brochure').append($li);
 						}
-						$('#panel a[rel]').fancybox({
+						$('#panel a[rel="brochure"]').fancybox({
 							padding : 0
 						});
 						/*
@@ -1476,6 +1480,7 @@ FloorplanPopup = {
 }
 
 FloorPlanFilter = {
+	standalonePage: false,
 	currentFloorPlans:[],
 	conditions: {
 		minPrice:null,
@@ -1495,7 +1500,13 @@ FloorPlanFilter = {
 		west:null,
 		north:null
 	},
-	init: function(){
+	init: function(standalonePage){
+		if(standalonePage == undefined){
+			this.standalonePage = false;
+		}else{
+			this.standalonePage = standalonePage;
+		}
+
 		$('#btn-search3').click(function(){
 			FloorPlanFilter.curentFloorPlans = [];
 			
@@ -1548,7 +1559,11 @@ FloorPlanFilter = {
 					var project = json.view;
 					if(project != null && project != undefined){
 						FloorPlanFilter.currentFloorPlans = project.floorplans;
-						FloorPlanFilter.updateList();
+						if(FloorPlanFilter.standalonePage){
+							FloorPlanFilter.updatePageList();
+						}else{
+							FloorPlanFilter.updateList();
+						}
 					}else{
 						alert('Project not found');
 					}
@@ -1606,6 +1621,30 @@ FloorPlanFilter = {
 				$('#floorplan-list2 .items').append($div2);
 			}
 			$div2.append($item2);
+		}
+	},
+	updatePageList:function(){
+		$('#floorplan-list .items').empty().css('top', 0);
+		var floorplans = this.currentFloorPlans;
+		for(var i = 0; i < floorplans.length; i++){
+			var picture = null;
+			if(floorplans[i].publicPicture != null){
+				picture = floorplans[i].publicPicture;
+			}
+			
+			if(picture == null){
+				continue;
+			}
+			
+			var $item = $('<a href="javascript:;" class="item" data-id="' + floorplans[i].id + '"><img src="' + picture.smallUrl + '" alt="" /></a>');
+			
+			var index = Math.floor(i / 3);	
+			var $div = $('#floorplan-list').find('div[data-id='+ index + ']');
+			if($div == null || $div.length == 0){
+				$div = $('<div data-id="' + index + '"></div>');
+				$('#floorplan-list .items').append($div);
+			}
+			$div.append($item);
 		}
 	}
 }
@@ -2228,7 +2267,7 @@ ClientList = {
 ProjectPage = {
 	map: null,
 	init: function(){
-		$('div.scrollable').scrollable();
+		$('#gallery-list .scrollable').scrollable();
 		
 		$('#gallery-list .items a').click(function(e){
 			e.preventDefault();
@@ -2252,7 +2291,28 @@ ProjectPage = {
 			return false;
 		});
 		
-		var latLng = new google.maps.LatLng(-34.007509, 151.101848);
+		$("#floorplan-list .scrollable").scrollable({vertical: true});
+		
+		$('.tabs a').click(function(e){
+			e.preventDefault();
+			
+			if($(this).hasClass('active')){
+				return false;
+			}
+			
+			$('.tabs a').removeClass('active');
+			$(this).addClass('active');
+			
+			var target = $(this).attr('href');
+			
+			$('.tab-contents div').hide();
+			$(target).show();
+		});
+
+		$("select.selectbox").selectbox();
+	},
+	initGoogleMap: function(lat, lon){
+		var latLng = new google.maps.LatLng(lat, lon);
 		var mapOptions = {
     		zoom: 15,
     		minZoom: 11,
@@ -2272,8 +2332,6 @@ ProjectPage = {
 			position: latLng,
 			map: ProjectPage.map
 		});
-		
-		$("select.selectbox").selectbox();
 	}
 }
 
