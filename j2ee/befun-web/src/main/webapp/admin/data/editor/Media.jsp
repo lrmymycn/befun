@@ -41,7 +41,6 @@
 		<s:textfield name="view.alt" label="alt"></s:textfield>
 		<s:select name="view.mediaType" list="mediaTypes" />
 		<s:select name="view.contentType" list="contentTypes" />
-		<s:textarea name="view.description" label="Description" labelposition="left" cols="40"></s:textarea>
 		<tr>
 			<td colspan="2"><div align="right">
 				<s:if test="editable">

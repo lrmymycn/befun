@@ -50,6 +50,9 @@ public class Project implements BaseEstateModel<Long> {
     @Column(name = "BLOCK", length = 255)
     private String block;
 
+    @Column(name = "RANK")
+    private Integer rank;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(referencedColumnName = "id", name = "PICTURE_ID")
     private Media picture;
@@ -207,6 +210,14 @@ public class Project implements BaseEstateModel<Long> {
 
     public void setBlock(String block) {
         this.block = block;
+    }
+
+    public Integer getRank() {
+        return rank;
+    }
+
+    public void setRank(Integer rank) {
+        this.rank = rank;
     }
 
     public Media getPicture() {

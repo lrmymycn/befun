@@ -35,6 +35,7 @@ public class ProjectConverter extends AbstractEstateViewConverter<Project, Proje
         view.setAreaId(model.getSuburb().getArea().getId());
         view.setSuburbId(model.getSuburb().getId());
         view.setSuburbName(model.getSuburb().getName());
+        view.setAreaName(model.getSuburb().getArea().getName());
         view.setSuburbDescription(model.getSuburb().getDescription());
         copyModelModification(model.getModelModification(), view);
     }

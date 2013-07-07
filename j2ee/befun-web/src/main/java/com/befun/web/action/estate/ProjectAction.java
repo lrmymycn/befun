@@ -102,6 +102,7 @@ public class ProjectAction extends CRUDAction<Project, ProjectView> {
         // query projects information
         qc.setGroupBySuburb(false);
         qc.setGroupByArea(false);
+        qc.getOrderBy().add(Order.desc(QCUtils.generatePropertyName(qc.getSelfAlias(), "rank")));
         PaginationBean<Project> projects = service.query(qc, pn, ps);
         this.pgb = new PaginationBean<ProjectView>();
         this.pgb.setModels(new ArrayList<ProjectView>());

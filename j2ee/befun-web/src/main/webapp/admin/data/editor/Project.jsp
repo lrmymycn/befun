@@ -64,6 +64,10 @@
 						</select></td>
 					</tr>
 					<tr>
+						<td class="tdLabel"><label>rank: </label></td>
+						<td><s:textfield name="view.rank" /></td>
+					</tr>
+					<tr>
 						<td class="tdLabel"><label>pictureId: </label></td>
 						<td><s:textfield name="view.pictureId" /></td>
 					</tr>

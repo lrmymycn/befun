@@ -17,6 +17,8 @@ public class ProjectView extends BaseEasteView<Project> {
 
     private Long suburbId;
 
+    private String areaName;
+
     private String suburbName;
 
     private String suburbDescription;
@@ -43,6 +45,8 @@ public class ProjectView extends BaseEasteView<Project> {
     private String name;
 
     private String block;
+
+    private Integer rank;
 
     private String siteUrl;
 
@@ -222,6 +226,14 @@ public class ProjectView extends BaseEasteView<Project> {
 
     public void setBlock(String block) {
         this.block = block;
+    }
+
+    public Integer getRank() {
+        return rank;
+    }
+
+    public void setRank(Integer rank) {
+        this.rank = rank;
     }
 
     public String getSiteUrl() {
@@ -470,6 +482,14 @@ public class ProjectView extends BaseEasteView<Project> {
 
     public void setMedias(List<Media> medias) {
         this.medias = medias;
+    }
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
     }
 
     public String getSuburbName() {

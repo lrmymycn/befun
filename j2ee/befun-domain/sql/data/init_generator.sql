@@ -34,3 +34,4 @@ INSERT INTO id_generator (id,gen_name) VALUES(2015,'apartment');
 INSERT INTO id_generator (id,gen_name) VALUES(2016,'apartmentComment');
 INSERT INTO id_generator (id,gen_name) VALUES(2017,'media');
 INSERT INTO id_generator (id,gen_name) VALUES(2018,'projectMedia');
+INSERT INTO id_generator (id,gen_name) VALUES(3000,'customerMessage');

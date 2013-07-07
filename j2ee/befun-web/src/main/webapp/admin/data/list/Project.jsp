@@ -59,6 +59,7 @@
 					</jmesa:htmlColumn>
 					<jmesa:htmlColumn property="name" />
 					<jmesa:htmlColumn property="block" />
+					<jmesa:htmlColumn property="rank" />
 					<jmesa:htmlColumn sortable="false" property="logoId" title="Logo">
 						<s:url var="u" action="admin/data/viewMedia.action" namespace="/">
 							<s:param name="id">${bean.logoId}</s:param>

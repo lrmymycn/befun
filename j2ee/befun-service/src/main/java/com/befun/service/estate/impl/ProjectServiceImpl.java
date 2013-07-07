@@ -138,7 +138,7 @@ public class ProjectServiceImpl extends BaseEstateServiceImpl<Project, Long> imp
         ProjectMediaQueryCondition pmQC = new ProjectMediaQueryCondition();
         pmQC.setEnabled(null);
         pmQC.setRemoved(null);
-        pcQC.setProjectId(id);
+        pmQC.setProjectId(id);
         List<ProjectMedia> projectMedias = this.projectMediaService.query(pmQC);
         this.projectMediaService.deleteObject(projectMedias);
         

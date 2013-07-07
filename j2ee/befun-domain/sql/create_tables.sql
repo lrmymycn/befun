@@ -446,6 +446,7 @@ CREATE TABLE IF NOT EXISTS `project` (
   `suburb_id` bigint(20) NOT NULL,
   `block` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
+  `rank` int(11) DEFAULT NULL,
   `picture_id` bigint(20) DEFAULT NULL,
   `logo_id` bigint(20) DEFAULT NULL,
   `short_description` varchar(500) DEFAULT NULL,
@@ -871,6 +872,24 @@ CREATE TABLE IF NOT EXISTS `project_busroute` (
   KEY `idx_enabled` (`enabled`) USING BTREE,
   CONSTRAINT `fk_project_busroute_bus_id` FOREIGN KEY (`busroute_id`) REFERENCES `busroute` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_project_busroute_pro_id` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `customer_message` (
+  `id` bigint(20) NOT NULL,
+  `content` text,
+  `customer_name` varchar(255) NOT NULL,
+  `customer_email` varchar(255) DEFAULT NULL,
+  `customer_mobile` varchar(255) DEFAULT NULL,
+  `project_id` bigint(20) DEFAULT NULL,
+  `floorplan_id` bigint(20) DEFAULT NULL,
+  `creation_date` datetime DEFAULT NULL,
+  `process_date` datetime DEFAULT NULL,
+  `processed` tinyint(1) DEFAULT 0,
+  PRIMARY KEY (`id`),
+  KEY `idx_project_id` (`project_id`),
+  KEY `idx_floorplan_id` (`floorplan_id`),
+  KEY `idx_creation_date` (`creation_date`),
+  KEY `idx_processed` (`processed`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS `id_generator` (

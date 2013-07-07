@@ -161,5 +161,13 @@
                 </param>
             </result>
         </action>
+		<action name="createMessage" class="CustomerMessageAction" method="create">
+			<result name="success" type="myJson">
+				<param name="includeProperties">
+                    actionMessages*,
+                    errorMessages*,
+				</param>
+			</result>
+		</action>
 	</package>
 </struts>  
