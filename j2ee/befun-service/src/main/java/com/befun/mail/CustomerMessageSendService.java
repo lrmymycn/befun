@@ -13,8 +13,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.befun.domain.community.CustomerMessage;
+import com.befun.domain.estate.Floorplan;
 import com.befun.domain.estate.Project;
 import com.befun.service.estate.CustomerMessageService;
+import com.befun.service.estate.FloorplanService;
 import com.befun.service.estate.ProjectService;
 
 @Service("CustomerMessageSendService")
@@ -30,6 +32,10 @@ public class CustomerMessageSendService {
     @Resource
     @Qualifier("ProjectService")
     private ProjectService projectService;
+    
+    @Resource
+    @Qualifier("FloorplanService")
+    private FloorplanService floorplanService;
 
     @Resource
     @Qualifier("EmailUtils")
@@ -51,6 +57,12 @@ public class CustomerMessageSendService {
         sb.append("Email: ").append(msg.getCustomerEmail()).append("<br/>");
         sb.append("Mobile: ").append(msg.getCustomerMobile()).append("<br/>");
         if (msg.getFloorplanId() != null) {
+            Floorplan fp = floorplanService.get(msg.getFloorplanId());
+            if (fp != null) {
+                sb.append("Floorplan: ").append("<a href=\"http://www.befun.com.au/befun-web/estate/demandFloorplanDetail.action?id=").append(msg.getFloorplanId())
+                  .append("\">");
+                sb.append(fp.getId()).append("</a>").append("<br/>");
+            }
             sb.append("Floorplan: ").append("none");
         }
         if (msg.getProjectId() != null) {
@@ -61,6 +73,7 @@ public class CustomerMessageSendService {
                 sb.append(pro.getName()).append("</a>").append("<br/>");
             }
         }
+        sb.append(msg.getContent()).append("<br/>");
         mailContent.setContent(sb.toString());
         msg.setProcessed(true);
         msg.setProcessDate(new Date());
