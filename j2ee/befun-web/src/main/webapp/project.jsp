@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
@@ -189,6 +190,7 @@
 				ProjectPage.init();
 				ProjectPage.initGoogleMap(<c:out value="${view.latitude}" />, <c:out value="${view.longitude}" />);
 				FloorPlanFilter.init(true);
+				$('#floorplan-filter .result b').text('${fn:length(view.floorplans)}');
 			})
         </script>
 	</body>

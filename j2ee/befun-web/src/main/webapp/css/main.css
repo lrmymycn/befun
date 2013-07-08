@@ -1040,11 +1040,7 @@ footer a{
 }
 
 .tab-block .box{
-	background:#ffffff;
-	border:1px solid #dfdfdf;
-	width:480px;
 	height:420px;
-	padding:0 10px;
 	overflow-y:auto;
 }
 
@@ -1231,6 +1227,10 @@ footer a{
 	line-height:40px;
 }
 
+#floorplan-filter .result{
+	padding:0 0 15px 14px;
+}
+
 #floorplan-filter table{
 	width:100%;
 }
@@ -1319,6 +1319,10 @@ footer a{
 	display:none;
 }
 
+.tile #floorplan-filter .result{
+	padding-left:0px;
+}
+
 #floorplans .nav{
 	display:block;
 	width:79px;
@@ -1372,27 +1376,25 @@ footer a{
 	float:left;
 }
 
-#tab-contactus form .title{
-	width:80px;
-	font-size:13px;
+
+#tab-contactus form {
+	margin-top:15px;
 }
 
 #tab-contactus form textarea{
-	width:385px;
+	width:490px;
+	height:220px;
 }
 
-#tab-contactus form .project{
-	height:31px;
-	line-height:31px;
-	font-weight:bold;
+#tab-contactus form .buttons{
+	text-align:right;
 }
 
 #tab-contactus form .buttons .btn{
-	font-size:14px;
-	height:30px;
-	line-height:30px;
-	margin-left:80px;
-	padding:0 20px;
+	font-size:18px;
+	height:40px;
+	width:215px;
+	margin-right:0px;
 }
 
 #lightbox {
@@ -2515,7 +2517,7 @@ form .input .to{
 
 form input[type="text"],
 form input[type="email"]{
-	width:200px;
+	width:228px;
 }
 
 .widget form input[type="text"],
@@ -2539,7 +2541,7 @@ form textarea{
 }
 
 .contactus form textarea{
-	width:230px;
+	width:235px;
 	height:150px;
 }
 

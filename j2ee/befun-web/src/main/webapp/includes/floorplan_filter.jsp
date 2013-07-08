@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div id="floorplan-filter">
 	<div class="title">检索当前项目户型</div>
+	<div class="result">共有 <b></b> 个户型满足你的搜索条件</div>
 	<table>
 		<tr class="odd">
 			<td class="label">价格:</td>

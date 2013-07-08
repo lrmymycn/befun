@@ -4,7 +4,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <div class="top">
-	<a href="/"><h1 class="logo"><img src="/img/logo.png" width="165" height="63" alt="Befun Property"/></h1></a>
+	<a href="/befun-web/search.jsp"><h1 class="logo"><img src="/img/logo.png" width="165" height="63" alt="Befun Property"/></h1></a>
 	<div class="search">
 		<input type="text" name="suburb" id="search-suburb" placeholder="Enter a suburb or a postcode"/>
 		<a href="javascript:;" id="btn-filter">高级</a>
@@ -31,7 +31,7 @@
 					<ul>
 						<li><a href="clientlist.jsp">Clients</a></li>
 						<li><a href="#">Cases</a></li>
-						<li><a href="<c:url value='/j_spring_security_logout' />">Log out</a></li>
+						<li><a href="<c:url value='/j_spring_security_logout' />">注销</a></li>
 					</ul>
 				</li>
 			</sec:authorize>
@@ -43,21 +43,7 @@
 		</ul>
 	</div>
 	<jsp:include page="login.jsp" />
-	<div id="client-panel" class="popover">
-		<div class="arrow"></div>
-		<div class="inner">
-			<span class="title">Change client</span>
-			<div class="change long">
-				<select name="client" class="selectbox">
-					<option value="" selected="true">Select</option>
-				</select>
-			</div>
-			<span class="title">OR</span>
-			<div class="button">
-				<a href="client.jsp" class="btn red">Create a New Client</a>
-			</div>
-		</div>
-	</div>
+	<jsp:include page="change_client.jsp" />
 	<div id="filter" class="popover" style="display:none;">
 		<div class="arrow"></div>
 		<div class="inner">

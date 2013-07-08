@@ -13,8 +13,8 @@
 			<a href="#tab-details">项目信息</a>
 			<a href="#tab-floorplans">户型筛选</a>
 			<!--<a href="#tab-suburb">区域分析</a>
-			<a href="#tab-comments">住户交流</a>
-			<a href="#tab-contactus">联系我们</a>-->
+			<a href="#tab-comments">住户交流</a>-->
+			<a href="#tab-contactus">免费咨询</a>
 			<a href="#" target="_blank" id="view-project">更多项目详情</a>
 		</div>
 	</div>     		
@@ -115,43 +115,39 @@
 		</div>
 		<div id="tab-contactus" class="hidden tab-block">
 			<div class="box">
-				<p>如果您想了解更多，我们会第一时间给给您答复：</p>
+				<div>关于 <b class="project"></b> 如果您想了解更多，我们会第一时间给给您答复。</div>
 				<form action="" method="post">
 					<div class="row clearfix">
-						<span class="title">项目:</span>
 						<div class="input">
-							<span class="project">Oceanvale</span>
-							<input id="hfproject" type="hidden" value=""/>
+							<input type="text" name="name" value="" class="required" placeholder="姓名(必填)"/>
+						</div>
+						<div class="input" style="margin-left:10px;">
+							<input type="text" name="mobile" value="" placeholder="手机(选填)"/>
 						</div>
 					</div>
 					<div class="row clearfix">
-						<span class="title">姓名*:</span>
 						<div class="input">
-							<input type="text" name="name" value="" class="required"/>
+							<input type="email" name="email" value="" class="required" placeholder="Email(必填)" style="width:483px;"/>
 						</div>
 					</div>
 					<div class="row clearfix">
-						<span class="title">Email*:</span>
 						<div class="input">
-							<input type="email" name="email" value="" class="required"/>
-						</div>
-					</div>
-					<div class="row clearfix">
-						<span class="title">手机:</span>
-						<div class="input">
-							<input type="text" name="mobile" value=""/>
-						</div>
-					</div>
-					<div class="row clearfix">
-						<span class="title">留言:</span>
-						<div class="input">
-							<textarea placeholder="例如：关于这个项目，我想了解更多。"></textarea>
+							<textarea name="message" class="required">Hi,
+							
+我在比房网上看到了Cascada (SYL002)这个项目。
+
+我对[2]房[2]卫的户型比较有兴趣，请和我联系。
+
+谢谢</textarea>
 						</div>
 					</div>
 					<div class="buttons">
-						<input type="submit" class="btn red" value="提交"></a>
+						<input type="submit" class="btn red" value="提 交"></a>
 					</div>
 				</form>
+				<div class="thankyou" style="display:none;">
+					<p>谢谢，我们的销售人员会第一时间与您联系。</p>
+				</div>
 			</div>
 		</div>
 	</div>

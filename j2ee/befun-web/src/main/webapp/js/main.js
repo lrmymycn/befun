@@ -163,9 +163,10 @@ Main = {
 					    + '<div class="clearfix">'
 							+ '<img src="' + project.picture.smallUrl + '" alt="' + project.name + '" width="140" height="94"/>'
 							+ '<div class="info">'
+								+ '<label>编号:</label><span>' + project.block +'</span><br/>'
 								+ '<label>类型:</label><span>' + project.type +'</span><br/>'
 								+ '<label>价格:</label><span>' + project.priceRange + '</span><br/>'
-								+ '<label>方位:</label>' + project.areaId + '<br/>'
+								+ '<label>方位:</label>' + project.areaName + '<br/>'
 								+ '<label>区域:</label>' + project.suburbName + '<br/>'
 					 		+ '</div>'
 					 	+ '</div>'
@@ -1068,7 +1069,31 @@ PanelPopup = {
 		
 		$("#panel select.selectbox").selectbox();
 		
-		$('#tab-contactus form').validate();
+		$('#tab-contactus form').validate({
+			errorPlacement:function(){
+				return;
+			},
+			submitHandler: function(form) {
+				Main.loadingShow();
+				$.ajax({
+					type: 'POST',
+					url: Main.root + "estate/json/createMessage.action",
+					data: {
+							'model.projectId': Main.currentProjectId,
+							'model.content': $(form).find('textarea').val(),
+							'model.customerName': $(form).find('input[name="name"]').val(),
+							'model.customerMobile': $(form).find('input[name="mobile"]').val(),
+							'model.customerEmail': $(form).find('input[name="email"]').val()
+						},
+					dataType: "json",
+					success: function(json){
+						$(form).hide();
+						$('#tab-contactus .thankyou').show();
+						Main.loadingHide();
+					}
+				});
+			}
+		});
 	},
 	show:function(){
 		$('#panel .top .tabs a:first-child').click();
@@ -1086,6 +1111,11 @@ PanelPopup = {
 			//Main.currentProjectId = null;
 			$('#panel-overlay').hide();
 		}
+	},
+	resetContactForm:function(fullProjectName){
+		$('#tab-contactus form').show();
+		$('#tab-contactus .thankyou').hide();
+		$('#tab-contactus textarea').val('Hi,\r\n\r\n我在比房网上看到了' + fullProjectName + '这个项目。\r\n\r\n我对[2]房[2]卫的户型比较有兴趣，请和我联系。\r\n\r\n谢谢');
 	},
 	load:function(projectId){
 		/*
@@ -1136,16 +1166,13 @@ PanelPopup = {
 				success: function(json){
 					var project = json.view;
 					if(project != null && project != undefined){
-						$('#project-name').text(project.name);
-						$('#tab-contactus .project').text(project.name);
-						$('#hfproject').val(project.name);
+						var fullProjectName = project.name + ' (' + project.block + ')';
+						$('#project-name').text(fullProjectName);
+						$('#tab-contactus .project').text(fullProjectName);
 						$('#subtab-description .detail').html(project.description);
 						$('#subtab-finish .detail').html(project.finishSchema);
 						$('#subtab-feature .detail').html(project.features);
 						$('#view-project').attr('href', Main.root + 'estate/demandProjectDetail.action?id=' + project.id);
-						//$('#tab-suburb .box').html(project.suburbDescription);
-						//$('#subtab-condition').html(project.condition);
-						//$('#subtab-offers').html(project.offers);
 						
 						var photos = project.medias;
 						$('#tab-overview .brochure').empty();
@@ -1154,36 +1181,17 @@ PanelPopup = {
 							if((i + 1) % 3 == 0){
 								cls = 'last';
 							}
-							var $li = '<li class="' + cls + '"><a href="' + photos[i].mediumUrl + '" rel="brochure" title="描述在此，一行显示"><img src="' + photos[i].smallUrl + '" alt=""/></a></li>';
+							var $li = '<li class="' + cls + '"><a href="' + photos[i].mediumUrl + '" rel="brochure" title="' + photos[i].alt + '"><img src="' + photos[i].smallUrl + '" alt="' + photos[i].alt + '"/></a></li>';
 							$('#tab-overview .brochure').append($li);
 						}
 						$('#panel a[rel="brochure"]').fancybox({
 							padding : 0
 						});
-						/*
-						$('#overview-main').empty();
-						if(photos.length > 0){
-							$('#overview-main').append('<img src="' + photos[0].mediumUrl + '" width="510" height="343" alt=""/>');
-						}
-						$('#overview-list .items').empty();
-						for(var i = 0; i < photos.length; i++){
-							var cls = '';
-							if(i == 0){
-								cls = 'active';
-							}
-							var $item = $('<a href="' + photos[i].mediumUrl + '" class="' + cls + '"><img src="' + photos[i].smallUrl + '" width="84" height="56" /></a>');
-							var index = Math.floor(i / 5);
-								
-							var $div = $('#overview-list').find('div[data-id='+ index + ']');
-							if($div == null || $div.length == 0){
-								$div = $('<div data-id="' + index + '"></div>');
-								$('#overview-list .items').append($div);
-							}
-							$div.append($item);
-						}
-						*/
+
 						FloorPlanFilter.currentFloorPlans = project.floorplans;
 						FloorPlanFilter.updateList();
+						
+						PanelPopup.resetContactForm(fullProjectName);
 						
 						Main.loadingHide();
 						
@@ -1575,6 +1583,9 @@ FloorPlanFilter = {
 		if(type == undefined){
 			type = 'price';
 		}
+		
+		$('#floorplan-filter .result b').text(this.currentFloorPlans.length);
+		
 		$('#floorplan-list .items').empty().css('top', 0);
 		$('#floorplan-list2 .items').empty().css('left', 0);
 		var floorplans = this.currentFloorPlans;
@@ -1624,6 +1635,8 @@ FloorPlanFilter = {
 		}
 	},
 	updatePageList:function(){
+		$('#floorplan-filter .result b').text(this.currentFloorPlans.length);
+		
 		$('#floorplan-list .items').empty().css('top', 0);
 		var floorplans = this.currentFloorPlans;
 		for(var i = 0; i < floorplans.length; i++){
@@ -1636,7 +1649,7 @@ FloorPlanFilter = {
 				continue;
 			}
 			
-			var $item = $('<a href="javascript:;" class="item" data-id="' + floorplans[i].id + '"><img src="' + picture.smallUrl + '" alt="" /></a>');
+			var $item = $('<a href="' + picture.largeUrl + '" class="item" data-id="' + floorplans[i].id + '" target="_blank"><img src="' + picture.smallUrl + '" alt="" /></a>');
 			
 			var index = Math.floor(i / 3);	
 			var $div = $('#floorplan-list').find('div[data-id='+ index + ']');

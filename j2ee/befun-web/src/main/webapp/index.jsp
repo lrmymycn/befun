@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.befun.web.box.SessionContainer"%>  
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
@@ -19,12 +21,38 @@
 					<a href="/"><h1 class="logo"><img src="/img/logo.png" width="165" height="63" alt="Befun Property"/></h1></a>
 					<div class="menu">
 						<ul>
+							<sec:authorize access="isAuthenticated()">
+							<%
+								Long currentClientId = null; 
+								try{
+									Object obj = session.getAttribute("befunContainer");
+									if(obj != null && obj instanceof SessionContainer){
+										SessionContainer sc =(SessionContainer)obj;
+										currentClientId = (Long)sc.getProperty("currentClient");
+									}
+								}catch(Exception ex){
+					
+								}
+							%>
+							<sec:authentication property="principal" var="authentication" />
+							<li><a href="javascript:;" id="change-client">Hi ${authentication.username} <span id="clientname" data-id="<%= currentClientId %>"></span></a> <a href="client.jsp" id="view-client">(view)</a></li>
+								<li class="more"><a href="javascript:;">More<i class="arrow-down-grap"></i></a>
+								<ul>
+									<li><a href="clientlist.jsp">Clients</a></li>
+									<li><a href="#">Cases</a></li>
+									<li><a href="<c:url value='/j_spring_security_logout' />">注销</a></li>
+								</ul>
+							</li>
+						</sec:authorize>
+						<sec:authorize access="isAnonymous()">
 							<li><a href="javascript:;" id="login-link">登陆</a></li>
 							<li><a href="mailto:info@befun.com.au">加入我们</a></li>
-							<li class="phone"><i class="phone"></i> 02-7902-0866</li>
+							<li class="phone"><i class="phone"></i> 02 7902 0866</li>
+						</sec:authorize>
 						</ul>
 					</div>
 					<jsp:include page="includes/login.jsp" />
+					<jsp:include page="includes/change_client.jsp" />
 				</div>
         	</div>
         </header>
@@ -118,7 +146,7 @@
 		<script>
 			$(function(){
 				$('img.bg-login').height($(window).height() - 66);
-				$('.selectbox').selectbox();
+				$('#home-filter .selectbox').selectbox();
 
 				$('ul.suburbs a').click(function(){
 					var id = $(this).data('id');

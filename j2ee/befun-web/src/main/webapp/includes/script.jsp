@@ -17,6 +17,7 @@
 <script src="<c:url value="/js/jquery.validate.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fancybox.js"/>"></script>
 <script src="<c:url value="/js/jquery.cookie.js"/>"></script>
+<script src="<c:url value="/js/knockout-2.2.1.js"/>"></script>
 <script src="<c:url value="/js/main.js"/>"></script>
 <script>
 	var _gaq=[['_setAccount','UA-40663296-1'],['_trackPageview']];

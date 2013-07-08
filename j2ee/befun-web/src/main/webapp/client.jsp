@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -283,6 +284,7 @@
 								</tr>
 							</thead>
 							<tbody data-bind="foreach: interestList">
+								<!-- ko if: $data.apartment != null -->
 								<tr>
 									<td data-bind="text: $data.apartment.projectName"></td>
 									<td data-bind="text: $data.apartment.unitNumber"></td>
@@ -296,6 +298,7 @@
 									<td>$ <span data-bind="text: $data.apartment.avgPricePerSQM"></span>m<sup>2</sup></td>
 									<td class="action"><a href="javascript:;">Delete</a></td>
 								</tr>
+								<!-- /ko -->
 							</tbody>
 						</table>
 					</div>
