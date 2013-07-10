@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.mail.MessagingException;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -73,13 +74,20 @@ public class CustomerMessageSendService {
                 sb.append(pro.getName()).append("</a>").append("<br/>");
             }
         }
-        sb.append(msg.getContent()).append("<br/>");
+        sb.append(replaceNewLine(msg.getContent())).append("<br/>");
         mailContent.setContent(sb.toString());
         msg.setProcessed(true);
         msg.setProcessDate(new Date());
         this.service.update(msg);
         emailUtils.sendMail(to, cc, subject, mailContent);
         this.log.debug("Finished to send message!");
+    }
+    
+    private String replaceNewLine(String content){
+        if(StringUtils.isBlank(content)){
+            return "";
+        }
+        return content.replaceAll("\n", "<br/>");
     }
 
 }

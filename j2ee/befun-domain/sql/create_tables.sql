@@ -337,6 +337,7 @@ CREATE TABLE IF NOT EXISTS `comment_rec` (
   `parent_id` bigint(20) DEFAULT NULL,
   `profile_id` bigint(20) DEFAULT NULL,
   `guest_name` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
   `content` TEXT DEFAULT NULL,
   `creation_date` datetime DEFAULT NULL,
   `enabled` tinyint(1) DEFAULT 0,

@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.MyBeanUtils;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
@@ -23,236 +24,208 @@ import com.befun.service.query.estate.ProjectMediaQueryCondition;
 @Component("ImportMergeService")
 public class MergeService {
 
-	private static final String[] IGNORE_PROPERTIES_MEDIA = new String[] {
-			"id", "bid", "modelModification" };
+    private static final String[] IGNORE_PROPERTIES_MEDIA = new String[] { "id", "bid", "projectId", "modelModification" };
 
-	private static final String[] IGNORE_PROPERTIES_PROJECT = new String[] {
-			"id", "bid", "suburb", "sold", "soldOut", "stages",
-			"modelModification" };
+    private static final String[] IGNORE_PROPERTIES_PROJECT = new String[] { "id", "bid", "suburb", "sold", "soldOut", "stages", "modelModification" };
 
-	private static final String[] IGNORE_PROPERTIES_STAGE = new String[] {
-			"id", "bid", "sold", "soldOut", "buildings", "modelModification" };
+    private static final String[] IGNORE_PROPERTIES_STAGE = new String[] { "id", "bid", "sold", "soldOut", "buildings", "modelModification" };
 
-	private static final String[] IGNORE_PROPERTIES_BUILDING = new String[] {
-			"id", "bid", "sold", "soldOut", "floorplans", "modelModification" };
+    private static final String[] IGNORE_PROPERTIES_BUILDING = new String[] { "id", "bid", "sold", "soldOut", "floorplans", "modelModification" };
 
-	private static final String[] IGNORE_PROPERTIES_FLOORPLAN = new String[] {
-			"id", "bid", "minPrice", "maxPrice", "sold", "soldOut",
-			"modelModification" };
+    private static final String[] IGNORE_PROPERTIES_FLOORPLAN = new String[] { "id", "bid", "minPrice", "maxPrice", "sold", "soldOut", "modelModification" };
 
-	private static final String[] IGNORE_PROPERTIES_APARTMENT = new String[] {
-			"id", "bid", "modelModification" };
+    private static final String[] IGNORE_PROPERTIES_APARTMENT = new String[] { "id", "bid", "modelModification" };
 
-	private Log log = LogFactory.getLog(getClass());
+    private static final String[] INCLUDED_PROPERTIES_MEDIA = new String[] { "id", "bid", "modelModification" };
 
-	@Resource
-	@Qualifier("CommonService")
-	private ICommonService commonService;
+    private static final String[] INCLUDED_PROPERTIES_PROJECT = new String[] { "picture", "logo" };
 
-	public Media mergeMedia(Media model) {
-		Media rs = model;
-		Media exist = commonService.getByBid(Media.class, model.getBid());
-		if (exist != null) {
-			// BeanUtils.copyProperties(rs, exist, IGNORE_PROPERTIES_MEDIA);
-			// rs = exist;
-			return null;
-		}
-		return rs;
-	}
+    private static final String[] INCLUDED_PROPERTIES_STAGE = new String[] { "id", "bid", "sold", "soldOut", "buildings", "modelModification" };
 
-	public Media getMediaByBid(String bid) {
-		Media exist = commonService.getByBid(Media.class, bid);
-		return exist;
-	}
+    private static final String[] INCLUDED_PROPERTIES_BUILDING = new String[] { "id", "bid", "sold", "soldOut", "floorplans", "modelModification" };
 
-	public Project mergeProject(Project model) {
-		Project rs = model;
-		if (rs.getLogo() != null) {
-			Media logo = commonService.getByBid(Media.class, rs.getLogo()
-					.getBid());
-			if (logo == null) {
-				String errMsg = "Can not find logo :" + rs.getLogo().getBid()
-						+ " for Project:" + rs.getBid();
-				this.log.error(errMsg);
-				throw new IllegalArgumentException(errMsg);
-			}
-			rs.setLogo(logo);
-		}
+    private static final String[] INCLUDED_PROPERTIES_FLOORPLAN = new String[] { "publicPicture", "salePicture" };
 
-		if (rs.getPicture() != null) {
-			Media picture = commonService.getByBid(Media.class, rs.getPicture()
-					.getBid());
-			if (picture == null) {
-				String errMsg = "Can not find picture :"
-						+ rs.getPicture().getBid() + " for Project:"
-						+ rs.getBid();
-				this.log.error(errMsg);
-				throw new IllegalArgumentException(errMsg);
-			}
-			rs.setPicture(picture);
-		}
+    private static final String[] INCLUDED_PROPERTIES_APARTMENT = new String[] { "id", "bid", "modelModification" };
 
-		Project exist = commonService.getByBid(Project.class, model.getBid());
-		if (exist != null) {
-			// BeanUtils.copyProperties(rs, exist, IGNORE_PROPERTIES_PROJECT);
-			// rs = exist;
-			return null;
-		}
+    private Log log = LogFactory.getLog(getClass());
 
-		return rs;
-	}
+    @Resource
+    @Qualifier("CommonService")
+    private ICommonService commonService;
 
-	public ProjectMedia mergeProjectMedia(ProjectMedia model) {
-		ProjectMedia rs = model;
-		Project project = commonService.getByBid(Project.class, rs.getProject()
-				.getBid());
-		if (project == null) {
-			String errMsg = "Can not find project :" + rs.getProject().getBid()
-					+ " for ProjectMedia:" + rs;
-			this.log.error(errMsg);
-			throw new IllegalArgumentException(errMsg);
-		}
-		rs.setProject(project);
+    public Media mergeMedia(Media model) {
+        Media rs = model;
+        Media exist = commonService.getByBid(Media.class, model.getBid());
+        if (exist != null) {
+            BeanUtils.copyProperties(rs, exist, IGNORE_PROPERTIES_MEDIA);
+            rs = exist;
+        }
+        return rs;
+    }
 
-		Media media = commonService.getByBid(Media.class, rs.getMedia()
-				.getBid());
-		if (media == null) {
-			String errMsg = "Can not find media :" + rs.getMedia().getBid()
-					+ " for ProjectMedia:" + rs;
-			this.log.error(errMsg);
-			throw new IllegalArgumentException(errMsg);
-		}
-		rs.setMedia(media);
+    public Media getMediaByBid(String bid) {
+        Media exist = commonService.getByBid(Media.class, bid);
+        return exist;
+    }
 
-		ProjectMediaQueryCondition queryCondition = new ProjectMediaQueryCondition();
-		queryCondition.setProjectBid(model.getProject().getBid());
-		queryCondition.setMediaBid(model.getMedia().getBid());
-		List<ProjectMedia> list = commonService.query(ProjectMedia.class,
-				queryCondition);
-		if (list != null && !list.isEmpty()) {
-			// ProjectMedia exist = list.get(0);
-			// rs = exist;
-			return null;
-		}
+    public Project mergeProject(Project model) {
+        Project rs = model;
+        if (rs.getLogo() != null) {
+            Media logo = commonService.getByBid(Media.class, rs.getLogo().getBid());
+            if (logo == null) {
+                String errMsg = "Can not find logo :" + rs.getLogo().getBid() + " for Project:" + rs.getBid();
+                this.log.error(errMsg);
+                throw new IllegalArgumentException(errMsg);
+            }
+            rs.setLogo(logo);
+        }
 
-		return rs;
-	}
+        if (rs.getPicture() != null) {
+            Media picture = commonService.getByBid(Media.class, rs.getPicture().getBid());
+            if (picture == null) {
+                String errMsg = "Can not find picture :" + rs.getPicture().getBid() + " for Project:" + rs.getBid();
+                this.log.error(errMsg);
+                throw new IllegalArgumentException(errMsg);
+            }
+            rs.setPicture(picture);
+        }
 
-	public Stage mergeStage(Stage model) {
-		Stage rs = model;
+        Project exist = commonService.getByBid(Project.class, model.getBid());
+        if (exist != null) {
+            MyBeanUtils.copyPropertiesInclude(rs, exist, INCLUDED_PROPERTIES_PROJECT);
+            rs = exist;
+        }
 
-		Project project = commonService.getByBid(Project.class, rs.getProject()
-				.getBid());
-		if (project == null) {
-			String errMsg = "Can not find project :" + rs.getProject().getBid()
-					+ " for Stage:" + rs.getBid();
-			this.log.error(errMsg);
-			throw new IllegalArgumentException(errMsg);
-		}
-		rs.setProject(project);
+        return rs;
+    }
 
-		Stage exist = commonService.getByBid(Stage.class, model.getBid());
-		if (exist != null) {
-			// BeanUtils.copyProperties(rs, exist, IGNORE_PROPERTIES_STAGE);
-			// rs = exist;
-			return null;
-		}
-		return rs;
-	}
+    public ProjectMedia mergeProjectMedia(ProjectMedia model) {
+        ProjectMedia rs = model;
+        Project project = commonService.getByBid(Project.class, rs.getProject().getBid());
+        if (project == null) {
+            String errMsg = "Can not find project :" + rs.getProject().getBid() + " for ProjectMedia:" + rs;
+            this.log.error(errMsg);
+            throw new IllegalArgumentException(errMsg);
+        }
+        rs.setProject(project);
 
-	public Building mergeBuilding(Building model) {
-		Building rs = model;
+        Media media = commonService.getByBid(Media.class, rs.getMedia().getBid());
+        if (media == null) {
+            String errMsg = "Can not find media :" + rs.getMedia().getBid() + " for ProjectMedia:" + rs;
+            this.log.error(errMsg);
+            throw new IllegalArgumentException(errMsg);
+        }
+        rs.setMedia(media);
 
-		Stage stage = commonService.getByBid(Stage.class, rs.getStage()
-				.getBid());
-		if (stage == null) {
-			String errMsg = "Can not find stage :" + rs.getStage().getBid()
-					+ " for Buidling:" + rs.getBid();
-			this.log.error(errMsg);
-			throw new IllegalArgumentException(errMsg);
-		}
-		rs.setStage(stage);
+        ProjectMediaQueryCondition queryCondition = new ProjectMediaQueryCondition();
+        queryCondition.setProjectBid(model.getProject().getBid());
+        queryCondition.setMediaBid(model.getMedia().getBid());
+        List<ProjectMedia> list = commonService.query(ProjectMedia.class, queryCondition);
+        if (list != null && !list.isEmpty()) {
+            // ProjectMedia exist = list.get(0);
+            // rs = exist;
+            return null;
+        }
 
-		Building exist = commonService.getByBid(Building.class, model.getBid());
-		if (exist != null) {
-			// BeanUtils.copyProperties(rs, exist, IGNORE_PROPERTIES_BUILDING);
-			// rs = exist;
-			return null;
-		}
-		return rs;
-	}
+        return rs;
+    }
 
-	public Floorplan mergeFloorplan(Floorplan model) {
-		Floorplan rs = model;
+    public Stage mergeStage(Stage model) {
+        Stage rs = model;
 
-		Building building = commonService.getByBid(Building.class, rs
-				.getBuilding().getBid());
-		if (building == null) {
-			String errMsg = "Can not find building :"
-					+ rs.getBuilding().getBid() + " for Floorplan:"
-					+ rs.getBid();
-			this.log.error(errMsg);
-			throw new IllegalArgumentException(errMsg);
-		}
-		rs.setBuilding(building);
+        Project project = commonService.getByBid(Project.class, rs.getProject().getBid());
+        if (project == null) {
+            String errMsg = "Can not find project :" + rs.getProject().getBid() + " for Stage:" + rs.getBid();
+            this.log.error(errMsg);
+            throw new IllegalArgumentException(errMsg);
+        }
+        rs.setProject(project);
 
-		if (rs.getPublicPicture() != null
-				&& rs.getPublicPicture().getBid() != null) {
-			Media publicPicture = commonService.getByBid(Media.class, rs
-					.getPublicPicture().getBid());
-			if (publicPicture == null) {
-				String errMsg = "Can not find publicPicture :"
-						+ rs.getPublicPicture().getBid() + " for Floorplan:"
-						+ rs.getBid();
-				this.log.error(errMsg);
-				throw new IllegalArgumentException(errMsg);
-			}
-			rs.setPublicPicture(publicPicture);
-		}
+        Stage exist = commonService.getByBid(Stage.class, model.getBid());
+        if (exist != null) {
+            // BeanUtils.copyProperties(rs, exist, IGNORE_PROPERTIES_STAGE);
+            // rs = exist;
+            return null;
+        }
+        return rs;
+    }
 
-		Media salePicture = commonService.getByBid(Media.class, rs
-				.getSalePicture().getBid());
-		if (salePicture == null) {
-			String errMsg = "Can not find salePicture :"
-					+ rs.getSalePicture().getBid() + " for Floorplan:"
-					+ rs.getBid();
-			this.log.error(errMsg);
-			throw new IllegalArgumentException(errMsg);
-		}
-		rs.setSalePicture(salePicture);
+    public Building mergeBuilding(Building model) {
+        Building rs = model;
 
-		Floorplan exist = commonService.getByBid(Floorplan.class,
-				model.getBid());
-		if (exist != null) {
-			// BeanUtils.copyProperties(rs, exist, IGNORE_PROPERTIES_FLOORPLAN);
-			// rs = exist;
-			return null;
-		}
+        Stage stage = commonService.getByBid(Stage.class, rs.getStage().getBid());
+        if (stage == null) {
+            String errMsg = "Can not find stage :" + rs.getStage().getBid() + " for Buidling:" + rs.getBid();
+            this.log.error(errMsg);
+            throw new IllegalArgumentException(errMsg);
+        }
+        rs.setStage(stage);
 
-		return rs;
-	}
+        Building exist = commonService.getByBid(Building.class, model.getBid());
+        if (exist != null) {
+            // BeanUtils.copyProperties(rs, exist, IGNORE_PROPERTIES_BUILDING);
+            // rs = exist;
+            return null;
+        }
+        return rs;
+    }
 
-	public Apartment mergeApartment(Apartment model) {
-		Apartment rs = model;
+    public Floorplan mergeFloorplan(Floorplan model) {
+        Floorplan rs = model;
 
-		Floorplan floorplan = commonService.getByBid(Floorplan.class, rs
-				.getFloorplan().getBid());
-		if (floorplan == null) {
-			String errMsg = "Can not find floorplan :"
-					+ rs.getFloorplan().getBid() + " for Apartment:"
-					+ rs.getBid();
-			this.log.error(errMsg);
-			throw new IllegalArgumentException(errMsg);
-		}
-		rs.setFloorplan(floorplan);
+        Building building = commonService.getByBid(Building.class, rs.getBuilding().getBid());
+        if (building == null) {
+            String errMsg = "Can not find building :" + rs.getBuilding().getBid() + " for Floorplan:" + rs.getBid();
+            this.log.error(errMsg);
+            throw new IllegalArgumentException(errMsg);
+        }
+        rs.setBuilding(building);
 
-		Apartment exist = commonService.getByBid(Apartment.class,
-				model.getBid());
-		if (exist != null) {
-			// BeanUtils.copyProperties(rs, exist, IGNORE_PROPERTIES_APARTMENT);
-			// rs = exist;
-			return null;
-		}
-		return rs;
-	}
+        if (rs.getPublicPicture() != null && rs.getPublicPicture().getBid() != null) {
+            Media publicPicture = commonService.getByBid(Media.class, rs.getPublicPicture().getBid());
+            if (publicPicture == null) {
+                String errMsg = "Can not find publicPicture :" + rs.getPublicPicture().getBid() + " for Floorplan:" + rs.getBid();
+                this.log.error(errMsg);
+                throw new IllegalArgumentException(errMsg);
+            }
+            rs.setPublicPicture(publicPicture);
+        }
+
+        Media salePicture = commonService.getByBid(Media.class, rs.getSalePicture().getBid());
+        if (salePicture == null) {
+            String errMsg = "Can not find salePicture :" + rs.getSalePicture().getBid() + " for Floorplan:" + rs.getBid();
+            this.log.error(errMsg);
+            throw new IllegalArgumentException(errMsg);
+        }
+        rs.setSalePicture(salePicture);
+
+        Floorplan exist = commonService.getByBid(Floorplan.class, model.getBid());
+        if (exist != null) {
+            MyBeanUtils.copyPropertiesInclude(rs, exist, INCLUDED_PROPERTIES_FLOORPLAN);
+            rs = exist;
+        }
+
+        return rs;
+    }
+
+    public Apartment mergeApartment(Apartment model) {
+        Apartment rs = model;
+
+        Floorplan floorplan = commonService.getByBid(Floorplan.class, rs.getFloorplan().getBid());
+        if (floorplan == null) {
+            String errMsg = "Can not find floorplan :" + rs.getFloorplan().getBid() + " for Apartment:" + rs.getBid();
+            this.log.error(errMsg);
+            throw new IllegalArgumentException(errMsg);
+        }
+        rs.setFloorplan(floorplan);
+
+        Apartment exist = commonService.getByBid(Apartment.class, model.getBid());
+        if (exist != null) {
+            // BeanUtils.copyProperties(rs, exist, IGNORE_PROPERTIES_APARTMENT);
+            // rs = exist;
+            return null;
+        }
+        return rs;
+    }
 }

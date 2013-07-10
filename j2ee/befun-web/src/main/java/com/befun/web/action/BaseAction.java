@@ -49,9 +49,9 @@ public class BaseAction extends ActionSupport {
     @Qualifier("ClientService")
     protected ClientService clientService;
 
-	protected boolean isAnonymous() {
-		return this.getCurrentProfile() == null;
-	}
+    protected boolean isAnonymous() {
+        return this.getCurrentProfile() == null;
+    }
 
     /**
      * Gets the current profile.

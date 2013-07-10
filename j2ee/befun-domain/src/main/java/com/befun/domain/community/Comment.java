@@ -45,6 +45,9 @@ public class Comment implements BaseModel<Long> {
     @Column(name = "GUEST_NAME")
     private String guestName;
 
+    @Column(name = "TITLE")
+    private String title;
+
     @Column(name = "CONTENT")
     private String content;
 
@@ -91,6 +94,14 @@ public class Comment implements BaseModel<Long> {
 
     public void setGuestName(String guestName) {
         this.guestName = guestName;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getContent() {
@@ -157,8 +168,8 @@ public class Comment implements BaseModel<Long> {
         result = prime * result + ((creationDate == null) ? 0 : creationDate.hashCode());
         result = prime * result + (enabled ? 1231 : 1237);
         result = prime * result + ((enabledDate == null) ? 0 : enabledDate.hashCode());
-        result = prime * result + ((guestName == null) ? 0 : guestName.hashCode());
         result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((title == null) ? 0 : title.hashCode());
         return result;
     }
 
@@ -178,19 +189,19 @@ public class Comment implements BaseModel<Long> {
         if (enabledDate == null) {
             if (other.enabledDate != null) return false;
         } else if (!enabledDate.equals(other.enabledDate)) return false;
-        if (guestName == null) {
-            if (other.guestName != null) return false;
-        } else if (!guestName.equals(other.guestName)) return false;
         if (id == null) {
             if (other.id != null) return false;
         } else if (!id.equals(other.id)) return false;
+        if (title == null) {
+            if (other.title != null) return false;
+        } else if (!title.equals(other.title)) return false;
         return true;
     }
 
     @Override
     public String toString() {
-        return "Comment [id=" + id + ", profile=" + profile + ", guestName=" + guestName + ", content=" + content + ", creationDate=" + creationDate
-               + ", enabled=" + enabled + ", enabledDate=" + enabledDate + ", toString()=" + super.toString() + "]";
+        return "Comment [id=" + id + ", guestName=" + guestName + ", title=" + title + ", content=" + content + ", creationDate=" + creationDate + ", enabled="
+               + enabled + ", enabledDate=" + enabledDate + "]";
     }
 
 }

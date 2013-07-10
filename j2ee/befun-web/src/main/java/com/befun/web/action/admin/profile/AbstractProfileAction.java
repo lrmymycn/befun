@@ -4,6 +4,7 @@ import javax.annotation.Resource;
 
 import org.apache.commons.lang.StringUtils;
 import org.hibernate.criterion.Order;
+import org.jmesa.limit.Action;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -15,10 +16,14 @@ import com.befun.domain.profile.RoleCode;
 import com.befun.service.profile.ProfileService;
 import com.befun.service.query.QCUtils;
 import com.befun.service.query.profile.ProfileQueryCondition;
+import com.befun.web.utils.JmesaUtils;
+import com.opensymphony.xwork2.Preparable;
 
-public abstract class AbstractProfileAction<M extends Profile> extends ProfileCRUDAction<M> {
+public abstract class AbstractProfileAction<M extends Profile> extends ProfileCRUDAction<M> implements Preparable {
 
     private static final long serialVersionUID = 5495201659557835300L;
+
+    private String tableName;
 
     private ProfileQueryCondition qc = new ProfileQueryCondition();
 
@@ -39,6 +44,33 @@ public abstract class AbstractProfileAction<M extends Profile> extends ProfileCR
     private PasswordEncoder passwordEncoder;
 
     public void prepare() {
+        this.pn = this.getPageNum(getTableName());
+        this.ps = this.getPageSize(getTableName());
+    }
+
+    protected long getPageNum(String tableName) {
+        long rs = 1;
+        String str = JmesaUtils.getJmesaParam(this.getRequest(), Action.PAGE, tableName);
+        if (!StringUtils.isBlank(str)) {
+            rs = Long.parseLong(str);
+        }
+        return rs;
+    }
+
+    protected int getPageSize(String tableName) {
+        int rs = 20;
+        String str = JmesaUtils.getJmesaParam(this.getRequest(), Action.MAX_ROWS, tableName);
+        if (!StringUtils.isBlank(str)) {
+            rs = Integer.parseInt(str);
+        }
+        return rs;
+    }
+
+    public String getTableName() {
+        if (StringUtils.isBlank(this.tableName)) {
+            this.tableName = this.getRequest().getParameter("tableName");
+        }
+        return tableName;
     }
 
     public void validateCreate() {
@@ -255,6 +287,10 @@ public abstract class AbstractProfileAction<M extends Profile> extends ProfileCR
         }
         this.addActionError("Access denied");
         return false;
+    }
+
+    public void setTableName(String tableName) {
+        this.tableName = tableName;
     }
 
 }

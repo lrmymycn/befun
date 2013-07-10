@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.befun.dao.IBaseDao;
+import com.befun.dao.common.IQueryCondition;
+import com.befun.domain.PaginationBean;
 import com.befun.domain.community.FloorplanComment;
 import com.befun.service.BaseService;
 import com.befun.service.estate.FloorplanCommentService;
@@ -21,4 +23,12 @@ public class FloorplanCommentServiceImpl extends BaseService<FloorplanComment, L
         this.dao = dao;
     }
 
+    @Override
+    public PaginationBean<FloorplanComment> query(IQueryCondition queryCondition, long pageNumber, int pageSize) {
+        PaginationBean<FloorplanComment> pgb = this.dao.query(queryCondition, pageNumber, pageSize);
+        for (FloorplanComment c : pgb.getModels()) {
+            c.getComment().getProfile().getUsername();
+        }
+        return pgb;
+    }
 }

@@ -10,5 +10,8 @@
 		<action name="demandProjectDetail" class="ProjectAction" method="demandDetail">
 			<result name="success" >/project.jsp</result>
 		</action>
+		<action name="demandFloorplanDetail" class="FloorplanAction" method="demandById">
+			<result name="success" >/floorplan.jsp</result>
+		</action>
 	</package>
 </struts>

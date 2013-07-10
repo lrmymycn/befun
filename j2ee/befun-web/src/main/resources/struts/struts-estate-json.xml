@@ -11,6 +11,12 @@
 					keyRs\[\d+\]\.label,
 				</param>
 			</result>
+			<result name="error" type="myJson">
+				<param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+				</param>
+			</result>
 		</action>
 		<action name="demandProject" class="ProjectAction" method="demand">
 			<result name="success" type="myJson">
@@ -19,6 +25,12 @@
 				</param>
 				<param name="excludeProperties">
 					pgb\.models.*model.*,
+				</param>
+			</result>
+			<result name="error" type="myJson">
+				<param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
 				</param>
 			</result>
 		</action>
@@ -36,6 +48,12 @@
 					aggRs\[\d+\]\.suburbs\[\d+\]\.polylines\[\d+\]\.suburb,
 				</param>
 			</result>
+			<result name="error" type="myJson">
+				<param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+				</param>
+			</result>
 		</action>
 		<action name="demandProjectById" class="ProjectAction" method="demandById">
 			<result name="success" type="myJson">
@@ -44,6 +62,12 @@
 				</param>
 				<param name="excludeProperties">
 					view.*model.*,
+				</param>
+			</result>
+			<result name="error" type="myJson">
+				<param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
 				</param>
 			</result>
 		</action>
@@ -56,6 +80,12 @@
 					view.*model.*,
 				</param>
 			</result>
+			<result name="error" type="myJson">
+				<param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+				</param>
+			</result>
 		</action>
 		<action name="demandStage" class="StageAction" method="demand">
 			<result name="success" type="myJson">
@@ -64,6 +94,12 @@
 				</param>
 				<param name="excludeProperties">
 					pgb\.models.*model.*,
+				</param>
+			</result>
+			<result name="error" type="myJson">
+				<param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
 				</param>
 			</result>
 		</action>
@@ -76,6 +112,12 @@
 					view.*model.*,
 				</param>
 			</result>
+			<result name="error" type="myJson">
+				<param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+				</param>
+			</result>
 		</action>
 		<action name="demandBuilding" class="BuildingAction" method="demand">
 			<result name="success" type="myJson">
@@ -84,6 +126,12 @@
 				</param>
 				<param name="excludeProperties">
 					pgb\.models.*model.*,
+				</param>
+			</result>
+			<result name="error" type="myJson">
+				<param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
 				</param>
 			</result>
 		</action>
@@ -96,6 +144,12 @@
 					view.*model.*,
 				</param>
 			</result>
+			<result name="error" type="myJson">
+				<param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+				</param>
+			</result>
 		</action>
 		<action name="demandFloorplan" class="FloorplanAction" method="demand">
 			<result name="success" type="myJson">
@@ -104,6 +158,12 @@
 				</param>
 				<param name="excludeProperties">
 					pgb\.models.*model.*,
+				</param>
+			</result>
+			<result name="error" type="myJson">
+				<param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
 				</param>
 			</result>
 		</action>
@@ -116,6 +176,12 @@
 					view.*model.*,
 				</param>
 			</result>
+			<result name="error" type="myJson">
+				<param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+				</param>
+			</result>
 		</action>
 		<action name="demandApartment" class="ApartmentAction" method="demand">
 			<result name="success" type="myJson">
@@ -126,6 +192,12 @@
 					pgb\.models.*model.*,
 				</param>
 			</result>
+			<result name="error" type="myJson">
+				<param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+				</param>
+			</result>
 		</action>
 		<action name="demandApartmentById" class="ApartmentAction" method="demandById">
 			<result name="success" type="myJson">
@@ -134,6 +206,85 @@
 				</param>
 				<param name="excludeProperties">
 					view.*model.*,
+				</param>
+			</result>
+			<result name="error" type="myJson">
+				<param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+				</param>
+			</result>
+		</action>
+		<action name="demandComment" class="CommentAction" method="demand">
+			<result name="success" type="myJson">
+				<param name="includeProperties">
+					pgb\.[^.]*,
+					pgb\.models\[\d+\]\.[^.]*,
+					pgb\.models\[\d+\]\.profile\.id,
+					pgb\.models\[\d+\]\.profile\.username,
+					pgb\.models\[\d+\]\.profile\.surname,
+					pgb\.models\[\d+\]\.profile\.givenName,
+					pgb\.models\[\d+\]\.profile\.preferredName,
+				</param>
+				<param name="excludeProperties">
+					pgb\.models\[\d+\]\.parentComment,
+					pgb\.models\[\d+\]\.subComments,
+				</param>
+			</result>
+			<result name="error" type="myJson">
+				<param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+				</param>
+			</result>
+		</action>
+		<action name="demandCommentById" class="CommentAction" method="demandById">
+			<result name="success" type="myJson">
+				<param name="includeProperties">
+					model\.[^.]*,
+					model\.profile\.id,
+					model\.profile\.username,
+					model\.profile\.surname,
+					model\.profile\.givenName,
+					model\.profile\.preferredName,
+				</param>
+				<param name="excludeProperties">
+					model\.parentComment,
+					model\.subComments,
+				</param>
+			</result>
+			<result name="error" type="myJson">
+				<param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+				</param>
+			</result>
+		</action>
+		<action name="createComment" class="CommentAction" method="create">
+			<result name="success" type="myJson">
+				<param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+				</param>
+			</result>
+			<result name="error" type="myJson">
+				<param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+				</param>
+			</result>
+		</action>
+		<action name="updateComment" class="CommentAction" method="update">
+			<result name="success" type="myJson">
+				<param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+				</param>
+			</result>
+			<result name="error" type="myJson">
+				<param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
 				</param>
 			</result>
 		</action>
