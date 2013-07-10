@@ -243,6 +243,10 @@ i.level{
 	background-position:-80px -256px;
 }
 
+i.aspect{
+	background-position:-96px -256px;
+}
+
 .btn{
 	border:1px solid #cccccc;
 	height:25px;
@@ -1420,6 +1424,11 @@ footer a{
 	z-index:555;
 }
 
+#lightbox .top .title .floorplanname{
+	font-size:18px;
+	font-weight:bold;
+}
+
 #lightbox .top .sort{
 	float:right;
 	margin-right:65px;
@@ -1464,6 +1473,27 @@ footer a{
 #lightbox .top .button-group a:last-child{
 	border-radius: 0 4px 4px 0;
 	border-right:1px solid #cccccc;
+}
+
+#lightbox .summary{
+	line-height:16px;
+}
+
+#lightbox .summary a{
+	padding-left:15px;
+}
+
+#lightbox .more{
+	float:right;
+	margin-right:40px;
+	padding-right:34px;
+	position:relative;
+}
+
+#lightbox .more img{
+	position:absolute;
+	right:7px;
+	top:5px;
 }
 
 #lightbox .content{
@@ -1545,20 +1575,28 @@ footer a{
 	background:#eaeaea;
 }
 
+#lightbox #comments{
+	width:326px;
+	padding:0 10px;
+	height:190px;
+	overflow-y:auto;
+}
+
 #lightbox .contactus{
-	padding:10px 28px 0;
-	background:#eaeaea;
-	width:290px;
-	height:357px;
+	padding:10px 10px 0;
+	width:326px;
+}
+
+#lightbox .contactus form{
+	margin-top:10px;
 }
 
 #lightbox form .row{
 	margin-bottom:5px;
 }
 
-#lightbox form .title{
-	width:72px;
-	
+#lightbox form .row input[type="text"]{
+	width:138px;
 }
 
 #lightbox form .project{
@@ -1566,11 +1604,18 @@ footer a{
 }
 
 #lightbox form textarea{
-	width:205px;
+	width:312px;
+	height:150px;
 }
 
 #lightbox form .buttons{
-	padding-left:72px;
+	text-align:right;
+}
+
+#lightbox form .buttons .btn{
+	width:200px;
+	font-size:18px;
+	height:40px;
 }
 
 #units{

@@ -1418,46 +1418,14 @@ FloorplanPopup = {
 								$('#apartments').append($(div));
 							}
 						}else{
-							var div = '<div>' +
-											'<table>' +
-												'<tr>' +
-													'<td width="25"></td>' +
-													'<td width="70">卧室</td>' +
-													'<td>{bedrooms}</td>' +
-													'<td width="70">卫生间</td>' +
-													'<td>{bathrooms}</td>' +
-												'</tr>' +
-												'<tr>' +
-													'<td></td>' + 
-													'<td>书房</td>' +
-													'<td>{study}</td>' + 
-													'<td>朝向</td>' +
-													'<td>{aspect}</td>' +
-												'</tr>' +
-												'<tr>' +
-													'<td></td>' + 
-													'<td>内部面积</td>' +
-													'<td>{internalsize}</td>' + 
-													'<td>外部面积</td>' +
-													'<td>{externalsize}</td>' +
-												'</tr>' +
-												'<tr>' +
-													'<td></td>' +
-													'<td>总面积</td>' +
-													'<td>{totalsize}</td>' +
-													'<td></td>' +
-													'<td></td>' +
-												'</tr>' +
-												'<tr>' +
-													'<td></td>' +
-													'<td>价格范围</td>' +
-													'<td colspan="3">{price}</td>' +
-												'</tr>' +
-											'</table>';
-							
+							var fullName = floorplan.id;
+							$('#lightbox .floorplanname').text(fullName);
+							$('#lightbox textarea').val('Hi,\r\n\r\n我在比房网上看到了' + fullName + '这个户型。\r\n\r\n想了解具体价格，请和我联系。\r\n\r\n谢谢');
+						
+							var div = '<a href="javascript:;" title="卧室"><i class="bedroom"></i> {bedrooms}</a> <a href="javascript:;" title="浴室"><i class="bathroom"></i> {bathrooms}</a> <a href="javascript:;" title="朝向"><i class="aspect"></i> {aspect}</a> <a href="javascript:;" title="内部面积"><i class="internalarea"></i> {internalsize}</a> <a href="javascript:;" title="外部面积"><i class="externalarea"></i> {externalsize}</a> <a href="javascript:;" title="总面积"><i class="totalarea"></i> {totalsize}</a> <a href="javascript:;" title="价格"><i class="money"></i> {price}</a>';
 							var price = '';
 							if(floorplan.minPrice == null && floorplan.minPrice == undefined){
-								price = '敬请期待';
+								price = '欢迎咨询';
 							}else{
 								price = '$' + Tools.numberWithCommas(floorplan.minPrice) + ' - ' + '$' + Tools.numberWithCommas(floorplan.maxPrice);
 							}
@@ -1465,12 +1433,11 @@ FloorplanPopup = {
 							div = div.replace('{aspect}', Tools.getAspect(floorplan.orientationEast,floorplan.orientationNorth, floorplan.orientationSouth, floorplan.orientationWest))
 									.replace('{bedrooms}', floorplan.bedRoomCount)
 									.replace('{bathrooms}', floorplan.bathroomCount)
-									.replace('{study}', Tools.getTrueOrFalseIcon(floorplan.studyroomCount))
 									.replace('{internalsize}', floorplan.internalSize + ' m<sup>2</sup>')
 									.replace('{externalsize}', floorplan.externalSize + ' m<sup>2</sup>')
 									.replace('{totalsize}', floorplan.totalSize + ' m<sup>2</sup>')
 									.replace('{price}', price);
-								$('#apartments').append($(div));
+								$('#lightbox .summary').html($(div));
 						}
 						
 						//$("#units .scrollable").scrollable({ vertical: true});

@@ -9,7 +9,7 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
-    	<title>比房网 | ${view.name}</title>
+    	<title>澳洲比房网 | ${view.suburbName} | ${view.name}</title>
         <jsp:include page="includes/head.jsp" />
     </head>
 	<body>
@@ -31,15 +31,15 @@
 								<a href="javascript:;" class="prev"></a>
 								<div class="scrollable">
 									<div class="items">
+										<div>
 										<c:forEach items="${view.medias }" var="m" varStatus="stat">
-											<c:if test="${stat.last || (stat.index > 0 && (stat.index mod 6) eq 0) }">
+											<c:if test="${(stat.index > 0 && (stat.index mod 6) eq 0) }">
 												</div>
-											</c:if>
-											<c:if test="${(stat.index mod 6) eq 0 }">
 												<div id="${stat.index }">
 											</c:if>
 												<a href="${m.mediumUrl }" <c:if test="${stat.index eq 0 }">class="active"</c:if>><img src="${m.mediumUrl }" width="89" height="59" /></a>
 										</c:forEach>
+										</div>
 									</div>
 								</div>
 								<a href="javascript:;" class="next"></a>
@@ -56,18 +56,15 @@
 									<a href="javascript:;" class="prev nav"></a>
 									<div class="scrollable">
 										<div class="items">
-											<!--
-											<div data-id="0"><a data-id="412" class="item" href="javascript:;"><img alt="" src="/img/fp/small/F-P-G58.jpg"></a><a data-id="373" class="item" href="javascript:;"><img alt="" src="/img/fp/small/D-P-G25.jpg"></a><a data-id="421" class="item" href="javascript:;"><img alt="" src="/img/fp/small/G-P-173,273,372.jpg"></a></div>
-											-->
+											<div>
 											<c:forEach items="${view.floorplans }" var="f" varStatus="stat">
-												<c:if test="${stat.last || (stat.index > 0 && (stat.index mod 3) eq 0) }">
+												<c:if test="${(stat.index > 0 && (stat.index mod 3) eq 0) }">
 													</div>
-												</c:if>
-												<c:if test="${(stat.index mod 3) eq 0 }">
 													<div id="${stat.index }">
 												</c:if>
 													<a data-id="${f.id }" class="item" href="${f.publicPicture.largeUrl}" target="_blank"><img alt="" src="${f.publicPicture.smallUrl}"></a>
 											</c:forEach>
+											</div>
 										</div>
 									</div>
 									<a href="javascript:;" class="next nav"></a>
@@ -177,8 +174,8 @@
 						</ul>
 					</div>
 					-->
-				</div>
-         	</div>
+				</div><!-- /right -->
+         	</div><!-- /content -->
          	<footer>
 				&copy; 2012 Befun Property 
 			</footer>

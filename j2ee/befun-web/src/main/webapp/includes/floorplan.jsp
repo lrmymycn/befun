@@ -58,51 +58,39 @@
 		<span class="close"></span>
 		<div class="top">
 			<div class="title">
-				<a href="#" class="btn" id="befun">查看详情</a>
-				<!--<a href="javascript:;" class="btn red" id="befun">Add to Compare List</a>-->
+				<span class="floorplanname"></span>
+				<span class="summary"></span>
+				<a href="#" class="btn red more" target="_blank">更多户型详情 <img src="/img/view-project.png" alt="" width="21" height="15" /></a>
 			</div> 
 		</div>
 		<div class="content">
 			<div class="left">
-				<div id="apartments">
-			
-				</div>
 				<div class="contactus">
+					<div>关于 <b class="floorplanname"></b> 如果您想了解更多，我们会第一时间给给您答复。</div>
 					<form action="" method="post">
 						<div class="row clearfix">
-							<span class="title">户型:</span>
 							<div class="input">
-								<span class="project">OCE-111</span>
+								<input type="text" name="name" value="" class="required" placeholder="姓名*(必填)"/>
+								<input type="text" name="mobile" value="" placeholder="手机*(选填)" style="margin-left:10px;"/>
 							</div>
 						</div>
 						<div class="row clearfix">
-							<span class="title">姓名*:</span>
 							<div class="input">
-								<input type="text" name="name" value="" class="required"/>
+								<input type="email" name="email" value="" class="required" placeholder="Email*(必填)" style="width:307px;"/>
 							</div>
 						</div>
 						<div class="row clearfix">
-							<span class="title">Email*:</span>
 							<div class="input">
-								<input type="email" name="email" value="" class="required"/>
-							</div>
-						</div>
-						<div class="row clearfix">
-							<span class="title">手机:</span>
-							<div class="input">
-								<input type="text" name="mobile" value=""/>
-							</div>
-						</div>
-						<div class="row clearfix">
-							<span class="title">留言:</span>
-							<div class="input">
-								<textarea placeholder="例如：这个户型的具体价格是多少？"></textarea>
+								<textarea name="message" class="required"></textarea>
 							</div>
 						</div>
 						<div class="buttons">
-							<input type="submit" class="btn red" value="提交"></a>
+							<input type="submit" class="btn red" value="提 交" />
 						</div>
 					</form>
+				</div>
+				<div id="comments">
+					
 				</div>
 			</div>
 			<div class="floorplan">

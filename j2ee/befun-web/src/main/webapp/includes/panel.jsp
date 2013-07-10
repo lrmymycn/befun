@@ -132,13 +132,7 @@
 					</div>
 					<div class="row clearfix">
 						<div class="input">
-							<textarea name="message" class="required">Hi,
-							
-我在比房网上看到了Cascada (SYL002)这个项目。
-
-我对[2]房[2]卫的户型比较有兴趣，请和我联系。
-
-谢谢</textarea>
+							<textarea name="message" class="required"></textarea>
 						</div>
 					</div>
 					<div class="buttons">
