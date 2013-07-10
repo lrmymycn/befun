@@ -20,11 +20,13 @@ public class CommentServiceImpl extends BaseService<Comment, Long> implements Co
     public void setDao(@Qualifier("CommentDao") IBaseDao<Comment, Long> dao) {
         this.dao = dao;
     }
-    
+
     @Override
-    public Comment get(Long id){
+    public Comment get(Long id) {
         Comment model = super.get(id);
-        model.getProfile().getDescription();
+        if (model != null) {
+            model.getProfile().getDescription();
+        }
         return model;
     }
 
