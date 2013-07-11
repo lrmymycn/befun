@@ -13,6 +13,18 @@ public class FloorplanView extends BaseEasteView<Floorplan> {
 
     private List<ApartmentView> apartments = new ArrayList<ApartmentView>();
 
+    private Long areaId;
+
+    private Long suburbId;
+
+    private String areaName;
+
+    private String suburbName;
+
+    private String suburbDescription;
+
+    private Long projectId;
+
     private String projectName;
 
     private String stageName;
@@ -89,6 +101,54 @@ public class FloorplanView extends BaseEasteView<Floorplan> {
         return this.model;
     }
 
+    public Long getAreaId() {
+        return areaId;
+    }
+
+    public void setAreaId(Long areaId) {
+        this.areaId = areaId;
+    }
+
+    public Long getSuburbId() {
+        return suburbId;
+    }
+
+    public void setSuburbId(Long suburbId) {
+        this.suburbId = suburbId;
+    }
+
+    public String getAreaName() {
+        return areaName;
+    }
+
+    public void setAreaName(String areaName) {
+        this.areaName = areaName;
+    }
+
+    public String getSuburbName() {
+        return suburbName;
+    }
+
+    public void setSuburbName(String suburbName) {
+        this.suburbName = suburbName;
+    }
+
+    public String getSuburbDescription() {
+        return suburbDescription;
+    }
+
+    public void setSuburbDescription(String suburbDescription) {
+        this.suburbDescription = suburbDescription;
+    }
+
+    public Long getProjectId() {
+        return projectId;
+    }
+
+    public void setProjectId(Long projectId) {
+        this.projectId = projectId;
+    }
+
     public void setApartments(List<ApartmentView> apartments) {
         this.apartments = apartments;
     }
@@ -120,6 +180,7 @@ public class FloorplanView extends BaseEasteView<Floorplan> {
     public void setBuildingNum(String buildingNum) {
         this.buildingNum = buildingNum;
     }
+
     //
 
     public Media getPublicPicture() {

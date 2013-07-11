@@ -16,6 +16,8 @@ import org.springframework.stereotype.Controller;
 
 import com.befun.dao.common.QueryCondition;
 import com.befun.domain.PaginationBean;
+import com.befun.domain.community.Comment;
+import com.befun.domain.community.ProjectComment;
 import com.befun.domain.estate.Area;
 import com.befun.domain.estate.Floorplan;
 import com.befun.domain.estate.Media;
@@ -25,12 +27,14 @@ import com.befun.domain.estate.Suburb;
 import com.befun.service.IBaseService;
 import com.befun.service.estate.ApartmentService;
 import com.befun.service.estate.FloorplanService;
+import com.befun.service.estate.ProjectCommentService;
 import com.befun.service.estate.ProjectMediaService;
 import com.befun.service.estate.ProjectService;
 import com.befun.service.query.QCUtils;
 import com.befun.service.query.estate.ApartmentQueryCondition;
 import com.befun.service.query.estate.BuildingQueryCondition;
 import com.befun.service.query.estate.FloorplanQueryCondition;
+import com.befun.service.query.estate.ProjectCommentQueryCondition;
 import com.befun.service.query.estate.ProjectMediaQueryCondition;
 import com.befun.service.query.estate.ProjectQueryCondition;
 import com.befun.web.action.CRUDAction;
@@ -60,13 +64,15 @@ public class ProjectAction extends CRUDAction<Project, ProjectView> {
     private AreaConverter areaConverter = ConverterFactory.getConverter(Area.class);
 
     private SuburbConverter suburbConverter = ConverterFactory.getConverter(Suburb.class);
-    
+
     private FloorplanConverter floorplanConverter = ConverterFactory.getConverter(Floorplan.class);
+
+    private PaginationBean<Comment> pgbComment = null;
 
     @Resource
     @Qualifier("ProjectService")
     private ProjectService service;
-    
+
     @Resource
     @Qualifier("ProjectMediaService")
     private ProjectMediaService projectMediaService;
@@ -74,11 +80,15 @@ public class ProjectAction extends CRUDAction<Project, ProjectView> {
     @Resource
     @Qualifier("FloorplanService")
     private FloorplanService floorplanService;
-    
+
     @Resource
     @Qualifier("ApartmentService")
     private ApartmentService apartmentService;
-    
+
+    @Resource
+    @Qualifier("ProjectCommentService")
+    private ProjectCommentService projectCommentService;
+
     public String demandAggregated() {
         // query aggregated information
         Map<Suburb, Long> queryRs = service.queryGroupBySuburb(qc);
@@ -125,8 +135,20 @@ public class ProjectAction extends CRUDAction<Project, ProjectView> {
 
     @Override
     public String demandById() {
+        if (this.getId() == null) {
+            String msg = "Please provide id!";
+            this.log.warn(msg);
+            this.addActionError(msg);
+            return ERROR;
+        }
         try {
             Project obj = service.get(this.id);
+            if (obj == null) {
+                String msg = "Project with id:" + this.getId() + " not found!";
+                this.log.warn(msg);
+                this.addActionError(msg);
+                return ERROR;
+            }
             this.view = converter.convertToView(obj);
         } catch (Exception ex) {
             String errMsg = "Query failure!";
@@ -138,8 +160,20 @@ public class ProjectAction extends CRUDAction<Project, ProjectView> {
     }
 
     public String demandDetail() {
+        if (this.getId() == null) {
+            String msg = "Please provide id!";
+            this.log.warn(msg);
+            this.addActionError(msg);
+            return ERROR;
+        }
         try {
             Project obj = service.get(this.id);
+            if (obj == null) {
+                String msg = "Project with id:" + this.getId() + " not found!";
+                this.log.warn(msg);
+                this.addActionError(msg);
+                return ERROR;
+            }
             this.view = converter.convertToView(obj);
         } catch (Exception ex) {
             String errMsg = "Query failure!";
@@ -170,16 +204,46 @@ public class ProjectAction extends CRUDAction<Project, ProjectView> {
             FloorplanViewFilter.filter(this.isAnonymous(), v);
             this.view.getFloorplans().add(v);
         }
-        
+
         ProjectMediaQueryCondition pmQC = new ProjectMediaQueryCondition();
         pmQC.setProjectId(this.id);
         pmQC.getOrderBy().add(Order.asc(QCUtils.generatePropertyName(pmQC.getSelfAlias(), "seqNum")));
         List<ProjectMedia> projectMedias = this.projectMediaService.query(pmQC);
         List<Media> medias = new ArrayList<Media>();
-        for(ProjectMedia pm: projectMedias){
+        for (ProjectMedia pm : projectMedias) {
             medias.add(pm.getMedia());
         }
         this.view.setMedias(medias);
+        return SUCCESS;
+    }
+
+    public String demandWithComments() {
+        String rs = this.demandDetail();
+        if (!SUCCESS.equals(rs)) {
+            return rs;
+        }
+        return this.demandProjectComment(this.getId());
+    }
+
+    private String demandProjectComment(Long projectId) {
+        ProjectCommentQueryCondition qc = new ProjectCommentQueryCondition();
+        qc.setEnabled(null);
+        qc.setProjectId(projectId);
+        try {
+            PaginationBean<ProjectComment> rs = this.projectCommentService.query(qc, 1, 10);
+            this.pgbComment = new PaginationBean<Comment>();
+
+            BeanUtils.copyProperties(rs, this.pgbComment, new String[] { "models" });
+            this.pgbComment.setModels(new ArrayList<Comment>());
+            for (ProjectComment com : rs.getModels()) {
+                this.pgbComment.getModels().add(com.getComment());
+            }
+        } catch (Exception ex) {
+            String errMsg = "Demand failure!";
+            this.log.error(errMsg, ex);
+            this.addActionError(errMsg + "\nCause:" + ex.getMessage());
+            return ERROR;
+        }
         return SUCCESS;
     }
 
@@ -194,7 +258,7 @@ public class ProjectAction extends CRUDAction<Project, ProjectView> {
     public ProjectView getView() {
         return this.view;
     }
-    
+
     public void setView(ProjectView view) {
         this.view = view;
     }
@@ -202,6 +266,14 @@ public class ProjectAction extends CRUDAction<Project, ProjectView> {
     @Override
     public QueryCondition getQc() {
         return this.qc;
+    }
+
+    public PaginationBean<Comment> getPgbComment() {
+        return pgbComment;
+    }
+
+    public void setPgbComment(PaginationBean<Comment> pgbComment) {
+        this.pgbComment = pgbComment;
     }
 
     @Override

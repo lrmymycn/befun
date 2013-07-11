@@ -71,13 +71,22 @@
 				</param>
 			</result>
 		</action>
-		<action name="demandProjectDetail" class="ProjectAction" method="demandDetail">
+		<action name="demandProjectDetail" class="ProjectAction" method="demandWithComments">
 			<result name="success" type="myJson">
 				<param name="includeProperties">
 					view\..*,
+					pgbComment\.[^.]*,
+					pgbComment\.models\[\d+\]\.[^.]*,
+					pgbComment\.models\[\d+\]\.profile\.id,
+					pgbComment\.models\[\d+\]\.profile\.username,
+					pgbComment\.models\[\d+\]\.profile\.surname,
+					pgbComment\.models\[\d+\]\.profile\.givenName,
+					pgbComment\.models\[\d+\]\.profile\.preferredName,
 				</param>
 				<param name="excludeProperties">
 					view.*model.*,
+					pgbComment\.models\[\d+\]\.parentComment,
+					pgbComment\.models\[\d+\]\.subComments,
 				</param>
 			</result>
 			<result name="error" type="myJson">
@@ -167,13 +176,22 @@
 				</param>
 			</result>
 		</action>
-		<action name="demandFloorplanById" class="FloorplanAction" method="demandById">
+		<action name="demandFloorplanById" class="FloorplanAction" method="demandWithComments">
 			<result name="success" type="myJson">
 				<param name="includeProperties">
 					view\..*,
+					pgbComment\.[^.]*,
+					pgbComment\.models\[\d+\]\.[^.]*,
+					pgbComment\.models\[\d+\]\.profile\.id,
+					pgbComment\.models\[\d+\]\.profile\.username,
+					pgbComment\.models\[\d+\]\.profile\.surname,
+					pgbComment\.models\[\d+\]\.profile\.givenName,
+					pgbComment\.models\[\d+\]\.profile\.preferredName,
 				</param>
 				<param name="excludeProperties">
 					view.*model.*,
+					pgbComment\.models\[\d+\]\.parentComment,
+					pgbComment\.models\[\d+\]\.subComments,
 				</param>
 			</result>
 			<result name="error" type="myJson">
