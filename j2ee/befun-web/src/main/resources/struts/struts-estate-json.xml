@@ -187,11 +187,41 @@
 					pgbComment\.models\[\d+\]\.profile\.surname,
 					pgbComment\.models\[\d+\]\.profile\.givenName,
 					pgbComment\.models\[\d+\]\.profile\.preferredName,
+					projectView\..*,
 				</param>
 				<param name="excludeProperties">
 					view.*model.*,
 					pgbComment\.models\[\d+\]\.parentComment,
 					pgbComment\.models\[\d+\]\.subComments,
+					projectView.*model.*,
+				</param>
+			</result>
+			<result name="error" type="myJson">
+				<param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+				</param>
+			</result>
+		</action>
+		<action name="recommendFloorplan" class="FloorplanAction" method="recommend">
+			<result name="success" type="myJson">
+				<param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+				</param>
+			</result>
+			<result name="error" type="myJson">
+				<param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
+				</param>
+			</result>
+		</action>
+		<action name="unRecommendFloorplan" class="FloorplanAction" method="unRecommend">
+			<result name="success" type="myJson">
+				<param name="includeProperties">
+                    actionMessages.*,
+                    errorMessages.*,
 				</param>
 			</result>
 			<result name="error" type="myJson">

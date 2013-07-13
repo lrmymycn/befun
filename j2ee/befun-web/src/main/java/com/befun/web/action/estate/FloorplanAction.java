@@ -16,18 +16,22 @@ import com.befun.domain.community.Comment;
 import com.befun.domain.community.FloorplanComment;
 import com.befun.domain.estate.Apartment;
 import com.befun.domain.estate.Floorplan;
+import com.befun.domain.estate.Project;
 import com.befun.service.IBaseService;
 import com.befun.service.estate.ApartmentService;
 import com.befun.service.estate.FloorplanCommentService;
 import com.befun.service.estate.FloorplanService;
+import com.befun.service.estate.ProjectService;
 import com.befun.service.query.estate.ApartmentQueryCondition;
 import com.befun.service.query.estate.FloorplanCommentQueryCondition;
 import com.befun.service.query.estate.FloorplanQueryCondition;
 import com.befun.web.action.CRUDAction;
 import com.befun.web.view.ApartmentView;
 import com.befun.web.view.FloorplanView;
+import com.befun.web.view.ProjectView;
 import com.befun.web.view.converter.ApartmentConverter;
 import com.befun.web.view.converter.ConverterFactory;
+import com.befun.web.view.converter.ProjectConverter;
 import com.befun.web.view.converter.ViewConverter;
 
 @Controller("FloorplanAction")
@@ -42,7 +46,15 @@ public class FloorplanAction extends CRUDAction<Floorplan, FloorplanView> {
 
     private PaginationBean<Comment> pgbComment = null;
 
+    private ProjectView projectView = null;
+
+    private ProjectConverter projectConverter = ConverterFactory.getConverter(Project.class);
+
     private static ApartmentConverter apConverter = ConverterFactory.getConverter(Apartment.class);
+
+    @Resource
+    @Qualifier("ProjectService")
+    private ProjectService projectService;
 
     @Resource
     @Qualifier("FloorplanService")
@@ -55,6 +67,40 @@ public class FloorplanAction extends CRUDAction<Floorplan, FloorplanView> {
     @Resource
     @Qualifier("FloorplanCommentService")
     private FloorplanCommentService floorplanCommentService;
+
+    public String demandRecommended() {
+        FloorplanQueryCondition fpQc = new FloorplanQueryCondition();
+        fpQc.setRecommended(true);
+        fpQc.setBdQC(null);
+        this.qc = fpQc;
+        return this.demand();
+    }
+
+    public String recommend() {
+        try {
+            this.service.recommend(this.id);
+            this.addActionMessage("Recommended!");
+        } catch (Exception ex) {
+            String errMsg = "Recommend failure!";
+            this.log.warn(errMsg, ex);
+            this.addActionError(errMsg + "\nCause:" + ex.getMessage());
+            return ERROR;
+        }
+        return SUCCESS;
+    }
+
+    public String unRecommend() {
+        try {
+            this.service.unRecommend(this.id);
+            this.addActionMessage("UnRecommended!");
+        } catch (Exception ex) {
+            String errMsg = "UnRecommend failure!";
+            this.log.warn(errMsg, ex);
+            this.addActionError(errMsg + "\nCause:" + ex.getMessage());
+            return ERROR;
+        }
+        return SUCCESS;
+    }
 
     public String demandById() {
         if (this.getId() == null) {
@@ -87,6 +133,15 @@ public class FloorplanAction extends CRUDAction<Floorplan, FloorplanView> {
                 }
                 this.view.setApartments(apartments);
             }
+
+            Project pro = projectService.get(this.view.getProjectId());
+            if (pro == null) {
+                String msg = "Project with id:" + this.getId() + " not found!";
+                this.log.warn(msg);
+                this.addActionError(msg);
+                return ERROR;
+            }
+            this.projectView = projectConverter.convertToView(pro);
         } catch (Exception ex) {
             String errMsg = "Query failure!";
             this.log.warn(errMsg, ex);
@@ -157,6 +212,14 @@ public class FloorplanAction extends CRUDAction<Floorplan, FloorplanView> {
 
     public void setPgbComment(PaginationBean<Comment> pgbComment) {
         this.pgbComment = pgbComment;
+    }
+
+    public ProjectView getProjectView() {
+        return projectView;
+    }
+
+    public void setProjectView(ProjectView projectView) {
+        this.projectView = projectView;
     }
 
     @Override

@@ -90,6 +90,8 @@ public class FloorplanView extends BaseEasteView<Floorplan> {
 
     private boolean soldOut;
 
+    private boolean recommended;
+
     public FloorplanView() {
         super();
     }
@@ -415,6 +417,14 @@ public class FloorplanView extends BaseEasteView<Floorplan> {
 
     public void setSoldOut(boolean soldOut) {
         this.soldOut = soldOut;
+    }
+
+    public boolean isRecommended() {
+        return recommended;
+    }
+
+    public void setRecommended(boolean recommended) {
+        this.recommended = recommended;
     }
 
     @Override

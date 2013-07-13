@@ -620,6 +620,7 @@ CREATE TABLE IF NOT EXISTS `floorplan` (
   `land_size` double NOT NULL DEFAULT 0,
   `sold` int(11) NOT NULL DEFAULT 0,
   `sold_out` tinyint(1) NOT NULL DEFAULT 0,
+  `recommended` tinyint(1) NOT NULL DEFAULT 0,
   `removed` tinyint(1) DEFAULT 0,
   `creation_date` datetime DEFAULT NULL,
   `last_modified_date` datetime DEFAULT NULL,
@@ -647,6 +648,7 @@ CREATE TABLE IF NOT EXISTS `floorplan` (
   KEY `idx_total_size` (`total_size`),
   KEY `idx_land_size` (`land_size`),
   KEY `idx_enabled` (`enabled`) USING BTREE,
+  KEY `idx_recommended` (`recommended`) USING BTREE,
   CONSTRAINT `fk_floorplan_building_id` FOREIGN KEY (`building_id`) REFERENCES `building` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_floorplan_pub_picture_id` FOREIGN KEY (`public_picture_id`) REFERENCES `media` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_floorplan_sale_picture_id` FOREIGN KEY (`sale_picture_id`) REFERENCES `media` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION

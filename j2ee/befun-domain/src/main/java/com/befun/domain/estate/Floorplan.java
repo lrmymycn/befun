@@ -116,6 +116,9 @@ public class Floorplan implements BaseEstateModel<Long> {
     @Column(name = "SOLD_OUT")
     private boolean soldOut;
 
+    @Column(name = "RECOMMENDED")
+    private boolean recommended;
+
     @Embedded
     private ModelModification modelModification;
 
@@ -351,6 +354,14 @@ public class Floorplan implements BaseEstateModel<Long> {
 
     public void setAvgPricePerSQM(Integer avgPricePerSQM) {
         this.avgPricePerSQM = avgPricePerSQM;
+    }
+
+    public boolean isRecommended() {
+        return recommended;
+    }
+
+    public void setRecommended(boolean recommended) {
+        this.recommended = recommended;
     }
 
     @Override

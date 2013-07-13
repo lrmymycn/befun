@@ -7,4 +7,8 @@ public interface FloorplanService extends BaseEstateService<Floorplan, Long> {
     Floorplan getWithAveragePrice(Long id);
 
     void deleteDependency(Long id);
+    
+    void recommend(Long id);
+    
+    void unRecommend(Long id);
 }

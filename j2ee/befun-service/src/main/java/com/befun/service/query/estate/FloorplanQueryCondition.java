@@ -70,6 +70,8 @@ public class FloorplanQueryCondition extends EstateQueryCondition {
 
     private Boolean orientationNorth;
 
+    private Boolean recommended;
+
     public FloorplanQueryCondition() {
         super();
         this.setSelfAlias(QueryConstants.ALIAS_FLOORPLAN);
@@ -128,7 +130,7 @@ public class FloorplanQueryCondition extends EstateQueryCondition {
             rs.add(courtyardCounts);
         }
         Criterion enclosedBaclonyCounts = QCUtils.parseCountsCriterion(QCUtils.generatePropertyName(this.getSelfAlias(), "enclosedBaclonyCount"),
-                                                              this.enclosedBaclonyCountStr);
+                                                                       this.enclosedBaclonyCountStr);
         if (enclosedBaclonyCounts != null) {
             rs.add(enclosedBaclonyCounts);
         }
@@ -170,6 +172,10 @@ public class FloorplanQueryCondition extends EstateQueryCondition {
             if (orientations != null) {
                 rs.add(orientations);
             }
+        }
+        if (this.recommended != null) {
+            tmp = Restrictions.eq(QCUtils.generatePropertyName(this.getSelfAlias(), "recommended"), this.recommended);
+            rs.add(tmp);
         }
         return rs;
     }
@@ -387,6 +393,14 @@ public class FloorplanQueryCondition extends EstateQueryCondition {
 
     public void setOrientationNorth(Boolean orientationNorth) {
         this.orientationNorth = orientationNorth;
+    }
+
+    public Boolean getRecommended() {
+        return recommended;
+    }
+
+    public void setRecommended(Boolean recommended) {
+        this.recommended = recommended;
     }
 
 }

@@ -6,7 +6,7 @@ public class FloorplanViewFilter {
 
 	public static void filter(boolean isAnonymous, FloorplanView view) {
 		if (isAnonymous) {
-			view.setProjectName(null);
+//			view.setProjectName(null);
 			view.setStageName(null);
 			view.setBuildingNum(null);
 			view.setBuildingId(null);

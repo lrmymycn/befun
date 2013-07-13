@@ -30,6 +30,9 @@
         <intercept-url pattern="/estate/json/demandProjectAggregated.action**" access="permitAll" requires-channel="http" />
         <intercept-url pattern="/estate/json/createComment.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
         <intercept-url pattern="/estate/json/updateComment.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
+        <intercept-url pattern="/estate/json/recommendFloorplan.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
+        <intercept-url pattern="/estate/json/recommendFloorplan.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
+        <intercept-url pattern="/estate/json/unRecommendFloorplan.action**" access="hasAnyRole('SUPER','SALE')" requires-channel="http" />
         <intercept-url pattern="/estate/json/*.action**" access="permitAll" requires-channel="http" />
         <intercept-url pattern="/admin/user/createClientPage.action**" access="hasAnyRole('SUPER','DATA_ADMIN','MANAGER','SALE')" requires-channel="http" />
         <intercept-url pattern="/admin/user/createClient.action**" access="hasAnyRole('SUPER','DATA_ADMIN','MANAGER','SALE')" requires-channel="http" />

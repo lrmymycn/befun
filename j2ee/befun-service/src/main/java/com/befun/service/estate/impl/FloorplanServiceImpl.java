@@ -100,7 +100,7 @@ public class FloorplanServiceImpl extends BaseEstateServiceImpl<Floorplan, Long>
         }
         FloorplanCommentQueryCondition fcQC = new FloorplanCommentQueryCondition();
         fcQC.setEnabled(null);
-        
+
         fcQC.setFloorplanId(id);
         List<FloorplanComment> comments = this.floorplanCommentService.query(fcQC);
         this.floorplanCommentService.deleteObject(comments);
@@ -110,9 +110,26 @@ public class FloorplanServiceImpl extends BaseEstateServiceImpl<Floorplan, Long>
         apQC.setSoldOut(null);
         apQC.setRemoved(null);
         apQC.setFloorplanId(id);
-        List<Apartment> apartments = this.apartmentService.query(apQC );
+        List<Apartment> apartments = this.apartmentService.query(apQC);
         this.apartmentService.deleteObject(apartments);
-        
+
         this.delete(id);
     }
+
+    @Override
+    public void recommend(Long id) {
+        Assert.notNull(id, "id should be not null!");
+        Floorplan rs = dao.get(id);
+        rs.setRecommended(true);
+        dao.update(rs);
+    }
+
+    @Override
+    public void unRecommend(Long id) {
+        Assert.notNull(id, "id should be not null!");
+        Floorplan rs = dao.get(id);
+        rs.setRecommended(false);
+        dao.update(rs);
+    }
+
 }
