@@ -30,6 +30,7 @@ public class FloorplanConverter extends AbstractEstateViewConverter<Floorplan, F
         view.setBuildingNum(model.getBuilding().getBuildingNumber());
         view.setStageName(model.getBuilding().getStage().getName());
         view.setProjectName(model.getBuilding().getStage().getProject().getName());
+        view.setProjectBlock(model.getBuilding().getStage().getProject().getBlock());
         view.setProjectId(model.getBuilding().getStage().getProject().getId());
         view.setSuburbName(model.getBuilding().getStage().getProject().getSuburb().getName());
         view.setSuburbId(model.getBuilding().getStage().getProject().getSuburb().getId());

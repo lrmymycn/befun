@@ -27,6 +27,8 @@ public class FloorplanView extends BaseEasteView<Floorplan> {
 
     private String projectName;
 
+    private String projectBlock;
+
     private String stageName;
 
     private String buildingNum;
@@ -163,6 +165,14 @@ public class FloorplanView extends BaseEasteView<Floorplan> {
 
     public void setProjectName(String projectName) {
         this.projectName = projectName;
+    }
+
+    public String getProjectBlock() {
+        return projectBlock;
+    }
+
+    public void setProjectBlock(String projectBlock) {
+        this.projectBlock = projectBlock;
     }
 
     public String getStageName() {
