@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <div id="floorplan-filter">
 	<div class="title">检索当前项目户型</div>
-	<div class="result">共有 <b></b> 个户型满足你的搜索条件</div>
+	<div class="result">共有 <b></b> 个户型满足您的搜索条件</div>
+	<a id="recommend-filter" href="javascript:;" class="btn red">只看精品户型</a>
 	<table>
-		<tr class="odd">
+		<tr>
 			<td class="label">价格:</td>
 			<td>
 				<div class="pricerange">
@@ -53,7 +54,7 @@
 				<label form="floorplan-bedroom-3plus">3+</label>
 			</td>
 		</tr>
-		<tr class="odd">
+		<tr>
 			<td class="label">浴室:</td>
 			<td>
 				<span class="checkbox">
@@ -139,7 +140,6 @@
 				</select>
 			</div>
 		</div>
-		
 	</div>
 	<div class="buttons">
 		<a href="javascript:;" id="btn-search3"></a>

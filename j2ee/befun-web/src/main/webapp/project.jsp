@@ -9,7 +9,9 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
-    	<title>澳洲比房网 | ${view.suburbName} | ${view.name}</title>
+    	<title>澳洲比房网 | ${view.name} | ${view.suburbName}</title>
+    	<meta name="Description" content="${view.shortDescription}"/>
+    	<meta name="Keywords" content="${view.suburbName}楼花,${view.suburbName}期房,${view.suburbName}现房"/>
         <jsp:include page="includes/head.jsp" />
     </head>
 	<body>
@@ -21,11 +23,11 @@
 	        </header>
 	        <div id="content" class="project clearfix">
 	        	<div id="left">
-	        		<h2><c:out value="${view.name}" /> <span><c:out value="${view.suburbName}" /> / <c:out value="${view.priceRange}" /></span></h2>
+	        		<h2>${view.name} (${view.block}) <span>${view.suburbName} / ${view.priceRange} </span></h2>
 	        		<div class="tile">
 						<div class="gallery">
 							<div id="gallery-main">
-								<img src="${view.medias[0].mediumUrl}" width="630" height="423" alt=""/>
+								<img src="http://img.befun.com.au${view.medias[0].mediumUrl}" width="648" height="485" alt=""/>
 							</div>
 							<div id="gallery-list">
 								<a href="javascript:;" class="prev"></a>
@@ -37,7 +39,7 @@
 												</div>
 												<div id="${stat.index }">
 											</c:if>
-												<a href="${m.mediumUrl }" <c:if test="${stat.index eq 0 }">class="active"</c:if>><img src="${m.mediumUrl }" width="89" height="59" /></a>
+												<a href="http://img.befun.com.au${m.mediumUrl }" <c:if test="${stat.index eq 0 }">class="active"</c:if>><img src="http://img.befun.com.au${m.mediumUrl }" /></a>
 										</c:forEach>
 										</div>
 									</div>
@@ -45,87 +47,118 @@
 								<a href="javascript:;" class="next"></a>
 							</div>
 						</div>
-					</div>
-					
-					<div class="tile">
-						<h3>检索当前项目户型</h3>
-						<div class="floorplans clearfix">
-							<jsp:include page="includes/floorplan_filter.jsp" />
-							<div id="floorplans">
-								<div id="floorplan-list">
-									<a href="javascript:;" class="prev nav"></a>
-									<div class="scrollable">
-										<div class="items">
-											<div>
-											<c:forEach items="${view.floorplans }" var="f" varStatus="stat">
-												<c:if test="${(stat.index > 0 && (stat.index mod 3) eq 0) }">
-													</div>
-													<div id="${stat.index }">
-												</c:if>
-													<a data-id="${f.id }" class="item" href="${f.publicPicture.largeUrl}" target="_blank"><img alt="" src="${f.publicPicture.smallUrl}"></a>
-											</c:forEach>
+						<div class="section">
+							<div class="title">检索当前项目户型</div>
+							<div class="floorplans clearfix">
+								<jsp:include page="includes/floorplan_filter.jsp" />
+								<div id="floorplans">
+									<div id="floorplan-list">
+										<a href="javascript:;" class="prev nav"></a>
+										<div class="scrollable">
+											<div class="items">
+												<div>
+												<c:forEach items="${view.floorplans }" var="f" varStatus="stat">
+													<c:if test="${(stat.index > 0 && (stat.index mod 3) eq 0) }">
+														</div>
+														<div id="${stat.index }">
+													</c:if>
+														<a class="item" href="<c:url value="/estate/demandFloorplanDetail.action?id=${f.id }"/>" target="_blank"><c:if test="${f.recommended}"><i class="recommended"></i></c:if><img alt="" src="http://img.befun.com.au${f.publicPicture.smallUrl}"></a>
+												</c:forEach>
+												</div>
 											</div>
 										</div>
+										<a href="javascript:;" class="next nav"></a>
 									</div>
-									<a href="javascript:;" class="next nav"></a>
 								</div>
 							</div>
 						</div>
-					</div>
-					
-					<div class="tile">
-						<div class="tabs">     			
-							<a class="active first" href="#tab-project-overview">项目信息</a>
-							<a href="#tab-project-feature">项目特色</a>
-							<a href="#tab-project-finish">内饰品牌</a>
-							<!--<a href="#tab-sales">区域分析</a>-->
+						<div class="section">
+							<div class="title">项目信息</div>
+							<div class="tabs">     			
+								<a class="active first" href="#tab-project-overview">基本信息</a>
+								<a href="#tab-project-feature">项目特色</a>
+								<a href="#tab-project-finish">内饰品牌</a>
+								<a href="#tab-project-amenity">项目设施</a>
+							</div>
+							<div class="tab-contents">
+								<div id="tab-project-overview">
+									<c:out value="${view.description}" escapeXml="false"/>
+								</div>
+								<div id="tab-project-feature" style="display:none">
+									<c:out value="${view.features}" escapeXml="false"/>
+								</div>
+								<div id="tab-project-finish" style="display:none">
+									<c:out value="${view.finishSchema}" escapeXml="false"/>
+								</div>
+								<div id="tab-project-amenity" style="display:none">
+									<p>项目设施</p>
+								</div>
+							</div>		
 						</div>
-						<div class="tab-contents">
-							<div id="tab-project-overview">
-								<c:out value="${view.description}" escapeXml="false"/>
-							</div>
-							<div id="tab-project-feature" style="display:none">
-								<c:out value="${view.features}" escapeXml="false"/>
-							</div>
-							<div id="tab-project-finish" style="display:none">
-								<c:out value="${view.finishSchema}" escapeXml="false"/>
-							</div>
-						</div>						
-					</div>
-					
-					<div class="tile">
-						<h3>地图</h3>
-						<div id="googlemap">
+						<div class="section">
+							<div class="title">地图</div>
+							<div id="googlemap">
 				
+							</div>
 						</div>
 					</div>
 				</div>
-				<div id="right">
-					<div class="affix">
-						<div class="social">
-							<span>分享这个项目: </span>
-							<!-- JiaThis Button BEGIN -->
-							<div class="jiathis_style_24x24">
-							<a class="jiathis_button_tsina"></a>
-							<a class="jiathis_button_weixin"></a>
-							<a class="jiathis_button_renren"></a>
-							<a class="jiathis_button_qzone"></a>
-							<a class="jiathis_button_fb"></a>
-							<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
-							</div>
-							<script type="text/javascript" >
-							var jiathis_config={
-								summary:"",
-								pic:"http://www.befun.com.au${view.medias[0].mediumUrl}",
-								hideMore:false
-							}
-							</script>
-							<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-							<!-- JiaThis Button END -->
+				<div id="right">					
+					<div class="social">
+						<span>收藏或分享: </span>
+						<!-- JiaThis Button BEGIN -->
+						<div class="jiathis_style_24x24">
+						<a class="jiathis_button_tsina"></a>
+						<a class="jiathis_button_weixin"></a>
+						<a class="jiathis_button_renren"></a>
+						<a class="jiathis_button_qzone"></a>
+						<a class="jiathis_button_fb"></a>
+						<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
 						</div>
-						<div class="contactus widget" style="margin-top:0px;">
+						<script type="text/javascript" >
+						var jiathis_config={
+							summary:"",
+							pic:"http://img.befun.com.au${view.medias[0].mediumUrl}",
+							hideMore:false
+						}
+						</script>
+						<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+						<!-- JiaThis Button END -->
+					</div>
+					<div class="sidepanel">
+						<div class="title">项目简介</div>
+						<table>
+							<tr>
+								<td class="label">编号:</td>
+								<td class="value">${view.block}</td>
+							</tr>
+							<tr>
+								<td class="label">类型:</td>
+								<td class="value">${view.type}</td>
+							</tr>
+							<tr>
+								<td class="label">价格:</td>
+								<td class="value">${view.priceRange}</td>
+							</tr>
+							<tr>
+								<td class="label">方位:</td>
+								<td class="value">${view.areaName}</td>
+							</tr>
+							<tr>
+								<td class="label">区域:</td>
+								<td class="value">${view.suburbName}</td>
+							</tr>
+							<tr>
+								<td class="label">市区距离:</td>
+								<td class="value">${view.distanceToCity} km</td>
+							</tr>
+							<tr>
+								<td colspan="2" class="description">${view.shortDescription}</td>
+							</tr>
+						</table>
+						<div class="contactus">
 							<h3>免费咨询</h3>
-							<form action="" method="post">
+							<form id="contact-form" action="" method="post">
 								<div class="row clearfix">
 									<div class="input">
 										<input type="text" name="name" value="" class="required" placeholder="姓名(必填)"/>
@@ -143,16 +176,22 @@
 								</div>
 								<div class="row clearfix">
 									<div class="input">
-										<textarea placeholder="例如：关于这个项目，我想了解更多。"></textarea>
+										<textarea class="required">Hi,
+
+我在比房网上看到了${view.name}(${view.block})这个项目。
+
+我对[2]房[2]卫的户型比较有兴趣，请和我联系。</textarea>
 									</div>
 								</div>
 								<div class="buttons">
 									<input type="submit" class="btn red" value="提 交"></a>
 								</div>
 							</form>
+							<div class="thankyou" style="display:none;">
+								<p>谢谢，我们的销售人员会第一时间与您联系。</p>
+							</div>
 						</div>
 					</div>
-					
 					<!--
 					<div class="comments widget">
 						<h3>精彩周边</h3>
@@ -183,11 +222,13 @@
 		<jsp:include page="includes/script.jsp" />
         <script>
         	$(function(){
-        		Main.currentProjectId = <c:out value="${view.id}" />
-				ProjectPage.init();
-				ProjectPage.initGoogleMap(<c:out value="${view.latitude}" />, <c:out value="${view.longitude}" />);
+        		Main.currentProjectId = ${view.id};
+				DetailPage.initProjectPage();
+				DetailPage.initGoogleMap(${view.latitude}, ${view.longitude});
+				DetailPage.initForm(${view.id}, 'project');
 				FloorPlanFilter.init(true);
 				$('#floorplan-filter .result b').text('${fn:length(view.floorplans)}');
+				$('#right .sidepanel').height($('#left .tile').outerHeight() - 1);
 			})
         </script>
 	</body>

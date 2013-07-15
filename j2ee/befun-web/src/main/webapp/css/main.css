@@ -96,20 +96,20 @@ a {
 }
 
 h2{
-	height:23px;
+	height:24px;
 	padding-left:20px;
 	text-transform:uppercase;
 	font-size:18px;
-	line-height:23px;
+	line-height:24px;
 }
 
 .compare h2,
 .clientlist h2{
-	background:url('/img/sprite.png') 0 -165px no-repeat;	
+	background:url('http://img.befun.com.au/img/sprite.png') -132px -93px no-repeat;	
 }
 
 .project h2{
-	background:url('/img/sprite.png') -16px -165px no-repeat;
+	background:url('http://img.befun.com.au/img/sprite.png') -132px -114px no-repeat;
 }
 
 h2 span{
@@ -119,8 +119,12 @@ h2 span{
 	padding-left:15px;
 }
 
+h2 span a{
+	color:#666666;
+}
+
 i{
-	background:url('/img/sprite.png') no-repeat;
+	background:url('http://img.befun.com.au/img/sprite.png') no-repeat;
 	display:inline-block;
 	width:16px;
 	height:16px;
@@ -247,6 +251,12 @@ i.aspect{
 	background-position:-96px -256px;
 }
 
+i.recommended{
+	width:16px;
+	height:24px;
+	background-position:-132px -114px;
+}
+
 .btn{
 	border:1px solid #cccccc;
 	height:25px;
@@ -312,7 +322,7 @@ span.close{
 	cursor:pointer;
 	width:22px;
 	height:22px;
-	background:url('/img/sprite.png') no-repeat -17px 0;
+	background:url('http://img.befun.com.au/img/sprite.png') no-repeat -17px 0;
 	z-index:556;
 }
 
@@ -340,7 +350,7 @@ textarea{
 span.checkbox{
 	width:18px;
 	height:18px;
-	background:url('/img/checkbox-bg.png') no-repeat;
+	background:url('http://img.befun.com.au/img/checkbox-bg.png') no-repeat;
 	display: inline-block;
 	overflow:hidden;
 	position:relative;
@@ -370,7 +380,7 @@ span.checkbox input{
 	position:absolute;
 	width:27px;
 	height:13px;
-	background:url('/img/sprite.png') no-repeat 0 -85px;
+	background:url('http://img.befun.com.au/img/sprite.png') no-repeat 0 -85px;
 	top:-12px;
 	right:94px;
 }
@@ -398,7 +408,7 @@ span.checkbox input{
 
 .long .sbHolder{
 	width:172px;
-	background:url("/img/select-bg-long.png") no-repeat;
+	background:url("http://img.befun.com.au/img/select-bg-long.png") no-repeat;
 }
 
 .long .sbSelector{
@@ -432,17 +442,16 @@ header {
 	height:115px;
 	z-index: 51;
 	width:100%;
-	background:url('/img/header-bg.png');
+	background:url('http://img.befun.com.au/img/header-bg.png');
 }
 
 .standard header{
 	height:76px;
-	background:url('/img/header-bg2.png');
+	background:url('http://img.befun.com.au/img/header-bg2.png');
 	position:fixed;
 }
 
 header > .inner{
-	height:65px;
 	margin:0 auto;
 }
 
@@ -500,6 +509,7 @@ header .menu .more ul{
 	right:10px;
 	background:#F2F2F2;
 	width:120px;
+	z-index:10;
 	padding:1px 0;
 	-webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.4);
 	-moz-box-shadow:    0px 0px 8px rgba(0, 0, 0, 0.4);
@@ -525,8 +535,12 @@ header .menu #view-client{
 	display:none;
 }
 
+/* ==========================================================================
+   Details Page
+   ========================================================================== */
+   
 #left {
-	width: 670px;	
+	width: 690px;	
 	float:left;	
 }
 
@@ -539,6 +553,7 @@ header .menu #view-client{
 	box-shadow: 0 2px 2px #DDDDDD;
 	margin-bottom:20px;
 	position:relative;
+	border-radius: 5px 0 0 5px;
 }
 
 #left .tile h2,
@@ -546,14 +561,85 @@ header .menu #view-client{
 	margin-top:0;
 }
 
-#right{
-	float:left;
-	margin-left:30px;
-	width:268px;
+#left .tile .gallery{
+	margin-bottom:20px;
 }
 
-#right .affix{
-	position:fixed;
+#left .tile .section{
+	position:relative;
+}
+
+#left .tile .section .add-button{
+	margin:20px 0;
+	text-align:right;
+}
+
+#left .tile .section .add-comment{
+	margin:20px 0;
+}
+
+#left .tile .section .comments li{
+	position:relative;
+}
+
+#left .tile .section .comments li a.edit{
+	position:absolute;
+	top:0;
+	right:5px;
+	color:#ffffff;
+	background:#AAD820;
+	padding:1px 4px;
+	border-radius: 2px;
+	font-size:11px;
+}
+
+#left .tile .section .add-comment textarea{
+	width:630px;
+	height:150px;
+}
+
+#left .tile .section .add-comment .buttons{
+	margin-top:10px;
+	text-align:right;
+}
+
+#left .tile .section .details{
+	width:347px;
+	padding:0 20px 20px 0;
+	float:left;
+}
+
+#left .tile .section .details a.readmore{
+	float:right;
+	color:#97B833;
+}
+
+#left .tile .section .amenity{
+	width:260px;
+	padding:0 0 20px 20px;
+	border-left:1px solid #e6e6e6;
+	float:left;
+}
+
+#left .tile .section .amenity li{
+	float:left;
+	width:130px;
+}
+
+
+#left .tile .title{
+	background:url('http://img.befun.com.au/img/tile-divider.png') repeat-x;
+	height:39px;
+	line-height:39px;
+	font-weight:bold;
+	margin:0 -20px;
+	padding:0 20px;
+	font-size:16px;
+}
+
+#right{
+	float:left;
+	width:280px;
 }
 
 #right .social {
@@ -571,24 +657,59 @@ header .menu #view-client{
 	float:left;
 }
 
-#right .widget{
-	background:#FFFFFF;
-	border: 1px solid #E2E2E2;
+#right .sidepanel{
+	background:#f7f7f7;
 	-webkit-box-shadow: 0 2px 2px #DDDDDD;
 	-moz-box-shadow:    0 2px 2px #DDDDDD;
 	box-shadow: 0 2px 2px #DDDDDD;
-	padding:10px;
-	margin-top:25px;
+	border-radius: 0 5px 5px 0;
 }
 
-#right .widget .btn{
+#right .title{
+	height:46px;
+	background:#a5d023;
+	line-height:46px;
+	padding:0 20px;
+	font-size:16px;
+	font-weight:bold;
+	border-radius: 0 5px 0 0;
+}
+
+#right table{
+	width:100%;
+}
+
+#right table tr{
+	height:30px;
+	line-height:30px;
+}
+
+#right table tr:nth-child(even){
+	background:#f2f2f2;
+}
+
+#right table tr td.label{
+	width:85px;
+	padding-left:20px;
+}
+
+#right table tr td.value{
+	text-align:left;
+}
+
+#right table tr td.description{
+	padding:5px 20px;
+	line-height:20px;
+}
+
+#right .contactus{
+	padding:20px;
+}
+
+#right form .btn{
 	width:100%;
 	height:40px;
 	font-size:18px;
-}
-
-#right .widget h3{
-	margin-top:7px;
 }
 
 #search-suburb{
@@ -604,7 +725,7 @@ header .menu #view-client{
 	width:49px;
 	margin-left:9px;
 	padding:0 2px 2px 0;
-	background:url('/img/filter-btn-bg.png') no-repeat;
+	background:url('http://img.befun.com.au/img/filter-btn-bg.png') no-repeat;
 	border:none;
 	color:#6b6b6b;
 }
@@ -623,7 +744,7 @@ header .menu #view-client{
 	height:33px;
 	width:66px;
 	margin-left:8px;
-	background:url('/img/search-btn-bg.png') no-repeat;
+	background:url('http://img.befun.com.au/img/search-btn-bg.png') no-repeat;
 	border:none;
 }
 #btn-search:hover,
@@ -644,7 +765,7 @@ header .menu #view-client{
 	position:absolute;
 	width:26px;
 	height:13px;
-	background:url('/img/sprite.png') no-repeat 0 -85px;
+	background:url('http://img.befun.com.au/img/sprite.png') no-repeat 0 -85px;
 	top:-12px;
 	right:152px;
 }
@@ -751,7 +872,7 @@ header .menu #view-client{
 	padding:0 0 0 35px;
 	font-size:14px;
 	color:#FFFFFF;
-	background:url('/img/search-btn-long-bg.png') no-repeat;	
+	background:url('http://img.befun.com.au/img/search-btn-long-bg.png') no-repeat;	
 }
 
 #btn-search2:hover,
@@ -769,6 +890,7 @@ header .menu #view-client{
 	overflow:hidden;
 	height:39px;
 	color:#444444;
+	position:relative;
 }
 
 #reminder em{
@@ -803,6 +925,20 @@ header .menu #view-client{
 	float:left;
 	margin:11px 0 0 5px;
 	text-decoration:underline;
+}
+
+#reminder .result{
+	width:328px;
+	height:50px;
+	position:absolute;
+	right:0px;
+	background:url('http://img.befun.com.au/img/search-count-bg.png') repeat-x;
+}
+
+#reminder .result span{
+	color:#FFFFFF;
+	display:block;
+	margin:10px 0 0 10px;
 }
 
 #map-menu{
@@ -900,7 +1036,7 @@ header .menu #view-client{
 }
 
 #sidebar{
-	background:url('/img/sidebar-bg.png') repeat-y;
+	background:url('http://img.befun.com.au/img/sidebar-bg.png') repeat-y;
 	position:absolute;
 	right:0px;
 	top:106px;
@@ -910,7 +1046,7 @@ header .menu #view-client{
 	overflow-y:auto;
 	overflow-x:hidden;
 	padding-left:10px;
-	min-width:300px;
+	width:328px;
 }
 
 #projectlist .item{
@@ -1002,7 +1138,7 @@ footer a{
 	font-weight:bold;
 	height:65px;
 	position:absolute;
-	background:url('/img/panel-title-bg.png');
+	background:url('http://img.befun.com.au/img/panel-title-bg.png');
 	z-index:501;
 }
 
@@ -1051,7 +1187,7 @@ footer a{
 .tab-block .detailbox .arrow{
 	width:21px;
 	height:8px;
-	background:url('/img/sprite.png') no-repeat -44px 0;
+	background:url('http://img.befun.com.au/img/sprite.png') no-repeat -44px 0;
 	position:absolute;
 	top:-8px;
 }
@@ -1218,10 +1354,23 @@ footer a{
 #floorplan-filter{
 	width:386px;
 	float:left;
+	position:relative;
+}
+
+#floorplan-filter #recommend-filter{
+	position:absolute;
+	right:32px;
+	top:10px;
 }
 
 .tile #floorplan-filter{
-	width:458px;
+	width:478px;
+	margin-top:20px;
+}
+
+.tile #floorplan-filter #recommend-filter{
+	top:-7px;
+	right:0px;
 }
 
 #floorplan-filter .title{
@@ -1244,7 +1393,7 @@ footer a{
 	vertical-align: middle;
 }
 
-#floorplan-filter table tr.odd{
+#floorplan-filter table tr:nth-child(odd){
 	background:#eaeaea;
 }
 
@@ -1316,7 +1465,6 @@ footer a{
 
 .tile #floorplans{
 	width:170px;
-	margin-top:-50px;
 }
 
 .tile #floorplan-filter .title{
@@ -1340,12 +1488,12 @@ footer a{
 
 #floorplans .prev{
 	margin-top:12px;
-	background:url('/img/sprite.png') no-repeat 0 -101px;	
+	background:url('http://img.befun.com.au/img/sprite.png') no-repeat 0 -101px;	
 }
 
 #floorplans .next{
 	margin-top:12px;
-	background:url('/img/sprite.png') no-repeat 0 -128px;
+	background:url('http://img.befun.com.au/img/sprite.png') no-repeat 0 -128px;
 }
 
 #floorplans .scrollable{
@@ -1364,6 +1512,12 @@ footer a{
 	display:block;
 	border:1px solid #cccccc;
 	margin-bottom:10px;
+	position:relative;
+}
+
+#floorplans .item i.recommended{
+	position:absolute;
+	top:-2px;
 }
 
 #floorplans img{
@@ -1387,7 +1541,7 @@ footer a{
 
 #tab-contactus form textarea{
 	width:490px;
-	height:220px;
+	height:110px;
 }
 
 #tab-contactus form .buttons{
@@ -1418,7 +1572,7 @@ footer a{
 #lightbox .top .title{
 	height:45px;
 	position:absolute;
-	background:url('/img/lightbox-title-bg.png');
+	background:url('http://img.befun.com.au/img/lightbox-title-bg.png');
 	width:960px;
 	padding:10px 10px 0 10px;
 	z-index:555;
@@ -1431,7 +1585,7 @@ footer a{
 
 #lightbox .top .sort{
 	float:right;
-	margin-right:65px;
+	margin-right:8px;
 }
 
 #lightbox .top .sort label{
@@ -1451,7 +1605,8 @@ footer a{
 	margin:0;
 }
 
-#lightbox .top .button-group a.active{
+#lightbox .top .button-group a.active,
+#recommend-filter.active{
 	color:#FFFFFF;
 	border-color:#7a9529;
 	-webkit-box-shadow: inset 1px 2px 5px rgba(0, 0, 0, 0.15);
@@ -1517,7 +1672,7 @@ footer a{
 #lightbox .content .floorplan .zoom{
 	width:50px;
 	height:50px;
-	background:url('/img/sprite.png') no-repeat top right;
+	background:url('http://img.befun.com.au/img/sprite.png') no-repeat top right;
 	display:block;
 	position:absolute;
 	left:0;
@@ -1536,7 +1691,7 @@ footer a{
 	float:left;
 	width:245px;
 	height:522px;
-	background:url('/img/floorplan-bg.png') repeat-y top right;
+	background:url('http://img.befun.com.au/img/floorplan-bg.png') repeat-y top right;
 	z-index:551;
 }
 
@@ -1577,22 +1732,23 @@ footer a{
 
 #lightbox #comments{
 	width:326px;
-	padding:0 10px;
+	padding:10px 15px 0;
 	height:190px;
 	overflow-y:auto;
 }
 
 #lightbox .contactus{
-	padding:10px 10px 0;
+	padding:12px 10px 0;
 	width:326px;
+	height:260px;
 }
 
 #lightbox .contactus form{
 	margin-top:10px;
 }
 
-#lightbox form .row{
-	margin-bottom:5px;
+#lightbox .contactus .thankyou{
+	
 }
 
 #lightbox form .row input[type="text"]{
@@ -1605,7 +1761,7 @@ footer a{
 
 #lightbox form textarea{
 	width:312px;
-	height:150px;
+	height:80px;
 }
 
 #lightbox form .buttons{
@@ -1624,7 +1780,7 @@ footer a{
 	top:0;
 	width:111px;
 	height:522px;
-	background:url('/img/unit-list-bg.png') repeat-y;
+	background:url('http://img.befun.com.au/img/unit-list-bg.png') repeat-y;
 }
 
 #units .scrollable {
@@ -1642,7 +1798,7 @@ footer a{
 #units .item{
 	width:101px;
 	height:60px;
-	background:url('/img/unit-bg.png') no-repeat  0 -60px;
+	background:url('http://img.befun.com.au/img/unit-bg.png') no-repeat  0 -60px;
 	line-height:60px;
 	padding:0 0 0 10px;
 	text-align:center;
@@ -1651,7 +1807,7 @@ footer a{
 
 #units .item.active{
 	color:#ffffff;
-	background:url('/img/unit-bg.png') no-repeat  0 0;
+	background:url('http://img.befun.com.au/img/unit-bg.png') no-repeat  0 0;
 }
 
 #units .nav{
@@ -1662,11 +1818,11 @@ footer a{
 }
 
 #units .prev{
-	background:url('/img/sprite.png') no-repeat 0 -101px;	
+	background:url('http://img.befun.com.au/img/sprite.png') no-repeat 0 -101px;	
 }
 
 #units .next{
-	background:url('/img/sprite.png') no-repeat 0 -128px;
+	background:url('http://img.befun.com.au/img/sprite.png') no-repeat 0 -128px;
 }
 
 #floorplan-list2 {
@@ -1689,7 +1845,7 @@ footer a{
 	height:56px;
 	top:17px;
 	left:13px;
-	background:url(/img/sprite.png) no-repeat 0 -25px;
+	background:url(http://img.befun.com.au/img/sprite.png) no-repeat 0 -25px;
 }
 
 #floorplan-list2 .next{
@@ -1698,7 +1854,7 @@ footer a{
 	height:56px;
 	top:17px;
 	right:14px;
-	background:url(/img/sprite.png) no-repeat -26px -25px;
+	background:url(http://img.befun.com.au/img/sprite.png) no-repeat -26px -25px;
 }
 
 #floorplan-list2 .scrollable .items {
@@ -1714,6 +1870,13 @@ footer a{
 	float:left;
 	border:3px solid #ffffff;
 	margin-right:1px;
+	position:relative;
+}
+
+#floorplan-list2 .scrollable .items div a i.recommended{
+	position:absolute;
+	top:-2px;
+	left:0px;
 }
 
 #floorplan-list2 .scrollable .items div a.active{
@@ -1875,7 +2038,7 @@ footer a{
 
 #compare-panel .title{
 	height:50px;
-	background:url('/img/compare-panel-bg.png');
+	background:url('http://img.befun.com.au/img/compare-panel-bg.png');
 	width:100%;
 	border-radius:5px 5px 0 0;
 }
@@ -1904,7 +2067,7 @@ footer a{
 #compare-panel .panel .list .arrow{
 	width:21px;
 	height:40px;
-	background:url('/img/sprite.png') no-repeat -57px -42px;
+	background:url('http://img.befun.com.au/img/sprite.png') no-repeat -57px -42px;
 	position:absolute;
 	right:-21px;
 	top:50%;
@@ -1926,7 +2089,7 @@ footer a{
 	position:absolute;
 	width:20px;
 	height:20px;
-	background:url('/img/sprite.png') no-repeat right -51px;
+	background:url('http://img.befun.com.au/img/sprite.png') no-repeat right -51px;
 	top:0;
 	right:0;
 	z-index:601;
@@ -1958,7 +2121,7 @@ footer a{
 #compare-panel .panel .button .btn-compare{
 	width:112px;
 	height:31px;
-	background:url('/img/btn-red-short.png') no-repeat 0 0;
+	background:url('http://img.befun.com.au/img/btn-red-short.png') no-repeat 0 0;
 	position:absolute;
 	color:#FFFFFF;
 	text-align:center;
@@ -1997,7 +2160,7 @@ footer a{
 #compare-panel .tab{
 	width:112px;
 	height:49px;
-	background:url('/img/sprite.png') no-repeat 0 -186px;
+	background:url('http://img.befun.com.au/img/sprite.png') no-repeat 0 -186px;
 	position:absolute;
 	top:-49px;
 	left:50%;
@@ -2014,11 +2177,11 @@ footer a{
 }
 
 #compare-panel .up .arrow{
-	background:url('/img/sprite.png') no-repeat -114px -74px;	
+	background:url('http://img.befun.com.au/img/sprite.png') no-repeat -114px -74px;	
 }
 
 #compare-panel .down .arrow{
-	background:url('/img/sprite.png') no-repeat -133px -74px;	
+	background:url('http://img.befun.com.au/img/sprite.png') no-repeat -133px -74px;	
 }
 
 /* ==========================================================================
@@ -2055,7 +2218,7 @@ table.list tbody tr:nth-child(even){
 
 table.list th{
 	border-right: 1px solid #D7D7D7;
-	background:url("/img/compare-name-bg.png");
+	background:url("http://img.befun.com.au/img/compare-name-bg.png");
 }
 
 table.list th:last-child{
@@ -2094,7 +2257,7 @@ table.list td.action a{
 	border:1px solid #d7d7d7;
 	width:970px;
 	overflow:hidden;
-	border-radius: 10px;
+	border-radius: 5px;
 	-webkit-box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.25);
 	-moz-box-shadow:    0px 1px 5px rgba(0, 0, 0, 0.25);
 	box-shadow:         0px 1px 5px rgba(0, 0, 0, 0.25);
@@ -2144,7 +2307,7 @@ table.list td.action a{
 }
 
 .compare-table .project-column .name{
-	background:url('/img/compare-name-bg.png');
+	background:url('http://img.befun.com.au/img/compare-name-bg.png');
 	font-weight:bold;
 	text-align: center;
 }
@@ -2254,8 +2417,8 @@ table.list td.action a{
    ========================================================================== */
 
 #gallery-main{
-	width:630px;
-	height:424px;
+	width:648px;
+	height:485px;
 	background:#ffffff;
 }
 
@@ -2266,7 +2429,7 @@ table.list td.action a{
 #gallery-list .scrollable{
 	position:relative;
 	overflow:hidden;
-	width: 574px;
+	width: 594px;
 	height:66px;
 	margin:10px 28px;
 }
@@ -2276,7 +2439,7 @@ table.list td.action a{
 	width:25px;
 	height:56px;
 	top:5px;
-	background:url(/img/sprite.png) no-repeat 0 -25px;
+	background:url(http://img.befun.com.au/img/sprite.png) no-repeat 0 -25px;
 }
 
 #gallery-list .next{
@@ -2285,7 +2448,7 @@ table.list td.action a{
 	height:56px;
 	top:5px;
 	right:0px;
-	background:url(/img/sprite.png) no-repeat -26px -25px;
+	background:url(http://img.befun.com.au/img/sprite.png) no-repeat -26px -25px;
 }
 
 #gallery-list .scrollable .items {
@@ -2313,8 +2476,9 @@ table.list td.action a{
 }
 
 #googlemap {
-	width:630px;
+	width:650px;
 	height:240px;
+	margin-top:20px;
 }
 
 .comments ul li{
@@ -2470,9 +2634,9 @@ img.bg-login{
 }
 
 .tile .tabs{
-	top:0px;
+	top:39px;
 	left:0px;
-	width:670px;
+	width:650px;
 }
 
 .tabs a{
@@ -2486,7 +2650,7 @@ img.bg-login{
 }
 
 .tabs a#view-project{
-	background:#AAD820 url('/img/view-project.png') no-repeat 95px 10px;
+	background:#AAD820 url('http://img.befun.com.au/img/view-project.png') no-repeat 95px 10px;
 	padding-right:40px;
 	color:#ffffff;
 }
@@ -2506,7 +2670,7 @@ img.bg-login{
 }
 
 .tile .tab-contents{
-	margin-top:36px;
+	margin:40px 0 20px;
 }
 
 .tile .tab-contents table{
@@ -2526,7 +2690,7 @@ img.bg-login{
    Form
    ========================================================================== */
 form .row{
-	margin-bottom:10px;
+	margin-bottom:5px;
 }   
    
 form .title{
@@ -2565,9 +2729,14 @@ form input[type="email"]{
 	width:228px;
 }
 
-.widget form input[type="text"],
-.widget form input[type="email"]{
-	width:230px;
+#right form input[type="text"],
+#right form input[type="email"]{
+	width:220px;
+}
+
+#right form textarea{
+	width:225px;
+	height:150px;
 }
 
 form input.error{
@@ -2583,11 +2752,6 @@ form textarea{
 	width:400px;
 	height:100px;
 	padding:5px;
-}
-
-.contactus form textarea{
-	width:235px;
-	height:150px;
 }
 
 /* ==========================================================================

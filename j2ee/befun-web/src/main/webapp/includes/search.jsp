@@ -4,7 +4,7 @@
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <div class="top">
-	<a href="/befun-web/search.jsp"><h1 class="logo"><img src="/img/logo.png" width="165" height="63" alt="Befun Property"/></h1></a>
+	<a href="/search.jsp"><h1 class="logo"><img src="http://img.befun.com.au/img/logo.png" width="165" height="63" alt="Befun Property"/></h1></a>
 	<div class="search">
 		<input type="text" name="suburb" id="search-suburb" placeholder="Enter a suburb or a postcode"/>
 		<a href="javascript:;" id="btn-filter">高级</a>

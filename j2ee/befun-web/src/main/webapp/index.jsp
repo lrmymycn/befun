@@ -10,7 +10,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
     	<title>澳洲比房网 | 期房 楼花 现房</title>
-    	<meta name="Description" content="比房网是一个智能的一站式置业网站，在这里你可以搜索，对比，直接购买澳洲最新上市的期房和现房。"/>
+    	<meta name="Description" content="比房置业投资有限公司是澳洲第一家以网络为平台的新型房地产公司，打造最准确的分析与定位进行智能选房，无论身处海外还是澳洲比房置业将主动权交给客户，让客户通过比房置业强大的房源搜索引擎筛选出最优质的房产。"/>
     	<meta name="Keywords" content="澳洲楼花,澳洲期房,澳洲现房,悉尼楼花,悉尼现房,悉尼期房,悉尼房产,悉尼,楼花,现房,期房,雪梨,楼花价格,期房价格"/>
         <jsp:include page="includes/head.jsp" />
     </head>
@@ -18,10 +18,10 @@
 		<header style="position:absolute;">
         	<div class="inner">
         		<div class="top">
-					<a href="/"><h1 class="logo"><img src="/img/logo.png" width="165" height="63" alt="Befun Property"/></h1></a>
+					<a href="/"><h1 class="logo"><img src="http://img.befun.com.au/img/logo.png" width="165" height="63" alt="Befun Property"/></h1></a>
 					<div class="menu">
 						<ul>
-							<sec:authorize access="isAuthenticated()">
+						<sec:authorize access="isAuthenticated()">
 							<%
 								Long currentClientId = null; 
 								try{
@@ -56,10 +56,10 @@
 				</div>
         	</div>
         </header>
-        <img src="/img/login.jpg" width="100%" alt="" class="bg-login"/>
+        <img src="http://img.befun.com.au/img/login.jpg" width="100%" alt="" class="bg-login"/>
 		<div id="home">
-			<img src="/img/slogan.png" width="254" height="71" alt="Befun property" class="slogan"/>
-			<img src="/img/demo.png" width="542" height="371" alt="" class="demo"/>
+			<img src="http://img.befun.com.au/img/slogan.png" width="254" height="71" alt="Befun property" class="slogan"/>
+			<img src="http://img.befun.com.au/img/demo.png" width="542" height="371" alt="" class="demo"/>
 			<div class="search" id="home-filter">
 				<div class="filter-group pricerange-group clearfix">
 					<span class="label">价格:</span>
@@ -140,7 +140,7 @@
 			</div>
 		</div>
 		<div id="home-bottom">
-			<img src="/img/bottom-text.png" width="478" height="38" alt="" />
+			<img src="http://img.befun.com.au/img/bottom-text.png" width="478" height="38" alt="" />
 		</div>
 		<jsp:include page="includes/script.jsp" />
 		<script>

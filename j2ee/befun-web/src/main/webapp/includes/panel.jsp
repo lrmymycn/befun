@@ -90,6 +90,7 @@
 				
 			</div>
 		</div>
+		<!--
 		<div id="tab-comments" class="hidden tab-block">
 			<div class="box">
 				<div id="add-comment">
@@ -113,9 +114,10 @@
 				</ul>
 			</div>
 		</div>
+		-->
 		<div id="tab-contactus" class="hidden tab-block">
 			<div class="box">
-				<div>关于 <b class="project"></b> 如果您想了解更多，我们会第一时间给给您答复。</div>
+				<div>关于 <b class="project"></b> 如果您想了解更多，我们会第一时间给您答复。</div>
 				<form action="" method="post">
 					<div class="row clearfix">
 						<div class="input">

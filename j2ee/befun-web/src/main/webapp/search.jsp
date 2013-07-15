@@ -8,7 +8,9 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
-    	<title>澳洲比房网 | 期房 楼花 现房</title>
+    	<title>澳洲比房网 | 搜索</title>
+    	<meta name="Description" content="比房置业投资有限公司是澳洲第一家以网络为平台的新型房地产公司，打造最准确的分析与定位进行智能选房，无论身处海外还是澳洲比房置业将主动权交给客户，让客户通过比房置业强大的房源搜索引擎筛选出最优质的房产。"/>
+    	<meta name="Keywords" content="澳洲楼花,澳洲期房,澳洲现房,悉尼楼花,悉尼现房,悉尼期房,悉尼房产,悉尼,楼花,现房,期房,雪梨,楼花价格,期房价格,wentworth point,zetland,parramatta,north sydney"/>
         <jsp:include page="includes/head.jsp" />
     </head>
 	<body>
@@ -18,6 +20,7 @@
 	        		<jsp:include page="includes/search.jsp" />
 		        	<div id="reminder">
 	        			<em>搜索条件: </em><div id="reminder-nodes"></div> <a href="<c:url value="/search.jsp"/>" class="reset">显示全部 Sydney 项目</a>
+	        			<div class="result"></div>
 	        		</div>
 	        	</div>
 	        </header>

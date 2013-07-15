@@ -177,7 +177,7 @@
 								</tr>
 								<tr>
 									<td><s:checkbox name="view.carWashBay" theme="simple" /></td>
-									<td>carWashBay</td>
+									<td>reception</td>
 									<td><s:checkbox name="view.others" theme="simple" /></td>
 									<td>others</td>
 								</tr>

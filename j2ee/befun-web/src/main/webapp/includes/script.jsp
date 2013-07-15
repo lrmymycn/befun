@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<div id="loading"><img src="/img/loading.gif" width="60" height="60" alt="" /></div>
+<div id="loading"><img src="http://img.befun.com.au/img/loading.gif" width="60" height="60" alt="" /></div>
 <div id="filter-overlay" class="overlay"></div>
 <div id="panel-overlay" class="overlay"></div>
 <div id="lightbox-overlay" class="overlay"></div>

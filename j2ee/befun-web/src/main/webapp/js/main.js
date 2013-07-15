@@ -5,8 +5,8 @@ $(function(){
 });
 
 Main = {
-	root: '/befun-web/',
-	imageRoot: '/',
+	root: '/',
+	imageRoot: 'http://img.befun.com.au',
 	isLoading:false,
 	isHome:false, //home is search.jsp
 	currentProjectId:null,
@@ -153,15 +153,22 @@ Main = {
 	},
 	loadProjectList:function(){
 		$('#projectlist').empty();
+		var count = Search.projects.length;
+		if(count > 0){
+			$('#reminder .result').html('<span>共有 <b>' + count +'</b> 个项目满足您的搜索条件</span>');
+		}else{
+			$('#reminder .result').html('<span>没有满足条件的搜索结果，试试别的条件？</span>');
+		}
+		
 		for(var i = 0; i < Search.projects.length; i++){
 			var project = Search.projects[i];
 			var cls = 'item';
 			if(i == Search.projects.length - 1){
 				cls = 'item last';
 			}
-			var html = '<div class="' + cls +'" data-id="' + project.id + '" data-lat="' + project.latitude + '" data-lng="' + project.longitude + '">'
+			var html = '<div class="' + cls +'" data-id="' + project.id + '" data-lat="' + project.latitude + '" data-lng="' + project.longitude + '" data-name="' + project.block + '">'
 					    + '<div class="clearfix">'
-							+ '<img src="' + project.picture.smallUrl + '" alt="' + project.name + '" width="140" height="94"/>'
+							+ '<img src="' + Main.imageRoot + project.picture.smallUrl + '" alt="' + project.name + '" width="140" height="94"/>'
 							+ '<div class="info">'
 								+ '<label>编号:</label><span>' + project.block +'</span><br/>'
 								+ '<label>类型:</label><span>' + project.type +'</span><br/>'
@@ -178,6 +185,8 @@ Main = {
 				var lat = $(this).data('lat');
 				var lng = $(this).data('lng');
 				var projectId = $(this).data('id');
+				var name = $(this).data('name');
+				
 				var center = new google.maps.LatLng(lat, lng);
 				Map.center = center;
 				Map.map.setCenter(Map.center);
@@ -196,6 +205,8 @@ Main = {
 					Map.map.setZoom(15);
 				}
 				PanelPopup.load(projectId);
+				
+				_gaq.push(['_trackEvent', 'Projects', 'Load from List', name]);
 			});
 			
 			$div.appendTo($('#projectlist'));
@@ -467,7 +478,7 @@ Map = {
 		}
 		var arr = new Array();
 		for(var i = 0; i < Search.clusters.length; i++){
-			var cluster = new ClusterOverlay(Search.clusters[i], this.map);
+			var cluster = new ClusterOverlay(Search.clusters[i], this.map, 'Areas');
 			arr.push(cluster);
 		}
 		this.mapObjects = arr;
@@ -479,7 +490,7 @@ Map = {
 		}
 		var arr = new Array();
 		for(var i = 0; i < Search.suburbs.length; i++){
-			var suburb = new ClusterOverlay(Search.suburbs[i], this.map);
+			var suburb = new ClusterOverlay(Search.suburbs[i], this.map, 'Suburbs');
 			arr.push(suburb);
 		}
 		this.mapObjects = arr;
@@ -525,7 +536,7 @@ Map = {
 		   	query: keyword
 		};
 		
-		var icon = Main.imageRoot + 'img/maps/' + amenity + '.png';
+		var icon = Main.imageRoot + '/img/maps/' + amenity + '.png';
 		
 		Main.loadingShow();
 		this.placeService.textSearch(request, function(results, status){
@@ -907,9 +918,12 @@ MapMenu = {
 			if(Map.center != null){
 				if(Main.currentRadiusWidget == null){
 					Main.currentRadiusWidget = new RadiusWidget();
+					
+					_gaq.push(['_trackEvent', 'Map Tool', 'Load', 'Distance']);
 				}else{
 					Main.currentRadiusWidget.destroy();
 					Main.currentRadiusWidget = null;
+					_gaq.push(['_trackEvent', 'Map Tool', 'Clean', 'Distance']);
 				}
 			}			
 		});
@@ -917,48 +931,60 @@ MapMenu = {
 		$('#map-menu a.stores').click(function(){
 			if(Map.markers.stores == null){
 				Map.loadStores();
+				_gaq.push(['_trackEvent', 'Map Tool', 'Load', 'Store']);
 			}else{
 				Map.cleanStores();
+				_gaq.push(['_trackEvent', 'Map Tool', 'Clean', 'Store']);
 			}
 		});
 		
 		$('#map-menu a.schools').click(function(){
 			if(Map.markers.schools == null){
 				Map.loadSchools();
+				_gaq.push(['_trackEvent', 'Map Tool', 'Load', 'Schools']);
 			}else{
 				Map.cleanSchools();
+				_gaq.push(['_trackEvent', 'Map Tool', 'Clean', 'Schools']);
 			}
 		});
 		
 		$('#map-menu a.childcares').click(function(){
 			if(Map.markers.childcares == null){
 				Map.loadChildcares();
+				_gaq.push(['_trackEvent', 'Map Tool', 'Load', 'Childcares']);
 			}else{
 				Map.cleanChildcares();
+				_gaq.push(['_trackEvent', 'Map Tool', 'Clean', 'Childcares']);
 			}
 		});
 		
 		$('#map-menu a.restaurants').click(function(){
 			if(Map.markers.restaurants == null){
 				Map.loadRestaurants();
+				_gaq.push(['_trackEvent', 'Map Tool', 'Load', 'Restaurants']);
 			}else{
 				Map.cleanRestaurants();
+				_gaq.push(['_trackEvent', 'Map Tool', 'Clean', 'Restaurants']);
 			}
 		});
 		
 		$('#map-menu a.hospitals').click(function(){
 			if(Map.markers.hospitals == null){
 				Map.loadHospitals();
+				_gaq.push(['_trackEvent', 'Map Tool', 'Load', 'Hospitals']);
 			}else{
 				Map.cleanHospitals();
+				_gaq.push(['_trackEvent', 'Map Tool', 'Clean', 'Hospitals']);
 			}
 		});
 		
 		$('#map-menu a.medicalcentres').click(function(){
 			if(Map.markers.medicalcentres == null){
 				Map.loadMedicalCentres();
+				_gaq.push(['_trackEvent', 'Map Tool', 'Load', 'Medical Centres']);
 			}else{
 				Map.cleanMedicalCentres();
+				_gaq.push(['_trackEvent', 'Map Tool', 'Clean', 'Medical Centres']);
 			}
 		});
 	},
@@ -1030,38 +1056,22 @@ PanelPopup = {
 			}
 		});
 		
-		/*
-		$('#overview-list .items a').live('click', function(e){
-			e.preventDefault();
-			if($(this).hasClass('active')){
-				return false;
-			}
-			
-			var url = $(this).attr('href');
-			$('#overview-main').fadeTo("medium", 0.5);
-			var img = new Image();
- 
-			img.onload = function() {		 
-				$('#overview-main').fadeTo("fast", 1);
-				$('#overview-main').find("img").attr("src", url);		 
-			};
-			img.src = url;
-			
-			$('#overview-list .items a').removeClass('active');
-			$(this).addClass('active');
-			
-			return false;
-		});
-		$("#overview-list .scrollable").scrollable();
-		*/
 		$('#floorplan-list .item').live('click', function(){
-			FloorplanPopup.load($(this).data('id'));
+			var id = $(this).data('id');
+			var project = $(this).data('project');
+			FloorplanPopup.load(id);
+			_gaq.push(['_trackEvent', 'Floorplans', 'Load from Panel', project + '-' + id]);
 		});
 		
 		$('#floorplan-list2 .item').live('click', function(){
-			FloorplanPopup.load($(this).data('id'));
+			var id = $(this).data('id');
+			var project = $(this).data('project');
+		
+			FloorplanPopup.load(id);
 			$('#floorplan-list2 .item').removeClass('active');
 			$(this).addClass('active');
+			
+			_gaq.push(['_trackEvent', 'Floorplans', 'Load from Lightbox', project + '-' + id]);
 		})
 
 		$("#floorplan-list .scrollable").scrollable({vertical: true});
@@ -1115,7 +1125,7 @@ PanelPopup = {
 	resetContactForm:function(fullProjectName){
 		$('#tab-contactus form').show();
 		$('#tab-contactus .thankyou').hide();
-		$('#tab-contactus textarea').val('Hi,\r\n\r\n我在比房网上看到了' + fullProjectName + '这个项目。\r\n\r\n我对[2]房[2]卫的户型比较有兴趣，请和我联系。\r\n\r\n谢谢');
+		$('#tab-contactus textarea').val('Hi,\r\n\r\n我在比房网上看到了' + fullProjectName + '这个项目。\r\n\r\n我对[2]房[2]卫的户型比较有兴趣，请和我联系。');
 	},
 	load:function(projectId){
 		/*
@@ -1181,12 +1191,14 @@ PanelPopup = {
 							if((i + 1) % 3 == 0){
 								cls = 'last';
 							}
-							var $li = '<li class="' + cls + '"><a href="' + photos[i].mediumUrl + '" rel="brochure" title="' + photos[i].alt + '"><img src="' + photos[i].smallUrl + '" alt="' + photos[i].alt + '"/></a></li>';
+							var $li = '<li class="' + cls + '"><a href="' + Main.imageRoot + photos[i].mediumUrl + '" rel="brochure" title="' + photos[i].alt + '"><img src="' + Main.imageRoot + photos[i].smallUrl + '" alt="' + photos[i].alt + '"/></a></li>';
 							$('#tab-overview .brochure').append($li);
 						}
 						$('#panel a[rel="brochure"]').fancybox({
 							padding : 0
 						});
+
+						$('#recommend-filter').removeClass('active');
 
 						FloorPlanFilter.currentFloorPlans = project.floorplans;
 						FloorPlanFilter.updateList();
@@ -1215,6 +1227,37 @@ FloorplanPopup = {
 		
 		$('#interest').click(function(){
 			InterestList.add();
+		});
+		
+		$('#recommend').click(function(){
+			var $this = $(this);
+			if($this.hasClass('recommend')){
+				Main.loadingShow();
+				$.ajax({
+					type: 'GET',
+					url: Main.root + "estate/json/recommendFloorplan.action?id=" + Main.currentFloorplanId,
+					dataType: "json",
+					success: function(json){
+						Main.loadingHide();
+						$this.removeClass('recommend').addClass('unrecommend').text('Unrecommend');
+						
+						$('.scrollable .item[data-id="' + Main.currentFloorplanId + '"]').prepend('<i class="recommended"></i>');
+					}
+				});
+			}else{
+				Main.loadingShow();
+				$.ajax({
+					type: 'GET',
+					url: Main.root + "estate/json/unRecommendFloorplan.action?id=" + Main.currentFloorplanId,
+					dataType: "json",
+					success: function(json){
+						Main.loadingHide();
+						$this.removeClass('unrecommend').addClass('recommend').text('Recommend');
+						
+						$('.scrollable .item[data-id="' + Main.currentFloorplanId + '"] i.recommended').remove();
+					}
+				});
+			}
 		});
 		
 		$('#lightbox .sort a').click(function(){
@@ -1262,6 +1305,32 @@ FloorplanPopup = {
 			$('#lightbox #units .scrollable a').removeClass('active');
 			$(this).addClass('active');
 		});
+		
+		$('#lightbox form').validate({
+			errorPlacement:function(){
+				return;
+			},
+			submitHandler: function(form) {
+				Main.loadingShow();
+				$.ajax({
+					type: 'POST',
+					url: Main.root + "estate/json/createMessage.action",
+					data: {
+							'model.floorplanId': Main.currentFloorplanId ,
+							'model.content': $(form).find('textarea').val(),
+							'model.customerName': $(form).find('input[name="name"]').val(),
+							'model.customerMobile': $(form).find('input[name="mobile"]').val(),
+							'model.customerEmail': $(form).find('input[name="email"]').val()
+						},
+					dataType: "json",
+					success: function(json){
+						$(form).hide();
+						$('#lightbox .contactus .thankyou').show();
+						Main.loadingHide();
+					}
+				});
+			}
+		});
 	},
 	show:function(){
 		$('#lightbox').show();
@@ -1284,6 +1353,12 @@ FloorplanPopup = {
 		}
 		
 		Main.currentFloorplanId = id;
+		
+		$('#lightbox .more').attr('href', Main.root + 'estate/demandFloorplanDetail.action?id=' + id);
+		
+		$('#lightbox .contactus form').show();
+		$('#lightbox .contactus .thankyou').hide();
+		
 		$('#floorplan-list2 .item').removeClass('active');
 		$('#floorplan-list2 .item[data-id="' + id + '"]').addClass('active');
 		Main.loadingShow();
@@ -1309,13 +1384,20 @@ FloorplanPopup = {
 							return;
 						}
 						
-						var img = '<img src="' + picture.mediumUrl + '" alt=""/>';
+						var img = '<img src="' + Main.imageRoot + picture.mediumUrl + '" alt=""/>';
 						$('#lightbox .floorplan .image').html(img);
 						$('#lightbox .floorplan .zoom').attr('href', picture.largeUrl);
 						$('#units .items').empty();
 						$('#apartments').empty();
 						
 						if(floorplan.apartments.length > 0){
+							//Sales view
+							if(floorplan.recommended){
+								$('#recommend').text('Unrecommend').removeClass('recommend').addClass('unrecommend');
+							}else{
+								$('#recommend').text('Recommend').removeClass('unrecommend').addClass('recommend');
+							}
+						
 							var apartments = floorplan.apartments;
 							for(var i = 0; i < apartments.length; i++){
 								var apartment = apartments[i];
@@ -1418,9 +1500,9 @@ FloorplanPopup = {
 								$('#apartments').append($(div));
 							}
 						}else{
-							var fullName = floorplan.id;
+							var fullName = floorplan.projectBlock + '-' + floorplan.id;
 							$('#lightbox .floorplanname').text(fullName);
-							$('#lightbox textarea').val('Hi,\r\n\r\n我在比房网上看到了' + fullName + '这个户型。\r\n\r\n想了解具体价格，请和我联系。\r\n\r\n谢谢');
+							$('#lightbox textarea').val('Hi,\r\n\r\n我在比房网上看到了(' + fullName + ')这个户型。想了解具体的价格，请和我联系。');
 						
 							var div = '<a href="javascript:;" title="卧室"><i class="bedroom"></i> {bedrooms}</a> <a href="javascript:;" title="浴室"><i class="bathroom"></i> {bathrooms}</a> <a href="javascript:;" title="朝向"><i class="aspect"></i> {aspect}</a> <a href="javascript:;" title="内部面积"><i class="internalarea"></i> {internalsize}</a> <a href="javascript:;" title="外部面积"><i class="externalarea"></i> {externalsize}</a> <a href="javascript:;" title="总面积"><i class="totalarea"></i> {totalsize}</a> <a href="javascript:;" title="价格"><i class="money"></i> {price}</a>';
 							var price = '';
@@ -1437,7 +1519,14 @@ FloorplanPopup = {
 									.replace('{externalsize}', floorplan.externalSize + ' m<sup>2</sup>')
 									.replace('{totalsize}', floorplan.totalSize + ' m<sup>2</sup>')
 									.replace('{price}', price);
-								$('#lightbox .summary').html($(div));
+							$('#lightbox .summary').html($(div));
+							
+							var comments = json.pgbComment.models;
+							if(comments.length > 0){
+								$('#comments p').html(comments[0].content.replace(/\n/g, "<br />"));
+							}else{
+								$('#comments p').text("这个项目还没户型分析");
+							}
 						}
 						
 						//$("#units .scrollable").scrollable({ vertical: true});
@@ -1481,9 +1570,29 @@ FloorPlanFilter = {
 		}else{
 			this.standalonePage = standalonePage;
 		}
+		
+		$('#recommend-filter').click(function(){
+			var recommended = 'null';
+			if($(this).hasClass('active')){
+				$(this).removeClass('active');
+				recommended = 'null';
+			}else{
+				$(this).addClass('active');
+				recommended = true;
+			}
+			
+			var data = {
+				id: Main.currentProjectId,
+    			'qc.apQC.fpQC.recommended': recommended
+			};
+			
+			FloorPlanFilter.loadFloorplans(data);
+		});
 
 		$('#btn-search3').click(function(){
 			FloorPlanFilter.curentFloorPlans = [];
+			
+			$('#recommend-filter').removeClass('active');
 			
 			var conditions = FloorPlanFilter.conditions;
 			
@@ -1499,6 +1608,7 @@ FloorPlanFilter = {
 			conditions.courtyard = $('#floorplan-filter input[name="courtyard"]').is(":checked") ? '0+' : null;
 			conditions.enclosedBalcony = $('#floorplan-filter input[name="splitlevel"]').is(":checked") ? '0+' : null;
 			conditions.penthouse = $('#floorplan-filter input[name="penthouse"]').is(":checked") ? true : 'null';
+			//conditions.recommended = $('#floorplan-filter input[name="recommended"]').is(":checked") ? true : 'null';
 			
 			var aspect = $('#floorplan-filter select[name="aspect"]').val();
 			conditions.east = aspect == 'E' ? true : 'null';
@@ -1525,25 +1635,28 @@ FloorPlanFilter = {
     			'qc.apQC.fpQC.orientationNorth': conditions.north
 			};
 			
-			$.ajax({
-				type: 'POST',
-				url: Main.root + "estate/json/demandProjectDetail.action",
-				data: data,
-				dataType: "json",
-				success: function(json){
-					var project = json.view;
-					if(project != null && project != undefined){
-						FloorPlanFilter.currentFloorPlans = project.floorplans;
-						if(FloorPlanFilter.standalonePage){
-							FloorPlanFilter.updatePageList();
-						}else{
-							FloorPlanFilter.updateList();
-						}
+			FloorPlanFilter.loadFloorplans(data);
+		});
+	},
+	loadFloorplans: function(data){
+		$.ajax({
+			type: 'POST',
+			url: Main.root + "estate/json/demandProjectDetail.action",
+			data: data,
+			dataType: "json",
+			success: function(json){
+				var project = json.view;
+				if(project != null && project != undefined){
+					FloorPlanFilter.currentFloorPlans = project.floorplans;
+					if(FloorPlanFilter.standalonePage){
+						FloorPlanFilter.updatePageList();
 					}else{
-						alert('Project not found');
+						FloorPlanFilter.updateList();
 					}
+				}else{
+					alert('Project not found');
 				}
-			});
+			}
 		});
 	},
 	updateList: function(type){
@@ -1581,7 +1694,12 @@ FloorPlanFilter = {
 				continue;
 			}
 			
-			var $item = $('<a href="javascript:;" class="item" data-id="' + floorplans[i].id + '"><img src="' + picture.smallUrl + '" alt="" /></a>');				
+			var recommend = '';
+			if(floorplans[i].recommended){
+				recommend = '<i class="recommended"></i>';
+			}
+			
+			var $item = $('<a href="javascript:;" class="item" data-project="' + floorplans[i].projectBlock + '" data-id="' + floorplans[i].id + '">' + recommend + '<img src="' + Main.imageRoot + picture.smallUrl + '" alt="" /></a>');				
 			var $item2 = $item.clone();
 			
 			var index = Math.floor(i / 4);	
@@ -1616,7 +1734,12 @@ FloorPlanFilter = {
 				continue;
 			}
 			
-			var $item = $('<a href="' + picture.largeUrl + '" class="item" data-id="' + floorplans[i].id + '" target="_blank"><img src="' + picture.smallUrl + '" alt="" /></a>');
+			var recommend = '';
+			if(floorplans[i].recommended){
+				recommend = '<i class="recommended"></i>';
+			}
+			
+			var $item = $('<a href="' + Main.root + 'estate/demandFloorplanDetail.action?id=' + floorplans[i].id + '" class="item" target="_blank">' + recommend + '<img src="' + Main.imageRoot + picture.smallUrl + '" alt="" /></a>');
 			
 			var index = Math.floor(i / 3);	
 			var $div = $('#floorplan-list').find('div[data-id='+ index + ']');
@@ -2244,9 +2367,10 @@ ClientList = {
 	}
 };
 
-ProjectPage = {
+DetailPage = {
 	map: null,
-	init: function(){
+	commentId:0,
+	initProjectPage: function(){
 		$('#gallery-list .scrollable').scrollable();
 		
 		$('#gallery-list .items a').click(function(e){
@@ -2287,9 +2411,86 @@ ProjectPage = {
 			
 			$('.tab-contents div').hide();
 			$(target).show();
+			
+			$('#right .sidepanel').height($('#left .tile').outerHeight() - 1);
 		});
 
 		$("select.selectbox").selectbox();
+	},
+	initFloorPlanPage: function(){
+		var regex = /<br\s*[\/]?>/gi;
+		
+		$('ul.comments .edit').live('click', function(){
+			DetailPage.commentId = $(this).data('id');
+		
+			$('.add-comment').show();
+			var text = $(this).next('p').html().replace(regex, "\n");
+			$('.add-comment textarea').val(text);
+			$('.add-comment .submit').text('更新');
+			$('.add-button').hide();
+		});
+
+		$('.add-button .add').click(function(){
+			DetailPage.commentId = 0;
+			
+			$('.add-comment textarea').val('');
+			$('.add-comment').show();
+			$('.add-button').hide();
+			$('.add-comment .submit').text('添加');
+		});
+		
+		$('.add-comment .cancel').click(function(){
+			$('.add-comment textarea').val('');
+			$('.add-comment').hide();
+			$('.add-button').show();
+		});
+
+		$('.add-comment .submit').click(function(){
+			var comment = $('.add-comment textarea').val();
+			if(comment.lenth == 0){
+				return;
+			}
+			
+			if(DetailPage.commentId == 0){
+				Main.loadingShow();		
+				$.ajax({
+					type: 'POST',
+					url: Main.root + "estate/json/createComment.action",
+					data: {
+						'floorplanId': Main.currentFloorplanId,
+						'model.content': comment
+					},
+					dataType: "json",
+					success: function(json){
+						Main.loadingHide();
+						if(json.errorMessages.length>0){
+							alert(json.errorMessages[0]);
+						}else{
+							location.reload();
+						}
+					}
+				});
+			}else{
+				Main.loadingShow();
+				$.ajax({
+					type: 'POST',
+					url: Main.root + "estate/json/updateComment.action",
+					data: {
+						'model.id': DetailPage.commentId,
+						'model.content': comment
+					},
+					dataType: "json",
+					success: function(json){
+						Main.loadingHide();
+						if(json.errorMessages.length>0){
+							alert(json.errorMessages[0]);
+						}else{
+							location.reload(); 
+						}
+					}
+				});
+			}
+		});
 	},
 	initGoogleMap: function(lat, lon){
 		var latLng = new google.maps.LatLng(lat, lon);
@@ -2310,7 +2511,41 @@ ProjectPage = {
   		
   		var marker = new google.maps.Marker({
 			position: latLng,
-			map: ProjectPage.map
+			map: DetailPage.map
+		});
+	},
+	initForm: function(id, type){
+		$('#contact-form').validate({
+			errorPlacement:function(){
+				return;
+			},
+			submitHandler: function(form) {
+				Main.loadingShow();
+				var data = {
+					'model.content': $(form).find('textarea').val(),
+					'model.customerName': $(form).find('input[name="name"]').val(),
+					'model.customerMobile': $(form).find('input[name="mobile"]').val(),
+					'model.customerEmail': $(form).find('input[name="email"]').val()
+				};
+				
+				if(type =='project'){
+					data['model.projectId'] = id
+				}else{
+					data['model.floorplanId'] = id
+				}
+				
+				$.ajax({
+					type: 'POST',
+					url: Main.root + "estate/json/createMessage.action",
+					data: data,
+					dataType: "json",
+					success: function(json){
+						$(form).hide();
+						$('div.contactus .thankyou').show();
+						Main.loadingHide();
+					}
+				});
+			}
 		});
 	}
 }
@@ -2397,6 +2632,19 @@ Tools = {
 		
 		return arr.sort(compare);
 	},
+	sortByRecommended: function(arr){
+		function compare(a, b){
+			if(a.recommended && !b.recommended){
+				return -1;
+			}
+			else if(!a.recommended && b.recommended){
+				return 1;
+			}
+			return 0;
+		}
+		
+		return arr.sort(compare);
+	},
 	showSuccessMessage: function(msg){
 		$("html, body").animate({ scrollTop: 0 });
 		var $msg = $('<div class="ui-state-highlight ui-corner-all message"><span class="ui-icon ui-icon-info"></span> ' + msg + '</div>');
@@ -2438,9 +2686,10 @@ String.prototype.capitalize = function () {
 };
 
 /* ClusterOverlay Class */
-function ClusterOverlay(cluster, map){
+function ClusterOverlay(cluster, map, category){
 	this._count = cluster.projectCounts;
 	this._map = map;
+	this._category = category;
 	this._div = null;
 	this._markerCenter = new google.maps.LatLng(cluster.latitude, cluster.longitude);
 	this._imageCenter = null;
@@ -2480,27 +2729,32 @@ ClusterOverlay.prototype.onAdd = function(){
 	this._statusDiv.innerHTML = "<span>"+ this._name +"</span>";
 	
 	var thisCluster = this;
+	var category = this._category;
+	var name = this._name;
+	
 	$(this._div).click(function(){
 		thisCluster.zoom();
+		_gaq.push(['_trackEvent', category, 'Load', name]);
 	});
 	
+	/*
 	if(this._shape != null){
-		//this._overlay = new ClusterPolygon(this, this._shape, this._map);
+		this._overlay = new ClusterPolygon(this, this._shape, this._map);
 	}else{
 		$(this._div).mouseover(function(){
-			//thisCluster.showStatus();
+			thisCluster.showStatus();
 		});
 		
 		$(this._div).mouseout(function(){
-			//thisCluster.hideStatus();
+			thisCluster.hideStatus();
 		});
 	}
-	
+	*/
 	var panes = this.getPanes();
 	panes.overlayMouseTarget.appendChild(this._div);
 }
 ClusterOverlay.prototype.draw = function(){	
-	var path =  Main.imageRoot + "img/maps/";
+	var path =  Main.imageRoot + "/img/maps/";
 	var image = null;
 	var width = null;
 	var height = null;	
@@ -2562,7 +2816,7 @@ function ClusterPolygon(clusterOverlay, shape, map){
 		this.setOptions(this._options);
 		//this._clusterOverlay.hideStatus();
 	})
-	
+
 	google.maps.event.addListener(this, 'click', function(){
 		this._clusterOverlay.zoom();
 	})
@@ -2573,7 +2827,8 @@ ClusterPolygon.prototype = new google.maps.Polygon();
 function ProjectOverlay(project, map){
 	this._map = map;
 	this._div = null;
-	this._logo = project.picture.smallUrl;
+	this._logo = Main.imageRoot + project.picture.smallUrl;
+	this._name = project.block;
 	this._markerCenter = new google.maps.LatLng(project.latitude, project.longitude);
 	this._imageCenter = null;
 	this._projectId = project.id;
@@ -2586,6 +2841,7 @@ ProjectOverlay.prototype.onAdd = function(){
 	this._div.className = "project";
 	this._div.innerHTML = "<img src='" + this._logo + "' width='140' height='94'/>";
 	
+	var name = this._name;
 	var center = this._markerCenter;
 	var projectId = this._projectId;
 	$(this._div).click(function(){
@@ -2610,6 +2866,8 @@ ProjectOverlay.prototype.onAdd = function(){
 		}
 		MapMenu.resetMenu();	
 		PanelPopup.load(projectId);
+		
+		_gaq.push(['_trackEvent', 'Projects', 'Load from Marker', name]);
 	});
 	
 	$(this._div).mouseover(function(){
