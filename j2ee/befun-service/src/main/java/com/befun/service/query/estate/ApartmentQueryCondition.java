@@ -47,7 +47,7 @@ public class ApartmentQueryCondition extends EstateQueryCondition {
 
     private Short maxStorageRoomCount;
 
-    private Boolean soldOut = false;
+    private Boolean soldOut;
 
     public ApartmentQueryCondition() {
         super();
