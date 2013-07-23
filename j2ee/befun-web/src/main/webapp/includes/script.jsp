@@ -9,15 +9,15 @@
     	
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="<c:url value="/js/vendor/jquery-1.8.3.min.js"/>"><\/script>')</script>
-<script src="<c:url value="/js/plugins.js"/>"></script>
 <script src="<c:url value="/js/vendor/jquery-ui-1.9.2.custom.min.js"/>"></script>
+<script src="<c:url value="/js/plugins-min.js"/>"></script>
+<!--<script src="<c:url value="/js/jquery.fancybox.js"/>"></script>
 <script src="<c:url value="/js/json2.js"/>"></script>
 <script src="<c:url value="/js/jquery.selectbox-0.2.js"/>"></script>
 <script src="<c:url value="/js/jquery.tools.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.validate.min.js"/>"></script>
-<script src="<c:url value="/js/jquery.fancybox.js"/>"></script>
 <script src="<c:url value="/js/jquery.cookie.js"/>"></script>
-<script src="<c:url value="/js/knockout-2.2.1.js"/>"></script>
+<script src="<c:url value="/js/knockout-2.2.1.js"/>"></script>-->
 <script src="<c:url value="/js/main.js"/>"></script>
 <script>
 	var _gaq=[['_setAccount','UA-40663296-1'],['_trackPageview']];

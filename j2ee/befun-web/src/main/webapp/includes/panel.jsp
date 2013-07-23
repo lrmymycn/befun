@@ -29,32 +29,12 @@
     			<a href="#subtab-description" class="active">基本信息</a>
     			<a href="#subtab-feature">项目特色</a>
     			<a href="#subtab-finish">内饰品牌</a>
+    			<a href="#subtab-amenity">项目设施</a>
 			</div>
 			<div id="subtab-description" class="shown detailbox">
 				<span class="arrow"></span>
 				<div class="detail">
-					
-					<!--
-					<ul class="amenity">
-						<li><i class="tick"></i> Reception</li>
-						<li><i class="tick"></i> Swimming Pool</li>
-						<li><i class="tick"></i> Sauna Room</li>
-						<li><i class="tick"></i> Tennis Court</li>
-						<li><i class="tick"></i> Function Room</li>
-						<li><i class="tick"></i> Theatre Cinema</li>
-						<li><i class="tick"></i> Library</li>
-						<li><i class="tick"></i> BBQ Fireplace</li>
-						<li><i class="tick"></i> Landscaping</li>
-						<li><i class="tick"></i> Sky Garden</li>
-						<li><i class="tick"></i> Visitor parking</li>
-						<li><i class="tick"></i> Car wash bay</li>
-						<li><i class="tick"></i> Gym</li>
-						<li><i class="tick"></i> Kids Play Ground</li>
-						<li><i class="tick"></i> Play Room</li>
-						<li><i class="tick"></i> Recreation Place</li>
-						<li><i class="tick"></i> Music Room</li>
-					</ul>
-					-->
+
 				</div>
 			</div>
 			<div id="subtab-feature" class="hidden detailbox">
@@ -67,6 +47,29 @@
 				<span class="arrow"></span>
 				<div class="detail">
 					
+				</div>
+			</div>
+			<div id="subtab-amenity" class="hidden detailbox">
+				<span class="arrow"></span>
+				<div class="detail">
+					<ul class="amenity">
+						<li><i data-bind="css: {tick: reception(), cross: !reception()}"></i> 前台</li>
+						<li><i data-bind="css: {tick: swimmingPool(), cross: !swimmingPool()}"></i> 游泳池</li>
+						<li><i data-bind="css: {tick: sauna(), cross: !sauna()}"></i> 桑拿房</li>
+						<li><i data-bind="css: {tick: tennisCourt(), cross: !tennisCourt()}"></i> 网球场</li>
+						<li><i data-bind="css: {tick: funcRoom(), cross: !funcRoom()}"></i> 会客室</li>
+						<li><i data-bind="css: {tick: theatreCinema(), cross: !theatreCinema()}"></i> 影音室</li>
+						<li><i data-bind="css: {tick: library(), cross: !library()}"></i> 图书馆</li>
+						<li><i data-bind="css: {tick: bbq(), cross: !bbq()}"></i> 烧烤设施</li>
+						<li><i data-bind="css: {tick: landScaping(), cross: !landScaping()}"></i> 社区绿化</li>
+						<li><i data-bind="css: {tick: skyGarden(), cross: !skyGarden()}"></i> 空中花园</li>
+						<li><i data-bind="css: {tick: visitorParking(), cross: !visitorParking()}"></i> 访客停车位</li>
+						<li><i data-bind="css: {tick: gym(), cross: !gym()}"></i> 健身房</li>
+						<li><i data-bind="css: {tick: kidsPlayGround(), cross: !kidsPlayGround()}"></i> 儿童游乐场</li>
+						<li><i data-bind="css: {tick: playRoom(), cross: !playRoom()}"></i> 活动室</li>
+						<li><i data-bind="css: {tick: recreationPlace(), cross: !recreationPlace()}"></i> 休闲广场</li>
+						<li><i data-bind="css: {tick: musicRoom(), cross: !musicRoom()}"></i> 音乐室</li>
+					</ul>
 				</div>
 			</div>
 		</div>

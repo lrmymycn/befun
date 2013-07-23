@@ -211,6 +211,12 @@ Main = {
 			
 			$div.appendTo($('#projectlist'));
 		}
+		
+		var qr = '<div class="qr">' +
+					'<img src="' + Main.imageRoot + '/QR.jpg" alt="QR"/>' +
+					'<div>没找到合适的楼盘？添加我们的微信，第一时间获取新盘上市信息。</div>' +
+				 '</div>';
+		$('#projectlist').append(qr);
 	},
 	updateReminder: function(){
 		$('#reminder-nodes').empty();
@@ -1030,7 +1036,29 @@ MapMenu = {
 
 PanelPopup = {
 	isShown: false,
+	amenityViewModel: null,
 	init: function(){
+		PanelPopup.amenityViewModel = {
+			reception:  ko.observable(false),
+			swimmingPool: ko.observable(false),
+			sauna: ko.observable(false),
+			tennisCourt: ko.observable(false),
+			funcRoom: ko.observable(false),
+			theatreCinema: ko.observable(false),
+			library: ko.observable(false),
+			bbq: ko.observable(false),
+			landScaping: ko.observable(false),
+			skyGarden: ko.observable(false),
+			visitorParking: ko.observable(false),
+			gym: ko.observable(false),
+			kidsPlayGround: ko.observable(false),
+			playRoom: ko.observable(false),
+			recreationPlace: ko.observable(false),
+			musicRoom: ko.observable(false)
+		};
+		
+		ko.applyBindings(PanelPopup.amenityViewModel);
+	
 		$('#panel .close').click(function(){
 			Map.center = Map.map.getCenter();
 			PanelPopup.hide();
@@ -1204,6 +1232,23 @@ PanelPopup = {
 						FloorPlanFilter.updateList();
 						
 						PanelPopup.resetContactForm(fullProjectName);
+						
+						PanelPopup.amenityViewModel.reception(project.carWashBay);
+						PanelPopup.amenityViewModel.swimmingPool(project.swimmingPool);
+						PanelPopup.amenityViewModel.sauna(project.sauna);
+						PanelPopup.amenityViewModel.tennisCourt(project.tennisCourt);
+						PanelPopup.amenityViewModel.funcRoom(project.funcRoom);
+						PanelPopup.amenityViewModel.theatreCinema(project.theatreCinema);
+						PanelPopup.amenityViewModel.library(project.library);
+						PanelPopup.amenityViewModel.bbq(project.bbq);
+						PanelPopup.amenityViewModel.landScaping(project.landScaping);
+						PanelPopup.amenityViewModel.skyGarden(project.skyGarden);
+						PanelPopup.amenityViewModel.visitorParking(project.visitorParking);
+						PanelPopup.amenityViewModel.gym(project.gym);
+						PanelPopup.amenityViewModel.kidsPlayGround(project.kidsPlayGround);
+						PanelPopup.amenityViewModel.playRoom(project.playRoom);
+						PanelPopup.amenityViewModel.recreationPlace(project.recreationPlace);
+						PanelPopup.amenityViewModel.musicRoom(project.musicRoom);
 						
 						Main.loadingHide();
 						

@@ -50,7 +50,7 @@
 	        		
 	        		</div>
 	        		<footer>
-	        			&copy; Befun Property. <a href="#">About</a>
+	        			<a href="<c:url value="about-us.jsp"/>">关于我们</a><a href="<c:url value="join-us.jsp"/>">加入我们</a><a href="<c:url value="disclaimer.jsp"/>">免责声明</a><a href="<c:url value="contact-us.jsp"/>">联系我们</a>
 	        		</footer>
 	        	</div>
 	        	

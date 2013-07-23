@@ -36,8 +36,7 @@
 				</li>
 			</sec:authorize>
 			<sec:authorize access="isAnonymous()">
-				<li><a href="javascript:;" id="login-link">登陆</a></li>
-				<li><a href="mailto:info@befun.com.au">加入我们</a></li>
+				<li><a href="javascript:;" id="login-link">Sales 登陆</a></li>
 				<li class="phone"><i class="phone"></i> 02 7902 0866</li>
 			</sec:authorize>
 		</ul>

@@ -84,7 +84,7 @@ body {
 	position: relative;
 }
 
-ul,li{
+ul, ul li{
 	margin:0;
 	padding:0;
 	list-style:none;
@@ -614,18 +614,26 @@ header .menu #view-client{
 	color:#97B833;
 }
 
-#left .tile .section .amenity{
+#left .tile .section div.amenity{
 	width:260px;
 	padding:0 0 20px 20px;
 	border-left:1px solid #e6e6e6;
 	float:left;
 }
 
-#left .tile .section .amenity li{
+#left .tile .section div.amenity li{
 	float:left;
 	width:130px;
 }
 
+#left .tile .tab-contents ul.amenity{
+	padding-top:20px;
+}
+
+#left .tile .tab-contents ul.amenity li{
+	float:left;
+	width:108px;
+}
 
 #left .tile .title{
 	background:url('http://img.befun.com.au/img/tile-divider.png') repeat-x;
@@ -960,6 +968,8 @@ header .menu #view-client{
 #map-menu.disabled{
 	cursor:default;
 	opacity:0.5;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	filter: alpha(opacity=50);
 }
 
 #map-menu.expended{
@@ -994,11 +1004,15 @@ header .menu #view-client{
 #map-menu ul li a:hover i{
 	visibility:visible;
 	opacity:0.5;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	filter: alpha(opacity=50);
 }
 
 #map-menu ul li a.active i{
 	visibility:visible;
 	opacity:1;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+	filter: alpha(opacity=100);
 }
 
 #map-menu .top{
@@ -1085,6 +1099,27 @@ header .menu #view-client{
 	font-size:13px;
 }
 
+#projectlist .qr{
+	width:310px;
+	-webkit-box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow:    0px 2px 5px rgba(0, 0, 0, 0.3);
+	box-shadow:         0px 2px 5px rgba(0, 0, 0, 0.3);
+	margin:11px 9px 0 9px;
+}
+
+#projectlist .qr img{
+	width:310px;
+	height:310px;
+}
+
+#projectlist .qr div{
+	padding:5px;
+}
+
+footer{
+	font-size:12px;
+}
+
 .home footer {
 	height:35px;
 	border-top:1px solid #d9d9d9;
@@ -1099,8 +1134,15 @@ header .menu #view-client{
 }
 
 footer a{
-	color:#97B833;
-	margin-left:15px;
+	font-size:12px;
+	padding:0 10px;
+	height:22px;
+	line-height:22px;
+	border-left:1px solid #dddddd;
+}
+
+footer a:first-child{
+	border-left:none;
 }
 
 .standard footer{
@@ -1325,7 +1367,7 @@ footer a{
 }
 
 #subtab-amenity .arrow{
-	left:233px;
+	left:248px;
 }
 
 #subtab-data .arrow{
@@ -1900,8 +1942,9 @@ footer a{
 	margin-left:-131px;
 	z-index:1000;
 	zoom: 1;
-	filter: alpha(opacity=50);
 	opacity: 0.5;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	filter: alpha(opacity=50);
 	display:none;
 }
 
@@ -1910,6 +1953,8 @@ footer a{
 	background:#ffffff;
 	z-index:599;
 	opacity:0;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
 }
 
 #filter-overlay {
@@ -1917,18 +1962,24 @@ footer a{
 	background:#000000;
 	z-index:50;
 	opacity:0.5;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	filter: alpha(opacity=50);
 }
 
 #lightbox-overlay {	
 	background:#ffffff;
 	z-index:500;
 	opacity:0;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+	filter: alpha(opacity=0);
 }
 
 #panel-overlay{
 	background:#000000;
 	z-index: 400;
 	opacity:0.5;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	filter: alpha(opacity=50);
 }
 
 /* ==========================================================================
@@ -2134,6 +2185,8 @@ footer a{
 
 #compare-panel .panel .button .btn-compare.disabled{
 	opacity:0.5;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+	filter: alpha(opacity=50);
 	cursor:default;
 }
 
@@ -2359,7 +2412,7 @@ table.list td.action a{
 #login-panel {
 	width:210px;
 	height:142px;
-	right:130px;
+	right:70px;
 	display:none;
 }
 
@@ -2498,6 +2551,78 @@ table.list td.action a{
 	color:#cccccc;
 }
 
+/* ==========================================================================
+   About Pages
+   ========================================================================== */
+
+body.about{
+	background:url('http://img.befun.com.au/about-bg.jpg') no-repeat center top;
+}
+
+body.about h2{
+	text-align:right;
+	font-size:50px;
+	color:#ffffff;
+	height:50px;
+	line-height:50px;
+	margin:60px 0 15px;
+}
+
+.about-main{
+	width:100%;
+	background:#ffffff;
+	border-radius: 5px;
+	border: 1px solid #E2E2E2;
+	-webkit-box-shadow: 0 2px 2px #DDDDDD;
+	-moz-box-shadow:    0 2px 2px #DDDDDD;
+	box-shadow: 0 2px 2px #DDDDDD;
+}
+
+.about-main .side-nav{
+	width:180px;
+	float:left;
+}
+
+.about-main .side-nav li{
+	height:52px;
+	background:url('http://img.befun.com.au/img/side-nav-bg.jpg') repeat-x;
+}
+
+.about-main .side-nav li a{
+	display:block;
+	padding:17px 0px;
+	line-height:18px;
+	height:18px;
+}
+
+.about-main .side-nav li a span{
+	margin-left:23px;
+	padding-left:18px;
+}
+
+.about-main .side-nav li a:hover span,
+.about-main .side-nav li a.active span{
+	border-left:3px solid #e95b3b;
+	padding-left:15px;
+}
+
+.about-main .main{
+	float:left;
+	width:680px;
+	padding:20px 55px;
+	-webkit-box-shadow: -5px 0px 5px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow:    -5px 0px 5px rgba(0, 0, 0, 0.1);
+	box-shadow:         -5px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+.about-main .main ol li{
+	margin-bottom:10px;
+}
+
+#office-map{
+	width:680px;
+	height:280px;
+}
 
 /* ==========================================================================
    Login classes

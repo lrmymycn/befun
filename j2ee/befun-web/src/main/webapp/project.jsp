@@ -91,7 +91,24 @@
 									<c:out value="${view.finishSchema}" escapeXml="false"/>
 								</div>
 								<div id="tab-project-amenity" style="display:none">
-									<p>项目设施</p>
+									<ul class="amenity clearfix">
+										<li><i class="${view.carWashBay ? 'tick' : 'cross'}"></i> 前台</li>
+										<li><i class="${view.swimmingPool ? 'tick' : 'cross'}"></i> 游泳池</li>
+										<li><i class="${view.sauna ? 'tick' : 'cross'}"></i> 桑拿房</li>
+										<li><i class="${view.tennisCourt ? 'tick' : 'cross'}"></i> 网球场</li>
+										<li><i class="${view.funcRoom ? 'tick' : 'cross'}"></i> 会客室</li>
+										<li><i class="${view.theatreCinema ? 'tick' : 'cross'}"></i> 影音室</li>
+										<li><i class="${view.library ? 'tick' : 'cross'}"></i> 图书馆</li>
+										<li><i class="${view.bbq ? 'tick' : 'cross'}"></i> 烧烤设施</li>
+										<li><i class="${view.landScaping ? 'tick' : 'cross'}"></i> 社区绿化</li>
+										<li><i class="${view.skyGarden ? 'tick' : 'cross'}"></i> 空中花园</li>
+										<li><i class="${view.visitorParking ? 'tick' : 'cross'}"></i> 访客停车位</li>
+										<li><i class="${view.gym ? 'tick' : 'cross'}"></i> 健身房</li>
+										<li><i class="${view.kidsPlayGround ? 'tick' : 'cross'}"></i> 儿童游乐场</li>
+										<li><i class="${view.playRoom ? 'tick' : 'cross'}"></i> 活动室</li>
+										<li><i class="${view.recreationPlace ? 'tick' : 'cross'}"></i> 休闲广场</li>
+										<li><i class="${view.musicRoom ? 'tick' : 'cross'}"></i> 音乐室</li>
+									</ul>
 								</div>
 							</div>		
 						</div>

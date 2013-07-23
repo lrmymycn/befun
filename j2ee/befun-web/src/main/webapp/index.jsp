@@ -45,8 +45,7 @@
 							</li>
 						</sec:authorize>
 						<sec:authorize access="isAnonymous()">
-							<li><a href="javascript:;" id="login-link">登陆</a></li>
-							<li><a href="mailto:info@befun.com.au">加入我们</a></li>
+							<li><a href="javascript:;" id="login-link">Sales 登陆</a></li>
 							<li class="phone"><i class="phone"></i> 02 7902 0866</li>
 						</sec:authorize>
 						</ul>
@@ -59,7 +58,7 @@
         <img src="http://img.befun.com.au/img/login.jpg" width="100%" alt="" class="bg-login"/>
 		<div id="home">
 			<img src="http://img.befun.com.au/img/slogan.png" width="254" height="71" alt="Befun property" class="slogan"/>
-			<img src="http://img.befun.com.au/img/demo.png" width="542" height="371" alt="" class="demo"/>
+			<img src="http://img.befun.com.au/img/demo.png" width="542" height="450" alt="" class="demo"/>
 			<div class="search" id="home-filter">
 				<div class="filter-group pricerange-group clearfix">
 					<span class="label">价格:</span>
