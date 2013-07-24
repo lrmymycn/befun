@@ -5,7 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
-<title>Secondary cache</title>
+<title>Secondary cache -- Query</title>
 </head>
 <body>
 	<form name="cacheForm" action="" method="post">

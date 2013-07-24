@@ -4,8 +4,12 @@
       "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
     <package name="admin" extends="struts-default" namespace="/admin">
-        <action name="cacheStatistics" class="CacheStatisticAction" method="statistic">
-            <result name="success">/admin/cacheStatistics.jsp</result>
+        <action name="elementCacheStatistics" class="ElementCacheStatisticAction" method="statistic">
+            <result name="success">/admin/elementCacheStatistics.jsp</result>
+            <result name="error">/admin/data/result.jsp</result>
+        </action>
+        <action name="queryCacheStatistics" class="QueryCacheStatisticAction" method="statistic">
+            <result name="success">/admin/queryCacheStatistics.jsp</result>
             <result name="error">/admin/data/result.jsp</result>
         </action>
         <action name="updateMediaUrl" class="UpdateMediaUrlBaseAction" method="updateUrl">

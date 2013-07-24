@@ -12,7 +12,8 @@
 		<pattern>*.css*</pattern>
 	</excludes>
     <decorator name="admin-system" page="admin-system.jsp">
-        <pattern>/admin/cacheStatistics.action</pattern>
+        <pattern>/admin/elementCacheStatistics.action</pattern>
+        <pattern>/admin/queryCacheStatistics.action</pattern>
     </decorator>
 	<decorator name="admin-list" page="admin-list.jsp">
 		<pattern>/admin/data/demand*.action</pattern>

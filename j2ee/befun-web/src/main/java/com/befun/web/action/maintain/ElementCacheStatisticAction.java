@@ -14,8 +14,8 @@ import org.springframework.stereotype.Controller;
 import com.befun.web.action.BaseAction;
 import com.befun.web.view.cachest.CacheStatisticsView;
 
-@Controller("CacheStatisticAction")
-public class CacheStatisticAction extends BaseAction {
+@Controller("ElementCacheStatisticAction")
+public class ElementCacheStatisticAction extends BaseAction {
 
     private static final long serialVersionUID = -5231891328688966947L;
 

@@ -32,7 +32,11 @@
 		<sec:authorize ifAllGranted="SUPER">
 			<div class="menu-div">
 				<ul id="menuCache">
-					<li><a href="<c:url value='/admin/cacheStatistics.action'/>"> Cache </a></li>
+					<li><a href="<c:url value='/admin/elementCacheStatistics.action'/>"> Cache </a>
+						<ul>
+							<s:url var="e" action="admin/queryCacheStatistics.action" namespace="/" />
+							<li><a href="${e}">Query</a></li>
+						</ul></li>
 				</ul>
 			</div>
 		</sec:authorize>
@@ -45,7 +49,7 @@
 			<ul id="menuEmployee">
 				<li><a href="<c:url value='/admin/profile/demandEmployee.action'/>"> Employee </a>
 					<ul>
-						<s:url var="e" action="admin/profile/createPageEmployee.action" namespace="/"/>
+						<s:url var="e" action="admin/profile/createPageEmployee.action" namespace="/" />
 						<li><a href="#" onclick="showDialog('${e}')">Create</a></li>
 					</ul></li>
 			</ul>
@@ -54,7 +58,7 @@
 			<ul id="menuClient">
 				<li><a href="<c:url value='/admin/profile/demandClient.action'/>"> Client </a>
 					<ul>
-						<s:url var="e" action="admin/profile/createPageClient.action" namespace="/"/>
+						<s:url var="e" action="admin/profile/createPageClient.action" namespace="/" />
 						<li><a href="#" onclick="showDialog('${e}')">Create</a></li>
 					</ul></li>
 			</ul>
@@ -63,7 +67,7 @@
 			<ul id="menuEmployeeClient">
 				<li><a href="<c:url value='/admin/profile/demandEmployeeClient.action'/>"> EmployeeClient </a>
 					<ul>
-						<s:url var="e" action="admin/profile/createPageEmployeeClient.action" namespace="/"/>
+						<s:url var="e" action="admin/profile/createPageEmployeeClient.action" namespace="/" />
 						<li><a href="#" onclick="showDialog('${e}')">Create</a></li>
 					</ul></li>
 			</ul>
