@@ -4,6 +4,7 @@
 <head>
 <script>
 	$(function() {
+		$("#menuCache").menu();
 		$("#menuEmployee").menu();
 		$("#menuClient").menu();
 		$("#menuClientPreference").menu();
@@ -28,6 +29,13 @@
 <body>
 	<div id="childrenDiv"></div>
 	<div class="ui-widget" style="width: 1200px; height: 30px;">
+		<sec:authorize ifAllGranted="SUPER">
+			<div class="menu-div">
+				<ul id="menuCache">
+					<li><a href="<c:url value='/admin/cacheStatistics.action'/>"> Cache </a></li>
+				</ul>
+			</div>
+		</sec:authorize>
 		<div class="menu-div">
 			<ul id="menuProject">
 				<li><a href="<c:url value='/admin/data/demandProject.action'/>"> Project </a></li>

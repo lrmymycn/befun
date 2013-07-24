@@ -36,11 +36,7 @@
 	<div class="ui-widget" style="width: 1200px; height: 30px;">
 		<div class="menu-div">
 			<ul id="menuCacheStatistics">
-				<li><a href="<c:url value='/admin/cacheStatistics.action'/>"> Cache Statistics </a>
-					<ul>
-						<s:url var="e" action="admin/data/createPageArea.action" namespace="/"/>
-						<li><a href="#" onclick="showDialog('${e}')">Create</a></li>
-					</ul>
+				<li><a href="<c:url value='/admin/cacheStatistics.action'/>"> Cache </a>
 				</li>
 			</ul>
 		</div>
