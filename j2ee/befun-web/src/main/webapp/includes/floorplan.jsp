@@ -14,8 +14,7 @@
 				<div class="sort">
 					<label>Sort:</label>
 					<div class="button-group">
-						<a href="javascript:;" class="btn active" data-type="recommend">Recommend</a>
-						<a href="javascript:;" class="btn" data-type="price">Price</a>
+						<a href="javascript:;" class="btn active" data-type="price">Price</a>
 						<a href="javascript:;" class="btn" data-type="sqm">Price/sqm</a>
 						<a href="javascript:;" class="btn" data-type="area">Area</a>
 					</div>			
@@ -26,6 +25,10 @@
 			<div class="left"> 			
 				<div id="apartments">
 			
+				</div>
+				<div id="comments">
+					<b>户型分析</b><br/>
+					<p>这个项目还没户型分析</p>
 				</div>
 			</div>
 			<div class="floorplan">

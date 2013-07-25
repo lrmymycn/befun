@@ -64,6 +64,9 @@
         <script>
         	$(function(){
 				Debug.enable = true;
+				<sec:authorize access="isAuthenticated()">
+				Main.isSales = true;
+				</sec:authorize>
 				Main.init();
 			})
         </script>

@@ -9,6 +9,7 @@ Main = {
 	imageRoot: 'http://img.befun.com.au',
 	isLoading:false,
 	isHome:false, //home is search.jsp
+	isSales:false,
 	currentProjectId:null,
 	currentFloorplanId:null,
 	currentApartmentId:null,
@@ -18,16 +19,12 @@ Main = {
 		this.isHome = true;
 		this.windowResize();
 		$(window).resize(this.windowResize);
-		//this.initFilter();
-		//this.initClient();
 		MapMenu.init();
 		PanelPopup.init();
 		FloorplanPopup.init();
 		ComparePanel.init();
-		//Search.init();
 		FloorPlanFilter.init();
 		Map.init();
-		//this.showLightbox();
 	},
 	windowResize:function(){
 		var mapHeight = $(window).height() - $('header').height() + 9;
@@ -794,6 +791,7 @@ Search = {
 				'qc.apQC.minPrice': conditions.minPrice,
 				'qc.apQC.maxPrice': conditions.maxPrice,
 				'qc.apQC.fpQC.bQC.readyHouse': status,
+				'qc.apQC.soldOut': Main.isSales ? false : 'null',
 				'qc.suburbQC.chineseCommunity': conditions.chineseCommunity,
 				'qc.suburbQC.train' : conditions.trainStation,
 				'qc.suburbQC.schools' : conditions.schools,
@@ -1198,7 +1196,8 @@ PanelPopup = {
 						'qc.apQC.fpQC.bathRoomCountStr': conditions.bathrooms,
 						'qc.apQC.carParkingCountStr': conditions.carspace,
 						'qc.apQC.minPrice': conditions.minPrice,
-						'qc.apQC.maxPrice': conditions.maxPrice
+						'qc.apQC.maxPrice': conditions.maxPrice,
+						'qc.apQC.soldOut': Main.isSales ? false : 'null'
 					},
 				dataType: "json",
 				success: function(json){
@@ -1431,7 +1430,7 @@ FloorplanPopup = {
 						
 						var img = '<img src="' + Main.imageRoot + picture.mediumUrl + '" alt=""/>';
 						$('#lightbox .floorplan .image').html(img);
-						$('#lightbox .floorplan .zoom').attr('href', picture.largeUrl);
+						$('#lightbox .floorplan .zoom').attr('href', Main.imageRoot + picture.largeUrl);
 						$('#units .items').empty();
 						$('#apartments').empty();
 						
@@ -1465,62 +1464,44 @@ FloorplanPopup = {
 								var div = '<div id="{id}" class="{cls}">' +
 											'<table>' +
 												'<tr>' +
-													'<td width="25"></td>' +
-													'<td width="100">栋</td>' +
+													'<td width="10"></td>' +
+													'<td>栋</td>' +
 													'<td>{building}</td>' +
-												'</tr>' +
-												'<tr>' +
-													'<td></td>' + 
-													'<td>楼层</td>' +
-													'<td>{level}</td>' + 
-												'</tr>' +
-												'<tr>' +
-													'<td></td>' +
-													'<td>卧室</td>' +
-													'<td>{bedrooms}</td>' +
-												'</tr>' +
-												'<tr>' +
-													'<td></td>' +
-													'<td>卫生间</td>' +
-													'<td>{bathrooms}</td>' +
-												'</tr>' +
-												'<tr>' +
-													'<td></td>' + 
-													'<td>书房</td>' +
-													'<td>{study}</td>' + 
-												'</tr>' +
-												'<tr>' +
-													'<td></td>' +
-													'<td>车位</td>' +
-													'<td>{carspace}</td>' +
-												'</tr>' +
-												'<tr>' +
-													'<td></td>' + 
-													'<td>朝向</td>' +
-													'<td>{aspect}</td>' +
-												'</tr>' +
-												'<tr>' +
-													'<td></td>' + 
 													'<td>内部面积</td>' +
 													'<td>{internalsize}</td>' + 
 												'</tr>' +
 												'<tr>' +
-													'<td></td>' + 
+													'<td></td>' +
+													'<td>楼层</td>' +
+													'<td>{level}</td>' + 
 													'<td>外部面积</td>' +
 													'<td>{externalsize}</td>' +
 												'</tr>' +
 												'<tr>' +
-													'<td></td>' +
+													'<td></td>' + 
+													'<td>卧室</td>' +
+													'<td>{bedrooms}</td>' +
 													'<td>总面积</td>' +
 													'<td>{totalsize}</td>' +
 												'</tr>' +
 												'<tr>' +
 													'<td></td>' +
+													'<td>书房</td>' +
+													'<td>{study}</td>' + 
+													'<td>朝向</td>' +
+													'<td>{aspect}</td>' +
+												'</tr>' +
+												'<tr>' +
+													'<td></td>' + 
+													'<td>车位</td>' +
+													'<td>{carspace}</td>' +
 													'<td>价格</td>' +
 													'<td>{price}</td>' +
 												'</tr>' +
 												'<tr>' +
 													'<td></td>' +
+													'<td>卫生间</td>' +
+													'<td>{bathrooms}</td>' +
 													'<td>平方单价</td>' +
 													'<td>{pricepersquare}</td>' +
 												'</tr>' +
@@ -1565,13 +1546,13 @@ FloorplanPopup = {
 									.replace('{totalsize}', floorplan.totalSize + ' m<sup>2</sup>')
 									.replace('{price}', price);
 							$('#lightbox .summary').html($(div));
-							
-							var comments = json.pgbComment.models;
-							if(comments.length > 0){
-								$('#comments p').html(comments[0].content.replace(/\n/g, "<br />"));
-							}else{
-								$('#comments p').text("这个项目还没户型分析");
-							}
+						}
+						
+						var comments = json.pgbComment.models;
+						if(comments.length > 0){
+							$('#comments p').html(comments[0].content.replace(/\n/g, "<br />"));
+						}else{
+							$('#comments p').text("这个项目还没户型分析");
 						}
 						
 						//$("#units .scrollable").scrollable({ vertical: true});
@@ -1677,7 +1658,8 @@ FloorPlanFilter = {
 				'qc.apQC.fpQC.orientationEast': conditions.east,
 				'qc.apQC.fpQC.orientationSouth': conditions.south,
     			'qc.apQC.fpQC.orientationWest': conditions.west,
-    			'qc.apQC.fpQC.orientationNorth': conditions.north
+    			'qc.apQC.fpQC.orientationNorth': conditions.north,
+    			'qc.apQC.soldOut': Main.isSales ? false : 'null'
 			};
 			
 			FloorPlanFilter.loadFloorplans(data);
